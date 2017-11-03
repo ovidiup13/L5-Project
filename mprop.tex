@@ -39,8 +39,6 @@ Problem statement: Has the student analysed the problem, stated it clearly, and 
 \subsection{A subsection}
 Please note your proposal need not follow the included section headings - this is only a suggested structure. Also add subsections etc as required
 
-example references: \cite{BK08}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Statement of Problem}
 
@@ -54,6 +52,7 @@ present an overview of relevant previous work including articles, books, and exi
 Survey: Has the student surveyed and critically reviewed relevant previous work, including literature and software products?
 
 \subsection{The SQALE Method for Measuring Technical Debt} \cite{Letouzey2012}
+
 \begin{itemize}
 	\item What were the goals of the paper? \\
 		The goal of this paper was to propose a standardized, language-agnostic framework for assessing the quality of source code by deriving measures for important code characteristics and calculating technical debt.
@@ -75,6 +74,26 @@ Survey: Has the student surveyed and critically reviewed relevant previous work,
 	\item Links to other resources?
 		-
 \end{itemize}
+
+\subsection{Technical Debt from a Stakeholder\'s Perspective} \cite{Theodoropoulos2011}
+
+\begin{itemize}
+	\item What were the goals of the paper? \\
+		To create a definition of technical debt that better aligned with stakeholder interests and to bridge the technical gap between technology team and stakeholdes when managing software quality.
+	\item What was the methodology?
+		This was a position paper, no methodology has been defined.
+	\item What did the authors learn?
+		\begin{itemize}
+			\item Stakeholders generally care little about software quality, unless it is directly impacting their costs at the present time.
+			\item Software quality characteristics are interdependent, deferring quality maintenance in one area may affect other areas of quality. For example, deferring work within UX may impact usability and require users to find workarounds. Additionally, inadequate validation of data at one layer may affect downstream processes.
+			\item They provided a definition of technical debt, as follows: \textit{Technical debt is any gap within the technology infrastructure or its implementation which has a material impact on the required level of quality.}
+			\item An interesting idea was that technical debt should only be associated with costs within technology environment rather than business and process environment. Thus the term \textbf{technical} debt. 
+			\end{itemize}
+	\item Links to other resources? \\
+		How is Quality Evaluated? David Garvin, ISO Quality Attributes
+\end{itemize}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
 

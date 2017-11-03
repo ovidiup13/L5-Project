@@ -18,9 +18,9 @@
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Title of project proposal placed here}
-\author{Name of author placed here}
-\date{Date of submission placed here}
+\title{Technical Debt Title Here}
+\author{Ovidiu Popoviciu}
+\date{18th December 2018}
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -33,6 +33,8 @@
 \section{Introduction}\label{intro}
 
 briefly explain the context of the project problem
+
+Problem statement: Has the student analysed the problem, stated it clearly, and justified its importance?
 
 \subsection{A subsection}
 Please note your proposal need not follow the included section headings - this is only a suggested structure. Also add subsections etc as required
@@ -49,6 +51,32 @@ clearly state the problem to be addressed in your forthcoming project. Explain w
 
 present an overview of relevant previous work including articles, books, and existing software products. Critically evaluate the strengths and weaknesses of the previous work.
 
+Survey: Has the student surveyed and critically reviewed relevant previous work, including literature and software products?
+
+\subsection{The SQALE Method for Measuring Technical Debt}
+\begin{itemize}
+	\item What were the goals of the paper? \\
+		The goal of this paper was to propose a standardized, language-agnostic framework for assessing the quality of source code by deriving measures for important code characteristics and calculating technical debt.
+	\item What was the methodology? \\
+		The framework proposed consisted of four concepts:
+		\begin{itemize}
+			\item Quality Model - defines internal properties of code through a structured three-layer hierarchy (characteristic, sub-characteristic and requirement).
+			\item Analysis Model - measurement of the distance between the current state of the application and the \"optimized\" state, the quality target.
+			\item Indices - each characteristic of the Quality Model defines a remediation index (cost to repair the non-compliances) defined in time, work or capital units.
+			\item Indicators - provide a visual representation of technical debt either through ratings (ratios between TD and development cost) or SQALE Pyramids (distribution of TD over all the characteristics).
+		\end{itemize}
+	\item What did the authors learn?
+		\begin{itemize}
+			\item Each organization must manage technical debt as early as possible in a project with indicators and dashboards for code quality available for each build within the continous integration pipeline.
+			\item Quality model must be calibrated according to the requirements and policies of the organization implementing the framework.
+			\item One limitation is that the framework does not take into consideration other types of technical debt such as requirements debt, operational debt.
+			\item There is no standardized definition of right code, organizations have to define their own \"right\" code rules.
+		\end{itemize}
+	\item Links to other resources?
+		-
+
+
+\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
 
@@ -58,6 +86,12 @@ state how you propose to solve the software development problem. Show that your 
 \section{Work Plan}
 
 show how you plan to organize your work, identifying intermediate deliverables and dates.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+
+Report: Is the report complete, well-organised, clear, and literate? Does it clearly explain the problem? Does it contain a bibliography and proper citations?
+Overall: What is your overall impression of the student’s work?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % it is fine to change the bibliography style if you want

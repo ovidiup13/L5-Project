@@ -134,6 +134,29 @@ Survey: Has the student surveyed and critically reviewed relevant previous work,
 	The limited scope of the empirical analysis on a sample of two projects and focus on a specific code smell, the results are indecisive for a generalization of the results.
 	\item Links to other resources?
 \end{itemize}
+
+\subsection{An Empirical Model of Technical Debt and Interest}  \cite{Nugroho2011}
+\begin{itemize}
+	\item What were the goals of the paper? \\
+	The goal was to formally define technical debt and interest to provide insights on the Return On Investment (ROI) of IT executives. 
+	Specifically, it tried to answer the following questions from a financial perspective: How large is TD? How much interest are paying? What are the consequences of holding on to debt?
+	\item What was the methodology? \\
+	The authors had completed an empirical analysis of 44 projects within the Software Improvement Group (SIG) using TUViT software quality assessment method for collecting relevant metrics: lines of code, code duplications, etc.
+	The had also defined technical debt as being the changes needed to bring a system from its current quality state to the "ideal" quality. This can be quantified as the repair effort (RE) and can be calculated as follows:
+	RE = Rework Fraction (LOC need to be changed) * Rebuild Value (estimate in man-months of rebuilding with a particular technology) * Refactoring Adjustment (advanced tooling helping the team be more productive.)\\
+	The interest was also derived from the extra cost spent on maintainance per month and per year, modelled against the quality factor (the current state of quality within the system). 
+	\item What did the authors learn?
+	Maintainance was considered a different activity by the authors since the tasks involved in maintaining a system involve a change that is immediately visible from the outside.
+	However, technical debt repair was not considered a maintainance activity.
+	A few limitations of this approach were the level of precision rating of a system (quality ratings are on a scale of 1-5) which leads to less accurate estimations on important financial numbers such as ROI.
+	Refactoring adjustment variable is subjective as it requires expert input when considering development productivity.
+	\item Links to other resources? \\
+	- S. McConnell. 10x software development \\
+	- Maintainability measurement - I. Heitlager, T. Kuipers, and J. Visser. A practical model for measuring maintainability. In Quality of Information and Communications Technology, 2007. QUATIC 2007. 6th International Conference on the, pages 30–39. IEEE, 2007.
+	- Eick, T. Graves, A. Karr, J. Marron, and A. Mockus. Does code decay? assessing the evidence from change management data. Software Engineering, IEEE Transactions on, 27(1):1–12, 2002.
+\end{itemize}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
 

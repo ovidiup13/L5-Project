@@ -67,7 +67,7 @@ Survey: Has the student surveyed and critically reviewed relevant previous work,
 	\item What did the authors learn?
 		\begin{itemize}
 			\item Each organization must manage technical debt as early as possible in a project with indicators and dashboards for code quality available for each build within the continous integration pipeline.
-			\item Quality model must be calibrated according to the requirements and policies of the organization implementing the framework.
+			\item Quality model must be calibrated according to the requirements and policies of the organization implementing the framework. For example, to approve/decline rules that are considered debt and what principal costs are for each type of code violation.
 			\item One limitation is that the framework does not take into consideration other types of technical debt such as requirements debt, operational debt.
 			\item There is no standardized definition of right code, organizations have to define their own \"right\" code rules.
 		\end{itemize}
@@ -93,7 +93,47 @@ Survey: Has the student surveyed and critically reviewed relevant previous work,
 		How is Quality Evaluated? David Garvin, ISO Quality Attributes
 \end{itemize}
 
+\subsection{An Enterprise Perspective on Technical Debt} \cite{Klinger2011}
 
+\begin{itemize}
+	\item What were the goals of the paper? \\
+	To challenge Ward Cunningham's definition of technical debt from an enterprise perspective and define it as a strategic tool for business circumstances.
+	\item What was the methodology? \\
+	Interviewed four technical architects from IBM, from a "wide range" of projects within the firm. Each interview was approx. 1 hour in length. 
+	The questions tapped into their own experiences with TD, more specifically: nature and context, stakeholders, benefits, documentation, whether the debt was repaid. 
+	\item What did the authors learn? \\
+	Enterprises may use debt as a tool for maximizing competitive advantage, which may or may not be paid in the future dependant on the direction in which the project will take.
+	Additionally, many stakeholders are involved in the accrual of debt in a software project (decisions are made collectively, not in a vacuum) but sometimes technical decisions would be made ad-hoc with no definite formal process.
+	However, the challenge is in the collective - it is difficult to understand the socio-technical background of a system. \\
+	
+	Some stakeholders do not comprehend the extent of technical debt they are incurring in the system through their decisions due to: 
+	\begin{itemize}
+		\item No vocabulary between technical architects and non-technical stakeholders.
+		\item Stakeholders having competing goals and "win" conditions which may be "suboptimal from a technical perspective".
+	\end{itemize} 
+	\item Links to other resources?
+\end{itemize}
+
+
+\subsection{Investigating the Impact of Design Debt on Software Quality} \cite{Zazworka2011}
+
+\begin{itemize}
+	\item What were the goals of the paper? \\
+	To investigate the impact God classes have on development and whether they are points of major changes and defects when compared to other parts of the system. Additionally, to study whether there is a linear relationship between class size, change and defect likelihoods and how the results are influenced by data normalizations
+
+	\item What was the methodology?
+	The authors ran an analysis on two medium-sized projects from a small development company. The analysis consisted of statically analysing the source code stored in version control and the project issues from the project management system.
+	It looked at two major variables:
+		\begin{itemize}
+			\item Change likelihood = how likely code within and outside God classes changes accross revisions.
+			\item Defect likelihood = how likely is a fix implemented inside and outside of God classes.
+		\end{itemize}
+	\item What did the authors learn?
+	Empirical analysis of the two projects has shown that God classes get changed 7.8\% of the time whilst also being fixed 17 times more than the rest of the code.
+	However, since the God classes have more functionality included, normalization of the data by LOC has shown that there are no significant results in comparing God vs non-God classes.
+	The limited scope of the empirical analysis on a sample of two projects and focus on a specific code smell, the results are indecisive for a generalization of the results.
+	\item Links to other resources?
+\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
 

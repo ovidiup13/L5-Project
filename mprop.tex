@@ -156,7 +156,22 @@ Survey: Has the student surveyed and critically reviewed relevant previous work,
 	- Eick, T. Graves, A. Karr, J. Marron, and A. Mockus. Does code decay? assessing the evidence from change management data. Software Engineering, IEEE Transactions on, 27(1):1–12, 2002.
 \end{itemize}
 
-
+\subsection{A Portfolio Approach to Managing Technical Debt} \cite{Guo2011}
+\begin{itemize}
+\item What were the goals of the paper?\\ 
+To define technical debt from a financial portfolio perspective by encouraging to be viewed as an investment and therefore used as a strategy.
+Which TD items should be paid in a release for a particular component \textit{S}?
+\item What was the methodology?\\
+The authors were looking at debt items in a system similar to assets in a financial portfolio, looking to maximize return on investment and minimize the risk associated with TD items.
+In short, they were interested to find out whether an optimal combination of assets (TD items) can be found. \\
+An approach proposed was to identify historical metrics of TD items and decide which ones to keep (the ones on which to pay interest) and which ones to sell (which to pay the principal i.e. FIX).
+\item What did the authors learn? \\
+Technical debt is not problematic unless the costs outweight the benefits.
+The approach does not take into consideration the fact that TD items may be recklessly added to the "portfolio" and the management of undetected TD items.
+Additionally, technical debt is not the same as financial debt. The amount of principal and interest are known before hand and fixed in finance whereas in software development estimation is one of the most difficult tasks.
+Approach was not tested in a real setting. 
+\item Links to other resources?
+\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
 

@@ -211,6 +211,24 @@ Theodoropoulos et al. \cite{Theodoropoulos2011} has created a definition of tech
 	\item Links to other resources?
 \end{itemize}
 
+\subsubsection{Investigating the impact of Code Smells Debt on Quality Code Evaluation} \cite{Fontana2012}
+\begin{itemize}
+\item What were the goals of the paper? \\
+The goals were to study the impact on code quality metrics of removing code smell, which code smell incurs the most TD and whether their impact on is related to the domain of the software application.
+Should code smells be categorized as design debt?
+\item What was the methodology? \\
+The study looked at three most common smells: Data class, God class and Duplicated Code.
+The metrics impacted are related to cohesion, coupling and complexity; calculated by various tools according to clarity of computation.
+Best refactoring practices were applied for each smell detected in the system and the quality metrics have been re-analysed to assess their impact.
+\item What did the authors learn? \\
+Some code quality tools evaluate code smells through a set of rules which must be customized according to the application domain of the system.
+Refactoring of one code smell may provide benefits for one or more metric qualities but may negatively impact others. 
+Additionally, code duplication is one of the worst smells but may also provide benefits in some cases.
+Data Class smell and God class smells may be domain-dependent, but this assumption heavily correlates with the types of tools and libraries listed as dependencies in the system.
+\item Links to other resources? \\
+Zhang et al. investigated relationship between code smells and software faults => how to prioritize refactoring.\\
+Arcelli et al. proposed a first analysis on refactoring on a small scale of software metrics.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Management}

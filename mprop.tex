@@ -251,6 +251,29 @@ Zhang et al. investigated relationship between code smells and software faults =
 Arcelli et al. proposed a first analysis on refactoring on a small scale of software metrics.
 \end{itemize}
 
+\subsubsection{Monitoring Code Quality and Development Activity by Software Maps} \cite{Bohnet2011}
+\begin{itemize}
+\item What were the goals of the paper? \\
+The goal of the paper was to bridge the gap between development teams and corporate managers, by exposing internal system quality through the use of software maps. 
+Software maps enable managers to assess where improvement in quality is most necessary and can observe future quality risk and estimate future maintenance costs.
+Additionally, it helps developers and project managers identify modules suitable for refactoring/clean-up before the start of a sprint.
+\item What was the methodology? \\
+A software map is a hierarchical 2D/3D view of software artefacts within a project.
+Each artefact is represented visually through properties such as colour, texture and size; each representing a property of quality: cyclomatic complexity, LOC, nesting levels. 
+The authors have implemented a software for visualizing software maps and evaluated the tool on two projects: JBoss and Blender.
+\item What were the conclusions? \\
+The authors have defined the internal quality of the system to be directly correlated to the quality of the source code. 
+These qualities are invisible to customers and management, and stakeholders are reluctant to put more resources into internal quality. 
+On the other hand, external quality relates to the visible, discoverable qualities of the system. 
+For example, defects and bugs are two discoverable phenomenons of external quality. 
+Impact of external quality issues are immediate, and stakeholders are inclined to invest in quick features/fixes that make an instant impact. 
+\item What were the limitations? \\
+The system has not been evaluated in practice.\\
+There is no aggregation of values into a single metric that is understandable by both parties.\\
+Calculating the cost of a change is difficult, only shows the past and current quality status.
+\item Links to other resources? \\
+\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Management}
 

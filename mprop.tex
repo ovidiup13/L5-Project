@@ -46,12 +46,55 @@ clearly state the problem to be addressed in your forthcoming project. Explain w
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background Survey}
+\subsection{Definition}
 
-present an overview of relevant previous work including articles, books, and existing software products. Critically evaluate the strengths and weaknesses of the previous work.
+\subsubsection{Technical Debt from a Stakeholder\'s Perspective} \cite{Theodoropoulos2011}
 
-Survey: Has the student surveyed and critically reviewed relevant previous work, including literature and software products?
+\begin{itemize}
+	\item What were the goals of the paper? \\
+		To create a definition of technical debt that better aligned with stakeholder interests and to bridge the technical gap between technology team and stakeholdes when managing software quality.
+	\item What was the methodology?
+		This was a position paper, no methodology has been defined.
+	\item What did the authors learn?
+		\begin{itemize}
+			\item Stakeholders generally care little about software quality, unless it is directly impacting their costs at the present time.
+			\item Software quality characteristics are interdependent, deferring quality maintenance in one area may affect other areas of quality. For example, deferring work within UX may impact usability and require users to find workarounds. Additionally, inadequate validation of data at one layer may affect downstream processes.
+			\item They provided a definition of technical debt, as follows: \textit{Technical debt is any gap within the technology infrastructure or its implementation which has a material impact on the required level of quality.}
+			\item An interesting idea was that technical debt should only be associated with costs within technology environment rather than business and process environment. Thus the term \textbf{technical} debt. 
+			\end{itemize}
+	\item Links to other resources? \\
+		How is Quality Evaluated? David Garvin, ISO Quality Attributes
+\end{itemize}
 
-\subsection{The SQALE Method for Measuring Technical Debt} \cite{Letouzey2012}
+\subsubsection{An Enterprise Perspective on Technical Debt} \cite{Klinger2011}
+
+\begin{itemize}
+	\item What were the goals of the paper? \\
+	To challenge Ward Cunningham's definition of technical debt from an enterprise perspective and define it as a strategic tool for business circumstances.
+	\item What was the methodology? \\
+	Interviewed four technical architects from IBM, from a "wide range" of projects within the firm. Each interview was approx. 1 hour in length. 
+	The questions tapped into their own experiences with TD, more specifically: nature and context, stakeholders, benefits, documentation, whether the debt was repaid. 
+	\item What did the authors learn? \\
+	Enterprises may use debt as a tool for maximizing competitive advantage, which may or may not be paid in the future dependant on the direction in which the project will take.
+	Additionally, many stakeholders are involved in the accrual of debt in a software project (decisions are made collectively, not in a vacuum) but sometimes technical decisions would be made ad-hoc with no definite formal process.
+	However, the challenge is in the collective - it is difficult to understand the socio-technical background of a system. \\
+	
+	Some stakeholders do not comprehend the extent of technical debt they are incurring in the system through their decisions due to: 
+	\begin{itemize}
+		\item No vocabulary between technical architects and non-technical stakeholders.
+		\item Stakeholders having competing goals and "win" conditions which may be "suboptimal from a technical perspective".
+	\end{itemize} 
+	\item Links to other resources?
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Identification}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Measurement}
+
+\subsubsection{The SQALE Method for Measuring Technical Debt} \cite{Letouzey2012}
 
 \begin{itemize}
 	\item What were the goals of the paper? \\
@@ -75,67 +118,7 @@ Survey: Has the student surveyed and critically reviewed relevant previous work,
 		-
 \end{itemize}
 
-\subsection{Technical Debt from a Stakeholder\'s Perspective} \cite{Theodoropoulos2011}
-
-\begin{itemize}
-	\item What were the goals of the paper? \\
-		To create a definition of technical debt that better aligned with stakeholder interests and to bridge the technical gap between technology team and stakeholdes when managing software quality.
-	\item What was the methodology?
-		This was a position paper, no methodology has been defined.
-	\item What did the authors learn?
-		\begin{itemize}
-			\item Stakeholders generally care little about software quality, unless it is directly impacting their costs at the present time.
-			\item Software quality characteristics are interdependent, deferring quality maintenance in one area may affect other areas of quality. For example, deferring work within UX may impact usability and require users to find workarounds. Additionally, inadequate validation of data at one layer may affect downstream processes.
-			\item They provided a definition of technical debt, as follows: \textit{Technical debt is any gap within the technology infrastructure or its implementation which has a material impact on the required level of quality.}
-			\item An interesting idea was that technical debt should only be associated with costs within technology environment rather than business and process environment. Thus the term \textbf{technical} debt. 
-			\end{itemize}
-	\item Links to other resources? \\
-		How is Quality Evaluated? David Garvin, ISO Quality Attributes
-\end{itemize}
-
-\subsection{An Enterprise Perspective on Technical Debt} \cite{Klinger2011}
-
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	To challenge Ward Cunningham's definition of technical debt from an enterprise perspective and define it as a strategic tool for business circumstances.
-	\item What was the methodology? \\
-	Interviewed four technical architects from IBM, from a "wide range" of projects within the firm. Each interview was approx. 1 hour in length. 
-	The questions tapped into their own experiences with TD, more specifically: nature and context, stakeholders, benefits, documentation, whether the debt was repaid. 
-	\item What did the authors learn? \\
-	Enterprises may use debt as a tool for maximizing competitive advantage, which may or may not be paid in the future dependant on the direction in which the project will take.
-	Additionally, many stakeholders are involved in the accrual of debt in a software project (decisions are made collectively, not in a vacuum) but sometimes technical decisions would be made ad-hoc with no definite formal process.
-	However, the challenge is in the collective - it is difficult to understand the socio-technical background of a system. \\
-	
-	Some stakeholders do not comprehend the extent of technical debt they are incurring in the system through their decisions due to: 
-	\begin{itemize}
-		\item No vocabulary between technical architects and non-technical stakeholders.
-		\item Stakeholders having competing goals and "win" conditions which may be "suboptimal from a technical perspective".
-	\end{itemize} 
-	\item Links to other resources?
-\end{itemize}
-
-
-\subsection{Investigating the Impact of Design Debt on Software Quality} \cite{Zazworka2011}
-
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	To investigate the impact God classes have on development and whether they are points of major changes and defects when compared to other parts of the system. Additionally, to study whether there is a linear relationship between class size, change and defect likelihoods and how the results are influenced by data normalizations
-
-	\item What was the methodology?
-	The authors ran an analysis on two medium-sized projects from a small development company. The analysis consisted of statically analysing the source code stored in version control and the project issues from the project management system.
-	It looked at two major variables:
-		\begin{itemize}
-			\item Change likelihood = how likely code within and outside God classes changes accross revisions.
-			\item Defect likelihood = how likely is a fix implemented inside and outside of God classes.
-		\end{itemize}
-	\item What did the authors learn?
-	Empirical analysis of the two projects has shown that God classes get changed 7.8\% of the time whilst also being fixed 17 times more than the rest of the code.
-	However, since the God classes have more functionality included, normalization of the data by LOC has shown that there are no significant results in comparing God vs non-God classes.
-	The limited scope of the empirical analysis on a sample of two projects and focus on a specific code smell, the results are indecisive for a generalization of the results.
-	\item Links to other resources?
-\end{itemize}
-
-\subsection{An Empirical Model of Technical Debt and Interest}  \cite{Nugroho2011}
+\subsubsection{An Empirical Model of Technical Debt and Interest}  \cite{Nugroho2011}
 
 \begin{itemize}
 	\item What were the goals of the paper? \\
@@ -157,7 +140,31 @@ Survey: Has the student surveyed and critically reviewed relevant previous work,
 	- Eick, T. Graves, A. Karr, J. Marron, and A. Mockus. Does code decay? assessing the evidence from change management data. Software Engineering, IEEE Transactions on, 27(1):1–12, 2002.
 \end{itemize}
 
-\subsection{A Portfolio Approach to Managing Technical Debt} \cite{Guo2011}
+\subsubsection{Investigating the Impact of Design Debt on Software Quality} \cite{Zazworka2011}
+
+\begin{itemize}
+	\item What were the goals of the paper? \\
+	To investigate the impact God classes have on development and whether they are points of major changes and defects when compared to other parts of the system. Additionally, to study whether there is a linear relationship between class size, change and defect likelihoods and how the results are influenced by data normalizations
+
+	\item What was the methodology?
+	The authors ran an analysis on two medium-sized projects from a small development company. The analysis consisted of statically analysing the source code stored in version control and the project issues from the project management system.
+	It looked at two major variables:
+		\begin{itemize}
+			\item Change likelihood = how likely code within and outside God classes changes accross revisions.
+			\item Defect likelihood = how likely is a fix implemented inside and outside of God classes.
+		\end{itemize}
+	\item What did the authors learn?
+	Empirical analysis of the two projects has shown that God classes get changed 7.8\% of the time whilst also being fixed 17 times more than the rest of the code.
+	However, since the God classes have more functionality included, normalization of the data by LOC has shown that there are no significant results in comparing God vs non-God classes.
+	The limited scope of the empirical analysis on a sample of two projects and focus on a specific code smell, the results are indecisive for a generalization of the results.
+	\item Links to other resources?
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Management}
+
+\subsubsection{A Portfolio Approach to Managing Technical Debt} \cite{Guo2011}
 
 \begin{itemize}
 \item What were the goals of the paper?\\ 

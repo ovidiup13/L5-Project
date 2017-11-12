@@ -222,3 +222,5 @@ TSWLatexianTemp*
 
 # binary tex files
 *._*
+
+.vscode/

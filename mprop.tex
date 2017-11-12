@@ -141,6 +141,28 @@ Theodoropoulos et al. \cite{Theodoropoulos2011} has created a definition of tech
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Identification}
 
+\subsubsection{On the role of Requirements in Understanding and Managing Technical Debt} \cite{Ernst2012}
+\begin{itemize}
+\item What were the goals of the paper? \\
+The goal of the paper was to describe technical debt within project requirements, including gathering and change management phases.
+\item What was the methodology?\\
+% The authors created a tool, RE_KOMBINE, that structure requirements as goals, targets and desired properties of the system.
+They are bucketed into high-level and low-level objectives, and each had an assigned set of tasks which led to a solution.
+The system had the ability to manage evolving requirements by changing the assigned tasks of the goals.
+\item What did the authors learn?\\
+The relationship between TD in requirements and TD in implementation can be described in terms of product value.
+If the product does not bring value to customers, implementation TD does not matter. 
+If implementation TD is high, then delivering value is extremely difficult.\\
+The authors have defined TD in requirements as follows:\\
+\textit{Technical debt in requirements process is the distance between the original solution S for a requirement R, and the changed requirement R} \\
+The conclusions of the paper was that requirements must be refined at the very start of the project/work week/sprint so that no extra development effort is put into satisfying it.
+If the requirements are not gathered correctly then implementation may not bring value to the customers.
+The proposed solution was to insist on requirements forecasting from an early stage at the expense of extra costs.
+\item What were the limitations of the study?\\
+The system has not been evaluated in the industry environment.\\
+Requirements TD is not TD per se, but a measure of how the system changes over time with regards to its requirements gathering process.
+\item Links to other resources? \\
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Measurement}
@@ -192,7 +214,6 @@ Theodoropoulos et al. \cite{Theodoropoulos2011} has created a definition of tech
 \end{itemize}
 
 \subsubsection{Investigating the Impact of Design Debt on Software Quality} \cite{Zazworka2011}
-
 \begin{itemize}
 	\item What were the goals of the paper? \\
 	To investigate the impact God classes have on development and whether they are points of major changes and defects when compared to other parts of the system. Additionally, to study whether there is a linear relationship between class size, change and defect likelihoods and how the results are influenced by data normalizations

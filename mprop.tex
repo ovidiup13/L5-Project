@@ -164,6 +164,25 @@ Requirements TD is not TD per se, but a measure of how the system changes over t
 \item Links to other resources? \\
 \end{itemize}
 
+\subsubsection{Estimating the Size, COst and Types of Technical Debt} \cite{Curtis2012}
+\begin{itemize}
+\item What were the goals of the paper? \\
+Summarized the results of a study on a huge database (365M LOC) of software projects across 10 industries.
+The study was language agnostic and provided a formula for estimating the principal of TD items.
+\item What was the methodology? \\
+Made use of CAST's Application Intelligence platform to statically analyse source code, using 1200 rules for good practices. 
+The steps taken were as follows: parsing, identify violations, aggregate results and sum up into a quality characteristics, or \textit{health factors}.
+Scores from each health factor were aggregated on a scale of 1 (high risk) to 4 (low risk).
+The principal was estimated by a formula with three parameters: number of problems, time required for each fix and the cost of fixing the issue.
+\item What were the conclusions? \\
+The authors concluded that estimating the interest incurred by a TD item was difficult since might be multiple hidden factors which influenced the results.
+The term works well with the phenomenon since stakeholders think of software quality in terms of business. \\
+There are trade-offs of TD management from stakeholder's perspective. 
+For example, fixing TD items within the Robustness characteristic may lead to fewer operational failures and higher availability of the system.
+\item What were the limitations? \\
+\item Links to other resources? \\
+\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Measurement}
 

@@ -380,6 +380,23 @@ As a result of the study, the authors, developers and management have proposed t
 \item Links to other resources? \\
 \end{itemize}
 
+\subsubsection{Searching for Build Debt} \cite{Morgenthaler2012}
+\begin{itemize}
+\item What were the goals of the paper? \\
+To publish enterprise approaches within Google for managing technical debt in build files.
+This type of TD was lowering developer productivity and increased the computational resources within the infrastructure and thus increased costs.
+\item What was the methodology? \\
+The developers at Google leveraged in-door developed tools for automating removal of legacy code projects no longer refenced, removal of indirect dependencies between projects and removal of dead command-line flags which hindered developer comprehension of command line tools and processes.
+Teams were holding FIXIT days where developers may remove and improve dead flags and dead/zombie dependencies.
+\item What were the conclusions? \\
+Google has a very large codebase that is difficult to manage. 
+Specifically, a simple dependency change might take weeks due to previous links in the dependency graphs and build files of other projects that rely on it.
+Removal of dead code has been simplied with the introduction of code visibility and health flags. 
+Additionally, one FIXIT day has removed approximately 250k lines of code related to dead flags.
+\item What were the limitations? \\
+There was only one type of TD assessed in the paper: BUILD debt.
+\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}

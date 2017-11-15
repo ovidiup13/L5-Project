@@ -164,7 +164,7 @@ Requirements TD is not TD per se, but a measure of how the system changes over t
 \item Links to other resources? \\
 \end{itemize}
 
-\subsubsection{Estimating the Size, COst and Types of Technical Debt} \cite{Curtis2012}
+\subsubsection{Estimating the Size, Cost and Types of Technical Debt} \cite{Curtis2012}
 \begin{itemize}
 \item What were the goals of the paper? \\
 Summarized the results of a study on a huge database (365M LOC) of software projects across 10 industries.
@@ -327,6 +327,22 @@ There were no results related to the feasibility study.
 The study was only conducted on a single class smell, the God class. 
 Choice of refactoring must also be evaluated by the business side. 
 \item Links to other resources? \\
+\end{itemize}
+
+
+\subsubsection{Using Technical Debt Data in Decision Making} \cite{Seaman2012}
+\begin{itemize}
+\item What were the goals of the paper? \\
+To discuss the approaches of technical debt management and to propose four novel ways to aid decision making.
+\item What were the conclusions? \\
+Proposed four approaches for decision making on TD:
+\begin{itemize}
+	\item Cost-Benefit Analysis. Defined principal, interest probability (the probability that other work will be more expensive) and the interest amount.
+	Based on these three factors and their associated value (high, medium, low), the authors claimed it is possible to estimate items that have low principal (are quick to repay) and a possible high impact on future additions and changes.
+	\item Analytic Hierarchy Process (AHP). Defined a criteria by which TD items would be paid off, through group decisions.
+	\item Portfolio Approach. Guo et al. \cite{Guo2011} has defined an approach for portfolio debt management. The same approach has been defined here.
+	\item Options. Represents investments into refactoring as a purchase of options that will facilitate change in the future but with no immediate profit.
+\end{itemize}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

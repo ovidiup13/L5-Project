@@ -32,17 +32,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{intro}
 
-briefly explain the context of the project problem
+\begin{itemize}
+	\item What is technical debt?
+	\item What are its applications?
+	\item Why is it important?
+\end{itemize}
+
+Technical debt - is it real? How does it correlate with goals of the sprint?\\
 
 Problem statement: Has the student analysed the problem, stated it clearly, and justified its importance?
-
-\subsection{A subsection}
-Please note your proposal need not follow the included section headings - this is only a suggested structure. Also add subsections etc as required
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Statement of Problem}
 
-clearly state the problem to be addressed in your forthcoming project. Explain why it would be worthwhile to solve this problem.
+Clearly state the problem to be addressed in your forthcoming project.\\
+
+Explain why it would be worthwhile to solve this problem. \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background Survey}
@@ -465,15 +470,46 @@ clearly state the problem to be addressed in your forthcoming project. Explain w
 
 state how you propose to solve the software development problem. Show that your proposed approach is feasible, but identify any risks.
 
+Goal-Question-Metric approach is a good framework for breaking down research work.
+
+Goal-Question-Metric approach:
+\begin{itemize}
+	\item Goal: \textbf{Analyze} project feature implementations \textbf{with the purpose of} identifying extra work \textbf{from the viewpoint of} software engineers and project manager \textbf{in the context of} technical debt management.
+	\item RQ1: What is the impact of TD on feature implementation?
+	\item RQ1.1: What was the initial estimated work and the actual work for a project task?
+	\item RQ1.2: What is the measurement of technical debt within the area of implementation?
+	\item RQ2: How many resources should a team invest in each iteration on refactoring?
+	\item RQ2.1: What is the overall amount of extra work the team puts into on each iteration? i.e. \textbf{How much interest does the team pay on each iteration?}
+	\item RQ2.2: What is the measurement of TD on a project level?
+\end{itemize}
+
+Possible approach:
+1) Identify appropriate data candidates for this study.
+2) Retrieve historical work items along with project plan data.
+3) Identify checkpoints in project codebase which are appropriate to the selected work items.
+4) Proceed with static analysis of checkpoints and gathering of metrics.
+5) Analysis of the results.
+6) Discussion and further work.
+
+Risks:
+1) Data candidates may not contain enough relevant information in project management software for this study, such as priority and story points. 
+2) Change sets estimation is difficult in the context of open source systems. What metric can quantify work appropriately?
+3) Tools of calculating TD metrics must be suit for purpose. What static analysis tool may deliver appropriate metrics?
+4) Granularity of checkpoints is important (e.g. pull-request level to release level).
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Work Plan}
 
-show how you plan to organize your work, identifying intermediate deliverables and dates.
+show how you plan to organize your work, identifying intermediate deliverables and dates.\\
+\textbf{TBD}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-Report: Is the report complete, well-organised, clear, and literate? Does it clearly explain the problem? Does it contain a bibliography and proper citations?
+Does it clearly explain the problem? 
+Does it contain a bibliography and proper citations?
+
+Report: Is the report complete, well-organised, clear, and literate? 
 Overall: What is your overall impression of the student’s work?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

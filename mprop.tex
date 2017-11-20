@@ -11,7 +11,7 @@
 
 % other potentially useful packages
 %\uspackage{amssymb,amsmath}
-%\usepackage{url}
+\usepackage{url}
 %\usepackage{fancyvrb}
 %\usepackage[final]{pdfpages}
 
@@ -52,6 +52,26 @@ Explain why it would be worthwhile to solve this problem. \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background Survey}
 \subsection{Definition}
+
+% Ward Cunningham - WyCash Portfolio Management System
+Technical debt is a metaphor termed by Ward Cunningham, in his famous report on the WyCash Portfolio Management System in 1993 \cite{Cunningham1993}.
+In the report, Cunningham mentioned that "\textit{shipping first time code is like going into debt.}" and that as the system evolves new features would become more and more difficult to implement.
+This phenomenon was due to feature-rich projects being shipped to customers early but poorly written with little or no consideration to quality and to future work. 
+
+% MTD 2010
+The metaphor was ignored for a long time, until the late 2000s, when more and more studies started to look into the metaphor and explore its definition, identification process, measurement and management.
+A figure of the popularity of Technical Debt from 2004 to present can be seen in Figure \ref{fig:td-trend}, information provided by Google Trends \cite{GoogleTrends}.
+Thus, the first workshop on managing technical debt took place in 2010, where an initial research agenda was proposed for the future of software engineering field.
+The workshop lasted 1 day and consisted of seminars, presentations and brainstorming sessions.
+Technical debt workshops have been held every year since, and it in 2018 it will become a full 2-day conference.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{visualisations/TD_trend.png}
+	\caption{Technical Debt Trend from 2004 to Present}
+	\label{fig:td-trend}
+\end{figure}
+
 
 \subsubsection{MTD 2010 - Managing Technical Debt in Software Reliant Systems} \cite{Brown2010}
 \begin{itemize}

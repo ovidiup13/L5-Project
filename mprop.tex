@@ -120,7 +120,22 @@ Schmid et al. \cite{Schmid2013} has identified three major points where the anal
 	Interest is difficult to quantify as a matter of principal, and the amount of interest paid after a period of time depends on future work.
 \end{itemize}
 Under these circumstances, what is considered "good structure" or "clean code" is also heavily influenced to future development since future decisions influence cost impact.
-As a consequence, the authors stated that no system is \textit{debt free} and fixing every code violation was merely an act of gold-plating.
+As a consequence, no system is \textit{debt free} and thus fixing every code violation would be considered gold-plating.
+
+
+% martin fowler - td quadrants
+In Martin Fowler's famous article \cite{TDMartin}, he described this type of future debt as inadeverted-prudent debt.
+Over time, a project that was "clean" may find out after a period of time that the initial approach taken might not have been the best.
+He considered that developers learn on the job to perfect their craft as time passes.
+The four quadrants refer to the types of technical debt that one might encounter in a software project given the approach taken by the development team.
+It was one of the four quandrants he defined, as shown in Figure \ref{fig:td-quandrants}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{visualisations/TD_quadrants.png}
+	\caption{Martin Fowler's Technical Debt Quadrants}
+	\label{fig:td-quandrants}
+\end{figure}
 
 
 % unhedged call option
@@ -131,7 +146,8 @@ In software engineering, if a feature is hacked up quickly using bad code and ne
 The option "was not called".
 However, if a new feature were required that would be influenced by the quick and dirty work implemented earlier, then the requirement would be more expensive to fulfill.
 In this case, the option "has been called".
-This metaphor seemed to 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Identification}
@@ -458,7 +474,7 @@ This metaphor seemed to
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
 
-Goal-Question-Metric approach is a good framework for breaking down research work.
+Goal-Question-Metric approach is a good framework for breaking down research work. (TODO: add citation here)
 
 Goal-Question-Metric approach:
 \begin{itemize}

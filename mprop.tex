@@ -54,6 +54,7 @@ Explain why it would be worthwhile to solve this problem. \\
 \subsection{Definition}
 
 % Ward Cunningham - WyCash Portfolio Management System
+% TODO: expand the definition from the paper.
 Technical debt is a metaphor termed by Ward Cunningham, in his famous report on the WyCash Portfolio Management System in 1993 \cite{Cunningham1993}.
 In the report, Cunningham mentioned that "\textit{shipping first time code is like going into debt.}" and that as the system evolves new features would become more and more difficult to implement.
 This phenomenon was due to feature-rich projects being shipped to customers early but poorly written with little or no consideration to quality and to future work.
@@ -66,7 +67,7 @@ This phenomenon was due to feature-rich projects being shipped to customers earl
 \end{figure}
 
 % MTD 2010
-The metaphor was ignored for a long time, until the late 2000s, when more and more studies started to look into the metaphor and explore its definition, identification process, measurement and management.
+The metaphor was ignored for a long time, until the late 2000s, when more and more studies started to explore the phenomenon and possible management processes.
 A figure of the popularity of Technical Debt from 2004 to present can be seen in Figure \ref{fig:td-trend}, information provided by Google Trends \cite{GoogleTrends}.
 Thus, the first workshop on managing technical debt took place in 2010, where an initial research agenda was proposed for the future of software engineering field.
 Since then, workshops have been held every year, which consisted seminars, presentations and brainstorming sessions on aspects such as
@@ -77,27 +78,33 @@ management \cite{Guo2011} \cite{Zazworka2011Prioritise} \cite{Seaman2012} to
 industry case studies \cite{Lim2012} \cite{Morgenthaler2012} \cite{Codabux2013} \cite{Holvitie2014} \cite{Klinger2011}.
 
 % from metaphor to theory and practice
-% TODO: define principal and interest
-The definition of technical debt relies heavily on the perspective of the viewer and her responsibility within the project domain.
-This perspective encompasses the entire socio-technical environment, starting with developers who deal with it on a daily basis, to architects, project managers and stakeholders.
-Kurchten et al. \cite{Kruchten2012} defined technical debt as technological gaps between development teams, product managers and stakeholders, where a gap is an evolution of a context specific to a particular decision taken in the past.
-These gaps might have been decisions that seemed correct but with the passing of time, the initial decision had incurred debt within the project.
-As a consequence, the authors stated that technical debt was not a mere association between the results of static code analyzers but heavily reliant on project evolution and future decision management.
+% TODO: add citation to industry case studies
+The definition of technical debt relies heavily on the perspective of the viewer and her responsibility within the socio-technical environment.
+Developers view technical debt as a list of software quality issues and correlate it with lack of time to implement features "\textit{properly}" \cite{Codabux2013}.
+Product managers and stakeholders view at it as a strategy, a way to defer quality work for fast work in order to satisfy certain business requirements, such as Time to Market (TTM).
+In practice, these two perspectives are widely different, with developers prioritising "invisible" code perfection whilst management focusing on rapid development of "visible", selling point features.
+Kurchten et al. \cite{Kruchten2012} defined technical debt as technological gaps between development teams and management, where a gap is the evolution of a context specific to a decision taken in the past.
+These gaps might have been decisions that seemed correct when the decision was taken however, with the passing of time, the initial decision incurred debt within the project.
+For example, there is no tool that predicts what frameworks and languages will exist in the future or how to implement features by considering future unknown requirements.
+As a consequence, the authors state that technical debt is not the collection of code quality violations within the results of static code analyzers but, a phenomenon which is heavily reliant on present and future project evolution.
 
 
 % from a stakeholder's perspective
-% TODO: talk about non-existent vocabulary
-However, future decisions of project are influenced by stakeholders of the business.
-Unfortunately, management might or might not have knowledge of such an important aspect of their project.
-Although it is directly related to quality, stakeholders generally care little about it unless it is, as put by Theodoropoulos et al. \cite{Theodoropoulos2011}, an extrinsic (or visible) quality of software with a direct impact on business revenue.
-For example, an extrinsic quality characteristic is usability. Deferring user experience issues might force users of the software to find "ways around" certain tasks which negatively impact user productivity and usefulness of the software provided.
-Such characteristics are important to the business as they are "sell points" of the product.
-On the other hand, intrinsic characteristics of software are considered "low level", code based issues such as code smells, best-practices violations that slow down development over time if not managed adequately.
-Additionally, Theodoropoulos et al. \cite{Theodoropoulos2011} have considered that these software quality characteristics are interdependent, and thus deferring quality maitainence in one area may affect other areas of quality.
-An interesting idea of the authors was that technical debt should only be associated with quality maintainance costs only within technology environment rather than business and process environment.
-Thus the term \textbf{technical} debt.
+However, most strategic decisions on the future evolution of the project come from management.
+Unfortunately, stakeholders might not have knowledge of technical debt and the accumulation of quality issues throughout a project lifetime.
+In general, as put by Theodoropoulos et al. \cite{Theodoropoulos2011}, they care little of quality issues unless it has an immediate negative impact on business costs and revenue. 
+These types of issues affect the \textbf{extrinsic quality} of software and are "visible".
+For example, an extrinsic quality characteristic is usability.
+Deferring user experience work and ignoring user interface bugs might force users of the system to find "ways around" certain tasks.
+The result is negative impact in user productivity and the general usefulness of the product.
+Extrinsic characteristics are important to the business as they are considered "sell points" of the product.
+On the other hand, \textbf{intrinsic quality} characteristics of software are the low-level issues such as code smells, best-practices violations that might slow down development of new features unless refactoring processes are applied. 
+Theodoropoulos et al. \cite{Theodoropoulos2011} considered that intrinsic and extrinsic software quality characteristics are interdependent and deferring quality maitainence in one area may affect other areas of quality.
+For example, improper data validation in the business logic layer of the system, may impact downstream components, such as user interface, and produce bugs within the system.
+
 
 % on the limits of td metaphor
+% TODO: define principal and interest
 Although the use of finance terms may simplify technical characteristics of software quality in the dialogue between development teams and stakeholders, the analogy breaks down as studied by Schimd et al. \cite{Schmid2013}.
 In their study, the authors had identified shortcomings in the financial metaphor established by Ward Cunningham \cite{Cunningham1993} and found points where it breaks down.
 In the financial domain, debt is a well known arrangement between two parties where one party borrowes a fixed amount of money from the other party \cite{debt-investopedia}.
@@ -120,12 +127,12 @@ Schmid et al. \cite{Schmid2013} has identified three major points where the anal
 	Interest is difficult to quantify as a matter of principal, and the amount of interest paid after a period of time depends on future work.
 \end{itemize}
 Under these circumstances, what is considered "good structure" or "clean code" is also heavily influenced to future development since future decisions influence cost impact.
-As a consequence, no system is \textit{debt free} and thus fixing every code violation would be considered gold-plating.
+As a consequence, no system is \textit{debt free} and thus fixing every code violation would be an act of gold plating.
 
 
 % martin fowler - td quadrants
-In Martin Fowler's famous article \cite{TDMartin}, he described this type of future debt as inadeverted-prudent debt.
-Over time, a project that was "clean" may find out after a period of time that the initial approach taken might not have been the best.
+In Martin Fowler's famous article \cite{TDMartin}, he described this type of future debt as \textbf{inadeverted-prudent} debt.
+Over time, a project that was "clean" may find that after a period of time that the initial approach taken might not have been the best.
 He considered that developers learn on the job to perfect their craft as time passes.
 The four quadrants refer to the types of technical debt that one might encounter in a software project given the approach taken by the development team.
 It was one of the four quandrants he defined, as shown in Figure \ref{fig:td-quandrants}.
@@ -146,7 +153,6 @@ In software engineering, if a feature is hacked up quickly using bad code and ne
 The option "was not called".
 However, if a new feature were required that would be influenced by the quick and dirty work implemented earlier, then the requirement would be more expensive to fulfill.
 In this case, the option "has been called".
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

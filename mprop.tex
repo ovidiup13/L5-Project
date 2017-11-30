@@ -245,27 +245,24 @@ Initially, technical debt has solely focused on the internal quality issues of
 systems developed. Such issues could be code smells, code violations and
 duplicate or complex code. However, multiple types of debt have been
 "discovered" spanning the entire socio-technical environment.
-
 % TODO: maybe add a description for all types of debt but only focus on code
 % debt
 A mapping study, conducted by Li et al. \cite{Li2015}, have analysed 94 papers,
 overall dating 1992-2013, and have found 10 types of technical debt being
 studied: requirements debt, architectural debt, design debt, code debt, test
 debt, build debt, documentation debt, infrastructure debt, versioning debt and
-defect debt.
-
-The most prominent type of debt studied was code debt, followed by test,
+defect debt. The most prominent type of debt studied was code debt, followed by test,
 architectural, design and documentation debt.
 
 % architecture debt is the worst - industrial case study
-Developers of an industrial case study considered that architectural debt is the
-most difficult to adress, due to complexity and change impact on project
-\cite{Codabux2013}. Major architectural decisions are not taken in a vaccuum and
+However, in an industrial case study \cite{Codabux2013}, developers considered that
+architectural debt is the most difficult to adress, due to complexity and change
+impact on project. Major architectural decisions are not taken in a vaccuum and
 thus requires group meetings with other developers, software architects and
 product managers. The time to reach a consensus on how to approach such changes
 improve the cost of managing architectural debt.
 
-% techical debt is "technical"
+% technical debt is "technical"
 A few of the authors have considered that the metaphor of technical debt should
 only apply to the low-level, internal quality characteristics such as code,
 test, architectural debt rather than process gaps such as inadequate quality
@@ -276,52 +273,83 @@ technical debt as a result.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Identification and Measurement}
 
+% intro to identification
 There are two methods for identifying technical debt within project source code:
 manually found by developers during the design or implementation stages of a new
 feature or automatically identified by a code quality tool that runs either in
 the integrated development environment of the developer or a project-level
 continous code quality tool.
 
-There a number of authors who have studied the identification of technical debt
-and its measurement through the use of static analysis tools. They scan the
-source code and find various code violations, such as code smells, code
-duplication, cyclomatic complexity, test coverage issues, etc. Moreover, they
-can provide detailed quality reports, links to source code, custom violations
-and quality thresholds.
+A number of authors have studied the identification of technical debt and its
+measurement through the use of static analysis tools. These tools have the
+ability to scan the source code to find various code violations, such as code
+smells, code duplication, cyclomatic complexity, test coverage issues, etc.
+Moreover, they can provide detailed quality reports, links to source code,
+custom violations and quality thresholds.
 
+% experience report on code smell detection tools
 Fontana et al. \cite{Fontana2011} had compiled an initial report on code smell
 detection tools and their experience on the analysis of multiple versions of an
-object-oriented Java project.
+object-oriented Java project. The goal of their study was to contrast the
+performance of these tools in relation with known code smells in the source
+code. These tools were: Jdeodorant, PMD, iPlasma, InFusion, StenchBlossom. There
+were numerous code smells initially detected in the project including God Class,
+Data Class, Feature Envy, Brain Method, etc. Their methodology was to apply
+analysis on multiple versions of an object-oriented project, with all code
+smells known beforehand. They have found not all tools identify all the code
+smells in the project and some had different names for the same code smell.
+Additionally, some tools shared the same metrics and identified the same
+collection of smells, whereas others had widely different results.
 
 
-\subsubsection{The SQALE Method for Measuring Technical Debt}
-\cite{Letouzey2012} The goal of this paper was to propose a standardized,
+Unfortunately, the experimented tools had only the ability to identify code
+violations and link them to the source code. No tool had features on quantifying
+software quality and no mention of a global technical debt measurement. However,
+as time passed, tools have been implemented which provide such aggregated values
+- called indexes. Thus they provide the ability to calculate an estimated
+measure of technical debt in the system with an associated amount of effort for
+paying back this debt. However, each tool takes into consideration different
+information sources and calculates the overall TD measurement in a different
+way. There is no standard method on aggregating a complex phenomenon such as
+technical debt into a single value.
+
+% contrasting between tools
+Hence, a study by Fontana et al. \cite{Fontana2016}, had looked into the 5 code
+quality tools that provide these features, with the goal to understand how they
+calculate technical debt, what sources of information they take into account and
+what features they are missing. 
+
+% sqale method for measuring technical debt
+The first method the authors looked at is the SQALE method. It was proposed by
+Letouzey et al. \cite{Letouzey2012} with the goal to propose a standardized,
 language-agnostic framework for assessing the quality of source code by deriving
-measures for important code characteristics and calculating technical debt. The
-framework proposed consisted of four concepts:
+measures for code characteristics and calculating an overall measure of
+technical debt. The framework proposed consisted of four concepts:
 \begin{itemize}
 	\item Quality Model - defines internal properties of code through a
 	structured three-layer hierarchy (characteristic, sub-characteristic and
-	requirement).
+	requirement). For example, a characteristic is maintainability,
+	sub-characteristic is readability and the requirement is no commented
+	code. The hierarchy is defined as all requirements could be converted into
+	actionable steps. Each requirement defines a remediation index (cost to
+	repair code violations) defined in time, work or capital units.
 	\item Analysis Model - measurement of the distance between the current
-	state of the application and the \"optimized\" state, the quality target.
-	\item Indices - each characteristic of the Quality Model defines a
-	remediation index (cost to repair the non-compliances) defined in time,
-	work or capital units.
-	\item Indicators - provide a visual representation of technical debt
-	either through ratings (ratios between TD and development cost) or SQALE
-	Pyramids (distribution of TD over all the characteristics).
+	state of the application and the \"optimized\" quality target.
+	\item Indices - these are the values that represent the costs of code
+	violations.
+	\item Indicators - provide a visual representation of technical debt indices
+	through ratings.
 \end{itemize}
+The authors encouraged that the Quality Model should be calibrated according to
+the requirements and policies of the organization implementing the framework.
+The indices were calculated by summing up the principals of each code violation
+and aggregating up into the sub-characteristics and further to the
+characteristics of the Quality Model. The technical debt index is provided
+through the aggregation of all the characteristics in the Quality Model.
+Although the framework provides a good measurement of technical debt from the
+principal of code violations, there is no mention of calculating interest.
+Additionally, the framework does not take into consideration architectural debt.
 
-Each organization must manage technical debt as early as possible in a project
-with indicators and dashboards for code quality available for each build within
-the continous integration pipeline. Quality model must be calibrated according
-to the requirements and policies of the organization implementing the framework.
-For example, to approve/decline rules that are considered debt and what
-principal costs are for each type of code violation. One limitation is that the
-framework does not take into consideration other types of technical debt such as
-requirements debt, operational debt. There is no standardized definition of
-right code, organizations have to define their own \"right\" code rules.
 
 \subsubsection{Estimating the Size, Cost and Types of Technical Debt}
 \cite{Curtis2012} Summarized the results of a study on a huge database (365M

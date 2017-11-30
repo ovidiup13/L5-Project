@@ -18,7 +18,7 @@
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Technical Debt Title Here}
+\title{Is Technical Debt Real?}
 \author{Ovidiu Popoviciu}
 \date{18th December 2017}
 \maketitle
@@ -38,20 +38,29 @@
 	\item Why is it important?
 \end{itemize}
 
-Technical debt - is it real? How does it correlate with goals of the sprint?\\
+Technical debt - definition \\
+What impact does TD have on development?\\ 
+How much work effort is wasted on new features on a codebase impacted with technical debt?\\
+Why is it difficult to define such a measure? \\
+If such a measurement is known, how could it be managed? \\
+What are the advantages of quantifying technical debt interest in the form work effort? \\
 
 Problem statement: Has the student analysed the problem, stated it clearly, and justified its importance?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Statement of Problem}
-
-Clearly state the problem to be addressed in your forthcoming project.\\
-
-Explain why it would be worthwhile to solve this problem. \\
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background Survey}
-\subsection{Definition}
+
+\subsection{Study Design}
+
+\begin{itemize}
+	\item Technical debt definition
+	\item Types of TD - focus on code debt
+	\item Measurement of principal and interest
+	\item Measurement of work effort and team productivity
+	\item Management of TD
+\end{itemize}
+
+\subsection{Definition, Perspectives and Types}
 
 % Ward Cunningham - WyCash Portfolio Management System
 % TODO: expand the definition from the paper.
@@ -162,9 +171,7 @@ It helps management understand current software development risks and encourages
 TODO: make sure to write down the exact definition
 As Cunningham \cite{Cunningham1993} had written, technical debt may be used as a strategy in order to meet business expectations however, if not repaid promptly it could bring entire corporations to a standstill.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Identification}
-
+% types of TD
 Initially, technical debt has solely focused on the internal quality issues of systems developed.
 Such issues could be code smells, code violations and duplicate or complex code.
 However, multiple types of debt have been "discovered" spanning the entire socio-technical environment.
@@ -188,38 +195,26 @@ The most prominent type of debt studied was code debt, followed by test, archite
 % architecture debt is the worst - industrial case study
 Developers of an industrial case study considered that architectural debt is the most difficult to adress, due to complexity and change impact on project \cite{Codabux2013}. 
 Major architectural decisions are not taken in a vaccuum and thus requires group meetings with other developers, software architects and product managers.
-These meetings add to the cost of managing such a debt.
-A few of the authors have considered that the metaphor of technical debt should only apply to the low-level, internal quality characteristics rather than external characteristics \cite{Theodoropoulos2011} \cite{Nugroho2011}.
-Thus the word "technical" in the metaphor.
+The time to reach a consensus on how to approach such changes improve the cost of managing architectural debt.
 
-
-
-\subsubsection{On the role of Requirements in Understanding and Managing Technical Debt} \cite{Ernst2012}
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	      The goal of the paper was to describe technical debt within project requirements, including gathering and change management phases.
-	\item What was the methodology? \\
-	      The authors created a tool, RE-KOMBINE, that structure requirements as goals, targets and desired properties of the system.
-	      They are bucketed into high-level and low-level objectives, and each had an assigned set of tasks which led to a solution.
-	      The system had the ability to manage evolving requirements by changing the assigned tasks of the goals.
-	\item What did the authors learn?\\
-	      The relationship between TD in requirements and TD in implementation can be described in terms of product value.
-	      If the product does not bring value to customers, implementation TD does not matter.
-	      If implementation TD is high, then delivering value is extremely difficult.\\
-	      The authors have defined TD in requirements as follows:\\
-	      \textit{Technical debt in requirements process is the distance between the original solution S for a requirement R, and the changed requirement R} \\
-	      The conclusions of the paper was that requirements must be refined at the very start of the project/work week/sprint so that no extra development effort is put into satisfying it.
-	      If the requirements are not gathered correctly then implementation may not bring value to the customers.
-	      The proposed solution was to insist on requirements forecasting from an early stage at the expense of extra costs.
-	\item What were the limitations of the study?\\
-	      The system has not been evaluated in the industry environment.\\
-	      Requirements TD is not TD per se, but a measure of how the system changes over time with regards to its requirements gathering process.
-	\item Links to other resources? \\
-\end{itemize}
-
+% techical debt is "technical"
+A few of the authors have considered that the metaphor of technical debt should only apply to the low-level, internal quality characteristics such as code, test, architectural debt rather than process gaps such as inadequate quality assurance \cite{Theodoropoulos2011} \cite{Nugroho2011}.
+Thus the word "technical".
+However, process gaps may negatively affect projects and incurr technical debt as a result.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Measurement}
+\subsection{Identification and Measurement}
+
+There are two methods for identifying technical debt within project source code:
+manually found by developers during the design or implementation stages of a new feature or
+automatically identified by a code quality tool that runs either in the integrated development environment of the developer or a project-level continous code quality tool.
+
+There a number of authors who have studied the identification of technical debt and its measurement through the use of static analysis tools.
+They scan the source code and find various code violations, such as code smells, code duplication, cyclomatic complexity, test coverage issues, etc.
+Moreover, they can provide detailed quality reports, links to source code, custom violations and quality thresholds.
+
+Fontana et al. \cite{Fontana2011} had compiled an initial report on code smell detection tools and their experience on the analysis of multiple versions of an object-oriented Java project.
+
 
 \subsubsection{The SQALE Method for Measuring Technical Debt} \cite{Letouzey2012}
 The goal of this paper was to propose a standardized, language-agnostic framework for assessing the quality of source code by deriving measures for important code characteristics and calculating technical debt.

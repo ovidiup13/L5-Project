@@ -273,22 +273,78 @@ technical debt as a result.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Identification and Measurement}
 
-% intro to identification
-There are two methods for identifying technical debt within project source code:
-manually found by developers during the design or implementation stages of a new
-feature or automatically identified by a code quality tool that runs either in
-the integrated development environment of the developer or a project-level
-continous code quality tool.
+% What are the causes of code TD?
+
+Technical debt may impede future development and delivery of new features is not
+managed appropriately \cite{Cunningham1993}. Cunningham's statement was
+validated by a number of authors trying to identify its causes by looking at the
+most "notorious" code smells \cite{Fowler1999} and their impact on software projects.
+
+% add software quality impact of code smells here
+% - Investigating the Impact of Design Debt on Software Quality
+% - Investigating the impact of Code Smells Debt on Quality Code Evaluation
+% - Assessing Code Smell Interest Probability
+% - An exploratory study on the impact of Code Smells on Software Change-Proneness
+
+
+% How to quantify code smell impact?
+
+
+
+% sqale method for measuring technical debt
+The first method the authors looked at was the SQALE method \cite{Letouzey2012}.
+The goal was to propose a standardized, language-agnostic framework for
+assessing the quality of source code by deriving measures for code
+characteristics and calculating an overall measure of technical debt. The
+framework proposed consisted of four concepts:
+\begin{itemize}
+	\item Quality Model - defines internal properties of code through a
+	structured three-layer hierarchy (characteristic, sub-characteristic and
+	requirement). For example, a characteristic is maintainability,
+	sub-characteristic is readability and the requirement is no commented
+	code. The hierarchy is defined as all requirements could be converted into
+	actionable steps. Each requirement defines a remediation index (cost to
+	repair code violations) defined in time, work or capital units.
+	\item Analysis Model - measurement of the distance between the current
+	state of the application and the \"optimized\" quality target.
+	\item Indices - these are the values that represent the costs of paying
+	back debt. 
+	\item Indicators - provide a visual representation of technical debt indices
+	through ratings.
+\end{itemize}
+The indices were calculated by summing up the principal of each code violation
+and aggregating up into the sub-characteristics and further to the
+characteristics of the Quality Model. The technical debt index is provided
+through the aggregation of all the characteristics in the Quality Model.
+Although the framework provides a good measurement of technical debt from the
+principal of code violations, there is no calculation of interest if TD items
+are not reduced and, additionally, it does not take into consideration
+architectural debt issues.
+
+% - Estimating the Size, Cost and Types of Technical Debt
+% - The Magnificent Seven: Towards s Systematic Estimation of TD Interest
+% - A framework for Estimating Interest on Technical Debt by Monitoring Development Activity Related to Code Comprehension
+% - An Empirical Model of Technical Debt and Interest
+
+% Tools?
+
+% TODO: need citation
+Developers must be aware of these smells and inconsistencies in the code.
+Unfortunately, finding these smells is difficult, especially in a large code
+base. There are few methods for identifying technical debt items within project
+source code: manually by developers during the design or implementation stages
+of a new feature; automatically by a code quality tool that runs either in the
+integrated development environment of the developer or a project-level continous
+code quality tool; unintentionallly through the discovery of defects.
 
 A number of authors have studied the identification of technical debt and its
-measurement through the use of static analysis tools. These tools have the
-ability to scan the source code to find various code violations, such as code
-smells, code duplication, cyclomatic complexity, test coverage issues, etc.
-Moreover, they can provide detailed quality reports, links to source code,
-custom violations and quality thresholds.
+measurement using static analysis tools. Analysis tools scan the source code and
+indentify code violations such as smells, duplication, cyclomatic
+complexity, lack of test coverage, etc. Moreover, they provide detailed quality
+reports, links to source code, custom violations and quality thresholds.
 
 % experience report on code smell detection tools
-Fontana et al. \cite{Fontana2011} had compiled an initial report on code smell
+Fontana et al. \cite{Fontana2011} compiled an initial report on code smell
 detection tools and their experience on the analysis of multiple versions of an
 object-oriented Java project. The goal of their study was to contrast the
 performance of these tools in relation with known code smells in the source
@@ -301,463 +357,32 @@ smells in the project and some had different names for the same code smell.
 Additionally, some tools shared the same metrics and identified the same
 collection of smells, whereas others had widely different results.
 
-
+% Technical Debt Indexes Provided by Tools
 Unfortunately, the experimented tools had only the ability to identify code
 violations and link them to the source code. No tool had features on quantifying
-software quality and no mention of a global technical debt measurement. However,
-as time passed, tools have been implemented which provide such aggregated values
-- called indexes. Thus they provide the ability to calculate an estimated
-measure of technical debt in the system with an associated amount of effort for
-paying back this debt. However, each tool takes into consideration different
-information sources and calculates the overall TD measurement in a different
-way. There is no standard method on aggregating a complex phenomenon such as
-technical debt into a single value.
+software quality and no mention of a global technical debt measurement. Other
+tools have been implemented which provide such aggregated values. They provide
+the ability to calculate the "quantity" of technical debt as well as a total
+estimated amount of effort for its reduction. However, each tool takes into
+consideration different information sources and calculates the overall TD
+measurement in a different way since there exists no standard method on
+aggregating such a complex phenomenon into a single value.
 
-% contrasting between tools
 Hence, a study by Fontana et al. \cite{Fontana2016}, had looked into the 5 code
 quality tools that provide these features, with the goal to understand how they
 calculate technical debt, what sources of information they take into account and
-what features they are missing. 
+what features they are missing.
 
-% sqale method for measuring technical debt
-The first method the authors looked at is the SQALE method. It was proposed by
-Letouzey et al. \cite{Letouzey2012} with the goal to propose a standardized,
-language-agnostic framework for assessing the quality of source code by deriving
-measures for code characteristics and calculating an overall measure of
-technical debt. The framework proposed consisted of four concepts:
-\begin{itemize}
-	\item Quality Model - defines internal properties of code through a
-	structured three-layer hierarchy (characteristic, sub-characteristic and
-	requirement). For example, a characteristic is maintainability,
-	sub-characteristic is readability and the requirement is no commented
-	code. The hierarchy is defined as all requirements could be converted into
-	actionable steps. Each requirement defines a remediation index (cost to
-	repair code violations) defined in time, work or capital units.
-	\item Analysis Model - measurement of the distance between the current
-	state of the application and the \"optimized\" quality target.
-	\item Indices - these are the values that represent the costs of code
-	violations.
-	\item Indicators - provide a visual representation of technical debt indices
-	through ratings.
-\end{itemize}
-The authors encouraged that the Quality Model should be calibrated according to
-the requirements and policies of the organization implementing the framework.
-The indices were calculated by summing up the principals of each code violation
-and aggregating up into the sub-characteristics and further to the
-characteristics of the Quality Model. The technical debt index is provided
-through the aggregation of all the characteristics in the Quality Model.
-Although the framework provides a good measurement of technical debt from the
-principal of code violations, there is no mention of calculating interest.
-Additionally, the framework does not take into consideration architectural debt.
-
-
-\subsubsection{Estimating the Size, Cost and Types of Technical Debt}
-\cite{Curtis2012} Summarized the results of a study on a huge database (365M
-LOC) of software projects across 10 industries. The study was language agnostic
-and provided a formula for estimating the principal of TD items. Made use of
-CAST's Application Intelligence platform to statically analyse source code,
-using 1200 rules for good practices. The steps taken were as follows: parsing,
-identify violations, aggregate results and sum up into a quality
-characteristics, or \textit{health factors}. Scores from each health factor were
-aggregated on a scale of 1 (high risk) to 4 (low risk). The principal was
-estimated by a formula with three parameters: number of problems, time required
-for each fix and the cost of fixing the issue. The authors concluded that
-estimating the interest incurred by a TD item was difficult since might be
-multiple hidden factors which influenced the results. The term works well with
-the phenomenon since stakeholders think of software quality in terms of
-business. \\
-There are trade-offs of TD management from stakeholder's perspective. For
-example, fixing TD items within the Robustness characteristic may lead to fewer
-operational failures and higher availability of the system.
-
-\subsubsection{An Empirical Model of Technical Debt and Interest}
-\cite{Nugroho2011} The goal was to formally define technical debt and interest
-to provide insights on the Return On Investment (ROI) of IT executives.
-Specifically, it tried to answer the following questions from a financial
-perspective: How large is TD? How much interest are paying? What are the
-consequences of holding on to debt? The authors had completed an empirical
-analysis of 44 projects within the Software Improvement Group (SIG) using TUViT
-software quality assessment method for collecting relevant metrics: lines of
-code, code duplications, etc. The had also defined technical debt as being the
-changes needed to bring a system from its current quality state to the "ideal"
-quality. This can be quantified as the repair effort (RE) and can be calculated
-as follows: RE = Rework Fraction (LOC need to be changed) * Rebuild Value
-(estimate in man-months of rebuilding with a particular technology) *
-Refactoring Adjustment (advanced tooling helping the team be more productive.)\\
-The interest was also derived from the extra cost spent on maintainance per
-month and per year, modelled against the quality factor (the current state of
-quality within the system). Maintainance was considered a different activity by
-the authors since the tasks involved in maintaining a system involve a change
-that is immediately visible from the outside. However, technical debt repair was
-not considered a maintainance activity. A few limitations of this approach were
-the level of precision rating of a system (quality ratings are on a scale of
-1-5) which leads to less accurate estimations on important financial numbers
-such as ROI. Refactoring adjustment variable is subjective as it requires expert
-input when considering development productivity.
-
-\subsubsection{Investigating the Impact of Design Debt on Software Quality}
-\cite{Zazworka2011} To investigate the impact God classes have on development
-and whether they are points of major changes and defects when compared to other
-parts of the system. Additionally, to study whether there is a linear
-relationship between class size, change and defect likelihoods and how the
-results are influenced by data normalizations The authors ran an analysis on two
-medium-sized projects from a small development company. The analysis consisted
-of statically analysing the source code stored in version control and the
-project issues from the project management system. It looked at two major
-variables:
-\begin{itemize}
-\item Change likelihood = how likely code within and outside God classes changes
-accross revisions.
-\item Defect likelihood = how likely is a fix implemented inside and outside of
-God classes.
-\end{itemize}
-Empirical analysis of the two projects has shown that God classes get changed
-7.8\% of the time whilst also being fixed 17 times more than the rest of the
-code. However, since the God classes have more functionality included,
-normalization of the data by LOC has shown that there are no significant results
-in comparing God vs non-God classes. The limited scope of the empirical analysis
-on a sample of two projects and focus on a specific code smell, the results are
-indecisive for a generalization of the results.
-
-\subsubsection{Investigating the impact of Code Smells Debt on Quality Code
-Evaluation} \cite{Fontana2012}
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	      The goals were to study the impact on code quality metrics of
-	      removing code smell, which code smell incurs the most TD and whether
-	      their impact on is related to the domain of the software
-	      application. Should code smells be categorized as design debt?
-	\item What was the methodology? \\
-	      The study looked at three most common smells: Data class, God class
-	      and Duplicated Code. The metrics impacted are related to cohesion,
-	      coupling and complexity; calculated by various tools according to
-	      clarity of computation. Best refactoring practices were applied for
-	      each smell detected in the system and the quality metrics have been
-	      re-analysed to assess their impact.
-	\item What did the authors learn? \\
-	      Some code quality tools evaluate code smells through a set of rules
-	      which must be customized according to the application domain of the
-	      system. Refactoring of one code smell may provide benefits for one
-	      or more metric qualities but may negatively impact others.
-	      Additionally, code duplication is one of the worst smells but may
-	      also provide benefits in some cases. Data Class smell and God class
-	      smells may be domain-dependent, but this assumption heavily
-	      correlates with the types of tools and libraries listed as
-	      dependencies in the system.
-	\item Links to other resources? \\
-	      Zhang et al. investigated relationship between code smells and
-	      software faults => how to prioritize refactoring.\\
-	      Arcelli et al. proposed a first analysis on refactoring on a small
-	      scale of software metrics.
-\end{itemize}
-
-\subsubsection{Monitoring Code Quality and Development Activity by Software
-Maps} \cite{Bohnet2011}
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	      The goal of the paper was to bridge the gap between development
-	      teams and corporate managers, by exposing internal system quality
-	      through the use of software maps. Software maps enable managers to
-	      assess where improvement in quality is most necessary and can
-	      observe future quality risk and estimate future maintenance costs.
-	      Additionally, it helps developers and project managers identify
-	      modules suitable for refactoring/clean-up before the start of a
-	      sprint.
-	\item What was the methodology? \\
-	      A software map is a hierarchical 2D/3D view of software artefacts
-	      within a project. Each artefact is represented visually through
-	      properties such as colour, texture and size; each representing a
-	      property of quality: cyclomatic complexity, LOC, nesting levels. The
-	      authors have implemented a software for visualizing software maps
-	      and evaluated the tool on two projects: JBoss and Blender.
-	\item What were the conclusions? \\
-	      The authors have defined the internal quality of the system to be
-	      directly correlated to the quality of the source code. These
-	      qualities are invisible to customers and management, and
-	      stakeholders are reluctant to put more resources into internal
-	      quality. On the other hand, external quality relates to the visible,
-	      discoverable qualities of the system. For example, defects and bugs
-	      are two discoverable phenomenons of external quality. Impact of
-	      external quality issues are immediate, and stakeholders are inclined
-	      to invest in quick features/fixes that make an instant impact.
-	\item What were the limitations? \\
-	      The system has not been evaluated in practice.\\
-	      There is no aggregation of values into a single metric that is
-	      understandable by both parties.\\
-	      Calculating the cost of a change is difficult, only shows the past
-	      and current quality status.
-	\item Links to other resources? \\
-\end{itemize}
+% - TO READ: The Correspondence between Software Quality Models and Technical Debt Estimation Approaches
+% - TO READ: Towards Asessing the Technical Debt of Undesired Software Behaviours in Design Patterns
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Management}
 
-\subsubsection{A Portfolio Approach to Managing Technical Debt} \cite{Guo2011}
 
-\begin{itemize}
-	\item What were the goals of the paper?\\
-	      To define technical debt from a financial portfolio perspective by
-	      encouraging to be viewed as an investment and therefore used as a
-	      strategy. Which TD items should be paid in a release for a
-	      particular component \textit{S}?
-	\item What was the methodology?\\
-	      The authors were looking at debt items in a system similar to assets
-	      in a financial portfolio, looking to maximize return on investment
-	      and minimize the risk associated with TD items. In short, they were
-	      interested to find out whether an optimal combination of assets (TD
-	      items) can be found. \\
-	      An approach proposed was to identify historical metrics of TD items
-	      and decide which ones to keep (the ones on which to pay interest)
-	      and which ones to sell (which to pay the principal i.e. FIX).
-	\item What did the authors learn? \\
-	      Technical debt is not problematic unless the costs outweight the
-	      benefits. The approach does not take into consideration the fact
-	      that TD items may be recklessly added to the "portfolio" and the
-	      management of undetected TD items. Additionally, technical debt is
-	      not the same as financial debt. The amount of principal and interest
-	      are known before hand and fixed in finance whereas in software
-	      development estimation is one of the most difficult tasks. Approach
-	      was not tested in a real setting.
-	\item Links to other resources?
-\end{itemize}
-
-\subsubsection{Prioritising Design Debt Investment Opportunities}
-\cite{Zazworka2011Prioritise}
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	      Proposes an approach for making refactoring decision regarding God
-	      classes in software projects, that will have a low principal cost
-	      and long-term benefits.
-	\item What was the methodology? \\
-	      The authors have considered the cost-benefit analysis criteria for
-	      prioritization, by taking into consideration the cost of refactoring
-	      and quality gained from each refactoring of TD items. The proposed
-	      method approximates size of refactoring based on source code
-	      complexity metrics such as Weighted Method Count, Tight Class
-	      Cohesion and Access to Foreign Data Metric. A feasibility study was
-	      conducted on a small size software development company on a project
-	      with 35k LOC, 11 month old and mantained by a team of 4 developers.
-	\item What were the limitations of the study? \\
-	      There were no results related to the feasibility study. The study
-	      was only conducted on a single class smell, the God class. Choice of
-	      refactoring must also be evaluated by the business side.
-	\item Links to other resources? \\
-\end{itemize}
-
-
-\subsubsection{Using Technical Debt Data in Decision Making} \cite{Seaman2012}
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	      To discuss the approaches of technical debt management and to
-	      propose four novel ways to aid decision making.
-	\item What were the conclusions? \\
-	      Proposed four approaches for decision making on TD:
-	      \begin{itemize}
-		      \item Cost-Benefit Analysis. Defined principal, interest
-		            probability (the probability that other work will be
-		            more expensive) and the interest amount. Based on these
-		            three factors and their associated value (high, medium,
-		            low), the authors claimed it is possible to estimate
-		            items that have low principal (are quick to repay) and a
-		            possible high impact on future additions and changes.
-		      \item Analytic Hierarchy Process (AHP). Defined a criteria by
-		      which TD items would be paid off, through group decisions.
-		      \item Portfolio Approach. Guo et al. \cite{Guo2011} has
-		      defined an approach for portfolio debt management. The same
-		      approach has been defined here.
-		      \item Options. Represents investments into refactoring as a
-		      purchase of options that will facilitate change in the future
-		      but with no immediate profit.
-	      \end{itemize}
-\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Industry Case Studies}
-
-\subsubsection{What Software Practitioners have to say about TD} \cite{Lim2012}
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	      The goals of the study was to gather information on how
-	      practitioners identify, visualize and manage technical debt in
-	      industry.
-	\item What was the methodology? \\
-	      The authors have had interviews with 35 practitioners with broad
-	      backgrounds: various companies, a range of years of experiences,
-	      positions, etc. The interview questions were both open-ended and
-	      closed-ended.
-	\item What were the conclusions? \\
-	      After being introduced to a definition of TD, 25\% of the
-	      participants considered TD as unintentional, and the rest considered
-	      that TD was caused by various trade-offs. They understood that
-	      business reality forces trade-offs within software quality in order
-	      to satisfy business goals. Furthermore, some practitioners mentioned
-	      that their team cut back on software quality enforcement methods due
-	      to time constraints and due to this TD was incurred in their
-	      projects. They had to balance requirements and software quality
-	      against deadlines, since customer/business demands always took
-	      precedence. \\
-
-	      However, participants have struggled to find a way to measure TD and
-	      its cumulative effort over time. Moreover, convincing management to
-	      invest resources in paying back TD is difficult, unless there is an
-	      associated business value. Unfortunately, there was no vocabulary
-	      defined between development teams and business, hence difficult to
-	      explain TD and its associated costs over time. Some teams have had
-	      success in convincing stakeholders of the impact of TD, by quickly
-	      implementing a set of requirements and visualizing their trade-offs
-	      over a period of time. As a result, they reported that stakeholders
-	      were happy to negotiate extending deadlines for features due to
-	      this. \\
-
-	      The two perspectives of TD, from development to business, is
-	      different. Developers are mainly interested in the perfection of the
-	      code whilst management considers that time to market is of extreme
-	      importance. However, developers are more aware of the impact of TD
-	      over time, since they have to deal with it on a daily basis. \\
-
-	      As a result of the study, the authors, developers and management
-	      have proposed the following practices when dealing with TD:
-	      \begin{itemize}
-		      \item Allocate 5-10\% of resources for each release in paying
-		      back TD.
-		      \item Always keep an open dialogue with the customers and
-		      management on issues surrounding TD.
-		      \item Make TD as visible as possible through the use of
-		      documentation, static analysis tools, etc.
-	      \end{itemize}
-	\item Links to other resources? \\
-\end{itemize}
-
-\subsubsection{Searching for Build Debt} \cite{Morgenthaler2012}
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	      To publish enterprise approaches within Google for managing
-	      technical debt in build files. This type of TD was lowering
-	      developer productivity and increased the computational resources
-	      within the infrastructure and thus increased costs.
-	\item What was the methodology? \\
-	      The developers at Google leveraged in-door developed tools for
-	      automating removal of legacy code projects no longer refenced,
-	      removal of indirect dependencies between projects and removal of
-	      dead command-line flags which hindered developer comprehension of
-	      command line tools and processes. Teams were holding FIXIT days
-	      where developers may remove and improve dead flags and dead/zombie
-	      dependencies.
-	\item What were the conclusions? \\
-	      Google has a very large codebase that is difficult to manage.
-	      Specifically, a simple dependency change might take weeks due to
-	      previous links in the dependency graphs and build files of other
-	      projects that rely on it. Removal of dead code has been simplied
-	      with the introduction of code visibility and health flags.
-	      Additionally, one FIXIT day has removed approximately 250k lines of
-	      code related to dead flags.
-	\item What were the limitations? \\
-	      There was only one type of TD assessed in the paper: BUILD debt.
-\end{itemize}
-
-\subsubsection{Managing Technical Debt - An industrial case study}
-\cite{Codabux2013}
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	      The goals of the paper was to complete an empirical analysis of
-	      Agile methodologies and its effect on technical debt within a
-	      mid-sized company. In particular, the authors wanted to find what
-	      were the various types of TD, how to handle them, what the
-	      consequences of holding on to that debt are, how TD is prioritized
-	      and addressed.
-	\item What was the methodology? \\
-	      The authors had 3 visits to the office of the company, each 3-day
-	      long. They were part of team meetings such as sprint planning, scrum
-	      and retrospectives. Interviews with both management and development
-	      teams have been completed. A total of 28 members had participated to
-	      the study.
-	\item What were the conclusions? \\
-	      The authors had mixed responses when comparing division management
-	      interviews and developers. Division management considered technical
-	      debt to be of infrastructure nature (in terms of operations) and
-	      testing nature (issues with test automation). Developers, on the
-	      other hand, correlated TD with the lack of time to implement
-	      features \textit{properly}.\\
-	      However, architecture debt was considered to be the most difficult
-	      to manage since it required group decisions which take time and
-	      coordination. The team was taking appropriate steps to exterminate
-	      TD by assigning small teams within the division solely dedicated to
-	      refactoring tasks.
-	\item What were the limitations? \\
-	      The study was conducted with one industry partner and therefore does
-	      not reflect the impact of TD within the entire Agile process.
-	      Additionally, interviews were not recorded and responses may be
-	      subject to bias of the interviewer.
-	\item Links to other resources? \\
-\end{itemize}
-
-\subsubsection{Technical Debt and its Effects on Agile Management Practice}
-\cite{Holvitie2014}
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	      To study technical debt within the agile management process and its
-	      impact.
-	\item What was the methodology? \\
-	      The study consisted of three sections of research questions which
-	      covered background information and TD knowledge level, agile
-	      processes affecting TD and singular instances of TD. Data collection
-	      was completed through an anonymous online form sent to 507
-	      individuals spanning more than 150 companies. The survey consisted
-	      of 34 questions open and closed-ended and took approximately 10
-	      minutes to complete.
-	\item What were the conclusions? \\
-	      80\% of the individuals have heard of technical debt before and
-	      considered to have a good knowledge on it. Of their entire day, TD
-	      was discussed most in work meetings while only 35\% of the responses
-	      have applied refactorings related to TD.\\
-	      50\% of the participants considered practices such as simple design,
-	      TDD, following code standards, continous integration, collective
-	      ownership and pair programming to have a positive effect on TD.
-	      Additionally, of all the meetings, retrospectives have been
-	      considered as most influential to TD by 50\% of the responses.
-	      However, phases such as requirements gathering, design and
-	      implementation had been considered to incur the most TD.
-	\item What were the limitations? \\
-	      The study was conducted online anonymously - no way to understand
-	      how many sectors, how many companies and teams have been involved in
-	      the responses.\\
-	      Limited to the country of the authors - Finland.
-\end{itemize}
-
-\subsubsection{An Enterprise Perspective on Technical Debt} \cite{Klinger2011}
-
-\begin{itemize}
-	\item What were the goals of the paper? \\
-	      To challenge Ward Cunningham's definition of technical debt from an
-	      enterprise perspective and define it as a strategic tool for
-	      business circumstances.
-	\item What was the methodology? \\
-	      Interviewed four technical architects from IBM, from a "wide range"
-	      of projects within the firm. Each interview was approx. 1 hour in
-	      length. The questions tapped into their own experiences with TD,
-	      more specifically: nature and context, stakeholders, benefits,
-	      documentation, whether the debt was repaid.
-	\item What did the authors learn? \\
-	      Enterprises may use debt as a tool for maximizing competitive
-	      advantage, which may or may not be paid in the future dependant on
-	      the direction in which the project will take. Additionally, many
-	      stakeholders are involved in the accrual of debt in a software
-	      project (decisions are made collectively, not in a vacuum) but
-	      sometimes technical decisions would be made ad-hoc with no definite
-	      formal process. However, the challenge is in the collective - it is
-	      difficult to understand the socio-technical background of a system.
-	      \\
-
-	      Some stakeholders do not comprehend the extent of technical debt
-	      they are incurring in the system through their decisions due to:
-	      \begin{itemize}
-		      \item No vocabulary between technical architects and
-		      non-technical stakeholders.
-		      \item Stakeholders having competing goals and "win" conditions
-		      which may be "suboptimal from a technical perspective".
-	      \end{itemize}
-	\item Links to other resources?
-\end{itemize}
+\subsection{Conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}

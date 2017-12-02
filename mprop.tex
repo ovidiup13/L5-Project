@@ -275,21 +275,34 @@ technical debt as a result.
 
 % What are the causes of code TD?
 
-Technical debt may impede future development and delivery of new features is not
+Technical debt may impede future development and delivery of new features if not
 managed appropriately \cite{Cunningham1993}. Cunningham's statement was
-validated by a number of authors trying to identify its causes by looking at the
-most "notorious" code smells \cite{Fowler1999} and their impact on software projects.
+validated by a number of authors by looking at the most "notorious" code smells
+\cite{Fowler1999} and their impact on software projects.
 
-% add software quality impact of code smells here
+Olbrich et al. \cite{Olbrich2009} studied the impact of two code smells, God
+class and Shotgun Surgery, on change proneness of class entities and size of
+changes within two open source systems. They gathered data on the number of
+smells in the systems over revisions and the distribution of changes on classes
+suffering from these two smells. The authors concluded that large systems are
+more prone to increase the number of code smells as it evolves over time and
+particularly, that classes suffering from the God class smell are 4 to 5 times
+more change prone than other classes. However, the study was conducted only on
+open-source systems and the results might not pe applicable to commercial
+software. Additionally, due to limitations of the tool used to identify code
+violations, only public Java classes have been defined.
+
+
+
+% - Assessing Code Smell Interest Probability
 % - Investigating the Impact of Design Debt on Software Quality
 % - Investigating the impact of Code Smells Debt on Quality Code Evaluation
-% - Assessing Code Smell Interest Probability
 % - An exploratory study on the impact of Code Smells on Software Change-Proneness
 
 
 % How to quantify code smell impact?
 
-
+% introduction
 
 % sqale method for measuring technical debt
 The first method the authors looked at was the SQALE method \cite{Letouzey2012}.
@@ -379,10 +392,16 @@ what features they are missing.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Management}
 
-
+% developer - refactoring
+% project manger - investment in technical debt items
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Conclusion}
+
+Olbrich \cite{Olbrich2009} introduced the term code churn, as the number of
+changes suffered by a class entity during a revision (number lines of code
+added, deleted and modified).
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
@@ -459,6 +478,7 @@ What is your overall impression of the student’s work?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % it is fine to change the bibliography style if you want
+\pagebreak
 \bibliographystyle{plain}
 \bibliography{mprop}
 \end{document}

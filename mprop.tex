@@ -53,7 +53,7 @@ justified its importance?
 
 \begin{itemize}
 	\item Technical debt definition
-	\item Types of TD - focus on code debt
+	\item Types of TD - focus on code and design debt
 	\item Measurement of principal and interest
 	\item Measurement of work effort and team productivity
 	\item Management of TD
@@ -265,10 +265,10 @@ improve the cost of managing architectural debt.
 % technical debt is "technical"
 A few of the authors have considered that the metaphor of technical debt should
 only apply to the low-level, internal quality characteristics such as code,
-test, architectural debt rather than process gaps such as inadequate quality
-assurance \cite{Theodoropoulos2011} \cite{Nugroho2011}. Thus the word
-"technical". However, process gaps may negatively affect projects and incurr
-technical debt as a result.
+design, test, architectural debt rather than process gaps such as inadequate
+quality assurance \cite{Theodoropoulos2011} \cite{Nugroho2011}. Thus the word
+"technical". However, business process gaps may negatively affect projects and
+incurr technical debt as a result.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Identification and Measurement}
@@ -282,23 +282,60 @@ validated by a number of authors by looking at the most "notorious" code smells
 
 Olbrich et al. \cite{Olbrich2009} studied the impact of two code smells, God
 class and Shotgun Surgery, on change proneness of class entities and size of
-changes within two open source systems. They gathered data on the number of
-smells in the systems over revisions and the distribution of changes on classes
-suffering from these two smells. The authors concluded that large systems are
-more prone to increase the number of code smells as it evolves over time and
-particularly, that classes suffering from the God class smell are 4 to 5 times
-more change prone than other classes. However, the study was conducted only on
-open-source systems and the results might not pe applicable to commercial
-software. Additionally, due to limitations of the tool used to identify code
-violations, only public Java classes have been defined.
+changes within two open source systems, namely Apache Lucene and Apache Xerces.
+They gathered data on the number of smells in the systems over revisions and the
+distribution of changes on classes suffering from these two smells. The authors
+concluded that large systems are more prone to increase the number of code
+smells as it evolves over time and particularly, that classes suffering from the
+God class smell are 4 to 5 times more change prone than other classes. However,
+the study was conducted only on open-source systems and the results might not pe
+applicable to commercial software. Additionally, due to limitations of the tool
+used to identify code violations, only public Java classes have been analysed.
 
+In a similar study, Fontana et al. \cite{Fontana2012} studied the impact of
+removing code smells on code quality metrics. The authors looked at three common
+smells: Data class, God class and Duplicated Code. Additional goals were to find
+out which code smell incurs the most TD and whether their impact is related to
+the domain of product being built. The metrics impacted are cohesion, coupling
+and complexity. Proper refactoring practices were applied for each smell whilst
+the quality metrics were re-evaluated to assess their impact. The results showed
+that refactoring of one code smell may provide benefits for one or more metric
+qualities but may negatively impact others. Interestingly, they had found that
+the Data Class smell and God class smells frequency may be domain-dependent. 
 
+An exploratory study by Khomh et al. \cite{Khomh2009} empirically analysed the
+impact of 29 code smells on the change sets of 9 releases of two open source
+systems. They had confirmed the results of the previous studies that code smells
+increase the number of changes that software undergoes during its evolution.
+Additionally, they had found that classes containing more than one code smell
+are more change prone than other classes. Moreover, they found a possible cycle
+of repairing smells and introducing new ones between releases. 
 
-% - Assessing Code Smell Interest Probability
-% - Investigating the Impact of Design Debt on Software Quality
-% - Investigating the impact of Code Smells Debt on Quality Code Evaluation
-% - An exploratory study on the impact of Code Smells on Software Change-Proneness
+An interesting idea from all authors \cite{Olbrich2009}, \cite{Fontana2012} and
+\cite{Khomh2009} stated that not all code smells have the same consequences on
+the code base. A code smell may have been deliberately introduced due to the
+nature of project domain. For example, in the case of a system that uses
+computer vision algorithm and techniques might be prone to an increased
+cyclomatic complexity and God class smells.
 
+Thus, Charalampidou et al. \cite{Charalampidou2017} introduced a study that
+assessed the interest probability of code smells, where the interest probability
+is the probability of a code smell to introduce extra changes in future
+development. Interest probability was calculated by counting the frequency of a
+code smell and relating it with the change proneness of the module where it
+resides. The smells studied were Long Method, Conditional Complexity, and Duplicated Code.
+
+% conclusion of  TODO: add citation here 
+Code smells are technical debt items and increase future development and
+maintainance costs. Industry case studies have shown that TD items are more
+likely to be addressed if made visible by developers within the project's issue
+tracker. However, from the perspective of a project manager, it is of importance
+to know how much effort the team will put into technical debt reduction and
+whether there is an associated business value with this investment. Hence,
+subsequently to the identification stage of code smells, there must exist a
+measurement stage of the amount of work effort technical debt will introduce to
+be resolved and the consequences on productivity over time if the team keeps
+hold of the code violations. 
 
 % How to quantify code smell impact?
 

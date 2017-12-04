@@ -478,7 +478,66 @@ from a feature or release level.
 
 % Tools?
 
-TODO? Add tools?
+These types of measurements are useful for project managers when making
+decisions as to what percentage of work on an interation to be assigned on
+refactoring. To keep up with a constantly changing system, there are software
+quality tools used in industry that analyse source changes, highlight possible
+fixes and some have automatic refactoring features.
+
+% experience report on code smell detection tools
+Fontana et al. \cite{Fontana2011} compiled an initial report on code smell
+detection tools and their experience on the analysis of multiple versions of an
+object-oriented Java project. The goal of their study was to contrast the
+performance of these tools in relation with known code smells in the source
+code. These tools were: Jdeodorant, PMD, iPlasma, InFusion, StenchBlossom. There
+were numerous code smells initially detected in the project including God Class,
+Data Class, Feature Envy, Brain Method, etc. Their methodology was to apply
+analysis on multiple versions of an object-oriented project, with all code
+smells known beforehand. They have found not all tools identify all the code
+smells in the project and some had different names for the same code smell.
+Additionally, some tools shared the same metrics and identified the same
+collection of smells, whereas others had widely different results.
+
+% Technical Debt Indexes Provided by Tools
+Unfortunately, the experimented tools had only the ability to identify code
+violations and link them to the source code. No tool had features on quantifying
+software quality and no mention of a global technical debt measurement. Other
+tools have been implemented which provide such aggregated values. They provide
+the ability to calculate the "quantity" of technical debt as well as a total
+estimated amount of effort for its reduction. However, each tool takes into
+consideration different information sources and calculates the overall TD
+measurement in a different way since there exists no standard method on
+aggregating such a complex phenomenon into a single value.
+
+Hence, a new study by Fontana et al. \cite{Fontana2016}, had looked into the 5
+code quality tools that provide these features, with the goal to understand how
+they calculate technical debt, what sources of information they take into
+account and what features they are missing. The study looked at the following
+tools:
+\begin{itemize}
+	%TODO: add link to pages
+	\item \textbf{CAST}. Defines technical debt cost by taking both principal
+	and interest into consideration. The principal is calculated by the
+	severity, time and cost to fix structural flaws. Interest is then computed
+	by assuming that a business will resolve a fixed percentage of high, medium
+	and low severity items, times the cost of labour set at 75\$ per hour. 
+	\item \textbf{InFusion}. Calculates a measurement, Quality Deficit Index,
+	which summarizes the level of quality of a system. It takes into account all
+	design flaws of a source code, each described by negative influence on best
+	practices, level of granularity (method or class level) and smell severity.
+	\item \textbf{Sonargraph}. The distinction from the rest of the tools is
+	that developers can set a defined initial architecture and Sonargraph can
+	find deviations from that architecture at the level of system, project and
+	build. Additionally, the tool generates two Structural Debt measurements, an
+	index related to the sum of all dependencies needed to be cut and a cost
+	measurement calculated from the index multiplied by a time factor.
+	\item \textbf{SonarQube}. A continous code quality tool that uses a large
+	amount of rules for good coding practices to find code violations. 
+	\item Structure101
+\end{itemize}
+
+Tools do not have a standard way of measuring technical debt and therefore we
+cannot reach a conclusion that one tool is better than the other.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Management}

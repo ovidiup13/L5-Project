@@ -35,7 +35,7 @@
 \end{itemize}
 
 Technical debt - definition \\
-What impact does TD have on development?\\ 
+What impact does TD have on development?\\
 How much work effort is wasted on new features on a codebase impacted with
 technical debt?\\
 Why is it difficult to define such a measure? \\
@@ -66,7 +66,7 @@ justified its importance?
 Technical debt is a metaphor termed by Ward Cunningham, in his famous report on
 the WyCash Portfolio Management System in 1993 \cite{Cunningham1993}. In the
 report, Cunningham mentioned that "\textit{shipping first time code is like
-going into debt.}" and that as the system evolves new features would become more
+	going into debt.}" and that as the system evolves new features would become more
 and more difficult to implement. This phenomenon was due to feature-rich
 projects being shipped to customers early but poorly written with little or no
 consideration to quality and to future work.
@@ -218,10 +218,10 @@ An alternative metaphor of technical debt \cite{UnhedgedCallOption}, described
 bad code using finance terms in a similar fashion, but through a different
 financial intrument called a call option.
 \textit{An option is a financial derivative that represents a contract sold by
-one party (the option writer) to another party (the option holder). The contract
-offers the buyer the right, but not the obligation, to buy (call) or sell (put)
-a security or other financial asset at an agreed-upon price (the strike price)
-during a certain period of time or on a specific date (exercise date).}
+	one party (the option writer) to another party (the option holder). The contract
+	offers the buyer the right, but not the obligation, to buy (call) or sell (put)
+	a security or other financial asset at an agreed-upon price (the strike price)
+	during a certain period of time or on a specific date (exercise date).}
 \cite{option-investopedia}. A call option gives the right to buy while a put
 option gives the option holder the right to sell. In software engineering, if a
 feature is hacked up quickly using bad code and never touched again, then the
@@ -301,7 +301,7 @@ and complexity. Proper refactoring practices were applied for each smell whilst
 the quality metrics were re-evaluated to assess their impact. The results showed
 that refactoring of one code smell may provide benefits for one or more metric
 qualities but may negatively impact others. Interestingly, they had found that
-the Data Class smell and God class smells frequency may be domain-dependent. 
+the Data Class smell and God class smells frequency may be domain-dependent.
 
 An exploratory study by Khomh et al. \cite{Khomh2009} empirically analysed the
 impact of 29 code smells on the change sets of 9 releases of two open source
@@ -309,7 +309,7 @@ systems. They had confirmed the results of the previous studies that code smells
 increase the number of changes that software undergoes during its evolution.
 Additionally, they had found that classes containing more than one code smell
 are more change prone than other classes. Moreover, they found a possible cycle
-of repairing smells and introducing new ones between releases. 
+of repairing smells and introducing new ones between releases.
 
 An interesting idea from all authors \cite{Olbrich2009}, \cite{Fontana2012} and
 \cite{Khomh2009} stated that not all code smells have the same consequences on
@@ -318,12 +318,30 @@ nature of project domain. For example, in the case of a system that uses
 computer vision algorithm and techniques might be prone to an increased
 cyclomatic complexity and God class smells.
 
+% prioritisation by severity - interest probability
 Thus, Charalampidou et al. \cite{Charalampidou2017} introduced a study that
 assessed the interest probability of code smells, where the interest probability
 is the probability of a code smell to introduce extra changes in future
-development. Interest probability was calculated by counting the frequency of a
-code smell and relating it with the change proneness of the module where it
-resides. The smells studied were Long Method, Conditional Complexity, and Duplicated Code.
+development. Interest probability was calculated by counting the frequency of
+each code smell and how it correlates with the change proneness of the module
+where it resides. The smells studied were Long Method, Conditional Complexity,
+and Duplicated Code. The results showed that code duplication has the highest
+interest probability due to the number of changes required to maintain future
+development. Additionally, high cyclomatic method complexity increases amount of
+changes.
+
+% prioritisation on context
+Additionally, prioritising code smells with the highest severity might not be
+suitable if the context in which the smell resides will not be referenced in the
+future. Therefore, Sae-Lim et al. \cite{Sae-Lim2016} looked at prioritising code
+smells according to development context to support a \textit{prefactoring}
+stage, where developers clean up code before development of new features. The
+authors calculated a value for each code smell, called the \textit{Context
+	Relevance Index}, based on a list of issues from the project's issue tracker and
+the change descriptors of commits in the project version control. The results of
+their preliminary study returned a list of ranked code smells to be targetted as
+a prefactoring step to implementation. This type of prioritisation may be more
+practical in time constrained projects.
 
 % conclusion of  TODO: add citation here 
 Code smells are technical debt items and increase future development and
@@ -335,32 +353,68 @@ whether there is an associated business value with this investment. Hence,
 subsequently to the identification stage of code smells, there must exist a
 measurement stage of the amount of work effort technical debt will introduce to
 be resolved and the consequences on productivity over time if the team keeps
-hold of the code violations. 
+hold of the code violations.
 
 % How to quantify code smell impact?
 
 % introduction
+Identification and prioritisation are two of the most important stages when
+dealing with technical debt. Making technical debt items such as code smells
+visible has been recommended by industry practitioners \cite{Lim2012}
+\cite{Codabux2013}. However, participants have struggled to find a way to
+measure technical debt and its cumulative effect over time. This is a
+particularly important aspect of project managers responsibility when planning
+new work for the team. Whilst developers are concerned with the health and
+quality of the codebase, managers are responsible with balancing work by keeping
+developers and stakeholders happy.
+
+Specifically, a technical debt item raises two important questions:
+\begin{itemize}
+	\item How much effort does it take to repair it?
+	\item What are the consequences of holding on to it?
+\end{itemize}
+
+Answering these two questions through a quantified measure is the key to a
+proactive management of technical debt. The measure depicting the cost of paying
+back the debt at the present time is called the \textit{principal} whilst the
+extra cost of development when keeping hold of items is called
+\textit{interest}. Unfortunately, there is no standardised method, due to
+difficulties managing complexities of quantifying work effort and development
+costs. However, a number of studies have appeared over the years that look at
+methods for calculating principal and interest of technical debt items.
+
+An interesting paper by Bohnet et al. \cite{Bohnet2011} proposed a tool to
+bridge the gap between development teams and corporate managers, by exposing
+internal system quality through the use of \textit{software maps}. A software
+map is a hierarchical 2D/3D view of software artefacts, each represented
+visually through properties such as colour, texture and size; each representing
+a property of quality: cyclomatic complexity, lines of code and nesting levels.
+Such a visualisation provides both developers and managers with points of
+fragility where possible bugs may arise and highlights areas of work to address.
+However, the visualisation is technical and might be difficult to convey to
+stakeholders. Additionally, there is no way to calculate the principal and
+interest of the quality issues.   
 
 % sqale method for measuring technical debt
-The first method the authors looked at was the SQALE method \cite{Letouzey2012}.
-The goal was to propose a standardized, language-agnostic framework for
+Letouzey et al. \cite{Letouzey2012} proposed a different method, called the SQALE
+method. The goal was to create a standardised, language-agnostic framework for
 assessing the quality of source code by deriving measures for code
 characteristics and calculating an overall measure of technical debt. The
 framework proposed consisted of four concepts:
 \begin{itemize}
 	\item Quality Model - defines internal properties of code through a
-	structured three-layer hierarchy (characteristic, sub-characteristic and
-	requirement). For example, a characteristic is maintainability,
-	sub-characteristic is readability and the requirement is no commented
-	code. The hierarchy is defined as all requirements could be converted into
-	actionable steps. Each requirement defines a remediation index (cost to
-	repair code violations) defined in time, work or capital units.
+	      structured three-layer hierarchy (characteristic, sub-characteristic and
+	      requirement). For example, a characteristic is maintainability,
+	      sub-characteristic is readability and the requirement is no commented
+	      code. The hierarchy is defined as all requirements could be converted into
+	      actionable steps. Each requirement defines a remediation index (cost to
+	      repair code violations) defined in time, work or capital units.
 	\item Analysis Model - measurement of the distance between the current
-	state of the application and the \"optimized\" quality target.
+	      state of the application and the \"optimized\" quality target.
 	\item Indices - these are the values that represent the costs of paying
-	back debt. 
+	      back debt.
 	\item Indicators - provide a visual representation of technical debt indices
-	through ratings.
+	      through ratings.
 \end{itemize}
 The indices were calculated by summing up the principal of each code violation
 and aggregating up into the sub-characteristics and further to the
@@ -369,62 +423,62 @@ through the aggregation of all the characteristics in the Quality Model.
 Although the framework provides a good measurement of technical debt from the
 principal of code violations, there is no calculation of interest if TD items
 are not reduced and, additionally, it does not take into consideration
-architectural debt issues.
+architectural debt issues. Subsequently to their study, the method was
+implemented in SonarQube, which is a continuous code quality tool.
 
-% - Estimating the Size, Cost and Types of Technical Debt
-% - The Magnificent Seven: Towards s Systematic Estimation of TD Interest
-% - A framework for Estimating Interest on Technical Debt by Monitoring Development Activity Related to Code Comprehension
-% - An Empirical Model of Technical Debt and Interest
+Curtis et al. \cite{Curtis2012} summarized the results of a language agnostic
+study on a huge database (365M lines of code) of software projects across 10
+industries which provided a formula for estimating the principal of TD items.
+The authors used CAST's Application Intelligence platform to statically analyse
+source code, using 1200 rules of coding "best practices". They identified code
+violations by analysing source code and aggregated the results into quality
+characteristics, or \textit{health factors}. Scores from each health factor were
+aggregated on a scale of 1 (high risk) to 4 (low risk). The total principal was
+estimated by a formula with three parameters: number of problems, time required
+for each fix and the cost of fixing the issue. Unfortunately, the methodology
+did not support calculation of holding on to code issues. The authors concluded
+that estimating the interest incurred by a TD item was difficult since might be
+multiple hidden factors which influenced the results. The term works well with
+the phenomenon since stakeholders think of software quality in terms of
+business.
+
+
+Nugroho et al. \cite{Nugroho2011} looked at defining an empirical formula for
+quantifying principal and interest. The authors had completed an empirical
+analysis of 44 projects within the Software Improvement Group (SIG) using TUViT
+software quality assessment method for collecting relevant metrics: lines of
+code, code duplications, etc. The had defined technical debt from an opposite
+perspective, as the changes needed to bring a system from its current quality
+state to the "ideal" quality. They considered technical debt to be equivalent to
+a measurement of repair effort (RE). Calculation of this measure required the
+number of lines of code that need to changed, the estimate work effort of
+rebuilding the feature from scratch and a margin of error. The interest was also
+derived from the extra cost spent on maintainance monthly and yearly, modelled
+against the current state of quality. The conclusions were that the formulas for
+principal and interest could be used in quantifying important business
+information such as Return on Investment (ROI). However, due to the nature of
+ranking system quality (scale of 1-5), it would be a challenge to get ROI right.
+
+
+Another interesting study was conducted by Singh et al. \cite{Singh2014}, where
+technical debt interest payments were calculated by monitoring of development
+effort and code comprehension. The proposed approach monitors time spent by
+developers in classes with known TD items, detected initially by static analysis
+tools. They integrated a tool within the Integrated Development Environment of
+developers and gathered information of class visits, development session times
+within the class. The interest was calculated as the difference between time
+practically spent in classes and the ideal time spent. The results showed that
+developers tend to spend more time in classes containing TD items than others.
+However, the study was conducted with the input of one developer over a period
+of 9 months. Additionally, estimating the ideal time spent on development is a
+challenging task due to multiple personal factors such as level of project
+knowledge, familiarity of environment and programming language, etc. A possible
+solution would be to study development time from a more coarse-grained approach,
+from a feature or release level.
 
 % Tools?
 
-% TODO: need citation
-Developers must be aware of these smells and inconsistencies in the code.
-Unfortunately, finding these smells is difficult, especially in a large code
-base. There are few methods for identifying technical debt items within project
-source code: manually by developers during the design or implementation stages
-of a new feature; automatically by a code quality tool that runs either in the
-integrated development environment of the developer or a project-level continous
-code quality tool; unintentionallly through the discovery of defects.
-
-A number of authors have studied the identification of technical debt and its
-measurement using static analysis tools. Analysis tools scan the source code and
-indentify code violations such as smells, duplication, cyclomatic
-complexity, lack of test coverage, etc. Moreover, they provide detailed quality
-reports, links to source code, custom violations and quality thresholds.
-
-% experience report on code smell detection tools
-Fontana et al. \cite{Fontana2011} compiled an initial report on code smell
-detection tools and their experience on the analysis of multiple versions of an
-object-oriented Java project. The goal of their study was to contrast the
-performance of these tools in relation with known code smells in the source
-code. These tools were: Jdeodorant, PMD, iPlasma, InFusion, StenchBlossom. There
-were numerous code smells initially detected in the project including God Class,
-Data Class, Feature Envy, Brain Method, etc. Their methodology was to apply
-analysis on multiple versions of an object-oriented project, with all code
-smells known beforehand. They have found not all tools identify all the code
-smells in the project and some had different names for the same code smell.
-Additionally, some tools shared the same metrics and identified the same
-collection of smells, whereas others had widely different results.
-
-% Technical Debt Indexes Provided by Tools
-Unfortunately, the experimented tools had only the ability to identify code
-violations and link them to the source code. No tool had features on quantifying
-software quality and no mention of a global technical debt measurement. Other
-tools have been implemented which provide such aggregated values. They provide
-the ability to calculate the "quantity" of technical debt as well as a total
-estimated amount of effort for its reduction. However, each tool takes into
-consideration different information sources and calculates the overall TD
-measurement in a different way since there exists no standard method on
-aggregating such a complex phenomenon into a single value.
-
-Hence, a study by Fontana et al. \cite{Fontana2016}, had looked into the 5 code
-quality tools that provide these features, with the goal to understand how they
-calculate technical debt, what sources of information they take into account and
-what features they are missing.
-
-% - TO READ: The Correspondence between Software Quality Models and Technical Debt Estimation Approaches
-% - TO READ: Towards Asessing the Technical Debt of Undesired Software Behaviours in Design Patterns
+TODO? Add tools?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Management}
@@ -449,21 +503,21 @@ work. (TODO: add citation here)
 Goal-Question-Metric approach:
 \begin{itemize}
 	\item Goal: \textbf{Analyze} project feature implementations \textbf{with
-	the purpose of} identifying extra work \textbf{from the viewpoint of}
-	software engineers and project manager \textbf{in the context of}
-	technical debt management.
+		      the purpose of} identifying extra work \textbf{from the viewpoint of}
+	      software engineers and project manager \textbf{in the context of}
+	      technical debt management.
 	\item RQ1: Can technical debt interest for a team be predicted for each
-	sprint?
+	      sprint?
 	\item RQ1.1: What was the difference (delta) in the estimated work effort
-	for a feature and the practical work effort due to technical debt?
+	      for a feature and the practical work effort due to technical debt?
 	\item RQ1.2: What is the measurement of TD in the affected modules across
-	change sets?
+	      change sets?
 	\item RQ1.3: How does work effort delta vary with the magnitude of
-	technical debt?
+	      technical debt?
 	\item RQ2: What are the development patterns surrounding feature
-	lifecycle?
+	      lifecycle?
 	\item RQ2.2: At what checkpoint in development is technical debt reduction
-	(refactoring)  most prominent?
+	      (refactoring)  most prominent?
 \end{itemize}
 
 Possible approach: 1) Identify appropriate data candidates for this study. These
@@ -477,9 +531,9 @@ results.
 Risks:
 \begin{enumerate}
 	\item Data candidates may not contain enough relevant information in
-	project management software, such as priority and story points.
+	      project management software, such as priority and story points.
 	\item Work effort estimation is difficult in the context of open source
-	systems. What is the metric for quantifying work effort?
+	      systems. What is the metric for quantifying work effort?
 	      \begin{itemize}
 		      \item Time - theoretically used in Agile process through
 		            metrics such as story points. Must be careful on how it
@@ -491,10 +545,10 @@ Risks:
 		            available in modern IDEs.
 	      \end{itemize}
 	\item Technical debt is not a standardized metric and various tools
-	calculate TD with a different formula and take into account multiple types
-	of debt.
+	      calculate TD with a different formula and take into account multiple types
+	      of debt.
 	\item Granularity of code checkpoints is important. These may be: commit
-	level, branch level, pull request level, release level.
+	      level, branch level, pull request level, release level.
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

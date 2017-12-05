@@ -532,12 +532,34 @@ tools:
 	index related to the sum of all dependencies needed to be cut and a cost
 	measurement calculated from the index multiplied by a time factor.
 	\item \textbf{SonarQube}. A continous code quality tool that uses a large
-	amount of rules for good coding practices to find code violations. 
-	\item Structure101
+	amount of rules for good coding practices to find code violations. The
+	resulting code violations are aggregated into software quality characterstic
+	factors which then compute a Technical Debt Index. The index is expressed in
+	the of work effort required to fix all issues. Rules and costs may be
+	modified to support customised business requirements (available in the
+	commercial version). It implements the SQALE method of measuring technical
+	debt \cite{Letouzey2012}. 
+	\item \textbf{Structure101}. Tool specialised in architectural issues of the
+	codebase, with metrics on multiple levels of granularity such as method,
+	class, package and project level.
 \end{itemize}
 
-Tools do not have a standard way of measuring technical debt and therefore we
-cannot reach a conclusion that one tool is better than the other.
+The authors have provided summarized tables that describe all the tools and
+their purpose nicely. The two tables are available in Figure \ref{fig:tools-tables}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{visualisations/tools-table.png}
+	\caption{Summary of tools provided by Fontana et al.}	
+	\label{fig:tools-tables}
+\end{figure}
+
+Unfortunately, there is no standard method of measuring the total technical of a
+system. This is due to the complex nature of the metaphor and one cannot capture
+all its complexities into a single tool. Therefore, there is no single best tool
+for this purpose, as all take into consideration different sources for metric
+computation and it all comes down to the requirements of the team looking to
+increase the level of software quality.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Management}

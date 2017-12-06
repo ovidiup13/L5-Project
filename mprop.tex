@@ -60,6 +60,7 @@ justified its importance?
 \end{itemize}
 
 \subsection{Definition, Perspectives and Types}
+\label{section:def}
 
 % Ward Cunningham - WyCash Portfolio Management System TODO: expand the
 % definition from the paper.
@@ -564,8 +565,49 @@ increase the level of software quality.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Management}
 
-% developer - refactoring
-% project manger - investment in technical debt items
+Although tools provide managers with an approximate measure of quality of the
+code base, there is a danger in associating technical debt with the results of
+software quality tools. As mentioned in Section \ref{section:def}, there
+are numerous types of technical debt that may have a negative impact on the ROI
+of the business. For example, code quality tools cannot predict that the
+requirements gathering phase was not completed appropriately or that build debt
+is affecting infrastructure costs \cite{Morgenthaler2012}.
+
+Additionally, a study by Martini et al. \cite{Martini2017} showed that the
+overall impact of technical debt at the project level is not same as the sum of
+all technical debt items. They assessed four projects and interviewed both
+project managers and developers on their perspective of the impact, on a scale
+from 1 to 10. Although the interviewees had multiple backgrounds and were
+consulted on many development factors (reduced development speed, bugs incurred
+by TD, extra costs, frequency of issues, spread in system, users affected,
+etc.), the results showed that there are other socio-technical complexities
+affecting the project.
+
+Technical debt should be used as a strategy for quick development of features in
+order to satisfy an immediate business requirement such as TTM. From an
+industrial case study \cite{Lim2012}, a developer put their experience with
+technical debt as follows: "\textit{Technical debt is a balance between software
+quality and business reality}". Industry practitioners from the same study have
+acknowledged that numerous business requirements have forced them to incur debt.
+Unfortunately, business requirements and decisions are difficult to foresee due
+to constant market deviations, such as the appearance of a new competitor or a
+new technology.
+
+Therefore, technical debt is difficult to predict. However, it is recommended
+that once debt is incurred, it should be made visible \cite{Lim2012}
+\cite{Codabux2013} \cite{Morgenthaler2012}, and paid back as early as possible.
+If these requirements are not met, Cunningham \cite{Cunningham1993} puts it
+best: "\textit{The danger occurs when the debt is not repaid. Every minute spent
+on not-quite-right code counts as interest on that debt. Entire engineering
+organizations can be brought to a stand-still under the debt load of an
+unconsolidated implementation, object-oriented or otherwise.}".
+
+Fortunately, project management practices such as Agile and its associated
+practices have proved to help reduce and manage technical debt
+\cite{Holvitie2014} \cite{Trumler2016}. In particular, practices such as TDD,
+following coding standards, refactoring, continuous integration, collective code
+ownership and pair programming have been considered to help tackle technical
+debt.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Conclusion}

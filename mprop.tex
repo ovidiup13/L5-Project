@@ -707,21 +707,32 @@ explaining the concept to non-technical stakeholders. However, new tools allow
 the indentification of code smells, tracking and computing of complex indexes
 with focus on quality characteristics of code.
 
-Olbrich \cite{Olbrich2009} introduced the term code churn, as the number of
-changes suffered by a class entity during a revision (number lines of code
-added, deleted and modified).
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
 
-Possible approach: 
+As mentioned, in the introduction, this study is focused on finding the relation
+between technical debt and work effort. This will yeild more information for
+developers on time management, for project managers on debt investment and for
+stakeholders on understanding a technical concept in terms of labour cost.
+
+The approach for this study will consist of the following steps:
 \begin{enumerate}
-	\item Identify appropriate data candidates for this study. These are a
-mixture of open source and enterprise software.
-	\item Identify and retrieve suitable work items from project planning software.
-	\item Identify checkpoints in project codebase which are appropriate to the
-selected work items.
+	\item \textit{Identify appropriate data candidates for this study}. These
+	are potential software projects that are suitable for study. At best, they
+	should have multiple developers contributing to the project, a medium to
+	large codebase with a variety of historical data and an issue tracking
+	software. It would be extremely useful if they have a continous code quality
+	tool included for tracking code smells throughout software evolution. This
+	would help with quick and automatic identification of present and historical
+	code issues. The study would also benefit from a mixture of open-source and
+	commercial sofware to contrast the differences between the two environments
+	and, possibly, arrive at a generic conclusion that may apply to both worlds.
+	\item \textit{Identify suitable work items from issue tracker}. In this
+	step, the purpose is to understand important events in the evolution of the
+	data candidates. Ideally, events should be tracked in the form of tickets
+	with detailed information attached such as: priority, estimated work,
+	dates the ticket opened and closed, asignee, etc.  
+	\item \textit{Identify version checkpoints of the work items selected}. 
 	\item Analyze work effort of selected work items.
 	\item Analyze measurement of technical debt in change sets.
 	\item Analysis and discussion of results.

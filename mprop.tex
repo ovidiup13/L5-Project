@@ -43,6 +43,29 @@ If such a measurement is known, how could it be managed? \\
 What are the advantages of quantifying technical debt interest in the form work
 effort? \\
 
+Goal-Question-Metric approach is a good framework for breaking down research
+work. (TODO: add citation here)
+
+Goal-Question-Metric approach:
+\begin{itemize}
+	\item Goal: \textbf{Analyze} project feature implementations \textbf{with
+		      the purpose of} identifying extra work \textbf{from the viewpoint of}
+	      software engineers and project manager \textbf{in the context of}
+	      technical debt management.
+	\item RQ1: Can technical debt interest for a team be predicted for each
+	      sprint?
+	\item RQ1.1: What was the difference (delta) in the estimated work effort
+	      for a feature and the practical work effort due to technical debt?
+	\item RQ1.2: What is the measurement of TD in the affected modules across
+	      change sets?
+	\item RQ1.3: How does work effort delta vary with the magnitude of
+	      technical debt?
+	\item RQ2: What are the development patterns surrounding feature
+	      lifecycle?
+	\item RQ2.2: At what checkpoint in development is technical debt reduction
+	      (refactoring)  most prominent?
+\end{itemize}
+
 Problem statement: Has the student analysed the problem, stated it clearly, and
 justified its importance?
 
@@ -344,7 +367,7 @@ their preliminary study returned a list of ranked code smells to be targetted as
 a prefactoring step to implementation. This type of prioritisation may be more
 practical in time constrained projects.
 
-% conclusion of  TODO: add citation here 
+% conclusion of measurement TODO: add citation here 
 Code smells are technical debt items and increase future development and
 maintainance costs. Industry case studies have shown that TD items are more
 likely to be addressed if made visible by developers within the project's issue
@@ -394,7 +417,7 @@ Such a visualisation provides both developers and managers with points of
 fragility where possible bugs may arise and highlights areas of work to address.
 However, the visualisation is technical and might be difficult to convey to
 stakeholders. Additionally, there is no way to calculate the principal and
-interest of the quality issues.   
+interest of the quality issues.
 
 % sqale method for measuring technical debt
 Letouzey et al. \cite{Letouzey2012} proposed a different method, called the SQALE
@@ -477,6 +500,17 @@ knowledge, familiarity of environment and programming language, etc. A possible
 solution would be to study development time from a more coarse-grained approach,
 from a feature or release level.
 
+Gomes et al. \cite{Gomes2011} studied the correlation between software
+evolution, defect occurrence and work effort deviation at the release level. The
+authors extracted data from multiple documentation sources such as test plans,
+project plan, weekly reports, project source code, and emails. Using this data,
+they could derive important team information on change, effort, quality, test
+and size of the system. They measured extra work effort by subtracting the
+estimated work time and total work time. Although information at the release
+level offers project managers an idea of work effort deviation, it does not show
+at a granular level what defects slow down development of a new feature and
+where the team should focus their refactoring activities.
+
 % Tools?
 
 These types of measurements are useful for project managers when making
@@ -518,31 +552,31 @@ tools:
 \begin{itemize}
 	%TODO: add link to pages
 	\item \textbf{CAST}. Defines technical debt cost by taking both principal
-	and interest into consideration. The principal is calculated by the
-	severity, time and cost to fix structural flaws. Interest is then computed
-	by assuming that a business will resolve a fixed percentage of high, medium
-	and low severity items, times the cost of labour set at 75\$ per hour. 
+	      and interest into consideration. The principal is calculated by the
+	      severity, time and cost to fix structural flaws. Interest is then computed
+	      by assuming that a business will resolve a fixed percentage of high, medium
+	      and low severity items, times the cost of labour set at 75\$ per hour.
 	\item \textbf{InFusion}. Calculates a measurement, Quality Deficit Index,
-	which summarizes the level of quality of a system. It takes into account all
-	design flaws of a source code, each described by negative influence on best
-	practices, level of granularity (method or class level) and smell severity.
+	      which summarizes the level of quality of a system. It takes into account all
+	      design flaws of a source code, each described by negative influence on best
+	      practices, level of granularity (method or class level) and smell severity.
 	\item \textbf{Sonargraph}. The distinction from the rest of the tools is
-	that developers can set a defined initial architecture and Sonargraph can
-	find deviations from that architecture at the level of system, project and
-	build. Additionally, the tool generates two Structural Debt measurements, an
-	index related to the sum of all dependencies needed to be cut and a cost
-	measurement calculated from the index multiplied by a time factor.
+	      that developers can set a defined initial architecture and Sonargraph can
+	      find deviations from that architecture at the level of system, project and
+	      build. Additionally, the tool generates two Structural Debt measurements, an
+	      index related to the sum of all dependencies needed to be cut and a cost
+	      measurement calculated from the index multiplied by a time factor.
 	\item \textbf{SonarQube}. A continous code quality tool that uses a large
-	amount of rules for good coding practices to find code violations. The
-	resulting code violations are aggregated into software quality characterstic
-	factors which then compute a Technical Debt Index. The index is expressed in
-	the of work effort required to fix all issues. Rules and costs may be
-	modified to support customised business requirements (available in the
-	commercial version). It implements the SQALE method of measuring technical
-	debt \cite{Letouzey2012}. 
+	      amount of rules for good coding practices to find code violations. The
+	      resulting code violations are aggregated into software quality characterstic
+	      factors which then compute a Technical Debt Index. The index is expressed in
+	      the of work effort required to fix all issues. Rules and costs may be
+	      modified to support customised business requirements (available in the
+	      commercial version). It implements the SQALE method of measuring technical
+	      debt \cite{Letouzey2012}.
 	\item \textbf{Structure101}. Tool specialised in architectural issues of the
-	codebase, with metrics on multiple levels of granularity such as method,
-	class, package and project level.
+	      codebase, with metrics on multiple levels of granularity such as method,
+	      class, package and project level.
 \end{itemize}
 
 The authors have provided summarized tables that describe all the tools and
@@ -551,7 +585,7 @@ their purpose nicely. The two tables are available in Figure \ref{fig:tools-tabl
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{visualisations/tools-table.png}
-	\caption{Summary of tools provided by Fontana et al.}	
+	\caption{Summary of tools provided by Fontana et al.}
 	\label{fig:tools-tables}
 \end{figure}
 
@@ -580,37 +614,98 @@ project managers and developers on their perspective of the impact, on a scale
 from 1 to 10. Although the interviewees had multiple backgrounds and were
 consulted on many development factors (reduced development speed, bugs incurred
 by TD, extra costs, frequency of issues, spread in system, users affected,
-etc.), the results showed that there are other socio-technical complexities
-affecting the project.
+etc.), the results showed that there are other complexities affecting the
+project.
 
 Technical debt should be used as a strategy for quick development of features in
 order to satisfy an immediate business requirement such as TTM. From an
-industrial case study \cite{Lim2012}, a developer put their experience with
-technical debt as follows: "\textit{Technical debt is a balance between software
-quality and business reality}". Industry practitioners from the same study have
-acknowledged that numerous business requirements have forced them to incur debt.
-Unfortunately, business requirements and decisions are difficult to foresee due
-to constant market deviations, such as the appearance of a new competitor or a
-new technology.
+industrial case study \cite{Lim2012}, a developer described TD as follows:
+"\textit{Technical debt is a balance between software quality and business
+	reality}". Industry practitioners from the same study have acknowledged that
+numerous business requirements have forced them to incur debt. Unfortunately,
+business requirements and decisions are difficult to foresee due to constant
+market deviations, such as the appearance of a new competitor or a new
+technology.
 
 Therefore, technical debt is difficult to predict. However, it is recommended
 that once debt is incurred, it should be made visible \cite{Lim2012}
 \cite{Codabux2013} \cite{Morgenthaler2012}, and paid back as early as possible.
-If these requirements are not met, Cunningham \cite{Cunningham1993} puts it
-best: "\textit{The danger occurs when the debt is not repaid. Every minute spent
-on not-quite-right code counts as interest on that debt. Entire engineering
-organizations can be brought to a stand-still under the debt load of an
-unconsolidated implementation, object-oriented or otherwise.}".
+Cunningham \cite{Cunningham1993} describes it best: "\textit{The danger occurs
+when the debt is not repaid. Every minute spent on not-quite-right code counts
+as interest on that debt. Entire engineering organizations can be brought to a
+stand-still under the debt load of an unconsolidated implementation,
+object-oriented or otherwise.}".
 
-Fortunately, project management practices such as Agile and its associated
+Fortunately, project management methodologies such as Agile and its associated
 practices have proved to help reduce and manage technical debt
-\cite{Holvitie2014} \cite{Trumler2016}. In particular, practices such as TDD,
+\cite{Holvitie2014} \cite{Trumler2016}. In particular, Test Driven Development (TDD),
 following coding standards, refactoring, continuous integration, collective code
 ownership and pair programming have been considered to help tackle technical
 debt.
 
+From a project manager's perspective, technical debt must be managed at cost
+level by iteration. How many resources should the team invest in technical debt
+reduction over the next sprint? What issues should the team tackle first and
+what will the benefits be?
+
+Guo et al. \cite{Guo2011} suggested that technical debt should be managed
+similar to a financial portfolio perspective by encouraging each item to be
+viewed as an investment. Debt items would take on the role of assets, with the
+same goals: maximize return and minimize risk. The decision framework would be
+based on historical metrics of all TD items to decide which ones to keep and
+which ones to pay back. However, the approach is difficult to achieve in
+practice due to limitations of the metaphor \cite{Schmid2013}.
+
+Seaman et al. \cite{Seaman2012} proposed four ways to aid in this decision
+making:
+\begin{itemize}
+	\item Cost-Benefit Analysis. The technique is based on principal, interest
+	probability (the probability that other work will be more expensive),
+	interest amount and their associated value (high, medium, low). Using these
+	it would be possible to estimate items that have low principal (are quick to
+	repay) and a possible high impact on future additions and changes.
+	\item Analytic Hierarchy Process (AHP). Technical debt items are ranked
+	according to a defined criteria, based on the needs and requirements of the
+	team. A ranked list of items to work on is created through meetings and
+	group decisions.
+	\item Portfolio Approach. Guo et al. \cite{Guo2011} has
+	defined an approach for portfolio debt management. The same approach has
+	been defined here.
+	\item Options. This technique considers that each repayment of debt is an
+	investment in the future. It is similar to a purchase of an option
+	\cite{option-investopedia} that will be called in the future.
+\end{itemize}
+
+Power \cite{Power2013} illustrated the impact of technical debt on Agile teams
+and methods of management using options, from Cisco System's Agile Office
+data-set. He proposed that The items of the portfolio are the slices of time the
+team invests in a particular activity. For example, a team may allocate 50\% of
+their time to development of new features, 20\% to testing, 15\% to fixing
+defects and 5\% resolving technical debt items. An example could be viewed in
+Figure \ref{fig:td-options}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{visualisations/td-options.png}
+	\caption{A partitioning example of work effort, provided by Cisco System's Agile Office}
+	\label{fig:td-options}
+\end{figure}
+
+Similar to previous stages of technical debt, management is no easy feat.
+Project managers must balance the work effort, costs with benefits, future
+technical impact and return on investment. This can only be possible if
+technical debt is visibile during software evolution \cite{Lim2012}
+\cite{Morgenthaler2012} \cite{Codabux2013}, is continously tracked and managed
+appropriately \cite{Cunningham1993}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Conclusion}
+
+Technical debt is a difficult phenomenon to tackle in software engineering.
+Development teams face challenges in identifying, tracking, managing and
+explaining the concept to non-technical stakeholders. However, new tools allow
+the indentification of code smells, tracking and computing of complex indexes
+with focus on quality characteristics of code.
 
 Olbrich \cite{Olbrich2009} introduced the term code churn, as the number of
 changes suffered by a class entity during a revision (number lines of code
@@ -620,36 +715,18 @@ added, deleted and modified).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
 
-Goal-Question-Metric approach is a good framework for breaking down research
-work. (TODO: add citation here)
+Possible approach: 
+\begin{enumerate}
+	\item Identify appropriate data candidates for this study. These are a
+mixture of open source and enterprise software.
+	\item Identify and retrieve suitable work items from project planning software.
+	\item Identify checkpoints in project codebase which are appropriate to the
+selected work items.
+	\item Analyze work effort of selected work items.
+	\item Analyze measurement of technical debt in change sets.
+	\item Analysis and discussion of results.
+\end{enumerate}
 
-Goal-Question-Metric approach:
-\begin{itemize}
-	\item Goal: \textbf{Analyze} project feature implementations \textbf{with
-		      the purpose of} identifying extra work \textbf{from the viewpoint of}
-	      software engineers and project manager \textbf{in the context of}
-	      technical debt management.
-	\item RQ1: Can technical debt interest for a team be predicted for each
-	      sprint?
-	\item RQ1.1: What was the difference (delta) in the estimated work effort
-	      for a feature and the practical work effort due to technical debt?
-	\item RQ1.2: What is the measurement of TD in the affected modules across
-	      change sets?
-	\item RQ1.3: How does work effort delta vary with the magnitude of
-	      technical debt?
-	\item RQ2: What are the development patterns surrounding feature
-	      lifecycle?
-	\item RQ2.2: At what checkpoint in development is technical debt reduction
-	      (refactoring)  most prominent?
-\end{itemize}
-
-Possible approach: 1) Identify appropriate data candidates for this study. These
-are a mixture of open source and enterprise software. 2) Identify suitable work
-items from project planning software. 3) Retrieve work items from issue tracker.
-4) Identify checkpoints in project codebase which are appropriate to the
-selected work items. 5) Analyze work effort of selected work items. 6) Analyze
-measurement of technical debt in change sets. 7) Analysis and discussion of
-results.
 
 Risks:
 \begin{enumerate}

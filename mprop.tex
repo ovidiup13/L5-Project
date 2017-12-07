@@ -715,19 +715,6 @@ between technical debt and work effort. This will yeild more information for
 developers on time management, for project managers on debt investment and for
 stakeholders on understanding a technical concept in terms of labour cost.
 
-Assumptions:
-\begin{itemize}
-	\item The team uses Git for version control and follows pull request model
-	for implementing changes.
-	\item The team uses an issue tracker consistently. Developers change the
-	status of the ticket according to their current development progress. For
-	example, if a team member got started on a work item, she would set the the
-	ticket status to "In Progress". Respectively, she would mark the ticket as
-	"Closed" if development ceased, her changes were reviewed and integrated
-	into the main branch.
-	\item Time?   
-\end{itemize}
-
 The approach for this study will consist of the following steps:
 \begin{enumerate}
 	\item \textit{Identify appropriate data candidates for this study}.\\
@@ -755,6 +742,10 @@ The approach for this study will consist of the following steps:
 	\end{itemize}
 
 	This type of information would give an idea of the type of work involved.
+	Unfortunately this data is not always available. The most important is the
+	estimated work field as without it, the extra work cannot be identified. If
+	this field does not exist in the ticket, the work item will not be included
+	in the study.
 
 	\item \textit{Identify version control checkpoints}.\\
 	Successfully completed work items can be tracked in the version control
@@ -812,43 +803,45 @@ The approach for this study will consist of the following steps:
 	It would be interesting to gather results from both methods and see how they
 	correlate. Additionally, the two result sets may complement one another and
 	provide an overall effort metric. However, there are many complexities and
-	cases that will need to be managed.
+	cases that will need to be managed to get the real estimate. 
 
 	\item \textit{Measure technical debt items}. The scope of this step is to
 	identify code violations within change sets. For each work item implemented
 	there will be a set of associated modules, classes and methods affected.
+	
 	These will be the search areas for code smells. Using a continous code
 	quality tool, historical code smells can be tracked against the evolution of
-	software. If enough data is available, there is a possibility of
-	understanding development patterns surrounding implementation of features.
+	software. If enough data is available, then patterns surrounding feature
+	implementation and bug fixing can be identified.
 
-	\item \textit{Analysis and discussion of results}. Having 
+	\item \textit{Analysis and discussion of results}.\\
+	Once all previous steps have been fulfilled, the three data source must be
+	linked together.
 
 \end{enumerate}
 
+Assumptions:
+\begin{itemize}
+	\item The team uses Git for version control and follows pull request model
+	for implementing changes.
+	\item The team uses an issue tracker consistently. Developers change the
+	status of the ticket according to their current development progress. For
+	example, if a team member got started on a work item, she would set the the
+	ticket status to "In Progress". Respectively, she would mark the ticket as
+	"Closed" if development ceased, her changes were reviewed and integrated
+	into the main branch.
+	\item Time?
+\end{itemize}
 
-Risks:
-\begin{enumerate}
-	\item Data candidates may not contain enough relevant information in
-	      project management software, such as priority and story points.
-	\item Work effort estimation is difficult in the context of open source
-	      systems. What is the metric for quantifying work effort?
-	      \begin{itemize}
-		      \item Time - theoretically used in Agile process through
-		            metrics such as story points. Must be careful on how it
-		            is quantified since there may be many outliers.
-		      \item Change sets - the amount of lines of code added and
-		            removed of a work item. Possible outliers are due to
-		            refactoring: remove, add, copy, etc. This issue is
-		            further emphasized by diversity of refactoring tools
-		            available in modern IDEs.
-	      \end{itemize}
-	\item Technical debt is not a standardized metric and various tools
-	      calculate TD with a different formula and take into account multiple types
-	      of debt.
-	\item Granularity of code checkpoints is important. These may be: commit
-	      level, branch level, pull request level, release level.
-\end{enumerate}
+Limitations of the study:
+\begin{itemize}
+	\item Data candidates
+	\item Errors in ticket estimations
+	\item Work effort measurement
+	\item Code quality tools
+	\item Assumptions
+	\item Complexities of technical debt
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Work Plan}

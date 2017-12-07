@@ -715,27 +715,115 @@ between technical debt and work effort. This will yeild more information for
 developers on time management, for project managers on debt investment and for
 stakeholders on understanding a technical concept in terms of labour cost.
 
+Assumptions:
+\begin{itemize}
+	\item The team uses Git for version control and follows pull request model
+	for implementing changes.
+	\item The team uses an issue tracker consistently. Developers change the
+	status of the ticket according to their current development progress. For
+	example, if a team member got started on a work item, she would set the the
+	ticket status to "In Progress". Respectively, she would mark the ticket as
+	"Closed" if development ceased, her changes were reviewed and integrated
+	into the main branch.
+	\item Time?   
+\end{itemize}
+
 The approach for this study will consist of the following steps:
 \begin{enumerate}
-	\item \textit{Identify appropriate data candidates for this study}. These
-	are potential software projects that are suitable for study. At best, they
-	should have multiple developers contributing to the project, a medium to
-	large codebase with a variety of historical data and an issue tracking
-	software. It would be extremely useful if they have a continous code quality
-	tool included for tracking code smells throughout software evolution. This
+	\item \textit{Identify appropriate data candidates for this study}.\\
+	These are potential software projects that are suitable for study. At best,
+	they should have multiple developers contributing to the project, a medium
+	to large codebase with a variety of historical data and an associated issue
+	tracking software. Ideally, the team would have integrated a continous code
+	quality tool for tracking code smells throughout software evolution. This
 	would help with quick and automatic identification of present and historical
-	code issues. The study would also benefit from a mixture of open-source and
+	code issues. 
+	
+	The study would also benefit from a mixture of open-source and
 	commercial sofware to contrast the differences between the two environments
-	and, possibly, arrive at a generic conclusion that may apply to both worlds.
-	\item \textit{Identify suitable work items from issue tracker}. In this
-	step, the purpose is to understand important events in the evolution of the
-	data candidates. Ideally, events should be tracked in the form of tickets
-	with detailed information attached such as: priority, estimated work,
-	dates the ticket opened and closed, asignee, etc.  
-	\item \textit{Identify version checkpoints of the work items selected}. 
-	\item Analyze work effort of selected work items.
-	\item Analyze measurement of technical debt in change sets.
-	\item Analysis and discussion of results.
+	and, possibly, arrive at general conclusions that may apply to both worlds.
+
+	\item \textit{Identify suitable work items from issue tracker}.\\
+	In this step, the purpose is to understand important events in the evolution
+	of the data candidates. Ideally, events were tracked in the form of tickets
+	with detailed information attached, such as:
+	\begin{itemize}
+		\item Priority. 
+		\item Estimated Work Effort.
+		\item Timestamps.
+		\item Assignee.  
+	\end{itemize}
+
+	This type of information would give an idea of the type of work involved.
+
+	\item \textit{Identify version control checkpoints}.\\
+	Successfully completed work items can be tracked in the version control
+	repository of the project. Identifying checkpoints will aid in understanding
+	the amount of effort put into the work item by the team and how it diverges
+	from the initial estimation. 
+
+	Ideally, the team should have links between revisions of the codebase and
+	the work item in the issue tracker. This would make it easier to find the
+	associated checkpoints.
+
+	\item \textit{Measure the amount of work effort for each work item}.\\
+	The purpose is to understand how many practical changes a work item has
+	induced over its lifetime. This could be done in two ways: at the code and
+	issue tracker levels.
+	
+	At the code level, it is possible to understand the level of work effort
+	involved by aggregating the number of changes a work item has suffered. A
+	change set consists of the number of lines of code added, deleted and
+	modified. Granularity can be at the pull request, commit, class and method
+	level. Version control systems such as Git provide features of retrieving
+	change sets between revisions.
+	
+	However, identifying work effort from change sets is a challenging task. It
+	is difficult to quantify in man-hours since many changes may be generated
+	automatically by modern refactoring tools in the integrated development
+	environment. An alternative solution is to compare the timestamps between
+	the first and the last commit. The temporal difference might provide a
+	practical estimate of work effort to resolve the issue. Unfortunately, this
+	case only works when a developer works on a single issue at a time.
+
+	At the ticket level, one can understand the amount of work effort realised
+	by a team member. In an ideal case, the team enforces developers to log
+	their time spent designing and implementing a feature. However, that is not
+	always the case. An alternative option, would be to retrieve the timestamp
+	of ticket events, such as the opening and closing of an issue.
+	Unfortunately, this might not give an approximate time of work since: 
+	\begin{itemize}
+		\item The team does not respect the opening and closing of a ticket time
+		according to their development patterns. For example, a developer might
+		start work on an issue before marking it as "In Progress". This will
+		introduce a margin of error in the estimation process.
+		\item Tickets might remain open for a long period of time, whilst the
+		feature was implemented in a relatively short time. Therefore this
+		option would give an incorrect estimate of the amount of work completed.
+		\item There are differences between commercial and open-source software.
+		For example, developers might work in the timeframe of 9AM to 6PM in
+		commercial environment whilst in open-source they are free to work at
+		any time of the day. For example, in the extreme case, a developer marks
+		a ticket as "In Progress" before end of working day, and resume the work
+		the following morning. In this case, our estimation of approximately 15
+		hours of development time for this work item would be incorrect.
+	\end{itemize}
+
+	It would be interesting to gather results from both methods and see how they
+	correlate. Additionally, the two result sets may complement one another and
+	provide an overall effort metric. However, there are many complexities and
+	cases that will need to be managed.
+
+	\item \textit{Measure technical debt items}. The scope of this step is to
+	identify code violations within change sets. For each work item implemented
+	there will be a set of associated modules, classes and methods affected.
+	These will be the search areas for code smells. Using a continous code
+	quality tool, historical code smells can be tracked against the evolution of
+	software. If enough data is available, there is a possibility of
+	understanding development patterns surrounding implementation of features.
+
+	\item \textit{Analysis and discussion of results}. Having 
+
 \end{enumerate}
 
 

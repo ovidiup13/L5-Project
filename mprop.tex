@@ -29,20 +29,14 @@
 \section{Introduction}
 \label{intro}
 
+TODO:
 \begin{itemize}
 	\item What is technical debt?
-	\item What are its applications?
 	\item Why is it important?
+	\item What is its impact on software project evolution? On work effort?
+	\item How to quantify technical debt?
+	\item Advantages and goals of the study.
 \end{itemize}
-
-Technical debt - definition \\
-What impact does TD have on development?\\
-How much work effort is wasted on new features on a codebase impacted with
-technical debt?\\
-Why is it difficult to define such a measure? \\
-If such a measurement is known, how could it be managed? \\
-What are the advantages of quantifying technical debt interest in the form work
-effort? \\
 
 The goal of this study is to analyse feature implementations within software
 projects with the purpose of identifying extra work from the viewpoint of
@@ -89,6 +83,7 @@ deliverables are defined in Section \ref{work-plan}.
 
 \subsection{Study Design}
 
+TODO:
 \begin{itemize}
 	\item Technical debt definition
 	\item Types of TD - focus on code and design debt
@@ -102,13 +97,13 @@ deliverables are defined in Section \ref{work-plan}.
 
 % Ward Cunningham - WyCash Portfolio Management System TODO: expand the
 % definition from the paper.
-Technical debt is a metaphor termed by Ward Cunningham, in his famous report on
-the WyCash Portfolio Management System in 1993 \cite{Cunningham1993}. In the
-report, Cunningham mentioned that "\textit{shipping first time code is like
-	going into debt.}" and that as the system evolves new features would become more
-and more difficult to implement. This phenomenon was due to feature-rich
-projects being shipped to customers early but poorly written with little or no
-consideration to quality and to future work.
+Technical debt is a metaphor termed by Cunningham, in his note on the WyCash
+Portfolio Management System \cite{Cunningham1993}. In the report, Cunningham
+mentioned that \textit{shipping first time code is like going into debt} and
+that as the system evolves new features would become more and more difficult to
+implement. This phenomenon was due to feature-rich projects being shipped to
+customers early but poorly written with little or no consideration to quality
+and to future work.
 
 \begin{figure}
 	\centering
@@ -122,22 +117,25 @@ The metaphor was ignored for a long time, until the late 2000s, when more and
 more studies started to explore the phenomenon and possible management
 processes. A figure of the popularity of Technical Debt from 2004 to present can
 be seen in Figure \ref{fig:td-trend}, information provided by Google Trends
-\cite{GoogleTrends}. Thus, the first workshop on managing technical debt took
-place in 2010, where an initial research agenda was proposed for the future of
-software engineering field. Since then, workshops have been held every year,
-which consisted seminars, presentations and brainstorming sessions on aspects
-such as definition \cite{Kruchten2012} \cite{Theodoropoulos2011}
-\cite{Schmid2013}, identification \cite{Ernst2012}, measurement
-\cite{Letouzey2012} \cite{Curtis2012} \cite{Nugroho2011} \cite{Zazworka2011}
-\cite{Fontana2012} \cite{Bohnet2011}, management \cite{Guo2011}
-\cite{Zazworka2011Prioritise} \cite{Seaman2012} to industry case studies
-\cite{Lim2012} \cite{Morgenthaler2012} \cite{Codabux2013} \cite{Holvitie2014}
-\cite{Klinger2011}.
+\cite{GoogleTrends}. The \textit{y} axis represents the interest in technical
+debt over time (\textit{x} axis). A value of 100 represents peak search interest
+popularity.
+
+Thus, the first workshop on managing technical debt took place in 2010, where an
+initial research agenda was proposed for the future of software engineering
+field. Since then, workshops have been held every year, which consisted
+seminars, presentations and brainstorming sessions on aspects such as definition
+\cite{Kruchten2012} \cite{Theodoropoulos2011} \cite{Schmid2013}, identification
+\cite{Ernst2012}, measurement \cite{Letouzey2012} \cite{Curtis2012}
+\cite{Nugroho2011} \cite{Zazworka2011} \cite{Fontana2012} \cite{Bohnet2011},
+management \cite{Guo2011} \cite{Zazworka2011Prioritise} \cite{Seaman2012} to
+industry case studies \cite{Lim2012} \cite{Morgenthaler2012} \cite{Codabux2013}
+\cite{Holvitie2014} \cite{Klinger2011}.
 
 % from metaphor to theory and practice TODO: add citation to industry case
 % studies
 The definition of technical debt relies heavily on the perspective of the viewer
-and her responsibility within the socio-technical environment. Developers view
+and her responsibility within the software development environment. Developers view
 technical debt as a list of software quality issues and correlate it with lack
 of time to implement features "\textit{properly}" \cite{Codabux2013}. Product
 managers and stakeholders view at it as a strategy, a way to defer quality work
@@ -200,23 +198,23 @@ analogy breaks down:
 \begin{itemize}
 	\item \textit{Unit of measurement}. In finance there is a clear unit of
 	      monetary measurement through the use of international currencies. In
-	      contrast, technical debt does have a standard unit of measurement
-	      defined. There are many tools (TODO: add citation of paper tools
-	      here) that provide a single, quantified and aggregated measure of
-	      the amount of time it takes for software quality issues to be
-	      resolved. Additionally, very few of these tools quantify the
-	      consequences of neglecting refactoring and the improvement in
-	      quality characteristics. The issue of measurement puts a dent into
-	      the shared vocabulary between development and stakeholders as
-	      mentioned by a number of software practioners from industry case
-	      studies (TODO: add industry case study citation here).
-	\item \textit{Fixed time period}. On the one hand, debt arrangements have
-	      a fixed \textit{maturity date}, where the debt must be paid back. On
-	      the other hand, software quality issues do not a have a time limit
-	      and may be kept in the product until they are resolved. Fixing these
-	      items relate to paying back the "loan" taken on their creation. Such
-	      issues may never be paid back if not needed to, resulting in an
-	      increased cost-value ratio.
+	      contrast, technical debt does not have a standard unit of measurement
+	      defined. There are many tools (TODO: add citation of paper tools here)
+	      that provide a single, quantified and aggregated measure of the amount
+	      of time it takes for software quality issues to be resolved.
+	      Additionally, very few of these tools quantify the consequences of
+	      neglecting refactoring and the improvement in quality characteristics.
+	      The issue of measurement puts a dent into the shared vocabulary
+	      between development and stakeholders as mentioned by a number of
+	      software practioners from industry case studies (TODO: add industry
+	      case study citation here).
+	\item \textit{Fixed time period}. Financial debt arrangements have a fixed
+	      \textit{maturity date}, where the debt must be paid back. On the other
+	      hand, software quality issues do not a have a time limit and may be
+	      kept in the product until they are resolved. Fixing these items relate
+	      to paying back the "loan" taken on their creation. Such issues may
+	      never be paid back if not needed to, resulting in an increased
+	      cost-value ratio.
 	\item \textit{Fixed interest}. A loan arrangement additionally consists of
 	      fixed interest payments measured as a percetange of the loan value,
 	      paid on an annual or bi-annual basis. The interest compensates for
@@ -230,19 +228,19 @@ analogy breaks down:
 Under these circumstances, what is considered "good structure" or "clean code"
 is also heavily influenced to future development since future decisions
 influence cost impact. As a consequence, no system is \textit{debt free} and
-thus fixing every code violation would be an act of gold plating. Additionally,
-what is the value of paying back this debt if the product is competitive and the
-customers are happy \cite{Lim2012}?
+thus fixing every code violation would be an act of gold plating
+\cite{Kruchten2012}. Additionally, what is the value of paying back this debt if
+the product is competitive and the customers are happy \cite{Lim2012}?
 
 % martin fowler - td quadrants
-In Martin Fowler's famous article \cite{TDMartin}, he described this type of
-future debt as \textbf{inadeverted-prudent} debt. Over time, a project that was
-"clean" may find that after a period of time that the initial approach taken
-might not have been the best. He considered that developers learn on the job to
-perfect their craft as time passes. The four quadrants refer to the types of
-technical debt that one might encounter in a software project given the approach
-taken by the development team. It was one of the four quandrants he defined, as
-shown in Figure \ref{fig:td-quandrants}.
+Fowler \cite{TDMartin} described this type of future debt as
+\textbf{inadverted-prudent} debt. A project that was "clean" may find that after
+a period of time that the initial approach taken might not have been the best.
+He considered that developers learn on the job to perfect their craft as time
+passes. The four quadrants refer to the types of technical debt that one might
+encounter in a software project given the approach taken by the development
+team. It was one of the four quandrants he defined, as shown in Figure
+\ref{fig:td-quandrants}.
 
 \begin{figure}
 	\centering
@@ -255,47 +253,45 @@ shown in Figure \ref{fig:td-quandrants}.
 % unhedged call option
 An alternative metaphor of technical debt \cite{UnhedgedCallOption}, described
 bad code using finance terms in a similar fashion, but through a different
-financial intrument called a call option.
-\textit{An option is a financial derivative that represents a contract sold by
-	one party (the option writer) to another party (the option holder). The contract
-	offers the buyer the right, but not the obligation, to buy (call) or sell (put)
-	a security or other financial asset at an agreed-upon price (the strike price)
-	during a certain period of time or on a specific date (exercise date).}
-\cite{option-investopedia}. A call option gives the right to buy while a put
-option gives the option holder the right to sell. In software engineering, if a
-feature is hacked up quickly using bad code and never touched again, then the
-project had reaped the rewards. The option "was not called". However, if a new
-feature were required that would be influenced by the quick and dirty work
-implemented earlier, then the requirement would be more expensive to fulfill. In
-this case, the option "has been called".
+financial intrument called a call option. "\textit{An option is a financial
+derivative that represents a contract sold by one party (the option writer) to
+another party (the option holder). The contract offers the buyer the right, but
+not the obligation, to buy (call) or sell (put) a security or other financial
+asset at an agreed-upon price (the strike price) during a certain period of time
+or on a specific date (exercise date).}" \cite{option-investopedia}. A call
+option gives the right to buy while a put option gives the option holder the
+right to sell. In software engineering, if a feature is hacked up quickly and
+never touched again, then the project has reaped the rewards. The option "was
+not called". However, if a new feature were required that would be influenced by
+the quick and dirty work implemented earlier, then the requirement would be more
+expensive to fulfill. In this case, the option "has been called" though it is
+unclear whether interest was incurred during this time.
 
 
 % conclusion
 Defining software quality issues as a financial metaphor helps bridge vocabulary
 shortcomings between developers and stakeholders. It helps management understand
 current software development risks and encourages ways for managing these risks
-as they are created. TODO: make sure to write down the exact definition As
-Cunningham \cite{Cunningham1993} had written, technical debt may be used as a
-strategy in order to meet business expectations however, if not repaid promptly
-it could bring entire corporations to a standstill.
+as they are created. As Cunningham \cite{Cunningham1993} had written, technical
+debt may be used as a strategy in order to meet business expectations however,
+if not repaid promptly it could bring entire corporations to a standstill.
 
 % types of TD
 Initially, technical debt has solely focused on the internal quality issues of
 systems developed. Such issues could be code smells, code violations and
 duplicate or complex code. However, multiple types of debt have been
-"discovered" spanning the entire socio-technical environment.
-% TODO: maybe add a description for all types of debt but only focus on code
-% debt
-A mapping study, conducted by Li et al. \cite{Li2015}, have analysed 94 papers,
+"discovered" spanning the entire software development environment.
+
+
+A mapping study, conducted by Li et al. \cite{Li2015}, have analysed 94 studies,
 overall dating 1992-2013, and have found 10 types of technical debt being
-studied: requirements debt, architectural debt, design debt, code debt, test
-debt, build debt, documentation debt, infrastructure debt, versioning debt and
-defect debt. The most prominent type of debt studied was code debt, followed by test,
-architectural, design and documentation debt.
+studied: requirements, architecture, design, code, test, build, documentation,
+infrastructure, versioning and defect. The most prominent type of debt studied
+was code debt, followed by test, architectural, design and documentation debt.
 
 % architecture debt is the worst - industrial case study
 However, in an industrial case study \cite{Codabux2013}, developers considered that
-architectural debt is the most difficult to adress, due to complexity and change
+architectural debt is the most difficult to address, due to complexity and change
 impact on project. Major architectural decisions are not taken in a vaccuum and
 thus requires group meetings with other developers, software architects and
 product managers. The time to reach a consensus on how to approach such changes
@@ -326,10 +322,12 @@ They gathered data on the number of smells in the systems over revisions and the
 distribution of changes on classes suffering from these two smells. The authors
 concluded that large systems are more prone to increase the number of code
 smells as it evolves over time and particularly, that classes suffering from the
-God class smell are 4 to 5 times more change prone than other classes. However,
-the study was conducted only on open-source systems and the results might not pe
-applicable to commercial software. Additionally, due to limitations of the tool
-used to identify code violations, only public Java classes have been analysed.
+God class smell are 4 to 5 times more change prone than other non-smelly
+classes. However, this might be due to the large amount of functionality of the
+class suffering from the smell. Additionally, the study was conducted only on
+open-source systems and the results might not be applicable to commercial
+software. Additionally, due to limitations of the tool used to identify code
+violations, only public Java classes have been analysed.
 
 In a similar study, Fontana et al. \cite{Fontana2012} studied the impact of
 removing code smells on code quality metrics. The authors looked at three common
@@ -348,7 +346,7 @@ systems. They had confirmed the results of the previous studies that code smells
 increase the number of changes that software undergoes during its evolution.
 Additionally, they had found that classes containing more than one code smell
 are more change prone than other classes. Moreover, they found a possible cycle
-of repairing smells and introducing new ones between releases.
+of repairing smells and better to have new ones between releases.
 
 An interesting idea from all authors \cite{Olbrich2009}, \cite{Fontana2012} and
 \cite{Khomh2009} stated that not all code smells have the same consequences on
@@ -422,17 +420,17 @@ difficulties managing complexities of quantifying work effort and development
 costs. However, a number of studies have appeared over the years that look at
 methods for calculating principal and interest of technical debt items.
 
-An interesting paper by Bohnet et al. \cite{Bohnet2011} proposed a tool to
-bridge the gap between development teams and corporate managers, by exposing
-internal system quality through the use of \textit{software maps}. A software
-map is a hierarchical 2D/3D view of software artefacts, each represented
-visually through properties such as colour, texture and size; each representing
-a property of quality: cyclomatic complexity, lines of code and nesting levels.
-Such a visualisation provides both developers and managers with points of
-fragility where possible bugs may arise and highlights areas of work to address.
-However, the visualisation is technical and might be difficult to convey to
-stakeholders. Additionally, there is no way to calculate the principal and
-interest of the quality issues.
+Bohnet et al. \cite{Bohnet2011} proposed a tool to bridge the gap between
+development teams and corporate managers, by exposing internal system quality
+through the use of \textit{software maps}. A software map is a hierarchical
+2D/3D view of software artefacts, each represented visually through properties
+such as colour, texture and size; each representing a property of quality:
+cyclomatic complexity, lines of code and nesting levels. Such a visualisation
+provides both developers and managers with points of fragility where possible
+bugs may arise and highlights areas of work to address. However, the
+visualisation is technical and might be difficult to convey to stakeholders.
+Additionally, there is no way to calculate the principal and interest of the
+quality issues.
 
 % sqale method for measuring technical debt
 Letouzey et al. \cite{Letouzey2012} proposed a different method, called the SQALE
@@ -476,10 +474,9 @@ aggregated on a scale of 1 (high risk) to 4 (low risk). The total principal was
 estimated by a formula with three parameters: number of problems, time required
 for each fix and the cost of fixing the issue. Unfortunately, the methodology
 did not support calculation of holding on to code issues. The authors concluded
-that estimating the interest incurred by a TD item was difficult since might be
-multiple hidden factors which influenced the results. The term works well with
-the phenomenon since stakeholders think of software quality in terms of
-business.
+that estimating the interest incurred by a TD item was difficult since multiple
+hidden factors influence the results. The term works well with the phenomenon
+since stakeholders think of software quality in terms of business.
 
 
 Nugroho et al. \cite{Nugroho2011} looked at defining an empirical formula for
@@ -499,21 +496,21 @@ information such as Return on Investment (ROI). However, due to the nature of
 ranking system quality (scale of 1-5), it would be a challenge to get ROI right.
 
 
-Another interesting study was conducted by Singh et al. \cite{Singh2014}, where
-technical debt interest payments were calculated by monitoring of development
-effort and code comprehension. The proposed approach monitors time spent by
-developers in classes with known TD items, detected initially by static analysis
-tools. They integrated a tool within the Integrated Development Environment of
-developers and gathered information of class visits, development session times
-within the class. The interest was calculated as the difference between time
-practically spent in classes and the ideal time spent. The results showed that
-developers tend to spend more time in classes containing TD items than others.
-However, the study was conducted with the input of one developer over a period
-of 9 months. Additionally, estimating the ideal time spent on development is a
-challenging task due to multiple personal factors such as level of project
-knowledge, familiarity of environment and programming language, etc. A possible
-solution would be to study development time from a more coarse-grained approach,
-from a feature or release level.
+Another study was conducted by Singh et al. \cite{Singh2014}, where technical
+debt interest payments were calculated by monitoring of development effort and
+code comprehension. The proposed approach monitors time spent by developers in
+classes with known TD items, detected initially by static analysis tools. They
+integrated a tool within the Integrated Development Environment of developers
+and gathered information of class visits, development session times within the
+class. The interest was calculated as the difference between time practically
+spent in classes and the ideal time spent. The results showed that developers
+tend to spend more time in classes containing TD items than others. However, the
+study was conducted with the input of one developer over a period of 9 months.
+Additionally, estimating the ideal time spent on development is a challenging
+task due to multiple personal factors such as level of project knowledge,
+familiarity of environment and programming language, etc. A possible solution
+would be to study development time from a more coarse-grained approach, from a
+feature or release level.
 
 Gomes et al. \cite{Gomes2011} studied the correlation between software
 evolution, defect occurrence and work effort deviation at the release level. The

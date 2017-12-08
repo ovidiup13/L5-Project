@@ -26,7 +26,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}\label{intro}
+\section{Introduction}
+\label{intro}
 
 \begin{itemize}
 	\item What is technical debt?
@@ -43,34 +44,48 @@ If such a measurement is known, how could it be managed? \\
 What are the advantages of quantifying technical debt interest in the form work
 effort? \\
 
-Goal-Question-Metric approach is a good framework for breaking down research
-work. (TODO: add citation here)
+The goal of this study is to analyse feature implementations within software
+projects with the purpose of identifying extra work from the viewpoint of
+software engineers and project managers in the context of technical debt
+management. The results would also aid stakeholders in understanding the effects
+of incurred technical debt on software evolution and costs of development.
 
-Goal-Question-Metric approach:
+The goal will be achieved by answering the following research questions:
 \begin{itemize}
-	\item Goal: \textbf{Analyze} project feature implementations \textbf{with
-		      the purpose of} identifying extra work \textbf{from the viewpoint of}
-	      software engineers and project manager \textbf{in the context of}
-	      technical debt management.
-	\item RQ1: Can technical debt interest for a team be predicted for each
-	      sprint?
-	\item RQ1.1: What was the difference (delta) in the estimated work effort
-	      for a feature and the practical work effort due to technical debt?
-	\item RQ1.2: What is the measurement of TD in the affected modules across
-	      change sets?
-	\item RQ1.3: How does work effort delta vary with the magnitude of
-	      technical debt?
-	\item RQ2: What are the development patterns surrounding feature
+	\item \textbf{RQ1}. Can technical debt interest for a team be predicted as a
+	      measure of work effort?
+	      \begin{itemize}
+		      \item \textbf{RQ1.1}: What was the difference (delta) in the
+		            estimated work effort for a feature and the practical work
+		            effort due to technical debt?
+		      \item \textbf{RQ1.2}: What is the measurement of TD in the
+		            affected modules across change sets?
+		      \item \textbf{RQ1.3}: How does work effort delta vary with the
+		            magnitude of technical debt?
+	      \end{itemize}
+
+	\item \textbf{RQ2}: What are the development patterns surrounding feature
 	      lifecycle?
-	\item RQ2.2: At what checkpoint in development is technical debt reduction
-	      (refactoring)  most prominent?
+	      \begin{itemize}
+		      \item \textbf{RQ2.1}: At what checkpoint in development is
+		            technical debt reduction (refactoring) most prominent?
+		      \item \textbf{RQ2.2}: What type of work items incur the most
+		            technical debt?
+	      \end{itemize}
 \end{itemize}
 
-Problem statement: Has the student analysed the problem, stated it clearly, and
-justified its importance?
+The answers to questions RQ1 and RQ2 will be derived from the answers of their
+subquestions.
+
+The proposal is structured in the following sections. Section \ref{lit-review}
+highlights related work on technical debt by covering definition, types,
+identification, measurement and management within software teams. Section
+\ref{proposed-work} underlines future steps of the study and the deadlines and
+deliverables are defined in Section \ref{work-plan}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background Survey}
+\label{lit-review}
 
 \subsection{Study Design}
 
@@ -631,10 +646,10 @@ Therefore, technical debt is difficult to predict. However, it is recommended
 that once debt is incurred, it should be made visible \cite{Lim2012}
 \cite{Codabux2013} \cite{Morgenthaler2012}, and paid back as early as possible.
 Cunningham \cite{Cunningham1993} describes it best: "\textit{The danger occurs
-when the debt is not repaid. Every minute spent on not-quite-right code counts
-as interest on that debt. Entire engineering organizations can be brought to a
-stand-still under the debt load of an unconsolidated implementation,
-object-oriented or otherwise.}".
+	when the debt is not repaid. Every minute spent on not-quite-right code counts
+	as interest on that debt. Entire engineering organizations can be brought to a
+	stand-still under the debt load of an unconsolidated implementation,
+	object-oriented or otherwise.}".
 
 Fortunately, project management methodologies such as Agile and its associated
 practices have proved to help reduce and manage technical debt
@@ -660,20 +675,20 @@ Seaman et al. \cite{Seaman2012} proposed four ways to aid in this decision
 making:
 \begin{itemize}
 	\item Cost-Benefit Analysis. The technique is based on principal, interest
-	probability (the probability that other work will be more expensive),
-	interest amount and their associated value (high, medium, low). Using these
-	it would be possible to estimate items that have low principal (are quick to
-	repay) and a possible high impact on future additions and changes.
+	      probability (the probability that other work will be more expensive),
+	      interest amount and their associated value (high, medium, low). Using these
+	      it would be possible to estimate items that have low principal (are quick to
+	      repay) and a possible high impact on future additions and changes.
 	\item Analytic Hierarchy Process (AHP). Technical debt items are ranked
-	according to a defined criteria, based on the needs and requirements of the
-	team. A ranked list of items to work on is created through meetings and
-	group decisions.
+	      according to a defined criteria, based on the needs and requirements of the
+	      team. A ranked list of items to work on is created through meetings and
+	      group decisions.
 	\item Portfolio Approach. Guo et al. \cite{Guo2011} has
-	defined an approach for portfolio debt management. The same approach has
-	been defined here.
+	      defined an approach for portfolio debt management. The same approach has
+	      been defined here.
 	\item Options. This technique considers that each repayment of debt is an
-	investment in the future. It is similar to a purchase of an option
-	\cite{option-investopedia} that will be called in the future.
+	      investment in the future. It is similar to a purchase of an option
+	      \cite{option-investopedia} that will be called in the future.
 \end{itemize}
 
 Power \cite{Power2013} illustrated the impact of technical debt on Agile teams
@@ -709,6 +724,7 @@ with focus on quality characteristics of code.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
+\label{proposed-work}
 
 As mentioned, in the introduction, this study is focused on finding the relation
 between technical debt and work effort. This will yeild more information for
@@ -718,146 +734,196 @@ stakeholders on understanding a technical concept in terms of labour cost.
 The approach for this study will consist of the following steps:
 \begin{enumerate}
 	\item \textit{Identify appropriate data candidates for this study}.\\
-	These are potential software projects that are suitable for study. At best,
-	they should have multiple developers contributing to the project, a medium
-	to large codebase with a variety of historical data and an associated issue
-	tracking software. Ideally, the team would have integrated a continous code
-	quality tool for tracking code smells throughout software evolution. This
-	would help with quick and automatic identification of present and historical
-	code issues. 
-	
-	The study would also benefit from a mixture of open-source and
-	commercial sofware to contrast the differences between the two environments
-	and, possibly, arrive at general conclusions that may apply to both worlds.
+	      These are potential software projects that are suitable for study. At best,
+	      they should have multiple developers contributing to the project, a medium
+	      to large codebase with a variety of historical data and an associated issue
+	      tracking software. Ideally, the team would have integrated a continous code
+	      quality tool for tracking code smells throughout software evolution. This
+	      would help with quick and automatic identification of present and historical
+	      code issues.
+
+	      The study would also benefit from a mixture of open-source and
+	      commercial sofware to contrast the differences between the two environments
+	      and, possibly, arrive at general conclusions that may apply to both worlds.
 
 	\item \textit{Identify suitable work items from issue tracker}.\\
-	In this step, the purpose is to understand important events in the evolution
-	of the data candidates. Ideally, events were tracked in the form of tickets
-	with detailed information attached, such as:
-	\begin{itemize}
-		\item Priority. 
-		\item Estimated Work Effort.
-		\item Timestamps.
-		\item Assignee.  
-	\end{itemize}
+	      In this step, the purpose is to understand important events in the evolution
+	      of the data candidates. Ideally, events were tracked in the form of tickets
+	      with detailed information attached, such as:
+	      \begin{itemize}
+		      \item Priority. This field will give a sense of importance to the
+		      work item. It will be interesting to find development patterns
+		      based on this field. Will developers take more time to design and
+		      implement an important work item? Or are they pressured to deliver
+		      and thus introduce more debt in the system?
+		      \item Estimated Work Effort. This is one of the most important
+		      fields for calculation of extra work effort. This provides the
+		      theoretical work time on which to compare the practical work time
+		      measured in this experiment.
+		      \item Timestamps. The opening and closing timestamps of a ticket
+		      may offer valuable information for measuring the practical work
+		      effort (in hours).
+	      \end{itemize}
 
-	This type of information would give an idea of the type of work involved.
-	Unfortunately this data is not always available. The most important is the
-	estimated work field as without it, the extra work cannot be identified. If
-	this field does not exist in the ticket, the work item will not be included
-	in the study.
+	      This type of information would give an idea of the type of work involved.
+	      Unfortunately this data is not always available. The most important is the
+	      estimated work field as without it, the extra work cannot be identified. If
+	      this field does not exist in the ticket, the work item will not be included
+	      in the study.
 
 	\item \textit{Identify version control checkpoints}.\\
-	Successfully completed work items can be tracked in the version control
-	repository of the project. Identifying checkpoints will aid in understanding
-	the amount of effort put into the work item by the team and how it diverges
-	from the initial estimation. 
+	      Successfully completed work items can be tracked in the version control
+	      repository of the project. Identifying checkpoints will aid in understanding
+	      the amount of effort put into the work item by the team and how it diverges
+	      from the initial estimation.
 
-	Ideally, the team should have links between revisions of the codebase and
-	the work item in the issue tracker. This would make it easier to find the
-	associated checkpoints.
+	      Ideally, the team should have links between revisions of the codebase and
+	      the work item in the issue tracker. This would make it easier to find the
+	      associated checkpoints.
 
 	\item \textit{Measure the amount of work effort for each work item}.\\
-	The purpose is to understand how many practical changes a work item has
-	induced over its lifetime. This could be done in two ways: at the code and
-	issue tracker levels.
-	
-	At the code level, it is possible to understand the level of work effort
-	involved by aggregating the number of changes a work item has suffered. A
-	change set consists of the number of lines of code added, deleted and
-	modified. Granularity can be at the pull request, commit, class and method
-	level. Version control systems such as Git provide features of retrieving
-	change sets between revisions.
-	
-	However, identifying work effort from change sets is a challenging task. It
-	is difficult to quantify in man-hours since many changes may be generated
-	automatically by modern refactoring tools in the integrated development
-	environment. An alternative solution is to compare the timestamps between
-	the first and the last commit. The temporal difference might provide a
-	practical estimate of work effort to resolve the issue. Unfortunately, this
-	case only works when a developer works on a single issue at a time.
+	      The purpose is to understand how many practical changes a work item has
+	      induced over its lifetime. This could be done in two ways: at the code and
+	      issue tracker levels.
 
-	At the ticket level, one can understand the amount of work effort realised
-	by a team member. In an ideal case, the team enforces developers to log
-	their time spent designing and implementing a feature. However, that is not
-	always the case. An alternative option, would be to retrieve the timestamp
-	of ticket events, such as the opening and closing of an issue.
-	Unfortunately, this might not give an approximate time of work since: 
-	\begin{itemize}
-		\item The team does not respect the opening and closing of a ticket time
-		according to their development patterns. For example, a developer might
-		start work on an issue before marking it as "In Progress". This will
-		introduce a margin of error in the estimation process.
-		\item Tickets might remain open for a long period of time, whilst the
-		feature was implemented in a relatively short time. Therefore this
-		option would give an incorrect estimate of the amount of work completed.
-		\item There are differences between commercial and open-source software.
-		For example, developers might work in the timeframe of 9AM to 6PM in
-		commercial environment whilst in open-source they are free to work at
-		any time of the day. For example, in the extreme case, a developer marks
-		a ticket as "In Progress" before end of working day, and resume the work
-		the following morning. In this case, our estimation of approximately 15
-		hours of development time for this work item would be incorrect.
-	\end{itemize}
+	      At the code level, it is possible to understand the level of work effort
+	      involved by aggregating the number of changes a work item has suffered. A
+	      change set consists of the number of lines of code added, deleted and
+	      modified. Granularity can be at the pull request, commit, class and method
+	      level. Version control systems such as Git provide features of retrieving
+	      change sets between revisions.
 
-	It would be interesting to gather results from both methods and see how they
-	correlate. Additionally, the two result sets may complement one another and
-	provide an overall effort metric. However, there are many complexities and
-	cases that will need to be managed to get the real estimate. 
+	      However, identifying work effort from change sets is a challenging task. It
+	      is difficult to quantify in man-hours since many changes may be generated
+	      automatically by modern refactoring tools in the integrated development
+	      environment. An alternative solution is to compare the timestamps between
+	      the first and the last commit. The temporal difference might provide a
+	      practical estimate of work effort to resolve the issue. Unfortunately, this
+	      case only works when a developer works on a single issue at a time.
 
-	\item \textit{Measure technical debt items}. The scope of this step is to
-	identify code violations within change sets. For each work item implemented
-	there will be a set of associated modules, classes and methods affected.
-	
-	These will be the search areas for code smells. Using a continous code
-	quality tool, historical code smells can be tracked against the evolution of
-	software. If enough data is available, then patterns surrounding feature
-	implementation and bug fixing can be identified.
+	      At the ticket level, one can understand the amount of work effort realised
+	      by a team member. In an ideal case, the team enforces developers to log
+	      their time spent designing and implementing a feature. However, that is not
+	      always the case. An alternative option, would be to retrieve the timestamp
+	      of ticket events, such as the opening and closing of an issue.
+	      Unfortunately, this might not give an approximate time of work since:
+	      \begin{itemize}
+		      \item The team does not respect the opening and closing of a ticket time
+		            according to their development patterns. For example, a developer might
+		            start work on an issue before marking it as "In Progress". This will
+		            introduce a margin of error in the estimation process.
+		      \item Tickets might remain open for a long period of time, whilst the
+		            feature was implemented in a relatively short time. Therefore this
+		            option would give an incorrect estimate of the amount of work completed.
+		      \item There are differences between commercial and open-source software.
+		            For example, developers might work in the timeframe of 9AM to 6PM in
+		            commercial environment whilst in open-source they are free to work at
+		            any time of the day. For example, in the extreme case, a developer marks
+		            a ticket as "In Progress" before end of working day, and resume the work
+		            the following morning. In this case, our estimation of approximately 15
+		            hours of development time for this work item would be incorrect.
+	      \end{itemize}
+
+	      For this study, the code level technique will be implemented. The work
+	      effort from issue tracking will be implemented in a parallel study.
+	      However, it would be interesting to gather results from both methods
+	      and see how they correlate. Additionally, the two result sets may
+	      complement one another and provide an overall effort metric. However,
+	      as discussed, there are many complexities and cases that will need to
+	      be managed to get the real estimate.
+
+	\item \textit{Measure technical debt items}.\\
+	      The scope of this step is to identify code violations within change
+	      sets. For each work item implemented there will be a set of associated
+	      modules, classes and methods affected.
+
+	      These will be the search areas for code smells. Using a continous code
+	      quality tool, historical code smells can be tracked against the evolution of
+	      software. If enough data is available, then patterns surrounding feature
+	      implementation and bug fixing can be identified.
+
+	      Ideally, the team would have the code quality tool integrated into
+	      their continous integration environment. If so, then historical code
+	      smell data could be leveraged by retrieving it through an API.
+	      However, that is not always the case. Therefore, a code quality tool
+	      must be used to analyse the version control checkpoints identified and
+	      find code smells that may have an impact on change sets of a feature.
 
 	\item \textit{Analysis and discussion of results}.\\
-	Once all previous steps have been fulfilled, the three data source must be
-	linked together.
-
+	      Once all previous steps have been fulfilled, the three data sources
+	      can be linked together. Extra work can be correlated to issue tracking
+	      information and code quality. Technical debt could be classified by
+	      the type, priority and asignee of ticket as well as code smells and
+	      other code violations.
 \end{enumerate}
 
-Assumptions:
+Unfortunately, the proposed work is not as straightforward. There are many
+complexities of the work environment which cannot be taken into consideration
+from the three data sources. Therefore, we will make some assumptions:
 \begin{itemize}
-	\item The team uses Git for version control and follows pull request model
-	for implementing changes.
+	\item The team uses Git for version control and follows the pull request model
+	      for implementing changes.
+	\item Only one developer is assigned to an issue.
+	\item A developer works on maximum one issue at a time.
 	\item The team uses an issue tracker consistently. Developers change the
-	status of the ticket according to their current development progress. For
-	example, if a team member got started on a work item, she would set the the
-	ticket status to "In Progress". Respectively, she would mark the ticket as
-	"Closed" if development ceased, her changes were reviewed and integrated
-	into the main branch.
-	\item Time?
+	      status of the ticket according to their current development progress. For
+	      example, if a team member got started on a work item, she would set the the
+	      ticket status to "In Progress". Respectively, she would mark the ticket as
+	      "Closed" if development ceased, her changes were reviewed and integrated
+	      into the main branch.
+	\item The team estimates the theoretical amount of work necessary to
+	      implement a feature or fix a bug. This measure is attached to each
+	      work item selected.
+	\item Development time is between 9AM to 6PM UTC. Only work items with
+	      opening and closing status between these two values are taken into
+	      consideration. For example, if a developer starts work on a feature on
+	      Monday 5PM and finishes it by Tuesday 1PM, then development time will be
+	      considered to be 4 hours (1 hour Monday, 3 hours Tuesday). This assumption
+	      will simplify the calculation of practical work hours for work items.
 \end{itemize}
 
-Limitations of the study:
+\subsection{Limitations}
+
+As dicussed in Section \ref{section:def} there are multiple types of debt
+affecting the software environment which cannot be modelled in this study.
+Additionally, with the introduction of assumptions in order to limit the
+complexity of the study there are many threaths to the validity of the results.
+
 \begin{itemize}
-	\item Data candidates
-	\item Errors in ticket estimations
-	\item Work effort measurement
-	\item Code quality tools
-	\item Assumptions
-	\item Complexities of technical debt
+	\item Data candidates may not have sufficient information related to the
+	      estimation of work effort. We believe this statement is especially true for
+	      open-source software, with an international team and contributions from many
+	      other developers. Although care will be taken in the selection process,
+	      there is no assurance that this data will be provided. However, if
+	      commercial projects do have estimation fields, it would be interesting to
+	      correlate the amount of practical work done between the two worlds for
+	      similar tickets.
+	\item Work effort measurement is a difficult challenge, and was deemed
+	      unmeasureable by Martin Fowler \cite{CannotMeasureProductivity}. Restricting
+	      development time to an interval and discarding multi-developer work items
+	      may reduce the data set considerably. Nevertheless, by deriving conclusions
+	      from simple cases there is potential in adding more complexities in future work.
+	\item Code quality tools may not detect potential technical debt items. For
+	      example, architectural debt is an important factor in assessing extra work but
+	      this type of debt which was not included due to its complexity.
+	\item The assumptions made in the previous section may not reflect the real
+	      work environment. Developers may be working over time if, for example, under
+	      the pressure of a release schedule.
+	\item There are many types and complexities of technical debt which were not
+	      included. Requirements, architectural, build, infrastructure, etc. all have
+	      an influence on the amount of effort for finalising a feature.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Work Plan}
+\label{work-plan}
 
-show how you plan to organize your work, identifying intermediate deliverables
-and dates.\\
 \textbf{TBD}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-Does it clearly explain the problem? Does it contain a bibliography and proper
-citations?
-
-Report: Is the report complete, well-organised, clear, and literate? Overall:
-What is your overall impression of the student’s work?
+TODO: write a nice conclusion
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % it is fine to change the bibliography style if you want

@@ -29,53 +29,92 @@
 \section{Introduction}
 \label{intro}
 
-TODO:
-\begin{itemize}
-	\item What is technical debt?
-	\item Why is it important?
-	\item What is its impact on software project evolution? On work effort?
-	\item How to quantify technical debt?
-	\item Advantages and goals of the study.
-\end{itemize}
+The phenomenon of technical debt has matured in recent years with numerous
+scientific experiments conducted for studying its identification, measurement
+and management. Initially coined in 1993 \cite{Cunningham1993}, it defined the
+concept of not quite right code that provided gains in the short term. Thus
+technical debt might be useful in achieving immediate deadlines with possible
+software quality sacrifices that might be negative for future work. Negative
+consequences in the long term could see software complexity growth, prevalence
+of bugs and defects, decreased team productivity and augmented work effort,
+leading to increased costs of development, infrastructure and management. The
+phenomenon affects daily work of developers, project managers and stakeholders
+of the business. 
 
-The goal of this study is to analyse feature implementations within software
-projects with the purpose of identifying extra work from the viewpoint of
-software engineers and project managers in the context of technical debt
-management. The results would also aid stakeholders in understanding the effects
-of incurred technical debt on software evolution and costs of development.
+The definition of technical debt has been updated since then, spanning not just
+activites related to code implementation but the entire software development
+environment. Multiple types of "debts" have been identified by the scientific
+community \cite{Li2015}, each with its own advantages and consequences if not
+handled accordingly. Although industry practitioners are aware of its presence
+\cite{Codabux2013} \cite{Lim2012}, there is no standard way of measuring the
+current and future impact of technical debt on development and costs of the
+team. Additionally, due to lack of vocabulary and complexities of the
+phenomenon, developers find it difficult to convey their concerns with project
+stakeholders \cite{Kruchten2012}.
 
-The goal will be achieved by answering the following research questions:
+The goal of this study is to analyse work effort of feature implementations
+within software projects with the purpose of identifying extra work in the
+context of technical debt. An additional objective is to understand how the
+measure of technical debt varies with software evolution and what types of
+features incur or reduce its presence. The research questions have been
+organised using the Goal-Question-Metric approach \cite{VanSolingen2002}:
 \begin{itemize}
-	\item \textbf{RQ1}. Can technical debt interest for a team be predicted as a
-	      measure of work effort?
+	\item \textbf{RQ1}. Can tehnical debt be measured in the context of work
+	effort?
 	      \begin{itemize}
 		      \item \textbf{RQ1.1}: What was the difference (delta) in the
 		            estimated work effort for a feature and the practical work
-		            effort due to technical debt?
-		      \item \textbf{RQ1.2}: What is the measurement of TD in the
-		            affected modules across change sets?
-		      \item \textbf{RQ1.3}: How does work effort delta vary with the
+		            effort?
+			  \item \textbf{RQ1.2}: What was the level of technical debt across
+		            feature change sets at the time of implementation?
+		      \item \textbf{RQ1.3}: How does the work effort delta vary with the
 		            magnitude of technical debt?
-	      \end{itemize}
-
+		  \end{itemize}
 	\item \textbf{RQ2}: What are the development patterns surrounding feature
 	      lifecycle?
 	      \begin{itemize}
-		      \item \textbf{RQ2.1}: At what checkpoint in development is
-		            technical debt reduction (refactoring) most prominent?
+		      \item \textbf{RQ2.1}: At what checkpoints in feature development
+		            is technical debt reduction (refactoring) most prominent?
 		      \item \textbf{RQ2.2}: What type of work items incur the most
-		            technical debt?
+					technical debt?
 	      \end{itemize}
 \end{itemize}
 
-The answers to questions RQ1 and RQ2 will be derived from the answers of their
-subquestions.
+The main questions RQ1 and RQ2 will be tackled by answering their following
+subquestions. The following metrics will computed and analysed:
+\begin{itemize}
+	\item The \textbf{practical work effort} spent on feature implementation.
+	This can be computed by leveraging data from the team's issue tracker and
+	version control repository.  
+	\item The level of \textbf{technical debt} in the system at the time of
+	implementation in terms of code smells and bad coding practices.
+	\item The extra effort spent on feature implementation, as the difference
+	between the estimated and practical effort measurements. 
+\end{itemize}
 
-The proposal is structured in the following sections. Section \ref{lit-review}
-highlights related work on technical debt by covering definition, types,
-identification, measurement and management within software teams. Section
-\ref{proposed-work} underlines future steps of the study and the deadlines and
-deliverables are defined in Section \ref{work-plan}.
+The study will be conducted on both open-source and commercial projects to get
+an understanding of the differences and similarities between the two worlds and,
+hopefully, arrive at general conclusions with possible contributions to both
+types of software development environments. Projects will be selected according
+to various criteria items such as development model, version control,
+availability of estimated work effort data and suitability of code quality
+tools.
+
+If successful, the study will increase awareness of technical debt items for all
+members of the software development environment. Developers will know where and
+which code smells and bad practices have the most impact on their productivity.
+Project managers will recognize the costs of technical debt items within the
+system and assign appropriate refactoring activities on each sprint.
+Stakeholders will grasp the impact of incurring technical debt and the effects
+on the costs of present and future development. Additionally, the study will
+highlight the development patterns of feature implementations, and where in
+which step of the lifecycle technical is managed.
+
+The proposal is structured as follows. Section \ref{lit-review} highlights
+related work on technical debt by covering definition, types, identification,
+measurement and management within software teams. Section \ref{proposed-work}
+underlines future steps of the study and the deadlines and deliverables are
+defined in Section \ref{work-plan}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background Survey}
@@ -88,8 +127,10 @@ TODO:
 	\item Technical debt definition
 	\item Types of TD - focus on code and design debt
 	\item Measurement of principal and interest
+	\item Impact of code smells on principal and interest
 	\item Measurement of work effort and team productivity
 	\item Management of TD
+	\item Industry case studies
 \end{itemize}
 
 \subsection{Definition, Perspectives and Types}
@@ -879,6 +920,8 @@ from the three data sources. Therefore, we will make some assumptions:
 	      will simplify the calculation of practical work hours for work items.
 \end{itemize}
 
+% ending paragraph here
+
 \subsection{Limitations}
 
 As dicussed in Section \ref{section:def} there are multiple types of debt
@@ -910,6 +953,8 @@ complexity of the study there are many threaths to the validity of the results.
 	      included. Requirements, architectural, build, infrastructure, etc. all have
 	      an influence on the amount of effort for finalising a feature.
 \end{itemize}
+
+% 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Work Plan}
@@ -968,7 +1013,7 @@ The work packages and activities are as follows:
 	\item \textit{Data Verification and Analysis}.\\
 	\begin{itemize}
 		\item Analyse data integrity for inconsistencies and remove outliers.
-		\item Analyse the 
+		\item Statistically test the correlation between work effort and technical debt.
 	\end{itemize}
 
 	Estimated work time: 3 weeks.\\

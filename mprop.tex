@@ -108,7 +108,10 @@ system and assign appropriate refactoring activities on each sprint.
 Stakeholders will grasp the impact of incurring technical debt and the effects
 on the costs of present and future development. Additionally, the study will
 highlight the development patterns of feature implementations, and where in
-which step of the lifecycle technical is managed.
+which step of the lifecycle technical is managed. To the best of my knowledge,
+no study has attempted to highlight technical debt interest from the perspective
+of work effort or drill down into the development patterns of technical debt
+accrual.
 
 The proposal is structured as follows. Section \ref{lit-review} highlights
 related work on technical debt by covering definition, types, identification,
@@ -122,16 +125,55 @@ defined in Section \ref{work-plan}.
 
 \subsection{Study Design}
 
-TODO:
+Technical debt has become a broad topic in the scientific community over the
+past few years. Many studies highlight the identification, measurement and
+management of debt, each applied on a specific or multiple domains, each with
+its advantages and disadvantages, each with many contributions and limitations.
+
+To conduct a thorough literature survey, the following topics have been explored:
 \begin{itemize}
-	\item Technical debt definition
-	\item Types of TD - focus on code and design debt
-	\item Measurement of principal and interest
-	\item Impact of code smells on principal and interest
-	\item Measurement of work effort and team productivity
-	\item Management of TD
-	\item Industry case studies
+	\item Definitions of technical debt.
+	\item Types of debt.
+	\item Identification.
+	\item Measurement of principal and interest.
+	\item Code quality tools.
+	\item Management of debt.
+	\item Industry case studies.
 \end{itemize}
+
+First of all, the definition of technical debt was explored with ways in which
+the scientific community understood the metaphor, where it broke down, its
+applications and consequences. Since \emph{debt} comes from a financial
+terminology, it was ideal to understand the metaphor in more detail.
+
+Second of all, it was important to understand the types of technical debt
+discussed in the community, along with industry case studies. Practitioners
+provide valuable information as they deal with technical debt and its costs
+daily, whether they are developers, architects, managers or business
+stakeholders.
+
+Third of all, identification of technical debt and code quality tools were
+important as they provide a way to highlight code violations in the system's
+source code. This was important since this study will make use of code quality
+tools in order to highlight potential code smells and assess their impact.
+
+Fourth of all, measurement and calculation of technical debt was an important
+topic, since it is difficult to aggregate such a complex phenomenon into a
+single value.
+
+Lastly, of extreme value to proprietary projects is the management of technical
+debt. This topic included finding studies on managing debt within Agile
+methodologies and practices that help guard against it.
+
+The main source of information was the Workshop of Managing Technical Debt, with
+many papers of its yearly workshop included in this study. The data sources were
+ACM Digital Library and IEEE Xplore Digital Library, with search terms being
+executed from Google Scholar.
+
+Although the study includes approximately 40 papers, it does not include all
+papers related to technical debt. The literature search was mainly focused on
+code and design debt, as well as tools and management practices in order to
+combat these two types of debt.
 
 \subsection{Definition, Perspectives and Types}
 \label{section:def}
@@ -983,7 +1025,6 @@ The work packages and activities are as follows:
 	\end{itemize}
 
 	Estimated work time: 3 weeks.\\
-	Start date: 15th January 2018.
 	
 	\item \textit{Development of automated tools}.\\
 	Activities included:
@@ -996,7 +1037,6 @@ The work packages and activities are as follows:
 	\end{itemize}
 
 	Estimated work time: 3 weeks.\\
-	Start date: 5th February 2018.
 
 	\item \textit{Measuring technical debt}.\\
 	Activities included:
@@ -1008,7 +1048,6 @@ The work packages and activities are as follows:
 	\end{itemize}
 
 	Estimated work time: 2 weeks.\\
-	Start date: 26th February 2018.
 
 	\item \textit{Data Verification and Analysis}.\\
 	\begin{itemize}
@@ -1017,11 +1056,10 @@ The work packages and activities are as follows:
 	\end{itemize}
 
 	Estimated work time: 3 weeks.\\
-	Start date: 12th March 2018.
 
 	\item \textit{Report writing}.
 	Estimated work time: 3 weeks.\\
-	Start date:  March 2018.
+
 \end{enumerate}
 
 

@@ -21,7 +21,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\tableofcontents
+\tableofcontents 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -30,43 +30,43 @@
 \label{intro}
 
 The phenomenon of technical debt has matured in recent years with numerous
-scientific experiments conducted for studying its identification, measurement
-and management. Initially coined in 1993 \cite{Cunningham1993}, it defined the
+scientific experiments conducted for its identification, measurement and
+management. Initially coined in 1993 \cite{Cunningham1993}, it defined the
 concept of not quite right code that provided gains in the short term. Thus
 technical debt might be useful in achieving immediate deadlines with possible
 software quality sacrifices that might be negative for future work. Negative
-consequences in the long term could see software complexity growth, prevalence
-of bugs and defects, decreased team productivity and augmented work effort,
-leading to increased costs of development, infrastructure and management. The
-phenomenon affects daily work of developers, project managers and stakeholders
-of the business. 
+consequences in the long term could see software complexity growth, the
+prevalence of bugs and defects, decreased team productivity and augmented work
+effort, leading to increased costs of development, infrastructure and
+management. The phenomenon affects daily work of developers, project managers
+and stakeholders of the business. 
 
 The definition of technical debt has been updated since then, spanning not just
-activites related to code implementation but the entire software development
-environment. Multiple types of "debts" have been identified by the scientific
-community \cite{Li2015}, each with its own advantages and consequences if not
-handled accordingly. Although industry practitioners are aware of its presence
+activities related to code implementation but the entire software development
+environment. The scientific community identified multiple types of debts
+\cite{Li2015}, each with its advantages and consequences if not handled
+accordingly. Although industry practitioners are aware of its presence
 \cite{Codabux2013} \cite{Lim2012}, there is no standard way of measuring the
 current and future impact of technical debt on development and costs of the
 team. Additionally, due to lack of vocabulary and complexities of the
-phenomenon, developers find it difficult to convey their concerns with project
+phenomenon, developers find it difficult to convey their concerns to project
 stakeholders \cite{Kruchten2012}.
 
-The goal of this study is to analyse work effort of feature implementations
-within software projects with the purpose of identifying extra work in the
-context of technical debt. An additional objective is to understand how the
-measure of technical debt varies with software evolution and what types of
-features incur or reduce its presence. The research questions have been
+The primary research objective is to analyse work effort of feature
+implementations within software projects with the purpose of identifying extra
+work in the context of technical debt. An additional objective is to understand
+how the measure of technical debt varies with software evolution and what types
+of features incur or reduce its presence. The research questions have been
 organised using the Goal-Question-Metric approach \cite{VanSolingen2002}:
 \begin{itemize}
-	\item \textbf{RQ1}. Can tehnical debt be measured in the context of work
+	\item \textbf{RQ1}. Can technical debt be measured in the context of work
 	effort?
 	      \begin{itemize}
 		      \item \textbf{RQ1.1}: What was the difference (delta) in the
 		            estimated work effort for a feature and the practical work
 		            effort?
 			  \item \textbf{RQ1.2}: What was the level of technical debt across
-		            feature change sets at the time of implementation?
+		            feature changesets at the time of implementation?
 		      \item \textbf{RQ1.3}: How does the work effort delta vary with the
 		            magnitude of technical debt?
 		  \end{itemize}
@@ -81,37 +81,36 @@ organised using the Goal-Question-Metric approach \cite{VanSolingen2002}:
 \end{itemize}
 
 The main questions RQ1 and RQ2 will be tackled by answering their following
-subquestions. The following metrics will computed and analysed:
+subquestions. The following metrics will be computed and analysed:
 \begin{itemize}
-	\item The \textbf{practical work effort} spent on feature implementation.
-	This can be computed by leveraging data from the team's issue tracker and
-	version control repository.  
+	\item The \textbf{practical work effort} spent on feature implementation
+	will be calculated by leveraging data from the team's issue tracker and
+	version control repository.
 	\item The level of \textbf{technical debt} in the system at the time of
-	implementation in terms of code smells and bad coding practices.
-	\item The extra effort spent on feature implementation, as the difference
-	between the estimated and practical effort measurements. 
+	implementation will be measured in terms of code smells and bad coding
+	practices.
+	\item The \textbf{extra effort} spent on feature implementation will be
+	derived as the difference between the estimated and practical effort
+	measurements. 
 \end{itemize}
 
-The study will be conducted on both open-source and commercial projects to get
-an understanding of the differences and similarities between the two worlds and,
-hopefully, arrive at general conclusions with possible contributions to both
-types of software development environments. Projects will be selected according
-to various criteria items such as development model, version control,
-availability of estimated work effort data and suitability of code quality
-tools.
+The study will use both open-source and commercial projects in order understand
+the contrast between the two worlds in the context of technical debt work
+effort. We will select data candidates according to various criteria items such
+as development model, version control system, availability of initially
+estimated work effort data and suitability of code quality tools.
 
-If successful, the study will increase awareness of technical debt items for all
-members of the software development environment. Developers will know where and
-which code smells and bad practices have the most impact on their productivity.
-Project managers will recognize the costs of technical debt items within the
-system and assign appropriate refactoring activities on each sprint.
-Stakeholders will grasp the impact of incurring technical debt and the effects
-on the costs of present and future development. Additionally, the study will
-highlight the development patterns of feature implementations, and where in
-which step of the lifecycle technical is managed. To the best of my knowledge,
-no study has attempted to highlight technical debt interest from the perspective
-of work effort or drill down into the development patterns of technical debt
-accrual.
+If successful, the study will increase awareness of technical debt in all areas
+of the software development environment. Developers will know which code smells
+and bad practices have the most impact on their productivity. Project managers
+will recognise the costs of debt items within the system and assign appropriate
+refactoring activities for each development iteration. Stakeholders will grasp
+the impact of incurring technical debt and the effects on the costs of present
+and future development of new features. Additionally, the study will highlight
+refactoring development patterns of feature development lifecycle. To the best
+of my knowledge, this is the first study to highlight technical debt interest
+from the perspective of work effort and drill down into the development patterns
+of technical debt accrual by increasing the granularity of data.
 
 The proposal is structured as follows. Section \ref{lit-review} highlights
 related work on technical debt by covering definition, types, identification,
@@ -168,7 +167,9 @@ methodologies and practices that help guard against it.
 The main source of information was the Workshop of Managing Technical Debt, with
 many papers of its yearly workshop included in this study. The data sources were
 ACM Digital Library and IEEE Xplore Digital Library, with search terms being
-executed from Google Scholar.
+executed from Google Scholar. Additional techniques for finding new papers
+included the snowballing technique which pointed to relevant studies in the
+domain of software refactoring.
 
 Although the study includes approximately 40 papers, it does not include all
 papers related to technical debt. The literature search was mainly focused on
@@ -800,7 +801,8 @@ Technical debt is a difficult phenomenon to tackle in software engineering.
 Development teams face challenges in identifying, tracking, managing and
 explaining the concept to non-technical stakeholders. However, new tools allow
 the indentification of code smells, tracking and computing of complex indexes
-with focus on quality characteristics of code.
+with focus on quality characteristics of code. Project management practices
+allow for appropriate allocation of resources to refactoring activities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
@@ -962,7 +964,10 @@ from the three data sources. Therefore, we will make some assumptions:
 	      will simplify the calculation of practical work hours for work items.
 \end{itemize}
 
-% ending paragraph here
+These assumptions will reduce the amount of real world complexity in the
+experiment and allow for simple validation of the results. Additionally, the
+complexities may be explored in future studies.
+
 
 \subsection{Limitations}
 
@@ -983,8 +988,7 @@ complexity of the study there are many threaths to the validity of the results.
 	\item Work effort measurement is a difficult challenge, and was deemed
 	      unmeasureable by Martin Fowler \cite{CannotMeasureProductivity}. Restricting
 	      development time to an interval and discarding multi-developer work items
-	      may reduce the data set considerably. Nevertheless, by deriving conclusions
-	      from simple cases there is potential in adding more complexities in future work.
+	      may reduce the data set considerably.
 	\item Code quality tools may not detect potential technical debt items. For
 	      example, architectural debt is an important factor in assessing extra work but
 	      this type of debt which was not included due to its complexity.
@@ -996,7 +1000,9 @@ complexity of the study there are many threaths to the validity of the results.
 	      an influence on the amount of effort for finalising a feature.
 \end{itemize}
 
-% 
+Although there are risks associated with measurements, care will be taken to
+consider all possibilities when validating calculation of measurements. This is
+especially true in the case of quantifying work effort.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Work Plan}
@@ -1004,11 +1010,8 @@ complexity of the study there are many threaths to the validity of the results.
 
 Considering the proposed work in Section \ref{proposed-work}, work packages can
 be easily created by indentifying activities. These activities could be placed
-in slots time slots for the next 3 months, spanning 11 weeks worth of
-experimental work from the 15th of January until the 2nd of April. The rest of
-the time will be spent writing the final report.
-
-The work packages and activities are as follows:
+in time slots, spanning 11 weeks worth of experimental work from January 2018
+until April 2018. The work packages and activities are as follows:
 
 \begin{enumerate}
 	\item \textit{Gathering data}.\\
@@ -1044,7 +1047,7 @@ The work packages and activities are as follows:
 		\item Usage of code quality tool on revisions to identify code smells
 		within change sets.
 		\item Integration of the code quality tool features with the previous
-		tool for measuring revisions 
+		tool for measuring revisions.
 	\end{itemize}
 
 	Estimated work time: 2 weeks.\\
@@ -1057,16 +1060,35 @@ The work packages and activities are as follows:
 
 	Estimated work time: 3 weeks.\\
 
-	\item \textit{Report writing}.
+	\item \textit{Presentation of results and report writing}.
 	Estimated work time: 3 weeks.\\
 
 \end{enumerate}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-TODO: write a nice conclusion
+To conclude, technical debt is a phenomenon difficult to measure accurately and
+assess potential development and business costs. Therefore, understanding it
+from the perspective of developers is vital as they are first-hand involved in
+the implementation of new features. Any extra work spent as a result of previous
+incurred debt increases business costs. If too much debt accrues over the
+lifetime of a project, the entire project may be brought to a standstill.
+
+As a result, this study will try to understand technical debt from a development
+work effort perspective. It will, possibly, shed light on the types of features
+that take a lot of man-hours to complete in correlation with the level of
+technical debt at the present time of the implementation. 
+
+Through measurement and analysis of these two metrics and their relationship,
+developers may discover bottlenecks in productivity, managers may allocate
+appropriate resources for refactoring activities and business stakeholders may
+become more aware of development concerns. Additionally, it will be interesting
+to find the discrepancy between open-source and proprietary software projects.
+
+To the best of my knowledge, this type of study had not been conducted before
+from the perspective of work effort at the feature level granularity and may
+provide valuable insights into the development patterns of software engineering.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % it is fine to change the bibliography style if you want

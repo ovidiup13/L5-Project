@@ -115,8 +115,8 @@ of technical debt accrual by increasing the granularity of data.
 The proposal is structured as follows. Section \ref{lit-review} highlights
 related work on technical debt by covering definition, types, identification,
 measurement and management within software teams. Section \ref{proposed-work}
-underlines future steps of the study and the deadlines and deliverables are
-defined in Section \ref{work-plan}.
+underlines future steps of the study while section \ref{work-plan} outlines
+deadlines and deliverables of this experiment.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background Survey}
@@ -129,52 +129,44 @@ past few years. Many studies highlight the identification, measurement and
 management of debt, each applied on a specific or multiple domains, each with
 its advantages and disadvantages, each with many contributions and limitations.
 
-To conduct a thorough literature survey, the following topics have been explored:
+The following topics have been explored for conducting a thorough literature
+survey:
 \begin{itemize}
-	\item Definitions of technical debt.
-	\item Types of debt.
-	\item Identification.
-	\item Measurement of principal and interest.
-	\item Code quality tools.
-	\item Management of debt.
-	\item Industry case studies.
+	\item definitions of technical debt;
+	\item types of debt;
+	\item identification;
+	\item measurement of principal and interest;
+	\item code quality tools;
+	\item management of debt;
+	\item industry case studies.
 \end{itemize}
 
-First of all, the definition of technical debt was explored with ways in which
-the scientific community understood the metaphor, where it broke down, its
-applications and consequences. Since \emph{debt} comes from a financial
-terminology, it was ideal to understand the metaphor in more detail.
+First of all, we wanted to understand how the scientific community defined the
+metaphor, its limitations, applications and consequences. Since the term
+\emph{debt} comes from a financial terminology, it was ideal to understand the
+metaphor in more detail. Second of all, it was essential to understand the types
+of technical debt discussed in the community along with ideas from industry
+practitioners. Practitioners provide valuable information as they deal with
+technical debt and its possible costs on a daily basis. Third of all,
+identification of technical debt and code quality tools was vital as they
+provide a way to highlight code violations in the system's source code. This
+step was necessary since this study will use code quality tools to highlight
+possible code smells and assess their impact. Fourth of all, measurement and
+calculation of technical debt was an important topic since it is difficult to
+aggregate such a complex phenomenon into a single value. Lastly, of extreme
+value to proprietary projects is the management of technical debt. This topic
+included finding studies on managing debt within Agile methodologies and
+practices that help guard against it.
 
-Second of all, it was important to understand the types of technical debt
-discussed in the community, along with industry case studies. Practitioners
-provide valuable information as they deal with technical debt and its costs
-daily, whether they are developers, architects, managers or business
-stakeholders.
-
-Third of all, identification of technical debt and code quality tools were
-important as they provide a way to highlight code violations in the system's
-source code. This was important since this study will make use of code quality
-tools in order to highlight potential code smells and assess their impact.
-
-Fourth of all, measurement and calculation of technical debt was an important
-topic, since it is difficult to aggregate such a complex phenomenon into a
-single value.
-
-Lastly, of extreme value to proprietary projects is the management of technical
-debt. This topic included finding studies on managing debt within Agile
-methodologies and practices that help guard against it.
-
-The main source of information was the Workshop of Managing Technical Debt, with
-many papers of its yearly workshop included in this study. The data sources were
-ACM Digital Library and IEEE Xplore Digital Library, with search terms being
-executed from Google Scholar. Additional techniques for finding new papers
+The primary source of information was the Workshop on Managing Technical Debt,
+with many papers of its yearly workshop included in this study. The data sources
+were ACM Digital Library and IEEE Xplore Digital Library, found through
+searching terms on Google Scholar. Additional techniques for finding new papers
 included the snowballing technique which pointed to relevant studies in the
-domain of software refactoring.
-
-Although the study includes approximately 40 papers, it does not include all
-papers related to technical debt. The literature search was mainly focused on
-code and design debt, as well as tools and management practices in order to
-combat these two types of debt.
+domain of software refactoring. Although the study includes approximately 40
+papers, it does not include all papers related to technical debt. The literature
+search focused mainly on code and design debt, as well as tools and management
+practices to combat these two types of debt.
 
 \subsection{Definition, Perspectives and Types}
 \label{section:def}

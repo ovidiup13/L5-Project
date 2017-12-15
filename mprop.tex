@@ -171,15 +171,14 @@ practices to combat these two types of debt.
 \subsection{Definition, Perspectives and Types}
 \label{section:def}
 
-% Ward Cunningham - WyCash Portfolio Management System TODO: expand the
-% definition from the paper.
+% Ward Cunningham - WyCash Portfolio Management System
 Technical debt is a metaphor termed by Cunningham, in his note on the WyCash
 Portfolio Management System \cite{Cunningham1993}. In the report, Cunningham
-mentioned that \textit{shipping first time code is like going into debt} and
+mentioned that ``\textit{shipping first time code is like going into debt}'' and
 that as the system evolves new features would become more and more difficult to
 implement. This phenomenon was due to feature-rich projects being shipped to
 customers early but poorly written with little or no consideration to quality
-and to future work.
+and future work.
 
 \begin{figure}
 	\centering
@@ -191,118 +190,117 @@ and to future work.
 % MTD 2010
 The metaphor was ignored for a long time, until the late 2000s, when more and
 more studies started to explore the phenomenon and possible management
-processes. A figure of the popularity of Technical Debt from 2004 to present can
-be seen in Figure \ref{fig:td-trend}, information provided by Google Trends
+techniques. A figure of the popularity of Technical Debt from 2004 to present
+can be seen in Figure \ref{fig:td-trend}, information provided by Google Trends
 \cite{GoogleTrends}. The \textit{y} axis represents the interest in technical
 debt over time (\textit{x} axis). A value of 100 represents peak search interest
-popularity.
+popularity. The term was not as popular during the first years of the century
+moreover, gained traction from 2010, as more and more studies became widely
+available.
 
 Thus, the first workshop on managing technical debt took place in 2010, where an
 initial research agenda was proposed for the future of software engineering
 field. Since then, workshops have been held every year, which consisted
-seminars, presentations and brainstorming sessions on aspects such as definition
-\cite{Kruchten2012} \cite{Theodoropoulos2011} \cite{Schmid2013}, identification
-\cite{Ernst2012}, measurement \cite{Letouzey2012} \cite{Curtis2012}
-\cite{Nugroho2011} \cite{Zazworka2011} \cite{Fontana2012} \cite{Bohnet2011},
-management \cite{Guo2011} \cite{Zazworka2011Prioritise} \cite{Seaman2012} to
-industry case studies \cite{Lim2012} \cite{Morgenthaler2012} \cite{Codabux2013}
-\cite{Holvitie2014} \cite{Klinger2011}.
+seminars, presentations and brainstorming sessions on aspects such as:
+definition \cite{Kruchten2012} \cite{Theodoropoulos2011} \cite{Schmid2013},
+identification \cite{Ernst2012}, measurement \cite{Letouzey2012}
+\cite{Curtis2012} \cite{Nugroho2011} \cite{Zazworka2011} \cite{Fontana2012}
+\cite{Bohnet2011}, management \cite{Guo2011} \cite{Zazworka2011Prioritise}
+\cite{Seaman2012} and industry case studies \cite{Lim2012}
+\cite{Morgenthaler2012} \cite{Codabux2013} \cite{Holvitie2014}
+\cite{Klinger2011}.
 
-% from metaphor to theory and practice TODO: add citation to industry case
-% studies
+% from metaphor to theory and practice
 The definition of technical debt relies heavily on the perspective of the viewer
-and her responsibility within the software development environment. Developers view
-technical debt as a list of software quality issues and correlate it with lack
-of time to implement features "\textit{properly}" \cite{Codabux2013}. Product
-managers and stakeholders view at it as a strategy, a way to defer quality work
-for fast work in order to satisfy certain business requirements, such as Time to
-Market (TTM). In practice, these two perspectives are widely different, with
-developers prioritising "invisible" code perfection whilst management focusing
-on rapid development of "visible", selling point features. Kurchten et al.
-\cite{Kruchten2012} defined technical debt as technological gaps between
-development teams and management, where a gap is the evolution of a context
-specific to a decision taken in the past. These gaps might have been decisions
-that seemed correct when the decision was taken however, with the passing of
-time, the initial decision incurred debt within the project. For example, there
-is no tool that predicts what frameworks and languages will exist in the future
-or how to implement features by considering future unknown requirements. As a
-consequence, the authors state that technical debt is not the collection of code
-quality violations within the results of static code analyzers but, a phenomenon
-which is heavily reliant on present and future project evolution.
+and her responsibility within the software development environment. Developers
+view technical debt as a list of software quality issues and correlate it with
+lack of time to implement features "\textit{properly}" \cite{Codabux2013}.
+Product managers and stakeholders view it as a strategy, a way to defer quality,
+well-designed work for quick wins to satisfy particular business requirements,
+such as Time to Market (TTM). These two perspectives are widely different, with
+developers prioritising ``invisible'' code perfection while management is
+focusing on the rapid development of ``visible'', selling point features.
+Kruchten et al. \cite{Kruchten2012} defined technical debt as technological gaps
+between development teams and management where a gap is the evolution of
+context, specific to a decision taken in the past. These gaps could be decisions
+that seemed correct when approved. However with the passing of time, it
+unintentionally incurred debt. For example, no tool would have predicted what
+frameworks and languages would have existed in the future or how requirements
+would have changed to prepare accordingly. As a consequence, the authors stated
+that technical debt is not the collection of code quality violations within the
+results of static code analysers but, a phenomenon which is heavily reliant on
+the present and future evolution.
 
 
 % from a stakeholder's perspective
 However, most strategic decisions on the future evolution of the project come
-from management. Unfortunately, stakeholders might not have knowledge of the
-metaphor of technical debt, its current measurement and whether it impacts costs
-of development. Their main focus of increasing business value through the
-addition of visual features, rather than looking for investment in the quality
-of the software being produced. As a result, new features are prioritised and
-pressured on being delivered as early and as quickly as possible. These types of
-issues affect the \textbf{extrinsic quality} of software and are "visible". For
-example, an extrinsic quality characteristic is usability. Deferring user
-experience work and ignoring user interface bugs might force users of the system
-to find "ways around" certain tasks. The result is negative impact in user
-productivity and the general usefulness of the product. Extrinsic
-characteristics are important to the business as they are considered "sell
-points" of the product. On the other hand, \textbf{intrinsic quality}
+from management. Unfortunately, stakeholders might not know the metaphor of
+technical debt, its current measurement and whether it impacts costs of
+development. Their fundamental focus consists of increasing business value
+through the addition of visual features, rather than looking for investment in
+the quality of the software produced \cite{Lim2012}. As a result, new features
+are prioritised and pressured on being delivered as early and as quickly as
+possible. These types of issues affect the \textbf{extrinsic quality} of
+software and are "visible". For example, an external quality characteristic is
+usability. Deferring user experience work while ignoring user interface bugs
+might force users of the system to find "ways around" certain tasks. The result
+negatively impacts user productivity and the general usefulness of the product.
+Extrinsic characteristics are important to the business because they are ``sell
+points'' of the product. On the other hand, \textbf{intrinsic quality}
 characteristics of software are the low-level issues such as code smells,
 best-practices violations that might slow down development of new features
 unless refactoring processes are applied. Theodoropoulos et al.
 \cite{Theodoropoulos2011} considered that intrinsic and extrinsic software
-quality characteristics are interdependent and deferring quality maitainence in
+quality characteristics are interdependent and deferring quality maintenance in
 one area may affect other areas of quality. For example, improper data
-validation in the business logic layer of the system, may impact downstream
+validation in the business logic layer of the system may impact downstream
 components, such as user interface, and produce bugs within the system.
 
 
 % on the limits of td metaphor TODO: define principal and interest
 Although the use of finance terms may simplify technical characteristics of
 software quality in the dialogue between development teams and stakeholders, the
-analogy breaks down as studied by Schimd et al. \cite{Schmid2013}. In their
+analogy breaks down as studied by Schmid et al. \cite{Schmid2013}. In their
 study, the authors had identified shortcomings in the financial metaphor
 established by Ward Cunningham \cite{Cunningham1993} and found points where it
-breaks down. In the financial domain, debt is a well known arrangement between
-two parties where one party borrowes a fixed amount of money from the other
-party \cite{debt-investopedia}. The most well known types of debt are loans,
-where the terms of the arrangement dictate that the amount of money borrowed
-must be paid back in full after a fixed period of time, along with fixed
-interest payments paid annually.
+breaks down. In the financial domain, debt is a well-known arrangement between
+two parties where one party borrows a fixed amount of money from the other party
+\cite{debt-investopedia}. The most common types of debt are loans, where the
+terms of the arrangement dictate that the amount of money borrowed must be paid
+back in full after a fixed period, along with fixed interest payments paid
+annually.
 
-Schmid et al. \cite{Schmid2013} has identified three major points where the
-analogy breaks down:
+Schmid et al. \cite{Schmid2013} identified three major points where the analogy
+breaks down:
 \begin{itemize}
-	\item \textit{Unit of measurement}. In finance there is a clear unit of
+	\item \textit{Unit of measurement}. In finance, there is a precise unit of
 	      monetary measurement through the use of international currencies. In
 	      contrast, technical debt does not have a standard unit of measurement
-	      defined. There are many tools (TODO: add citation of paper tools here)
-	      that provide a single, quantified and aggregated measure of the amount
-	      of time it takes for software quality issues to be resolved.
-	      Additionally, very few of these tools quantify the consequences of
-	      neglecting refactoring and the improvement in quality characteristics.
-	      The issue of measurement puts a dent into the shared vocabulary
-	      between development and stakeholders as mentioned by a number of
-	      software practioners from industry case studies (TODO: add industry
-	      case study citation here).
+	      defined. There are many tools \cite{Fontana2016} that provide a
+	      single, quantified and aggregated measure of the amount of time to
+	      resolve a software quality issue. Additionally, very few of these
+	      tools quantify the consequences of neglecting refactoring activities.
+	      The issue of measurement puts a dent in the shared vocabulary between
+	      development and stakeholders as mentioned by many practitioners
+	      \cite{Lim2012} \cite{Codabux2013}.
 	\item \textit{Fixed time period}. Financial debt arrangements have a fixed
-	      \textit{maturity date}, where the debt must be paid back. On the other
-	      hand, software quality issues do not a have a time limit and may be
-	      kept in the product until they are resolved. Fixing these items relate
-	      to paying back the "loan" taken on their creation. Such issues may
-	      never be paid back if not needed to, resulting in an increased
-	      cost-value ratio.
+	      \textit{maturity date}, the date when the debt must be paid back.
+	      Software quality issues do not have a deadline and may be left in the
+	      product. Fixing issues through refactoring activities is associated to
+	      paying back the debt. However, quality issues may also never have to
+	      be paid back if they do not impact productivity.
 	\item \textit{Fixed interest}. A loan arrangement additionally consists of
-	      fixed interest payments measured as a percetange of the loan value,
-	      paid on an annual or bi-annual basis. The interest compensates for
-	      the risk taken by the lender and encourages the loanee to pay back
-	      quickly as possible in order to avoid paying back too much interest.
-	      In reality, there is no such thing as fixed interest dependant on a
-	      single factor in technical debt. Interest is difficult to quantify
-	      as a matter of principal, and the amount of interest paid after a
-	      period of time depends on future work.
+	      fixed interest payments measured as a percentage of the loan value,
+	      paid on an annual or bi-annual basis. The interest compensates for the
+	      risk taken by the lender and encourages the loanee to pay back as
+	      quickly as possible to avoid paying back too much interest. In
+	      reality, there is no such thing as fixed interest dependant on a
+	      single factor in technical debt. Interest is difficult to quantify as
+	      a matter of principal, and the amount of interest paid after a period
+	      depends on future work.
 \end{itemize}
 Under these circumstances, what is considered "good structure" or "clean code"
-is also heavily influenced to future development since future decisions
+is also heavily influenced by future development since future decisions
 influence cost impact. As a consequence, no system is \textit{debt free} and
 thus fixing every code violation would be an act of gold plating
 \cite{Kruchten2012}. Additionally, what is the value of paying back this debt if
@@ -311,11 +309,11 @@ the product is competitive and the customers are happy \cite{Lim2012}?
 % martin fowler - td quadrants
 Fowler \cite{TDMartin} described this type of future debt as
 \textbf{inadverted-prudent} debt. A project that was "clean" may find that after
-a period of time that the initial approach taken might not have been the best.
-He considered that developers learn on the job to perfect their craft as time
+a time that the initial approach taken might not have been the best. He
+considered that developers learn on the job to perfect their craft as time
 passes. The four quadrants refer to the types of technical debt that one might
 encounter in a software project given the approach taken by the development
-team. It was one of the four quandrants he defined, as shown in Figure
+team. It was one of the four quadrants he defined, as shown in Figure
 \ref{fig:td-quandrants}.
 
 \begin{figure}
@@ -328,58 +326,58 @@ team. It was one of the four quandrants he defined, as shown in Figure
 
 % unhedged call option
 An alternative metaphor of technical debt \cite{UnhedgedCallOption}, described
-bad code using finance terms in a similar fashion, but through a different
-financial intrument called a call option. "\textit{An option is a financial
-derivative that represents a contract sold by one party (the option writer) to
-another party (the option holder). The contract offers the buyer the right, but
-not the obligation, to buy (call) or sell (put) a security or other financial
-asset at an agreed-upon price (the strike price) during a certain period of time
-or on a specific date (exercise date).}" \cite{option-investopedia}. A call
-option gives the right to buy while a put option gives the option holder the
-right to sell. In software engineering, if a feature is hacked up quickly and
-never touched again, then the project has reaped the rewards. The option "was
-not called". However, if a new feature were required that would be influenced by
-the quick and dirty work implemented earlier, then the requirement would be more
-expensive to fulfill. In this case, the option "has been called" though it is
-unclear whether interest was incurred during this time.
+bad code similarly using finance terms, but through a different financial
+instrument called a call option. ``\textit{An option is a financial derivative
+that represents a contract sold by one party (the option writer) to another
+party (the option holder). The contract offers the buyer the right, but not the
+obligation, to buy (call) or sell (put) a security or other financial asset at
+an agreed-upon price (the strike price) during a certain period of time or on a
+specific date (exercise date).}'' \cite{option-investopedia}. A call option
+gives the right to buy while a put option gives the option holder the right to
+sell. In software engineering, if a feature is hacked up quickly and never
+touched again, then the project has reaped the rewards. The option ``was not
+called''. However, if a new feature were required that would be influenced by
+the ``quick and dirty'' work implemented earlier, then the requirement would be
+more expensive to fulfil. In this case, the option "was called", though it is
+unclear if the development work incurred interest.
 
 
 % conclusion
 Defining software quality issues as a financial metaphor helps bridge vocabulary
 shortcomings between developers and stakeholders. It helps management understand
-current software development risks and encourages ways for managing these risks
-as they are created. As Cunningham \cite{Cunningham1993} had written, technical
-debt may be used as a strategy in order to meet business expectations however,
-if not repaid promptly it could bring entire corporations to a standstill.
+current software development risks and encourages ways of managing these risks.
+As Cunningham \cite{Cunningham1993} noted, technical debt may be used as a
+strategy to meet business expectations. However, if not repaid promptly, it
+``\textit{could bring entire corporations to a standstill}''.
 
 % types of TD
-Initially, technical debt has solely focused on the internal quality issues of
-systems developed. Such issues could be code smells, code violations and
-duplicate or complex code. However, multiple types of debt have been
-"discovered" spanning the entire software development environment.
+Initially, technical debt solely focused on the internal quality issues of
+systems. Such issues could be code smells, code violations, duplicate or
+complicated code. However, multiple types of debt have been discovered, spanning
+the entire software development environment.
 
 
 A mapping study, conducted by Li et al. \cite{Li2015}, have analysed 94 studies,
-overall dating 1992-2013, and have found 10 types of technical debt being
-studied: requirements, architecture, design, code, test, build, documentation,
-infrastructure, versioning and defect. The most prominent type of debt studied
-was code debt, followed by test, architectural, design and documentation debt.
+overall dating 1992-2013, and have found ten types of technical debt:
+requirements, architecture, design, code, test, build, documentation,
+infrastructure, versioning and defect debt. The most prominent type was code
+debt, followed by test, architectural, design and documentation.
 
 % architecture debt is the worst - industrial case study
-However, in an industrial case study \cite{Codabux2013}, developers considered that
-architectural debt is the most difficult to address, due to complexity and change
-impact on project. Major architectural decisions are not taken in a vaccuum and
-thus requires group meetings with other developers, software architects and
-product managers. The time to reach a consensus on how to approach such changes
-improve the cost of managing architectural debt.
+However, in an industrial case study \cite{Codabux2013}, developers considered
+that architectural debt is the most difficult to address, due to complexity and
+change impact on project modules. Major architectural decisions are not taken in
+a vacuum and thus requires group meetings with other developers, software
+architects and product managers. The time to reach a consensus on how to
+approach architectural changes improve the cost of managing debt.
 
 % technical debt is "technical"
-A few of the authors have considered that the metaphor of technical debt should
-only apply to the low-level, internal quality characteristics such as code,
-design, test, architectural debt rather than process gaps such as inadequate
-quality assurance \cite{Theodoropoulos2011} \cite{Nugroho2011}. Thus the word
-"technical". However, business process gaps may negatively affect projects and
-incurr technical debt as a result.
+A few of the authors have considered that the metaphor of technical debt only
+applies to the low-level, internal quality characteristics such as code, design,
+test, architecture rather than gaps within business processes, such as
+inadequate quality assurance \cite{Theodoropoulos2011} \cite{Nugroho2011}. Thus
+the word ``technical'' in the metaphor. However, business process gaps may
+negatively affect projects and incur technical debt as a result.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Identification and Measurement}

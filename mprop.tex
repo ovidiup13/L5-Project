@@ -688,13 +688,13 @@ increase the level of software quality.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Management}
 
-Although tools provide managers with an approximate measure of quality of the
-code base, there is a danger in associating technical debt with the results of
-software quality tools. As mentioned in Section \ref{section:def}, there
-are numerous types of technical debt that may have a negative impact on the ROI
-of the business. For example, code quality tools cannot predict that the
-requirements gathering phase was not completed appropriately or that build debt
-is affecting infrastructure costs \cite{Morgenthaler2012}.
+Although tools provide managers with an approximate measure of the quality of
+the code base, there is a danger in associating technical debt with the results
+of software quality tools. As mentioned in Section \ref{section:def}, numerous
+types of technical debt may have a negative impact on the ROI of the business.
+For example, code quality tools cannot predict that the requirements gathering
+phase was not completed appropriately or that build debt is affecting
+infrastructure costs \cite{Morgenthaler2012}.
 
 Additionally, a study by Martini et al. \cite{Martini2017} showed that the
 overall impact of technical debt at the project level is not same as the sum of
@@ -702,28 +702,24 @@ all technical debt items. They assessed four projects and interviewed both
 project managers and developers on their perspective of the impact, on a scale
 from 1 to 10. Although the interviewees had multiple backgrounds and were
 consulted on many development factors (reduced development speed, bugs incurred
-by TD, extra costs, frequency of issues, spread in system, users affected,
-etc.), the results showed that there are other complexities affecting the
-project.
+from technical debt, extra development costs, frequency of issues, users
+affected), the results showed that there are other complexities affecting the
+project such as social and personal factors.
 
-Technical debt should be used as a strategy for quick development of features in
-order to satisfy an immediate business requirement such as TTM. From an
-industrial case study \cite{Lim2012}, a developer described TD as follows:
-"\textit{Technical debt is a balance between software quality and business
-	reality}". Industry practitioners from the same study have acknowledged that
-numerous business requirements have forced them to incur debt. Unfortunately,
-business requirements and decisions are difficult to foresee due to constant
-market deviations, such as the appearance of a new competitor or a new
-technology.
-
-Therefore, technical debt is difficult to predict. However, it is recommended
-that once debt is incurred, it should be made visible \cite{Lim2012}
-\cite{Codabux2013} \cite{Morgenthaler2012}, and paid back as early as possible.
-Cunningham \cite{Cunningham1993} describes it best: "\textit{The danger occurs
-	when the debt is not repaid. Every minute spent on not-quite-right code counts
-	as interest on that debt. Entire engineering organizations can be brought to a
-	stand-still under the debt load of an unconsolidated implementation,
-	object-oriented or otherwise.}".
+In an industrial case study \cite{Lim2012}, a developer described technical debt
+as follows: ``\textit{Technical debt is a balance between software quality and
+business reality}''. Industry practitioners from the same study have
+acknowledged that numerous business requirements have forced them to incur debt.
+Unfortunately, these requirements and decisions are difficult to foresee due to
+constant market deviations, such as the appearance of a new competitor or a new
+technology. Therefore, technical debt is difficult to predict. However, many
+practitioners recommended that once debt is incurred, it should be made visible
+\cite{Lim2012} \cite{Codabux2013} \cite{Morgenthaler2012}, and paid back as
+early as possible. Cunningham \cite{Cunningham1993} describes it best:
+"\textit{The danger occurs when the debt is not repaid. Every minute spent on
+not-quite-right code counts as interest on that debt. Entire engineering
+organizations can be brought to a stand-still under the debt load of an
+unconsolidated implementation, object-oriented or otherwise.}".
 
 Fortunately, project management methodologies such as Agile and its associated
 practices have proved to help reduce and manage technical debt
@@ -732,34 +728,28 @@ following coding standards, refactoring, continuous integration, collective code
 ownership and pair programming have been considered to help tackle technical
 debt.
 
-From a project manager's perspective, technical debt must be managed at cost
-level by iteration. How many resources should the team invest in technical debt
-reduction over the next sprint? What issues should the team tackle first and
-what will the benefits be?
-
-Guo et al. \cite{Guo2011} suggested that technical debt should be managed
-similar to a financial portfolio perspective by encouraging each item to be
+Guo et al. \cite{Guo2011} suggested that technical debt items could be managed
+similarly to a financial portfolio perspective by encouraging each item to be
 viewed as an investment. Debt items would take on the role of assets, with the
-same goals: maximize return and minimize risk. The decision framework would be
-based on historical metrics of all TD items to decide which ones to keep and
+same goals: maximise return and minimise risk. The decision framework could be
+based on historical metrics of all debt items to decide which ones to keep and
 which ones to pay back. However, the approach is difficult to achieve in
 practice due to limitations of the metaphor \cite{Schmid2013}.
 
 Seaman et al. \cite{Seaman2012} proposed four ways to aid in this decision
 making:
 \begin{itemize}
-	\item Cost-Benefit Analysis. The technique is based on principal, interest
+	\item Cost-Benefit Analysis. The technique uses principal, interest
 	      probability (the probability that other work will be more expensive),
-	      interest amount and their associated value (high, medium, low). Using these
-	      it would be possible to estimate items that have low principal (are quick to
-	      repay) and a possible high impact on future additions and changes.
+	      interest amount and their associated value (high, medium, low) to
+	      estimate items that have low principal (are quick to repay) and a
+	      possible high impact on future additions and changes.
 	\item Analytic Hierarchy Process (AHP). Technical debt items are ranked
 	      according to a defined criteria, based on the needs and requirements of the
 	      team. A ranked list of items to work on is created through meetings and
 	      group decisions.
-	\item Portfolio Approach. Guo et al. \cite{Guo2011} has
-	      defined an approach for portfolio debt management. The same approach has
-	      been defined here.
+	\item Portfolio Approach. Guo et al. \cite{Guo2011} have defined an approach
+	      for portfolio debt management.
 	\item Options. This technique considers that each repayment of debt is an
 	      investment in the future. It is similar to a purchase of an option
 	      \cite{option-investopedia} that will be called in the future.
@@ -770,7 +760,7 @@ and methods of management using options, from Cisco System's Agile Office
 data-set. He proposed that The items of the portfolio are the slices of time the
 team invests in a particular activity. For example, a team may allocate 50\% of
 their time to development of new features, 20\% to testing, 15\% to fixing
-defects and 5\% resolving technical debt items. An example could be viewed in
+defects and 5\% resolving technical debt items. An example is displayed in
 Figure \ref{fig:td-options}.
 
 \begin{figure}
@@ -783,8 +773,8 @@ Figure \ref{fig:td-options}.
 Similar to previous stages of technical debt, management is no easy feat.
 Project managers must balance the work effort, costs with benefits, future
 technical impact and return on investment. This can only be possible if
-technical debt is visibile during software evolution \cite{Lim2012}
-\cite{Morgenthaler2012} \cite{Codabux2013}, is continously tracked and managed
+technical debt is visible during software evolution \cite{Lim2012}
+\cite{Morgenthaler2012} \cite{Codabux2013}, is continuously tracked and managed
 appropriately \cite{Cunningham1993}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -792,10 +782,28 @@ appropriately \cite{Cunningham1993}.
 
 Technical debt is a difficult phenomenon to tackle in software engineering.
 Development teams face challenges in identifying, tracking, managing and
-explaining the concept to non-technical stakeholders. However, new tools allow
-the indentification of code smells, tracking and computing of complex indexes
-with focus on quality characteristics of code. Project management practices
-allow for appropriate allocation of resources to refactoring activities.
+explaining the concept to non-technical stakeholders. New tools allow the
+indentification of code smells, tracking and computing of complex indexes
+automatically with focus on quality characteristics of code. There is a danger
+in associating technical debt with the result of the static analysis tools as
+these tools are not complete and do not take all types of debt into
+consideration.
+
+However, code and design debt are the most common type of debt, which developers
+and project managers have to deal on a daily basis. The main challenges is
+measuring the interest that these types of issues accrue over the lifetime of a
+project. It is fair to consider that code and design debt are the primary
+sources that directly affect development time and work effort. Therefore,
+understanding the interest in terms of work effort may identify future
+challenges.
+
+The initial study by Gomes et al. \cite{Gomes2011} provided a good start into
+identifying work effort deviation. However, it was only conducted between major
+releases of a system and does not provide drill-down data on which features,
+code smells and work iterations had the most effect on work effort. This is
+essential information for developers and project managers to prioritise
+refactoring activities in work iterations, especially in an Agile environment
+where responding to change is key \cite{agile-manifesto}.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
@@ -1066,7 +1074,7 @@ assess potential development and business costs. Therefore, understanding it
 from the perspective of developers is vital as they are first-hand involved in
 the implementation of new features. Any extra work spent as a result of previous
 incurred debt increases business costs. If too much debt accrues over the
-lifetime of a project, the entire project may be brought to a standstill.
+lifetime of a project, the entire project may be brought to a stand-still.
 
 As a result, this study will try to understand technical debt from a development
 work effort perspective. It will, possibly, shed light on the types of features

@@ -385,37 +385,40 @@ negatively affect projects and incur technical debt as a result.
 % What are the causes of code TD?
 
 Technical debt may impede future development and delivery of new features if not
-managed appropriately \cite{Cunningham1993}. Cunningham's statement was
-validated by a number of authors by looking at the most "notorious" code smells
-\cite{Fowler1999} and their impact on software projects.
+managed appropriately \cite{Cunningham1993}. Many authors validated Cunningham's
+statement by looking at the most "notorious" code smells \cite{Fowler1999} and
+their impact on software projects.
 
 Olbrich et al. \cite{Olbrich2009} studied the impact of two code smells, God
-class and Shotgun Surgery, on change proneness of class entities and size of
-changes within two open source systems, namely Apache Lucene and Apache Xerces.
-They gathered data on the number of smells in the systems over revisions and the
+class and Shotgun Surgery, on change-proneness of class entities and size of
+changes within two open source systems, Apache Lucene and Apache Xerces. They
+gathered data on the number of smells in the systems over revisions and the
 distribution of changes on classes suffering from these two smells. The authors
-concluded that large systems are more prone to increase the number of code
-smells as it evolves over time and particularly, that classes suffering from the
-God class smell are 4 to 5 times more change prone than other non-smelly
-classes. However, this might be due to the large amount of functionality of the
-class suffering from the smell. Additionally, the study was conducted only on
-open-source systems and the results might not be applicable to commercial
-software. Additionally, due to limitations of the tool used to identify code
-violations, only public Java classes have been analysed.
+concluded that the number of code smells increases linearly with the evolution
+of a system and that classes suffering from the God class smell are 4 to 5 times
+more change prone than other non-smelly classes. However, this might be due to a
+large amount of functionality within the class suffering from the smell.
+Additionally, the study was conducted only on open-source systems and the
+results might not apply to commercial software. Additionally, due to limitations
+of the tool used to identify code violations, only public Java classes have been
+analysed.
 
 In a similar study, Fontana et al. \cite{Fontana2012} studied the impact of
-removing code smells on code quality metrics. The authors looked at three common
-smells: Data class, God class and Duplicated Code. Additional goals were to find
-out which code smell incurs the most TD and whether their impact is related to
-the domain of product being built. The metrics impacted are cohesion, coupling
-and complexity. Proper refactoring practices were applied for each smell whilst
+removing code smells on code quality metrics. The authors looked at three
+familiar smells: Data class, God class and Duplicated Code. Additional goals
+were to find out which code smell incurred the most debt and whether their
+impact was related to the domain of product. The metrics impacted were cohesion,
+coupling and complexity. They applied refactoring practices for each smell and
 the quality metrics were re-evaluated to assess their impact. The results showed
-that refactoring of one code smell may provide benefits for one or more metric
+that refactoring of one code smell might provide benefits for some metric
 qualities but may negatively impact others. Interestingly, they had found that
-the Data Class smell and God class smells frequency may be domain-dependent.
+the Data Class smell and God class smells might be domain-dependent. For
+example, it might be common for the God class smell to appear in algorithm-heavy
+systems, such as computer vision applications, while the data class smell may be
+more predominant in web applications that hold state.
 
 An exploratory study by Khomh et al. \cite{Khomh2009} empirically analysed the
-impact of 29 code smells on the change sets of 9 releases of two open source
+impact of 29 code smells on the changesets of 9 releases of two open source
 systems. They had confirmed the results of the previous studies that code smells
 increase the number of changes that software undergoes during its evolution.
 Additionally, they had found that classes containing more than one code smell
@@ -431,80 +434,77 @@ cyclomatic complexity and God class smells.
 
 % prioritisation by severity - interest probability
 Thus, Charalampidou et al. \cite{Charalampidou2017} introduced a study that
-assessed the interest probability of code smells, where the interest probability
-is the probability of a code smell to introduce extra changes in future
-development. Interest probability was calculated by counting the frequency of
-each code smell and how it correlates with the change proneness of the module
-where it resides. The smells studied were Long Method, Conditional Complexity,
-and Duplicated Code. The results showed that code duplication has the highest
-interest probability due to the number of changes required to maintain future
-development. Additionally, high cyclomatic method complexity increases amount of
-changes.
+assessed the interest probability of code smells, which is the probability of a
+code smell to introduce extra changes in future development. Interest
+probability was calculated by counting the frequency of each code smell and how
+it correlated with the change-proneness of the module where it resides. The
+smells studied were Long Method, Conditional Complexity and Duplicated Code. The
+results showed that code duplication had the highest interest probability due to
+the number of changes required to maintain future development. Additionally,
+high cyclomatic method complexity increased amount of changes.
 
 % prioritisation on context
 Additionally, prioritising code smells with the highest severity might not be
 suitable if the context in which the smell resides will not be referenced in the
 future. Therefore, Sae-Lim et al. \cite{Sae-Lim2016} looked at prioritising code
 smells according to development context to support a \textit{prefactoring}
-stage, where developers clean up code before development of new features. The
-authors calculated a value for each code smell, called the \textit{Context
-	Relevance Index}, based on a list of issues from the project's issue tracker and
-the change descriptors of commits in the project version control. The results of
-their preliminary study returned a list of ranked code smells to be targetted as
-a prefactoring step to implementation. This type of prioritisation may be more
-practical in time constrained projects.
+stage, where developers clean up code before the implementations of new
+features. The authors calculated a value for each code smell, called the
+\textit{Context Relevance Index}, based on a list of issues from the project's
+issue tracker and the change descriptors of commits in the project version
+control. The results of their preliminary study returned a list of ranked code
+smells to be resolved as a pre-refactoring step to implementation.
 
-% conclusion of measurement TODO: add citation here 
-Code smells are technical debt items and increase future development and
-maintainance costs. Industry case studies have shown that TD items are more
-likely to be addressed if made visible by developers within the project's issue
-tracker. However, from the perspective of a project manager, it is of importance
-to know how much effort the team will put into technical debt reduction and
-whether there is an associated business value with this investment. Hence,
-subsequently to the identification stage of code smells, there must exist a
-measurement stage of the amount of work effort technical debt will introduce to
-be resolved and the consequences on productivity over time if the team keeps
-hold of the code violations.
+% conclusion of measurement 
+Code smells are technical debt items that will increase future development
+effort and maintainance costs \cite{Fowler1999}. Industry case studies have
+shown that TD items are more likely to be addressed if made visible by
+developers within the project's issue tracker \cite{Lim2012}. However, from the
+perspective of a project manager, it is essential to understand how much effort
+the team puts into technical debt reduction activities and if there is an
+associated business value. Hence, after the identification stage, there must
+exist a measurement stage of the amount of work effort technical debt will
+introduce and the consequences on productivity over time if the team ignores
+this debt.
 
 % How to quantify code smell impact?
 
 % introduction
-Identification and prioritisation are two of the most important stages when
-dealing with technical debt. Making technical debt items such as code smells
-visible has been recommended by industry practitioners \cite{Lim2012}
-\cite{Codabux2013}. However, participants have struggled to find a way to
-measure technical debt and its cumulative effect over time. This is a
-particularly important aspect of project managers responsibility when planning
-new work for the team. Whilst developers are concerned with the health and
-quality of the codebase, managers are responsible with balancing work by keeping
-developers and stakeholders happy.
+Identification and prioritisation are two of the most critical stages when
+dealing with technical debt. Making technical debt items visible was recommended
+by many industry practitioners \cite{Lim2012} \cite{Codabux2013}. However, some
+have struggled to find a way to measure technical debt and its cumulative effect
+over time. This is a particularly important aspect of project managers
+responsibility when planning new work for the team. While developers are tasked
+with development of new features, managers are responsible for balancing
+feature, bug-fixing, infrastructure and refactoring work.
 
 Specifically, a technical debt item raises two important questions:
 \begin{itemize}
-	\item How much effort does it take to repair it?
-	\item What are the consequences of holding on to it?
+	\item How much effort does it take to repair now? (\textbf{principal})
+	\item What are the future consequences if the team ignores it? (\textbf{interest})
 \end{itemize}
 
 Answering these two questions through a quantified measure is the key to a
 proactive management of technical debt. The measure depicting the cost of paying
-back the debt at the present time is called the \textit{principal} whilst the
-extra cost of development when keeping hold of items is called
-\textit{interest}. Unfortunately, there is no standardised method, due to
-difficulties managing complexities of quantifying work effort and development
-costs. However, a number of studies have appeared over the years that look at
-methods for calculating principal and interest of technical debt items.
+back the debt at the present is called the \textit{principal} while the extra
+cost of development when keeping hold of items is called \textit{interest}.
+Unfortunately, there is no standardised method, due to difficulties managing
+complexities of quantifying work effort and development costs. However, many
+have surfaced over the years that define methods for calculating principal and
+interest of technical debt items.
 
 Bohnet et al. \cite{Bohnet2011} proposed a tool to bridge the gap between
 development teams and corporate managers, by exposing internal system quality
 through the use of \textit{software maps}. A software map is a hierarchical
 2D/3D view of software artefacts, each represented visually through properties
-such as colour, texture and size; each representing a property of quality:
-cyclomatic complexity, lines of code and nesting levels. Such a visualisation
-provides both developers and managers with points of fragility where possible
-bugs may arise and highlights areas of work to address. However, the
-visualisation is technical and might be difficult to convey to stakeholders.
-Additionally, there is no way to calculate the principal and interest of the
-quality issues.
+such as colour, texture and size. The visual properties are associated with a
+property of software quality: cyclomatic complexity, lines of code and nesting
+levels. Such a visualisation provides both developers and managers with points
+of fragility where possible bugs may arise and highlight areas of work to
+address. However, the visualisation is technical and might be difficult to
+convey results to non-technical stakeholders. Additionally, there is no way to
+calculate the principal and interest of the quality issues.
 
 % sqale method for measuring technical debt
 Letouzey et al. \cite{Letouzey2012} proposed a different method, called the SQALE
@@ -514,14 +514,15 @@ characteristics and calculating an overall measure of technical debt. The
 framework proposed consisted of four concepts:
 \begin{itemize}
 	\item Quality Model - defines internal properties of code through a
-	      structured three-layer hierarchy (characteristic, sub-characteristic and
-	      requirement). For example, a characteristic is maintainability,
-	      sub-characteristic is readability and the requirement is no commented
-	      code. The hierarchy is defined as all requirements could be converted into
-	      actionable steps. Each requirement defines a remediation index (cost to
-	      repair code violations) defined in time, work or capital units.
-	\item Analysis Model - measurement of the distance between the current
-	      state of the application and the \"optimized\" quality target.
+	      structured three-layer hierarchy (characteristic, sub-characteristic
+	      and requirement). For example, a characteristic is maintainability,
+	      sub-characteristic is readability, and the requirement is lack of
+	      commented code. The hierarchy is defined such that all requirements
+	      could be converted into actionable steps. Each requirement defines a
+	      remediation index (cost to repair code violations) defined in time,
+	      work or capital units.
+	\item Analysis Model - measurement of the distance between the current state
+	      of the application and the quality target.
 	\item Indices - these are the values that represent the costs of paying
 	      back debt.
 	\item Indicators - provide a visual representation of technical debt indices
@@ -531,68 +532,68 @@ The indices were calculated by summing up the principal of each code violation
 and aggregating up into the sub-characteristics and further to the
 characteristics of the Quality Model. The technical debt index is provided
 through the aggregation of all the characteristics in the Quality Model.
-Although the framework provides a good measurement of technical debt from the
+Although the framework provides a useful measurement of technical debt from the
 principal of code violations, there is no calculation of interest if TD items
 are not reduced and, additionally, it does not take into consideration
-architectural debt issues. Subsequently to their study, the method was
-implemented in SonarQube, which is a continuous code quality tool.
+architectural debt issues. SonarQube, a continuous code quality tool,
+implemented the SQALE method into this product.
 
-Curtis et al. \cite{Curtis2012} summarized the results of a language agnostic
-study on a huge database (365M lines of code) of software projects across 10
+Curtis et al. \cite{Curtis2012} summarised the results of a language agnostic
+study on a vast database (365M lines of code) of software projects across ten
 industries which provided a formula for estimating the principal of TD items.
 The authors used CAST's Application Intelligence platform to statically analyse
-source code, using 1200 rules of coding "best practices". They identified code
+source code, using 1200 rules of coding best practices. They identified code
 violations by analysing source code and aggregated the results into quality
 characteristics, or \textit{health factors}. Scores from each health factor were
-aggregated on a scale of 1 (high risk) to 4 (low risk). The total principal was
-estimated by a formula with three parameters: number of problems, time required
-for each fix and the cost of fixing the issue. Unfortunately, the methodology
-did not support calculation of holding on to code issues. The authors concluded
-that estimating the interest incurred by a TD item was difficult since multiple
-hidden factors influence the results. The term works well with the phenomenon
-since stakeholders think of software quality in terms of business.
+normalised to a scale of 1 (high risk) to 4 (low risk). The total principal was
+estimated by a formula with three parameters: the number of problems, the time
+required for each fix and the cost of fixing the issue. Unfortunately, the
+methodology did not support the calculation of technical debt interest. The
+authors concluded that estimating the interest incurred by a code smell was
+difficult since multiple hidden factors influence the results.
 
 
 Nugroho et al. \cite{Nugroho2011} looked at defining an empirical formula for
 quantifying principal and interest. The authors had completed an empirical
 analysis of 44 projects within the Software Improvement Group (SIG) using TUViT
 software quality assessment method for collecting relevant metrics: lines of
-code, code duplications, etc. The had defined technical debt from an opposite
-perspective, as the changes needed to bring a system from its current quality
-state to the "ideal" quality. They considered technical debt to be equivalent to
-a measurement of repair effort (RE). Calculation of this measure required the
-number of lines of code that need to changed, the estimate work effort of
-rebuilding the feature from scratch and a margin of error. The interest was also
-derived from the extra cost spent on maintainance monthly and yearly, modelled
-against the current state of quality. The conclusions were that the formulas for
-principal and interest could be used in quantifying important business
-information such as Return on Investment (ROI). However, due to the nature of
-ranking system quality (scale of 1-5), it would be a challenge to get ROI right.
+code and duplications. The defined technical debt from an opposite perspective,
+as the changes needed to bring a system from its current quality state to the
+"ideal" quality. They considered technical debt reduction activities to be
+equivalent to a measurement of repair effort (RE). Calculation of this measure
+required the number of lines of code that must be changed, the estimated work
+effort of rebuilding the feature from scratch. The interest was also derived
+from the extra cost spent on maintenance monthly and yearly, modelled on the
+current state of quality. The conclusions were that the formulas for principal
+and interest could be used in quantifying critical business improvement metrics
+such as Return on Investment (ROI). However, due to the limited nature of the
+ranking system quality (scale of 1-5), it might be difficult to assess ROI
+accurately.
 
 
-Another study was conducted by Singh et al. \cite{Singh2014}, where technical
+Another approach was devised by Singh et al. \cite{Singh2014}, where technical
 debt interest payments were calculated by monitoring of development effort and
-code comprehension. The proposed approach monitors time spent by developers in
-classes with known TD items, detected initially by static analysis tools. They
-integrated a tool within the Integrated Development Environment of developers
-and gathered information of class visits, development session times within the
-class. The interest was calculated as the difference between time practically
-spent in classes and the ideal time spent. The results showed that developers
-tend to spend more time in classes containing TD items than others. However, the
-study was conducted with the input of one developer over a period of 9 months.
-Additionally, estimating the ideal time spent on development is a challenging
-task due to multiple personal factors such as level of project knowledge,
-familiarity of environment and programming language, etc. A possible solution
-would be to study development time from a more coarse-grained approach, from a
-feature or release level.
+code comprehension. The proposed approach monitored time spent by developers in
+classes with known technical debt items, detected initially by static analysis
+tools. They integrated a tool within the Integrated Development Environment of
+developers and gathered information of class visits, development session times
+within the class. The difference between time practically spent in classes and
+the ideal time was quantified as the interest. The results showed that
+developers tend to spend more time in classes containing debt items. However,
+the study was conducted with the input of only one developer over a period of 9
+months. Additionally, estimating the ideal time spent on development is a
+challenging task due to social and personal factors such as level of project
+knowledge, environment familiarity and programming language preference. A
+possible solution would be to study development time from a more coarse-grained
+approach, from a feature or release level.
 
 Gomes et al. \cite{Gomes2011} studied the correlation between software
 evolution, defect occurrence and work effort deviation at the release level. The
-authors extracted data from multiple documentation sources such as test plans,
-project plan, weekly reports, project source code, and emails. Using this data,
-they could derive important team information on change, effort, quality, test
-and size of the system. They measured extra work effort by subtracting the
-estimated work time and total work time. Although information at the release
+authors extracted data from documentation sources such as test plans, project
+plan, weekly reports, project source code, and emails. Using this data, they
+could derive important team information on changesets, effort, quality, test and
+size of the system. They measured extra work effort by subtracting the estimated
+work time and total practical work time. Although information at the release
 level offers project managers an idea of work effort deviation, it does not show
 at a granular level what defects slow down development of a new feature and
 where the team should focus their refactoring activities.
@@ -600,10 +601,11 @@ where the team should focus their refactoring activities.
 % Tools?
 
 These types of measurements are useful for project managers when making
-decisions as to what percentage of work on an interation to be assigned on
-refactoring. To keep up with a constantly changing system, there are software
-quality tools used in industry that analyse source changes, highlight possible
-fixes and some have automatic refactoring features.
+decisions as to what refactoring activies should be completed in a work
+iteration and what amount of work effort should be dedicated to these activies.
+To keep up with a constantly changing system, there exist software quality tools
+used in the software development industry that analyse source changes, highlight
+possible code smells along with associated fixes.
 
 % experience report on code smell detection tools
 Fontana et al. \cite{Fontana2011} compiled an initial report on code smell
@@ -612,33 +614,33 @@ object-oriented Java project. The goal of their study was to contrast the
 performance of these tools in relation with known code smells in the source
 code. These tools were: Jdeodorant, PMD, iPlasma, InFusion, StenchBlossom. There
 were numerous code smells initially detected in the project including God Class,
-Data Class, Feature Envy, Brain Method, etc. Their methodology was to apply
+Data Class, Feature Envy, and Brain Method. Their methodology was to apply
 analysis on multiple versions of an object-oriented project, with all code
 smells known beforehand. They have found not all tools identify all the code
-smells in the project and some had different names for the same code smell.
+smells in the project, and some had different names for the same code smell.
 Additionally, some tools shared the same metrics and identified the same
 collection of smells, whereas others had widely different results.
 
 % Technical Debt Indexes Provided by Tools
 Unfortunately, the experimented tools had only the ability to identify code
-violations and link them to the source code. No tool had features on quantifying
-software quality and no mention of a global technical debt measurement. Other
-tools have been implemented which provide such aggregated values. They provide
-the ability to calculate the "quantity" of technical debt as well as a total
-estimated amount of effort for its reduction. However, each tool takes into
-consideration different information sources and calculates the overall TD
-measurement in a different way since there exists no standard method on
-aggregating such a complex phenomenon into a single value.
+violations and link them to the source code. No tool had features for
+quantifying software quality and no mention of a global technical debt
+measurement. Other tools have been implemented which provide such aggregated
+values. They provide the ability to calculate the "quantity" of technical debt
+as well as a total estimated amount of effort for its reduction. However, each
+tool takes into consideration different information sources and calculates the
+overall technical debt measurement differently since there exists no standard
+method on aggregating such a complex phenomenon into a single value.
 
-Hence, a new study by Fontana et al. \cite{Fontana2016}, had looked into the 5
-code quality tools that provide these features, with the goal to understand how
-they calculate technical debt, what sources of information they take into
+Hence, a new study by Fontana et al. \cite{Fontana2016}, had looked into the
+five code quality tools that provide these features, with the goal to understand
+how they calculate technical debt, what sources of information they take into
 account and what features they are missing. The study looked at the following
 tools:
 \begin{itemize}
 	%TODO: add link to pages
 	\item \textbf{CAST}. Defines technical debt cost by taking both principal
-	      and interest into consideration. The principal is calculated by the
+	      and interest in consideration. The principal is calculated by the
 	      severity, time and cost to fix structural flaws. Interest is then computed
 	      by assuming that a business will resolve a fixed percentage of high, medium
 	      and low severity items, times the cost of labour set at 75\$ per hour.
@@ -652,21 +654,22 @@ tools:
 	      build. Additionally, the tool generates two Structural Debt measurements, an
 	      index related to the sum of all dependencies needed to be cut and a cost
 	      measurement calculated from the index multiplied by a time factor.
-	\item \textbf{SonarQube}. A continous code quality tool that uses a large
-	      amount of rules for good coding practices to find code violations. The
-	      resulting code violations are aggregated into software quality characterstic
-	      factors which then compute a Technical Debt Index. The index is expressed in
-	      the of work effort required to fix all issues. Rules and costs may be
-	      modified to support customised business requirements (available in the
-	      commercial version). It implements the SQALE method of measuring technical
-	      debt \cite{Letouzey2012}.
+	\item \textbf{SonarQube}. A continuous code quality tool that uses a
+	      significant amount of rules for good coding practices to find code
+	      violations. The resulting code violations are aggregated into software
+	      quality characteristic factors which then compute a Technical Debt
+	      Index. The index is expressed in the of work effort required to fix
+	      all issues. Rules and costs may be modified to support customised
+	      business requirements (available in the commercial version). It
+	      implements the SQALE method of measuring technical debt
+	      \cite{Letouzey2012}.
 	\item \textbf{Structure101}. Tool specialised in architectural issues of the
 	      codebase, with metrics on multiple levels of granularity such as method,
 	      class, package and project level.
 \end{itemize}
 
 The authors have provided summarized tables that describe all the tools and
-their purpose nicely. The two tables are available in Figure \ref{fig:tools-tables}.
+their purpose. The two tables are available in Figure \ref{fig:tools-tables}.
 
 \begin{figure}
 	\centering
@@ -676,7 +679,7 @@ their purpose nicely. The two tables are available in Figure \ref{fig:tools-tabl
 \end{figure}
 
 Unfortunately, there is no standard method of measuring the total technical of a
-system. This is due to the complex nature of the metaphor and one cannot capture
+system. This is due to the complex nature of the metaphor, and one cannot capture
 all its complexities into a single tool. Therefore, there is no single best tool
 for this purpose, as all take into consideration different sources for metric
 computation and it all comes down to the requirements of the team looking to

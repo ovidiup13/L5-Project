@@ -1,4 +1,6 @@
 \section{Introduction}
+\label{introduction}
+
 The phenomenon of technical debt has matured in recent years with numerous
 scientific experiments conducted for its identification, measurement and
 management. Initially coined in 1993 \cite{Cunningham1993}, it defined the
@@ -51,7 +53,7 @@ organised using the Goal-Question-Metric approach \cite{VanSolingen2002}:
 \end{itemize}
 
 The main questions RQ1 and RQ2 will be tackled by answering their following
-subquestions. The following metrics will be computed and analysed:
+subquestions. Additionally, the following metrics will be computed and analysed:
 \begin{itemize}
 	\item The \textbf{practical work effort} spent on feature implementation
 	      will be calculated by leveraging data from the team's issue tracker and
@@ -64,12 +66,61 @@ subquestions. The following metrics will be computed and analysed:
 	      measurements.
 \end{itemize}
 
+As data candidates, the study will use both open-source and enterprise projects
+in order to understand the differences between the two worlds in the context of
+technical debt work effort. The candidates will be selected according to various
+criteria items such as feature development model, type of version control
+system, availability of estimated work effort metadata and suitability of code
+quality tools. 
+
+Our long term goal is to provide a decision making framework for the management of
+technical debt in software projects. This framework may provide essential
+historical information which might be useful for all roles within the software
+development environment. For example, individual developers could find out how
+much extra effort was spent in areas with a high number of technical debt items.
+Architects could identify architectural bottlenecks quickly whilst project
+managers would assign work based on empirical evidence gathered from past work
+effort. As of January 2018, the study is in initial stages and work is currently
+underway for identifying project candidates and extracting features with
+comparable costs.
+
+In Section \ref{related-work}, we contrast our study with others and how we
+build upon current research. Section \ref{work-plan} highlights the proposed
+work followed by its limitations in Section \ref{limitations}.  
+
 \section{Related Work}
+\label{related-work}
 
-\section{Proposed Work}
+\section{Work Plan}
+\label{work-plan}
 
-\section{Conclusions}
+\section{Limitations}
+\label{limitations}
 
+\section{Conclusion}
+\label{conclusion}
+
+To conclude, technical debt is a phenomenon difficult to measure accurately and
+assess potential development and business costs. Therefore, understanding it
+from the perspective of developers is vital as they are first-hand involved in
+the implementation of new features. Any extra work spent as a result of previous
+incurred debt increases business costs. If too much debt accrues over the
+lifetime of a project, the entire project may be brought to a stand-still.
+
+As a result, this study will try to understand technical debt from a development
+work effort perspective. It will, possibly, shed light on the types of features
+that take a lot of working hours to complete in correlation with the level of
+technical debt at the time of the implementation.
+
+Through measurement and analysis of these two metrics and their relationship,
+developers may discover bottlenecks in productivity, managers may allocate
+appropriate resources for refactoring activities, and business stakeholders may
+become more aware of development concerns. Additionally, it will be interesting
+to find the discrepancy between open-source and proprietary software projects.
+
+To the best of our knowledge, this type of study had not been conducted before
+from the perspective of work effort at such a low granularity level and may
+provide valuable insights into the development patterns of software engineering.
 
 % \end{document}  % This is where a 'short' article might terminate
 

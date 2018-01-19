@@ -1,4 +1,68 @@
 \section{Introduction}
+The phenomenon of technical debt has matured in recent years with numerous
+scientific experiments conducted for its identification, measurement and
+management. Initially coined in 1993 \cite{Cunningham1993}, it defined the
+concept of not quite right code that provided gains in the short term. Thus
+technical debt might be useful in achieving immediate deadlines with possible
+software quality sacrifices that might be negative for future work. Negative
+consequences in the long term could see software complexity growth, the
+prevalence of bugs and defects, decreased team productivity and augmented work
+effort, leading to increased costs of development, infrastructure and
+management. The phenomenon affects daily work of developers, project managers
+and stakeholders of the business.
+
+The definition of technical debt has been updated since then, spanning not just
+activities related to code implementation but the entire software development
+environment. The scientific community identified multiple types of debts
+\cite{Li2015}, each with its advantages and consequences if not handled
+accordingly. Although industry practitioners are aware of its presence
+\cite{Codabux2013} \cite{Lim2012}, there is no standard way of measuring the
+current and future impact of technical debt on development and costs of the
+team. Additionally, due to lack of vocabulary and complexities of the
+phenomenon, developers find it difficult to convey their concerns to project
+stakeholders \cite{Kruchten2012}.
+
+The primary research objective is to analyse work effort of feature
+implementations within software projects with the purpose of identifying extra
+work in the context of technical debt. An additional objective is to understand
+how the measure of technical debt varies with software evolution and what types
+of features incur or reduce its presence. The research questions have been
+organised using the Goal-Question-Metric approach \cite{VanSolingen2002}:
+\begin{itemize}
+	\item \textbf{RQ1}. Can technical debt be measured in the context of work
+	      effort?
+	      \begin{itemize}
+		      \item \textbf{RQ1.1}: What was the difference (delta) in the
+		            estimated work effort for a feature and the practical work
+		            effort?
+		      \item \textbf{RQ1.2}: What was the level of technical debt across
+		            feature changesets at the time of implementation?
+		      \item \textbf{RQ1.3}: How does the work effort delta vary with the
+		            magnitude of technical debt?
+	      \end{itemize}
+	\item \textbf{RQ2}: What are the development patterns surrounding feature
+	      lifecycle?
+	      \begin{itemize}
+		      \item \textbf{RQ2.1}: At what checkpoints in feature development
+		            is technical debt reduction (refactoring) most prominent?
+		      \item \textbf{RQ2.2}: What type of work items incur the most
+		            technical debt?
+	      \end{itemize}
+\end{itemize}
+
+The main questions RQ1 and RQ2 will be tackled by answering their following
+subquestions. The following metrics will be computed and analysed:
+\begin{itemize}
+	\item The \textbf{practical work effort} spent on feature implementation
+	      will be calculated by leveraging data from the team's issue tracker and
+	      version control repository.
+	\item The level of \textbf{technical debt} in the system at the time of
+	      implementation will be measured in terms of code smells and bad coding
+	      practices.
+	\item The \textbf{extra effort} spent on feature implementation will be
+	      derived as the difference between the estimated and practical effort
+	      measurements.
+\end{itemize}
 
 \section{Related Work}
 

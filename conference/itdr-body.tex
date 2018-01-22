@@ -3,21 +3,20 @@
 
 The metaphor of technical debt was first proposed by \cite{Cunningham1993}, in
 reference to the temporary sacrifice of code quality in exchange for the faster
-delivery of features.
- Thus, incurring
-technical debt in might be useful to achieve immediate deadlines but may simultaneously 
- have negative consequences for future work, such as software complexity growth, the
-prevalence of bugs and defects, decreased team productivity and augmented work
-effort, leading to increased costs of development, infrastructure and
-management. The impact of this technical debt may effect the daily work of developers, project managers, product owners and other 
-stakeholders of the business.
+delivery of features. Thus, incurring technical debt in might be useful to
+achieve immediate deadlines but may simultaneously have negative consequences
+for future work, such as software complexity growth, the prevalence of bugs and
+defects, decreased team productivity and augmented work effort, leading to
+increased costs of development, infrastructure and management. The impact of
+this technical debt may effect the daily work of developers, project managers,
+product owners and other stakeholders of the business.
 
 Although initially intended as a metaphor, considerable research has since been
-undertaken into the identification \cite{TODO}, measurement \cite{TODO} and management \cite{TODO} of technical
-debt.  Research has also expanded the scope of the term, such that technical debt spans 
- not just
-activities related to code implementation but the entire software development
-environment \cite{TODO}. The research community identified multiple types of debts
+undertaken into the identification \cite{Lim2012}, measurement \cite{Fontana2016} and
+management \cite{Codabux2013} of technical debt.  Research has also expanded the
+scope of the term, such that technical debt spans not just activities related to
+code implementation but the entire software development environment
+\cite{Power2013}. The research community identified multiple types of debts
 \cite{Li2015}, each with its advantages and consequences if not handled
 accordingly. Although industry practitioners are aware of its presence
 \cite{Codabux2013} \cite{Lim2012}, there is no standard way of measuring the
@@ -27,16 +26,16 @@ phenomenon, developers find it difficult to convey their concerns to project
 stakeholders \cite{Kruchten2012}.
 
 For example, code smells are an example of technical debt items that may
-increase future development effort and maintainance costs
-\cite{Fowler1999}. Industry case studies have shown that such code violations
-are more likely to be addressed if made visible by developers within the
-project's issue tracker \cite{Lim2012}.  However, from the perspective of a
-project manager, it is essential to understand how much effort the team puts
-into technical debt reduction activities and if there is an associated business
-value.  A key concern, therefore, is the ability to measure and make rationale
-cost-benefit analyses of the impact of technical debt on productivity within a
-project, capturing both the principal debt incurred and consequent interest, as
-poor code quality accumulates.
+increase future development effort and maintainance costs \cite{Fowler1999}.
+Industry case studies have shown that such code violations are more likely to be
+addressed if made visible by developers within the project's issue tracker
+\cite{Lim2012}.  However, from the perspective of a project manager, it is
+essential to understand how much effort the team puts into technical debt
+reduction activities and if there is an associated business value.  A key
+concern, therefore, is the ability to measure and make rationale cost-benefit
+analyses of the impact of technical debt on productivity within a project,
+capturing both the principal debt incurred and consequent interest, as poor code
+quality accumulates.
 
 The primary research objective of our work is to identify the accumulated
 additional work effort caused by the presence of technical debt in a code base,
@@ -90,8 +89,8 @@ data. The candidates will be selected according to various criteria items such
 as feature development model, type of version control system, availability of
 estimated work effort metadata and suitability of code quality tools. 
 
-Our long term goal is to provide a decision making framework for the management of
-technical debt in software projects. This framework may provide essential
+Our long term goal is to provide a decision making framework for the management
+of technical debt in software projects. This framework may provide essential
 historical information which might be useful for all roles within the software
 development environment. For example, individual developers could find out how
 much extra effort was spent in areas with a high number of technical debt items.
@@ -100,10 +99,10 @@ managers would assign work based on empirical evidence gathered from past work
 effort. As of January 2018, the study is in its initial stages.
 
 The rest of this paper is structured as follows.  In Section \ref{related-work},
-we contrast our study with others and how we build upon current
-research. Section \ref{work-plan} highlights the proposed work followed by its
-limitations in Section \ref{limitations} and Section \ref{conclusions}
-summarises the proposal.
+we contrast our study with others and how we build upon current research.
+Section \ref{work-plan} highlights the proposed work followed by its limitations
+in Section \ref{limitations} and Section \ref{conclusions} summarises the
+proposal.
 
 \section{Related Work}
 \label{related-work}
@@ -161,12 +160,12 @@ Gomes et al. \cite{Gomes2011} studied the correlation between software
 evolution, defect occurrence and work effort deviation at the release level. The
 authors extracted data from documentation sources such as test plans, project
 plan, weekly reports, project source code, and emails. Using this data, they
-could derive important team information on change-sets, effort, quality, test and
-size of the system. They measured extra work effort by subtracting the estimated
-work time and total practical work time. Although information at the release
-level offers project managers an idea of work effort deviation, it does not show
-at a granular level what defects slow down development of a new feature and
-where the team should focus their refactoring activities.
+could derive important team information on change-sets, effort, quality, test
+and size of the system. They measured extra work effort by subtracting the
+estimated work time and total practical work time. Although information at the
+release level offers project managers an idea of work effort deviation, it does
+not show at a granular level what defects slow down development of a new feature
+and where the team should focus their refactoring activities.
 
 The initial study by Gomes et al. \cite{Gomes2011} provided a good start into
 identifying work effort deviation. However, it only analysed major releases of a
@@ -205,20 +204,22 @@ The approach of this study will consist of the following steps:
 	      evolution of the data candidates. Ideally, events were tracked in the
 	      form of tickets with attached metadata, such as:
 	      \begin{itemize}
-		      \item \textit{Priority} will give a sense of importance to the work item.
-		            Finding development patterns based on this field will be unique.
-		            Will developers take more time to design and implement an
-		            important work item? Alternatively, are they pressured to deliver
-		            and thus introduce more debt in the system?
-		      \item \textit{Estimated Work Effort} is one of the most important
-		            fields for calculation of extra work effort. This provides the
-		            theoretical work time on which to compare the practical work time
-		            measured in this experiment. It may be in the form or work hours
-		            or story points.
-		      \item The opening and closing \textit{timestamps} of a ticket may
-		            offer valuable information for measuring the practical work effort
-		            in hours, if developers change the status of tickets as
-		            development progresses.
+		      \item \textit{Priority} will give a sense of importance to the
+		            work item. Finding development patterns based on this
+		            field will be unique. Will developers take more time to
+		            design and implement an important work item?
+		            Alternatively, are they pressured to deliver and thus
+		            introduce more debt in the system?
+		      \item \textit{Estimated Work Effort} is one of the most
+		            important fields for calculation of extra work effort.
+		            This provides the theoretical work time on which to
+		            compare the practical work time measured in this
+		            experiment. It may be in the form or work hours or story
+		            points.
+		      \item The opening and closing \textit{timestamps} of a ticket
+		            may offer valuable information for measuring the
+		            practical work effort in hours, if developers change the
+		            status of tickets as development progresses.
 	      \end{itemize}
 
 	      Unfortunately this information is not always available. The most
@@ -228,35 +229,35 @@ The approach of this study will consist of the following steps:
 	      field.
 
 	\item \textit{Identify version control checkpoints}.\\
-	      Completed work items can be tracked in the version control repository
-	      of the project. Identifying checkpoints will aid in understanding the
-	      amount of effort put into the work item by the team and how it
-	      diverges from the initial estimation.
+	      Completed work items can be tracked in the version control
+	      repository of the project. Identifying checkpoints will aid in
+	      understanding the amount of effort put into the work item by the
+	      team and how it diverges from the initial estimation.
 
-	      Ideally, the team should have links between revisions of the codebase and
-	      the work item in the issue tracker. This would make it easier to find the
-	      associated checkpoints.
+	      Ideally, the team should have links between revisions of the
+	      codebase and the work item in the issue tracker. This would make it
+	      easier to find the associated checkpoints.
 
 	\item \textit{Measure the amount of work effort for each work item}.\\
 	      The purpose is to understand how many practical changes a work item
-	      has induced over its lifetime. This could be done in two ways: at the
-	      code and issue tracker levels.
+	      has induced over its lifetime. This could be done in two ways: at
+	      the code and issue tracker levels.
 
 	      At the code level, it is possible to understand the level of work
 	      effort involved by aggregating the number of changes a work item has
-	      suffered. A change-set consists of the number of lines of code added,
-	      deleted and modified. Granularity can be at the pull request, commit,
-	      class and method level. Version control systems such as Git provide
-	      features for retrieving change-sets between revisions.
+	      suffered. A change-set consists of the number of lines of code
+	      added, deleted and modified. Granularity can be at the pull request,
+	      commit, class and method level. Version control systems such as Git
+	      provide features for retrieving change-sets between revisions.
 
 	      However, identifying work effort from change-sets is a challenging
-	      task. It is difficult to quantify in working hours since many changes
-	      may be generated automatically by modern refactoring tools in the
-	      integrated development environment. An alternative solution is to
-	      compare the timestamps between the first and the last commit. The
-	      temporal difference might provide a practical estimate of work effort
-	      to resolve the issue. Unfortunately, this case only works when a
-	      developer works on a single issue at a time.
+	      task. It is difficult to quantify in working hours since many
+	      changes may be generated automatically by modern refactoring tools
+	      in the integrated development environment. An alternative solution
+	      is to compare the timestamps between the first and the last commit.
+	      The temporal difference might provide a practical estimate of work
+	      effort to resolve the issue. Unfortunately, this case only works
+	      when a developer works on a single issue at a time.
 
 	      At the ticket level, one can understand the amount of work effort
 	      realised by a team member. Ideally, the team enforces developers to
@@ -307,9 +308,10 @@ The approach of this study will consist of the following steps:
 
 	\item \textit{Analysis and discussion of results}.\\
 	      The three data sources can be linked together once all steps are
-	      fulfilled. Extra work can be correlated to issue tracking information
-	      and code quality at the time of development. Technical debt could be
-	      classified by the type, priority, code smells and assignee.
+	      fulfilled. Extra work can be correlated to issue tracking
+	      information and code quality at the time of development. Technical
+	      debt could be classified by the type, priority, code smells and
+	      assignee.
 \end{enumerate}
 
 Unfortunately, the proposed work is not as straightforward. There are many
@@ -321,21 +323,21 @@ data sources. Therefore, we will make some assumptions to simplify the process:
 	\item Only one developer is assigned to an issue.
 	\item A developer works on maximum one issue at a time.
 	\item The team uses an issue tracker consistently. Developers change the
-	      status of the ticket according to their current development progress.
-	      For example, if a team member got started on a work item, she would
-	      set the ticket status to ``In Progress''. Respectively, she would mark
-	      the ticket as ``Closed'' if development ceased, her changes were
-	      reviewed and integrated into the main branch.
+	      status of the ticket according to their current development
+	      progress. For example, if a team member got started on a work item,
+	      she would set the ticket status to ``In Progress''. Respectively,
+	      she would mark the ticket as ``Closed'' if development ceased, her
+	      changes were reviewed and integrated into the main branch.
 	\item The team estimates the theoretical amount of work necessary to
 	      implement a feature or fix a bug. This measure is attached to each
 	      work item selected.
 	\item Development time is between 9 AM to 6 PM UTC. Only work items with
 	      opening and closing status between these two values are taken into
-	      consideration. For example, if a developer starts work on a feature on
-	      Monday 5 PM and finishes it by Tuesday 1 PM, then development time
-	      will be considered to be 4 hours (1 hour Monday, 3 hours Tuesday).
-	      This assumption will simplify the calculation of reasonable work hours
-	      for work items.
+	      consideration. For example, if a developer starts work on a feature
+	      on Monday 5 PM and finishes it by Tuesday 1 PM, then development
+	      time will be considered to be 4 hours (1 hour Monday, 3 hours
+	      Tuesday). This assumption will simplify the calculation of
+	      reasonable work hours for work items.
 \end{itemize}
 
 These assumptions will reduce the amount of real-world complexity in the
@@ -371,9 +373,10 @@ following threaths to the validity of our future results:
 	\item The assumptions made in the previous section may not reflect the
 	      real work environment. For instance, developers may be working
 	      overtime if under the pressure of a release schedule.
-	\item There are many types and complexities of technical debt which were not
-	      included. Requirements, architectural, build, infrastructure and test
-	      have an influence on the amount of effort for finalising a feature.
+	\item There are many types and complexities of technical debt which were
+	      not included. Requirements, architectural, build, infrastructure and
+	      test have an influence on the amount of effort for finalising a
+	      feature.
 \end{itemize}
 
 Although there are risks associated with measurements, care will be taken to

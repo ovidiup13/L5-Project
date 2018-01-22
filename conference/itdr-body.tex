@@ -3,12 +3,12 @@
 
 The metaphor of technical debt was first proposed by \cite{Cunningham1993}, in
 reference to the temporary sacrifice of code quality in exchange for the faster
-delivery of features. Thus, incurring technical debt in might be useful to
-achieve immediate deadlines but may simultaneously have negative consequences
-for future work, such as software complexity growth, the prevalence of bugs and
-defects, decreased team productivity and augmented work effort, leading to
-increased costs of development, infrastructure and management. The impact of
-this technical debt may effect the daily work of developers, project managers,
+delivery of features. Thus, incurring technical debt might be useful to achieve
+immediate deadlines but may simultaneously have negative consequences for future
+work, such as software complexity growth, the prevalence of bugs and defects,
+decreased team productivity and augmented work effort, leading to increased
+costs of development, infrastructure and management. The impact of this
+technical debt may affect the daily work of developers, project managers,
 product owners and other stakeholders of the business.
 
 Although initially intended as a metaphor, considerable research has since been
@@ -26,7 +26,7 @@ phenomenon, developers find it difficult to convey their concerns to project
 stakeholders \cite{Kruchten2012}.
 
 For example, code smells are an example of technical debt items that may
-increase future development effort and maintainance costs \cite{Fowler1999}.
+increase future development effort and maintenance costs \cite{Fowler1999}.
 Industry case studies have shown that such code violations are more likely to be
 addressed if made visible by developers within the project's issue tracker
 \cite{Lim2012}.  However, from the perspective of a project manager, it is
@@ -73,7 +73,7 @@ for our work, organised using the Goal-Question-Metric approach
 Our intention is to adopt an empirical approach to the identification of the
 impact of technical debt on the implementation of future features in existing
 software code bases.  To do this, we will calculate the level of
-\textbf{technical debt} in the system for each change set recorded in a
+\textbf{technical debt} in the system for each change-set recorded in a
 project's version control repository.  We will also record calculate the
 \textbf{practical work effort} spent on feature implementation linking data from
 a project's issue tracker and version control repository and thus estimating the
@@ -89,7 +89,7 @@ data. The candidates will be selected according to various criteria items such
 as feature development model, type of version control system, availability of
 estimated work effort metadata and suitability of code quality tools. 
 
-Our long term goal is to provide a decision making framework for the management
+Our long-term goal is to provide a decision-making framework for the management
 of technical debt in software projects. This framework may provide essential
 historical information which might be useful for all roles within the software
 development environment. For example, individual developers could find out how
@@ -130,12 +130,13 @@ with the change-proneness of the module where it resides. The smells studied
 were Long Method, Conditional Complexity and Duplicated Code. The results showed
 that code duplication had the highest interest probability due to the number of
 changes required to maintain future development. Additionally, high cyclomatic
-method complexity increased amount of changes. Fontana et al. \cite{Fontana2012}
-studied what was the impact of removing code smells on code quality metrics such
-as cohesion, coupling and complexity and, which smell incurred the most debt.
-They applied refactoring activities for each smell and the metrics were
-re-evaluated. The results showed that refactoring of one code smell might
-provide benefits for some metric qualities but may negatively impact others.
+method complexity increased the number of changes. Fontana et al.
+\cite{Fontana2012} studied what was the impact of removing code smells on code
+quality metrics such as cohesion, coupling and complexity and, which smell
+incurred the most debt. They applied refactoring activities for each smell and
+the metrics were re-evaluated. The results showed that refactoring of one code
+smell might provide benefits for some metric qualities but may negatively impact
+others.
 
 The authors studied the impact of code smells and their removal on the software
 quality metrics output by code quality tools. Although their research has
@@ -154,7 +155,7 @@ ideal time. However, the study was conducted with the input of only one
 developer over a period of 9 months. Additionally, estimating the ideal time
 spent on development is a challenging task due to social and personal factors
 such as level of project knowledge, environment familiarity and programming
-language preference. In contrast, we aim 
+language preference.
 
 Gomes et al. \cite{Gomes2011} studied the correlation between software
 evolution, defect occurrence and work effort deviation at the release level. The
@@ -167,7 +168,7 @@ release level offers project managers an idea of work effort deviation, it does
 not show at a granular level what defects slow down development of a new feature
 and where the team should focus their refactoring activities.
 
-The initial study by Gomes et al. \cite{Gomes2011} provided a good start into
+The initial study by Gomes et al. \cite{Gomes2011} provided a good start to
 identifying work effort deviation. However, it only analysed major releases of a
 system and did not provide drill-down information on iterations and code commits
 on which features and code smells had the most effect on work effort. This is
@@ -348,14 +349,14 @@ projects, on-premise interviews with teams may help validate the results.
 \label{limitations}
 
 The experimental design reported in this paper is a work in progress, although
-we already recognise limitations to the approach.  For example, t here are ten
+we already recognise limitations to the approach. For example, there are ten
 types of debt, as identified in a mapping study by Li et al.  \cite{Li2015}. In
-this work, we only aim to examine code and smell debt, as they are the most
+this work, we only aim to examine code and design debt, as they are the most
 prominent and that developers and project managers have to deal on a daily
 basis. The primary challenge is measuring the implementation interest that
 accrues over the lifetime of a project. Additionally, with the introduction of
 assumptions to limit the complexity of the study, we have identified the
-following threaths to the validity of our future results:
+following threats to the validity of our future results:
 
 \begin{itemize}
 	\item Data candidates may not have sufficient information related to the
@@ -389,9 +390,9 @@ especially true in the case of quantifying work effort.
 To conclude, technical debt is a phenomenon difficult to measure accurately and
 assess potential development and business costs. Therefore, understanding it
 from the perspective of developers is vital as they are first-hand involved in
-the implementation of new features. Any extra work spent as a result of previous
-incurred debt increases business costs. If too much debt accrues over the
-lifetime of a project, the entire project may be brought to a stand-still.
+the implementation of new features. Any extra work spent as a result of
+previously incurred debt increases business costs. If too much debt accrues over
+the lifetime of a project, the entire project may be brought to a stand-still.
 
 As a result, this study will try to understand technical debt from a development
 work effort perspective. It will, possibly, shed light on the types of features
@@ -404,11 +405,11 @@ analysing version control and issue tracking metadata. Subsequently, we will use
 a code quality tool to identify technical debt items such as code smells with
 all revisions surrounding each feature implementation. Lastly, we will correlate
 the data sources gathered and verify whether technical debt items have an impact
-of work effort feature implementation.
+on work effort feature implementation.
 
-Through our contributions we hope to help developers discover bottlenecks in
+Through our contributions, we hope to help developers discover bottlenecks in
 productivity, managers to allocate appropriate resources for refactoring
-activities, and business stakeholders to become more aware of development
+activities and business stakeholders to become more aware of development
 concerns.
 
 % \end{document}  % This is where a 'short' article might terminate

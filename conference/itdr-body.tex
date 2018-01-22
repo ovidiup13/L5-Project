@@ -26,21 +26,29 @@ team. Additionally, due to lack of vocabulary and complexities of the
 phenomenon, developers find it difficult to convey their concerns to project
 stakeholders \cite{Kruchten2012}.
 
-For example, code smells are an example of technical debt items that may increase future
-development effort and maintainance costs \cite{Fowler1999}. Industry case
-studies have shown that such code violations are more likely to be addressed if
-made visible by developers within the project's issue tracker \cite{Lim2012}.
-However, from the perspective of a project manager, it is essential to
-understand how much effort the team puts into technical debt reduction
-activities and if there is an associated business value.  A key concern, therefore, is the ability to measure and make rationale cost-benefit analyses of the impact of technical debt on productivity within a project, capturing both the principal debt incurred and consequent interest, as poor code quality accumulates.
+For example, code smells are an example of technical debt items that may
+increase future development effort and maintainance costs
+\cite{Fowler1999}. Industry case studies have shown that such code violations
+are more likely to be addressed if made visible by developers within the
+project's issue tracker \cite{Lim2012}.  However, from the perspective of a
+project manager, it is essential to understand how much effort the team puts
+into technical debt reduction activities and if there is an associated business
+value.  A key concern, therefore, is the ability to measure and make rationale
+cost-benefit analyses of the impact of technical debt on productivity within a
+project, capturing both the principal debt incurred and consequent interest, as
+poor code quality accumulates.
 
-The primary research objective is to identifying the extra work incurred due to
-the presence of technical debt, through an empirical analysis of work effort of
-feature implementations within software projects.  An additional objective is to
-understand how the measure of technical debt varies with software evolution and
-what types of features incur or reduce its presence.  The research questions
-have been organised using the Goal-Question-Metric approach
-\cite{VanSolingen2002}:
+The primary research objective of our work is to identify the accumulated
+additional work effort caused by the presence of technical debt in a code base,
+through an empirical analysis of work effort of feature implementations within
+software projects.  Our intention is to determine whether a decision to delay
+repaying technical debt through refactoring work creates additional work effort
+in the longer term to repay that debt. I.e. does technical debt really incur
+interest to the principal, and if so, in what way?  An additional objective is
+to understand how the measure of technical debt varies with software evolution
+and what types of features incur or reduce its presence.  The research questions
+for our work, organised using the Goal-Question-Metric approach
+\cite{VanSolingen2002}, are as follows:
 
 \begin{itemize}
 	\item \textbf{RQ1}. Can technical debt be measured in the context of work
@@ -91,16 +99,19 @@ Architects could identify architectural bottlenecks quickly whilst project
 managers would assign work based on empirical evidence gathered from past work
 effort. As of January 2018, the study is in its initial stages.
 
-The rest of this paper is structured as follows.
-In Section \ref{related-work}, we contrast our study with others and how we
-build upon current research. Section \ref{work-plan} highlights the proposed
-work followed by its limitations in Section \ref{limitations}.  
+The rest of this paper is structured as follows.  In Section \ref{related-work},
+we contrast our study with others and how we build upon current
+research. Section \ref{work-plan} highlights the proposed work followed by its
+limitations in Section \ref{limitations} and Section \ref{conclusions}
+summarises the proposal.
 
 \section{Related Work}
 \label{related-work}
 
 There are a number of studies which have investigated the impact of technical
-debt items on the costs of software projects. 
+debt items on the costs of software projects.  This section reviews this work
+and relates the existing state of the art to our proposed experiment to
+empirically measure the work effort interest accumulated by technical debt.
 
 Olbrich et al. \cite{Olbrich2009} studied the impact of two code smells, God
 class and Shotgun Surgery, on change-proneness of class entities and size of
@@ -165,7 +176,7 @@ essential information for developers and project managers to prioritise
 refactoring activities in work iterations, especially in an Agile environment
 where responding to change is critical \cite{agile-manifesto}.
 
-\section{Work Plan}
+\section{Experimental Design}
 \label{work-plan}
 
 This study focuses on finding the relation between technical debt and work

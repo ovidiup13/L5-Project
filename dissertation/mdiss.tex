@@ -1,6 +1,4 @@
-%% example.tex
-%% Jeremy Singer
-%% 16 Oct 12
+%% example.tex % Jeremy Singer % 16 Oct 12
 
 \documentclass{mpaper}
 
@@ -32,16 +30,14 @@ evaluation result and relevance.
   \item Section descriptions
 \end{enumerate}
 
-% The precise structure of an MSci paper is not mandated, but it should
-% probably cover in detail the following aspects of the project.
-% \begin{enumerate}
-% \item General description of the problem, motivation, relevance
-% \item Background information, possibly including a literature survey
-% \item Description of approach taken to solve the problem, including
-%   high-level design and lower-level implementation details as appropriate
-% \item Evaluation, qualitative or quantitative as appropriate
-% \item Conclusion, including scope for future work
-% \end{enumerate}
+% The precise structure of an MSci paper is not mandated, but it should probably
+% cover in detail the following aspects of the project. \begin{enumerate} \item
+% General description of the problem, motivation, relevance \item Background
+% information, possibly including a literature survey \item Description of
+% approach taken to solve the problem, including high-level design and
+% lower-level implementation details as appropriate \item Evaluation,
+% qualitative or quantitative as appropriate \item Conclusion, including scope
+% for future work \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,7 +46,7 @@ evaluation result and relevance.
 \label{background}
 
 \begin{enumerate}
-  \item literature review (a bit more compressed compared to )
+  \item literature review (a bit more compressed compared to proposal)
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,22 +55,45 @@ evaluation result and relevance.
 \section{Methodology}
 \label{methodology}
 
-\begin{enumerate}
-  \item Experimental design
-\end{enumerate}
-
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Experimental Design}
 \label{experimental-design}
 
+Describe a high level design of the experimental setup.
+
 \begin{enumerate}
-  \item Describe the data sources to be aggregated e.g. issue tracker, version control, static analysis
-  \item Describe the criteria for data candidates selection 
+  \item Describe the data sources to be aggregated e.g. issue tracker, version
+  control, static analysis
+  \item Describe the criteria for data candidates selection
+  \item Data gathering process design
 \end{enumerate}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsection{Methods}
-\label{}
+\subsection{Data collection}
+\label{data-collection}
+
+Describe the data model and low level implementation details of the data
+collection process.
+
+\begin{enumerate}
+  \item Discuss the data model with entities such as repository, commit, issue,
+  bug, etc. 
+  \item Discuss the data gathering process. What fields were gathered? What is
+  the difference between Github issues and Jira issues?
+  \item Mention data sources, tools, optimisations for data candidates
+\end{enumerate}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Data processing}
+\label{data-processing}
+
+Describe the data processing implementation details for calculating technical
+debt, work effort using both commits and tickets.
+
+\begin{itemize}
+  \item Calculation of work effort: using commit timestamps and ticket timestamps.
+  \item Calculation of technical debt: added, removed, total pain.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -82,8 +101,8 @@ evaluation result and relevance.
 \section{Results}
 \label{results}
 
-Graphs are always good. I recommend getting to grips with Matlab, R or
-gnuplot rather than exporting horribly Excel bitmapped graphs.
+Provide the results of the data processing step. Aggregate the data into tables
+based on the repositories chosen and provide a couple of example graphs. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -91,7 +110,7 @@ gnuplot rather than exporting horribly Excel bitmapped graphs.
 \section{Discussion}
 \label{discussion}
 
-Discuss the results and limitations to the experiment.
+Discuss the results and limitations of the experiment.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Threats to validity}
@@ -119,8 +138,8 @@ this area of research.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bf Acknowledgments.}
-This is optional; it is a location for you to thank people
+{\bf Acknowledgments.} This is optional; it is a location for you to thank
+people
 
 \bibliographystyle{abbrv}
 \bibliography{mdiss}

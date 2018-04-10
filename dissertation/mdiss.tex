@@ -1,12 +1,12 @@
 %% example.tex % Jeremy Singer % 16 Oct 12
 
-\documentclass{article}
+\documentclass{mpaper}
 
 \begin{document}
 
 \title{Is Technical Debt Real?}
 \author{Ovidiu Popoviciu}
-% \matricnum{2036725p}
+\matricnum{2036725p}
 
 
 \maketitle
@@ -55,18 +55,91 @@ evaluation result and relevance.
 \section{Methodology}
 \label{methodology}
 
+In this paper, we present an approach for aggregating development team data
+sources such as project management tools, version control logs and static
+analysis results to produce a timeline of technical debt and work effort over
+the evolution of a software product. Our motivation is to empirically find a
+correlation between technical debt and the amount of work effort involved in
+development of work items. In the absence of work tracking information,
+aggregation of such data sources might provide a relatively accurate estimation
+of the number of hours a developer has put in.
+
+When developing our approach, we completed the following steps:
+\begin{enumerate}
+  \item Designing an initial data model.
+  \item Selecting data candidates (projects) that satisfy specific criteria.
+  \item Collecting data from issue tracker, version control logs and generating
+  static analysis output.
+  \item Processing and refining data for analysis. 
+\end{enumerate}
+
+Section \ref{experimental-design} dives into the data model while section
+\ref{data-selection} describes the data candidates criteria and selected
+projects. The data collection process is described in Section
+\ref{data-collection} while the calculation of work effort and technical debt is
+described in Section \ref{data-processing}.
+
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Experimental Design}
 \label{experimental-design}
 
-Describe a high level design of the experimental setup.
+The initial step was to design a model of the aggregated data and to understand
+what information is required from each data source. We considered the following
+data sources relevant to the collection of data:
+
+\begin{itemize}
+  \item A \emph{Version Control System} is a system that manages changes to the
+  source code. As work items are implemented, the system logs all changes made
+  by the development team. Such logs are indispensable because they provide
+  detailed information on the work item associated with the change, author,
+  timestamps and number of lines added, deleted or modified. The most popular
+  version control tool is Git \emph{REFERENCE}. GitHub \emph{REFERENCE} and
+  BitBucket \emph{REFERENCE} are hosting services for source code management.
+
+  \item \emph{Project Management Tools} are software systems that help teams
+  track, manage and collaborate on various types of units of work. A report of
+  the work item is represented in the form of a \emph{ticket} and contains
+  information on its status, assignee, complexity, deadlines, comments and many
+  more. The metadata of the ticket may contain other information such as status
+  transition timestamps, which gives an estimate of the time when a work item
+  has started and finished. A common example of a complex project management
+  tool is Jira \emph{REFERENCE}. GitHub and BitBucket also provide an issue
+  tracking tool with each code repository, although they do not provide such
+  extensive features as Jira.
+  
+  \item \emph{Static Analysis Tools} are tools that analyse the source code to
+  check for quality issues, security flaws and adherence to industry standards.
+  The output of static analysis tools are generally weaknesses and bugs that may
+  lead to vulnerabilities of the product. These weaknesses are the ``lowest
+  level'' of technical debt and the ones which developers have to encounter
+  daily. Therefore, the output of analysis tools is vital to the calculation of
+  technical debt. There are many examples of static analysis tools: SonarQube,
+  Spotbugs (formerly Findbugs), CAST, Sonargraph, etc.
+
+\end{itemize}
+
+Such changes can be directly linked to the appropriate work item in the project
+management tool.
+
+Although static analysis tools provide an approximate measure of the quality of
+the code base, there is a danger in associating technical debt with their
+output. As mentioned in section \ref{background}, numerous types of technical
+debt exist that could impact the development effort of a work item. For example,
+static analysis tools cannot predict that the requirements gathering phase was
+not completed appropriately. 
 
 \begin{enumerate}
   \item Describe the data sources to be aggregated e.g. issue tracker, version
   control, static analysis
-  \item Describe the criteria for data candidates selection
-  \item Data gathering process design
+  \item Describe the data model
 \end{enumerate}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsection{Candidates selection}
+\label{data-selection}
+
+This section describes the projects that were selected and the criteria that
+went into the thought process when selecting such items.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Data collection}
@@ -82,6 +155,20 @@ collection process.
   the difference between Github issues and Jira issues?
   \item Mention data sources, tools, optimisations for data candidates
 \end{enumerate}
+
+% intro
+In this case, some of the data sources are distributed and use
+different underlying technologies whereas others must be generated if non
+existent. Data is queried from these remote systems and aggregated into a single
+source of truth.
+
+% body
+
+% conclusion
+Furthermore, to understand the correlation between work effort
+and technical debt we process the data further, as explained in Section
+\ref{data-processing}.
+
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Data processing}

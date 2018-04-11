@@ -84,49 +84,98 @@ described in Section \ref{data-processing}.
 \label{experimental-design}
 
 The initial step was to design a model of the aggregated data and to understand
-what information is required from each data source. We considered the following
-data sources relevant to the collection of data:
+what type of information each selected data source will provide. We consider the
+following data sources relevant to the collection of data:
 
 \begin{itemize}
   \item A \emph{Version Control System} is a system that manages changes to the
   source code. As work items are implemented, the system logs all changes made
-  by the development team. Such logs are indispensable because they provide
-  detailed information on the work item associated with the change, author,
-  timestamps and number of lines added, deleted or modified. The most popular
-  version control tool is Git \emph{REFERENCE}. GitHub \emph{REFERENCE} and
-  BitBucket \emph{REFERENCE} are hosting services for source code management.
+  by the development team. The most popular version control tool is Git
+  \emph{REFERENCE}. GitHub \emph{REFERENCE} and BitBucket \emph{REFERENCE} are
+  hosting services for source code management.
 
   \item \emph{Project Management Tools} are software systems that help teams
-  track, manage and collaborate on various types of units of work. A report of
-  the work item is represented in the form of a \emph{ticket} and contains
-  information on its status, assignee, complexity, deadlines, comments and many
-  more. The metadata of the ticket may contain other information such as status
-  transition timestamps, which gives an estimate of the time when a work item
-  has started and finished. A common example of a complex project management
-  tool is Jira \emph{REFERENCE}. GitHub and BitBucket also provide an issue
-  tracking tool with each code repository, although they do not provide such
-  extensive features as Jira.
+  track, manage and collaborate on various types of units of work. A common
+  example of a complex project management tool is Jira \emph{REFERENCE}. GitHub
+  and BitBucket also provide an issue tracking tool with each code repository,
+  although they do not provide such extensive features as Jira.
   
   \item \emph{Static Analysis Tools} are tools that analyse the source code to
-  check for quality issues, security flaws and adherence to industry standards.
-  The output of static analysis tools are generally weaknesses and bugs that may
-  lead to vulnerabilities of the product. These weaknesses are the ``lowest
-  level'' of technical debt and the ones which developers have to encounter
-  daily. Therefore, the output of analysis tools is vital to the calculation of
-  technical debt. There are many examples of static analysis tools: SonarQube,
+  check for quality issues, security flaws and adherence to industry
+  standards.There are many examples of static analysis tools: SonarQube,
   Spotbugs (formerly Findbugs), CAST, Sonargraph, etc.
 
 \end{itemize}
 
-Such changes can be directly linked to the appropriate work item in the project
-management tool.
+All the data sources contain detailed information related to the set of changes
+that the source code has suffered, the requirement that the developer is working
+on and the possible quality issues she will encounter during implementation. In
+many cases, these systems have been implemented by different producers and thus
+are generally ``separated''. Therefore, data must be collected from each system,
+in isolation. However, forms of ``light integrations'' exists for development
+productivity purposes such as linking of work items to change-sets by specifying
+the work item ID in the change-set description message. Such provide guidance on
+how many change-sets the source code has suffered during the implementation of a
+work item.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection*{Version Control}
+\label{version-control}
+
+The version control system keeps track and logs all changes that a source code
+has suffered over the evolution of the product. Such logs are indispensable
+because they provide detailed information on the work item associated with the
+change. If the system allows integrations with project management tools, then
+changes can be directly linked to the appropriate work item.
+
+Git \emph{REFERENCE} is a popular version control tool that tracks changes of
+the source code using branches and commits. A branch is a ``development line''
+and each project has at least one main development branch, commonly named
+\emph{master}. The branch contains a stream of small units of work, called
+commits, which are the snapshots of the source code at a particular point in
+time. Additionally, each commit contains relevant metadata with the following
+fields:
+
+\begin{itemize}
+  \item Object ID - is the identifier of the snapshot;
+  \item Author - the name (or username) of the developer that committed the
+  change;
+  \item Message - a short description of the change-set;
+  \item Timestamp - the time when the commit was created;
+  \item Diff - the set of changes that the source code has suffered, when
+  compared to the previous commit. 
+\end{itemize}
+
+For a project managed using Git, all the metadata can be easily retrieved and
+snapshots can be accessed at any time. This makes Git a powerful tool in
+studying the history of changes of a software product.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection*{Project Management}
+\label{project-management}
+
+A report of the work item is represented in the form of a \emph{ticket} and
+contains information on its status, assignee, complexity, deadlines, comments
+and many more. The metadata of the ticket may contain other information such
+as status transition timestamps, which gives an estimate of the time when a
+work item has started and finished.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection*{Static Analysis}
+\label{static-analysis}
+
+The output of static analysis tools are generally weaknesses and bugs that may
+lead to vulnerabilities of the product. These weaknesses are the ``lowest
+level'' of technical debt and the ones which developers have to encounter
+daily \emph{REFERENCE}. Therefore, the output of analysis tools is vital to
+the calculation of technical debt.
 
 Although static analysis tools provide an approximate measure of the quality of
 the code base, there is a danger in associating technical debt with their
 output. As mentioned in section \ref{background}, numerous types of technical
 debt exist that could impact the development effort of a work item. For example,
 static analysis tools cannot predict that the requirements gathering phase was
-not completed appropriately. 
+not completed appropriately.
 
 \begin{enumerate}
   \item Describe the data sources to be aggregated e.g. issue tracker, version
@@ -135,12 +184,16 @@ not completed appropriately.
 \end{enumerate}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Candidates selection}
 \label{data-selection}
 
 This section describes the projects that were selected and the criteria that
 went into the thought process when selecting such items.
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Data collection}
 \label{data-collection}

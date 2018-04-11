@@ -123,28 +123,31 @@ work item.
 \label{version-control}
 
 The version control system keeps track and logs all changes that a source code
-has suffered over the evolution of the product. Such logs are indispensable
-because they provide detailed information on the work item associated with the
-change. If the system allows integrations with project management tools, then
-changes can be directly linked to the appropriate work item.
+has suffered over the evolution of the product. Such logs are indispensable due
+to their metadata which provides information on the accomplished work.
 
 Git \emph{REFERENCE} is a popular version control tool that tracks changes of
-the source code using branches and commits. A branch is a ``development line''
-and each project has at least one main development branch, commonly named
-\emph{master}. The branch contains a stream of small units of work, called
-commits, which are the snapshots of the source code at a particular point in
-time. Additionally, each commit contains relevant metadata with the following
-fields:
+the source code using branches and commits. Projects are stored in a
+``repository'' which contains at least one development line, called a
+``branch''. The main development branch is commonly named the \emph{master}
+branch. Branches contain a stream of small units of work, called ``commits'',
+which are the snapshots of the source code at a particular point in time.
+Additionally, each commit contains relevant metadata with the following fields:
 
 \begin{itemize}
-  \item Object ID - is the identifier of the snapshot;
-  \item Author - the name (or username) of the developer that committed the
+  \item \emph{Object ID} - is the identifier of the snapshot;
+  \item \emph{Author} - the name (or username) of the developer that committed the
   change;
-  \item Message - a short description of the change-set;
-  \item Timestamp - the time when the commit was created;
-  \item Diff - the set of changes that the source code has suffered, when
+  \item \emph{Message} - a short description of the change-set;
+  \item \emph{Timestamp} - the time when the commit was created;
+  \item \emph{Diff} - the set of changes that the source code has suffered, when
   compared to the previous commit. 
 \end{itemize}
+
+If the system allows integrations with a project management tool, changes can be
+directly linked to the appropriate work unit. The most common method is to
+specify the work item ID in the message field of the commit ID. As a result, it
+is simpler to find out which change-sets belong to a particular work item. 
 
 For a project managed using Git, all the metadata can be easily retrieved and
 snapshots can be accessed at any time. This makes Git a powerful tool in
@@ -154,11 +157,32 @@ studying the history of changes of a software product.
 \subsubsection*{Project Management}
 \label{project-management}
 
-A report of the work item is represented in the form of a \emph{ticket} and
-contains information on its status, assignee, complexity, deadlines, comments
-and many more. The metadata of the ticket may contain other information such
-as status transition timestamps, which gives an estimate of the time when a
-work item has started and finished.
+Project management tools allows developers and project managers to keep track of
+the work that must be accomplished and of the issues that have been reported by
+the users of the software. 
+
+Each work item is represented in the form of a \emph{ticket}, which is a report
+of the work that needs to be completed. Depending on the workflow of the team,
+tickets may go through various status transitions during their lifetime which
+represent checkpoints of the work involved. A ticket may contain a lot of data,
+including but not limited to:
+
+\begin{itemize}
+  \item \emph{ID} - the unique identifier of the work item in the project;
+  \item \emph{Type} - the type of work e.g. Feature, Bug, Enhacement, etc.;
+  \item \emph{Status} - the current status of the work e.g. Created, In
+  development, In testing, Closed, etc.;
+  \item \emph{Summary} - a brief description of the work;
+  \item \emph{Description} - a longer, more detailed description of the work
+  involved;
+  \item \emph{Priority} - the importance of the work as considered by the team;
+  \item \emph{Assignee} - the team member responsible for completing the work;
+  \item \emph{Complexity} - measurement of how complex the work item is e.g. Story points;
+  \item \emph{Timestamps} - the times when ticket was created, updated, closed
+  and when it is due. 
+\end{itemize}
+
+
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Static Analysis}

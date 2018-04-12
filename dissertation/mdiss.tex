@@ -247,13 +247,12 @@ This type of output gives a representation of the possible low-level weaknesses
 that developers might introduce and encounter during the implementation process.
 Additionally, by using the version control logs it is possible to track the
 items that have been introduced or removed for each change-set as well as the
-total amount of issues that a team member had to deal with.
+total amount of issues that a team member had to deal with. 
 
-Unfortunately, not all projects make use of a static analysis tool and therefore
-such information might not be publicly available. As a result, we have decided
-to execute static analysis on each revision of the main branch our candidate
-projects. This allows a consistent data model of quality issues and fills in the
-lack of static analysis data.
+Unfortunately, not all projects use a static analysis tool to check for issues
+and, if some do, they are not publicly available in a centralised system as well
+as not being available for each revision of the source code. This challenge was
+addressed and is described in section \ref{data-collection}. 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -280,6 +279,9 @@ certain criteria to be included:
   multiple branches.
   \item The version control hosting system should integrate with the project
   management tool to highlight the commits that belong to a specific work item.
+  \item The project uses Maven as its build system due to simplifications in
+  development process of the data collection tool. Multiple build systems could
+  be added if necessary.
 \end{itemize}
 
 % body
@@ -297,8 +299,21 @@ result of:
   was failing on too many revisions to provide any meaningful data.
 \end{itemize}
 
-% conclusion
+Since the projects selected for this experiment are managed by different
+development teams, some of the data sources are distributed and use different
+underlying technologies. Additionally, not all projects make use of a static
+analysis tool and therefore such data might not be publicly available. As a
+result, we have decided to execute static analysis on each revision of the main
+branch our candidate projects. This brings the advantage of a consistent data
+model of quality issues and fills in the void left by the lack of static
+analysis data. However, this decision introduced an additional overhead in the
+data collection process.
 
+% conclusion
+Although only \emph{N} projects have been selected out of the initial 11, using
+our data collection process we have managed to retrieve and analyse \emph{M}
+commits and \emph{X} issues along with an average of \emph{T} unique quality
+issues. Section \ref{results} dives into the results of our analysis. 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -306,28 +321,87 @@ result of:
 \subsection{Data collection}
 \label{data-collection}
 
-Describe the data model and low level implementation details of the data
-collection process.
+% intro
+To collect the selected data from multiple systems we built a tool that
+retrieves data from each source and centralises them into a single database for
+processing and analysis. Additionally, this method allows us to reproduce the
+experiment without any outside changes to the dataset while future work items do
+not incur an additional data collection overhead. Moreover, due to the choice of
+database technology, new data could be added from additional projects without
+any changes to the initial data model. Figure \emph{FIGURE} shows a simple view
+of the data model.
 
+The tool has been built using Java and open-source technologies, and is
+available to use by anyone (MIT License) \emph{REFERENCE}. The tool uses the
+following technologies for collecting data:
+
+\begin{itemize}
+  \item jGit \emph{REFERENCE} - is a Java library for interacting with the Git
+  version control system;
+  \item REST Java Client for Jira \emph{REFERENCE} - is a Java library that
+  provides a simple interaction with Jira APIs;
+  \item GitHub API for Java \emph{REFERENCE} - is a Java library that provides
+  integration with GitHub API for retrieving issues;
+  \item MongoDB \emph{REFERENCE} - NoSQL database technology for storing
+  collected data;
+  \item Spotbugs \emph{REFERENCE} - tool for identifying bug patterns in source
+  code;
+  \item Other technologies - Spring Boot \emph{REFERENCE}, Angular \emph{REFERENCE} and ChartJS \emph{REFERENCE}
+  for visualising data.
+\end{itemize}
+
+The data collection process is shown in figure \emph{FIGURE}. Firstly, selected
+project repositories are cloned to the local storage. Secondly, the tool starts
+the ``collection step'', where each revision of the project history is processed
+serially, starting with the latest revision and going back in time. The
+collection step is composed of multiple sub-steps:
 \begin{enumerate}
-  \item Discuss the data model with entities such as repository, commit, issue,
-  bug, etc. 
-  \item Discuss the data gathering process. What fields were gathered? What is
-  the difference between Github issues and Jira issues?
-  \item Mention data sources, tools, optimisations for data candidates
+  \item \emph{Retrieve commit metadata}.
+  \item \emph{Search and retrieve ticket(s)}. The current commit message is analysed for mentions
+  of ticket IDs. For any ticket ID found, the tool retrieves the ticket from the
+  project management tool API.
+  \item \emph{Build current revision}. This is a preparation step for the static
+  analysis. The source code of the project must be compiled into classes and
+  packaged into JARs for static analysis to complete.
+  \item \emph{Statically analyse the JARs}. Scan the current revision JARs for
+  quality issues. If the build process fails, then the static analysis scan is
+  skipped, due to missing JAR files. 
 \end{enumerate}
 
-% intro
-In this case, some of the data sources are distributed and use different
-underlying technologies whereas others must be generated if non existent. Data
-is queried from these remote systems and aggregated into a single source of
-truth.
+Data is stored at the end of each substep to avoid an inconsistent commit
+stream in case one of the next one fails or the tool crashes.
 
-% body
+During development, the building and static analysis steps incurred an extreme
+overhead that was slowing down the data collection process. For a repository
+with thousands of revisions, there would have been a significant time overhead
+that would overstep the timeline of the experiment. Therefore, the build process
+was customised by skipping a few unnecessary tasks that we did not consider in
+scope for this experiment:
 
-% conclusion
-Furthermore, to understand the correlation between work effort and technical
-debt we process the data further, as explained in Section \ref{data-processing}.
+\begin{itemize}
+  \item Generating of documentation;
+  \item Compiling and running tests;
+  \item Test coverage checks;
+  \item Integrated code analysis.
+\end{itemize}
+
+Some projects had an integrated static analysis task as part of the build
+process. We decided to skip it due to the implementation of the Spotbugs
+analysis step and due to complexities in the integration with multiple analysis
+tools. 
+
+Additionally, the tasks that compile and run the testing suites were ignored.
+Firstly, testing was considered a separate activity to the implementation of new
+features, fixing bugs and adding enhacements. Thus, in this case, code debt was
+split into ``implementation debt'' and ``testing debt''. Testing debt refers to
+shortcuts taken during the testing phases \emph{REFERENCE}. Secondly, the
+testing task added an additional overhead to the build process. In reality,
+testing is a fundamental part of development and is tightly integrated with
+implementation of work items, especially in the practice of Test Driven
+Development. It is one of the top most mentioned type of technical debt in a
+mapping study by X et. al \emph{REFERENCE}, along with code, architecture and
+design debt. The integration of testing debt within this experiment is
+considered as a future work item, mentioned in section \ref{future-work}.  
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

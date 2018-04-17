@@ -587,22 +587,73 @@ project management tool or on an internal worksheet. However, 54\% of software
 professionals working remotely do not track their work effort
 \cite{DeveloperSurvey2018}.
 
+Additionally, factors such as technical experience, knowledge of the system,
+familiarity with libraries and dependencies used, personality and intrinsic
+complex details of the work involved have not been considered in the
+calculation. Collecting such data means tracking down and interviewing each
+project collaborator. Moreover, modelling such subjective factors in work effort
+is a complex challenge.
+
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Technical Debt}
 
 % calculation of technical debt
-% total, added, removed, locality
+As mentioned in section \ref{background}, many state-of-the-art calculations for
+technical debt have been implemented \emph{REFERENCE} \emph{REFERENCE}
+\emph{REFERENCE}. The measure depicting the cost of paying back the debt at the
+present is called the \textit{principal} while the extra cost of development
+when keeping hold of items is called \textit{interest}. Unfortunately, there is
+no standardised method, due to difficulties managing complexities of quantifying
+work effort and development costs. Thus, there is no single best tool for this
+purpose, as all take into consideration various variables for metric computation. 
+
+% total
+The initial method of calculating technical debt was to get an idea of its
+prominence at the project level, for each revision of a work item. The total
+technical debt ($TD_{t}(r)$) of a project at revision $r$ is measured as the
+total number of technical debt items ($td_{i}$) found by the static analysis
+tool, where $i = 1,..., n$ and $n$ is the total number of technical debt items.
+
+% work item
+Each work item is composed of a number of revisions, each with their own
+technical debt items. To calculate technical debt at the work item level, we
+consider as the total pain that the developer had to deal with during
+implementation. Therefore, the total debt of a work item is the total technical
+debt of the revision previous to the first commit of the implementation. Figure
+\emph{FIGURE} shows a visualisation of the total technical debt of a work item.  
+
+% added, removed, remaining
+Furthermore, we calculated the technical debt introduced and removed at the work
+item level, to see any correlation with the total effort involved. The measure
+calculations are straightforward. The technical debt introduced is the set
+difference between the technical debt items of the last revision of the current
+work item and the technical debt of the last revision of the previous work item.
+Similarly, the technical debt removed is the same set difference, inversed. The
+remaining technical debt, is the total number of technical debt items that have
+remained untouched during the feature implementation. Figure \emph{FIGURE} shows
+a Venn diagram of the introduced, removed and remaining technical debt per work
+item. 
+
+% locality
+Although the measurement of technical debt is computed at the project level, the
+effort put in for a work item may not be affected by all technical debt items
+found in the project. A work item may include small changes to a few classes or
+to configuration files. Thus the measure the total pain of a work item is
+dependent on the total number of changes that a team member has implemented. We
+consider that the technical debt items that have the most impact of work effort
+are ``local'' to the total change-set over the number of revisions.
+
+The total number of change-sets over a work item is the total number of distinct
+files that have been added, removed or modified during the implementation.
+Hence, to find the technical debt items that might have an effect on work
+effort, we intersect the change-set classes with the classes that have been
+found to contain technical debt items. Figure \emph{FIGURE} shows a Venn diagram
+of the two sets and their intersection, which signifies the total technical debt
+items local to the work item.
+
+
 
 % conclusion
-
-Factors such as technical experience, knowledge of system, familiarity with
-libraries and dependencies used, personality and intrinsic complex details of
-the work involved and have not been considered in the calculation. Open-source
-projects are generally maintained by international teams consisting of
-developers with various skillsets. Any international developer may contribute to
-open-source projects. Collecting such data means tracking down and interviewing
-each collaborator. Moreover, there is a challenge in modelling subjective
-factors within such calculations.
 
 This stage was implemented as a server running a REST API, where each request is
 specific to the project and to the calculation required. This allowed the server
@@ -621,6 +672,12 @@ been implemented to speed up retrieval of results.
 
 Provide the results of the data processing step. Aggregate the data into tables
 based on the repositories chosen and provide a couple of example graphs. 
+
+We expect that work effort:
+\begin{itemize}
+  \item Decreases as technical debt increases
+  \item Increases as technical debt descreases
+\end{itemize} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -650,6 +707,11 @@ debt, work effort, ticket complexity, etc.
 
 Describe the items that could be improved and expand on the next steps within
 this area of research.
+
+\begin{itemize}
+  \item More accurate work effort calculation using mixed timestamps (ticket start, last commit)
+  \item drilldown of technical debt at the commit level instead of the work item
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

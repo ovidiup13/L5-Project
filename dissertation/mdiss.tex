@@ -555,8 +555,37 @@ the results of the calculation lacks the effort accomplished before the first
 commit has been pushed.
 
 To cover for this case, we assumed that once a contributor finished a work item
-she would get started on the next. 
+she would get started on the next. Figure \emph{REFERENCE} visualises the case.
+We considered that the missing work effort is measured as the number of hours
+between the last commit timestamp of a previous work item and the first commit
+timestamp of the current work item. However, a developer may not have a previous
+contribution to the project. In this case, the number of hours is calculated
+from the first commit timestamp of the work item.
 
+The equations for the two timestamps are as follows:
+\begin{equation}
+  \label{eq-commit-start}
+  \begin{aligned}
+    t_{1} = Timestamp(C_{-1}) \quad or \quad Timestamp(C_{0})
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  \label{eq-commit-end}
+  \begin{aligned}
+    t_{2} = Timestamp(C_{n})
+  \end{aligned}
+\end{equation}
+
+where $C_{i}$ represents a commit from the initial work item if $i = 1,...n$.
+$C_{-1}$ represents the last commit of the previous work item.
+
+Measuring work effort accurately from limited data is a challenging task. Most
+open-source projects rely on contributions from software professionals all over
+the globe. In an ideal case, developers would measure their work time on the
+project management tool or on an internal worksheet. However, 54\% of software
+professionals working remotely do not track their work effort
+\cite{DeveloperSurvey2018}.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Technical Debt}
@@ -583,12 +612,6 @@ Application (SPA) dashboard \emph{REFERENCE}. The calculation processes becomes
 computationally expensive as the size of the repository data grows (number of
 issues and commits). For this purpose, appropriate caching optimisations have
 been implemented to speed up retrieval of results.
-
-Ideally, in regulated environments, developers would measure their work time and
-specify it either on the project management tool or on an internal worksheet
-available to the employer. However, developers may take a flexible approach on
-working in their spare time. Time tracking might not be an essential requirement
-for contributors of the project. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

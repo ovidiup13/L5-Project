@@ -30,6 +30,17 @@ evaluation result and relevance.
   \item Section descriptions
 \end{enumerate}
 
+Research questions:
+
+Is there any correlation between technical debt and work effort?
+Does work effort increase when technical debt is added?
+Does work effort decrease when technical debt is removed?
+
+Is there a correlation between technical debt and change set size?
+Do less changes mean that technical debt is introduced?
+Do more changes mean that technical debt was removed? 
+
+
 % The precise structure of an MSci paper is not mandated, but it should probably
 % cover in detail the following aspects of the project. \begin{enumerate} \item
 % General description of the problem, motivation, relevance \item Background
@@ -284,8 +295,20 @@ certain criteria to be included:
   be added if necessary.
 \end{itemize}
 
-% body
-Table \emph{TABLE} shows the selected open-source projects that have their data
+\begin{table}
+	\begin{tabular}{l|r|c}
+		\emph{Project Name}        & \emph{Size (LOC)} & \emph{Issue Tracker} \\ \hline \hline
+		ANTLR                      & 399388            & GitHub               \\ \hline
+		Spring HATEOAS             & 25601             & GitHub               \\ \hline
+		Checkstyle                 & 353273            & GitHub               \\ \hline
+		Apache Commons Collections & 124854            & Jira                 \\ \hline
+		Apache Commons Lang        & 158713            & Jira                 \\ \hline
+	\end{tabular}
+	\caption{\label{tab-data-candidates} Data candidates}
+\end{table}
+
+% body 
+Table \ref{tab-data-candidates} shows the selected open-source projects that have their data
 collected and analysed as well as their size (LOC), version control and project
 management tools. Out of the ten projects, we have only included five for
 analysis of results due to an incomplete data collection process. This was a
@@ -397,7 +420,24 @@ mapping study by X et. al \emph{REFERENCE}, along with code, architecture and
 design debt. The integration of testing debt within this experiment is
 considered as a future work item, mentioned in section \ref{future-work}.
 
+\begin{table*}[t]
+	\centering
+	\begin{tabular}{l|r|r|r|r|r}
+		Category         & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline
+		Total Commits    & 728          & 539                   & 1814              & 3306                       & 5061                \\ \hline
+		Total Tickets    & 215          & 173                   & 188               & 236                        & 304                 \\ \hline
+		Build Successful & 478          & 472                   & 1732              & 392                        & 3814                \\ \hline
+		Build Failed     & 250          & 67                    & 82                & 2914                       & 1247                \\ \hline
+		With Tickets     & 217          & 327                   & 1157              & 437                        & 1306                \\ \hline
+		Without Tickets  & 511          & 212                   & 657               & 2869                       & 3755                \\ \hline
+		Ticket / Commit  & 0.217        & 0.744                 & 0.654             & 0.034                      & 0.258               \\ \hline
+	\end{tabular}
+	\caption{\label{tab-data-collection} Data collection results}
+\end{table*}
+
+
 % conclusion
+The results of the data collection is shown in Table \ref{tab-data-collection}.
 Although only \emph{N} projects have been selected out of the initial 11
 presented in section \ref{data-selection}, using our data collection process we
 have managed to retrieve and analyse \emph{M} commits and \emph{X} issues along
@@ -652,17 +692,16 @@ of the two sets and their intersection, which signifies the total technical debt
 items local to the work item.
 
 
-
 % conclusion
-
-This stage was implemented as a server running a REST API, where each request is
-specific to the project and to the calculation required. This allowed the server
-to process the data and compute work effort and technical debt for a single
-project in isolation, as requested. The results are displayed on a Single Page
-Application (SPA) dashboard \emph{REFERENCE}. The calculation processes becomes
-computationally expensive as the size of the repository data grows (number of
-issues and commits). For this purpose, appropriate caching optimisations have
-been implemented to speed up retrieval of results.
+The processing stage  implemented as a request-reply server, running a REST API.
+Each request contains a repository ID to identify the database entries and the
+server calculates the work effort and technical debt as required, for each
+project in isolation. The calculation becomes computationally expensive as the
+size of the repository data grows (number of issues and commits). Appropriate
+caching optimisations have been implemented to minimize computation and speed up
+retrieval of results. The data is displayed as charts on a Single Page
+Application (SPA) dashboard \emph{REFERENCE} built specifically for this
+purpose. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -670,8 +709,13 @@ been implemented to speed up retrieval of results.
 \section{Results}
 \label{results}
 
-Provide the results of the data processing step. Aggregate the data into tables
-based on the repositories chosen and provide a couple of example graphs. 
+
+Independent variable = changed by the scientist
+Dependent variable = variable that responds to change
+Controlled variable = remains constant
+
+Quantitative variables = can be represented as a number, represented as median and average
+Qualitative variables = differ in kind, can be ranked
 
 We expect that work effort:
 \begin{itemize}

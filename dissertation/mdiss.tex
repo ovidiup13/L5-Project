@@ -867,50 +867,7 @@ consequence of the quality issues that the static analysis tool has found. It is
 possible that code violations are not regarded as high severity by the team,
 with the exception of a few. 
 
-The relationship between total technical debt and both work effort calculations
-can be seen in figure \ref{fig:td-total-debt}, for the \emph{Checkstyle}
-project. Unfortunately the results do not show any meaningful pattern since
-technical debt has remained more or less constant throughout project evolutions.
-The two subfigures \ref{fig:td-total-debt-commit} and
-\ref{fig:td-total-debt-ticket} appear to have a different population count,
-possibly due to the difference in the statistics of work effort, mapped on the
-\emph{x} axis. For work effort calculated using commit timestamps, the data
-points are overlapping when values for effort are in the range $[0-10]$ whereas
-data points are spread out for calculatins using ticket timestamps. The results
-for the other projects show the exact same constant pattern. 
-
-Unfortunately, since technical debt is constant at the project level, the
-relationship with work effort looks constant. This is most likely due to
-consideration of quality at the project level, which may not affect the
-productivity at the class level. 
-
-\subsubsection*{Experiment 2}
-\label{experiment-2}
-
-\begin{table*}[t]
-	\centering
-	\begin{tabular}{ |c|c|r|r|r|r|r| }
-		\hline
-		\multicolumn{2}{ |c| }{Category}                        & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline    
-    \multicolumn{1}{ |c  }{\multirow{2}{*}{TD Local Pain} } &
-		\multicolumn{1}{ |l| }{Mean}                            & 1.814        & 0.34                  & 0.16              & 1.13                       & 6.299               \\ \cline{2-7}
-		\multicolumn{1}{ |c  }{}                                &
-		\multicolumn{1}{ |l| }{Std}                             & 7.861        & 1.205                 & 0.651             & 3.53                       & 13.635              \\ \cline{1-7}
-
-		\multicolumn{1}{ |c  }{\multirow{2}{*}{TD Added} }      &
-		\multicolumn{1}{ |l| }{Mean}                            & 40.561       & 0.325                 & 4.814             & 3.493                      & 4.918               \\ \cline{2-7}
-		\multicolumn{1}{ |c  }{}                                &
-		\multicolumn{1}{ |l| }{Std}                             & 168.236      & 1.49                  & 19.525            & 10.196                     & 16.139              \\ \cline{1-7}
-
-		\multicolumn{1}{ |c  }{\multirow{2}{*}{TD Removed} }    &
-		\multicolumn{1}{ |l| }{Mean}                            & 50.598       & 1.593                 & 4.966             & 1.768                      & 4.392               \\ \cline{2-7}
-		\multicolumn{1}{ |c  }{}                                &
-		\multicolumn{1}{ |l| }{Std}                             & 190.364      & 7.432                 & 19.846            & 5.486                      & 14.605              \\ \cline{1-7}
-	\end{tabular}
-	\caption{\label{tab-technical-debt-local} Experiment 2 \& 3: Technical Debt Statistics}
-\end{table*}
-
-\begin{figure*}[htp]
+\begin{figure*}
 	\centering
 	\begin{subfigure}{.45\textwidth}
 		\includegraphics[width=\linewidth]{images/collections_td_timeline.png}
@@ -926,7 +883,19 @@ productivity at the class level.
 	\label{fig:td-timeline}
 \end{figure*}
 
-\begin{figure*}[htp]
+The relationship between total technical debt and both work effort calculations
+can be seen in figure \ref{fig:td-total-debt}, for the \emph{Checkstyle}
+project. Unfortunately the results do not show any meaningful pattern since
+technical debt has remained more or less constant throughout project evolutions.
+The two subfigures \ref{fig:td-total-debt-commit} and
+\ref{fig:td-total-debt-ticket} appear to have a different population count,
+possibly due to the difference in the statistics of work effort, mapped on the
+\emph{x} axis. For work effort calculated using commit timestamps, the data
+points are overlapping when values for effort are in the range $[0-10]$ whereas
+data points are spread out for calculatins using ticket timestamps. The results
+for the other projects show the exact same constant pattern. 
+
+\begin{figure*}
 	\centering
 	\begin{subfigure}{.45\textwidth}
 		\includegraphics[width=\linewidth]{images/checkstyle_total_debt_commit.png}
@@ -942,7 +911,48 @@ productivity at the class level.
 	\label{fig:td-total-debt}
 \end{figure*}
 
-\begin{figure*}[htp]
+Unfortunately, since technical debt is constant at the project level, the
+relationship with work effort looks constant. This is most likely due to
+consideration of quality at the project level, which may not affect the
+productivity at the class level. 
+
+\subsubsection*{Experiment 2}
+\label{experiment-2}
+
+Since the results of experiment 1 are inconclusive, I decided to apply a
+locality-based model for calculating technical debt. As mentioned in section
+\ref{data-processing}, the locality model calculates technical debt based on the
+change-set of each work task. Only code violations that are in the set of class
+changes made by a developer are considered to affect the effort required to
+accomplish the task. The statistics can be seen in figure
+\ref{tab-technical-debt-local}.
+
+\begin{table*}
+	\centering
+	\begin{tabular}{ |c|c|r|r|r|r|r| }
+		\hline
+		\multicolumn{2}{ |c| }{Category}                        & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline
+		\multicolumn{1}{ |c  }{\multirow{2}{*}{TD Local Pain} } &
+		\multicolumn{1}{ |l| }{Mean}                            & 1.814        & 0.34                  & 0.16              & 1.13                       & 6.299               \\ \cline{2-7}
+		\multicolumn{1}{ |c  }{}                                &
+		\multicolumn{1}{ |l| }{Std}                             & 7.861        & 1.205                 & 0.651             & 3.53                       & 13.635              \\ \cline{1-7}
+	\end{tabular}
+	\caption{\label{tab-technical-debt-local} Experiment 2: Technical Debt Statistics}
+\end{table*}
+
+When comparing to the total technical debt calculated in experiment 1, the
+results have reduced dramatically. Although the same population of work items
+has been used for both experiments, it seems that for the majority of projects,
+very few technical debt issues on average affect the daily work of a developer.
+This is surprising, especially since ANTLR had on average the most quality
+issues out of all the projects. One factor which might influence the results is
+the application domain of each project. A possible explanation for ANTLR is
+that, because the project is a language generation tool, many files of its
+source code could be language grammar files. Thus it is possible that many work
+items revolve around changes to these files, which could not be analysed for
+quality issues by FindBugs. 
+
+\begin{figure*}
 	\centering
 	\begin{subfigure}{.45\textwidth}
 		\includegraphics[width=\linewidth]{images/checkstyle_local_debt_commit.png}
@@ -958,46 +968,131 @@ productivity at the class level.
 	\label{fig:td-local-debt}
 \end{figure*}
 
-\begin{figure*}[htp]
+The relationship between local technical debt and work effort per task can be
+seen in figure \ref{fig:td-local-debt}, for \emph{Checkstyle}. The results seem
+to have spread out, since technical debt is not as constant due to the change in
+``level'' where technical debt items are considered to affect work. Similar to
+\ref{fig:td-total-debt}, data points for the commit timestamp method are
+concentrated in the range $[0-10]$ hours on the work effort axis due to the
+calculations. On the other hand, they are spread out for the ticket method due
+to the high variance of work effort previously calculated. The pattern by all
+projects is exactly the same. There are many data points that are unaffected by
+quality issues found and even the number of issues found do not vary as much as
+expected. One possibility is that work items include very small changes to
+classes that are unaffected by debt. Another possibility is that types of
+quality issues found by the static analysis tools at the code level are not as
+severe as those at the architectural level. I propose further research on the
+topic in section \ref{future-work}. 
+
+\begin{table*}
+	\centering
+	\begin{tabular}{ |c|c|r|r|r|r|r| }
+		\hline
+		\multicolumn{2}{ |c| }{Category}                        & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline
+		\multicolumn{1}{ |c  }{\multirow{2}{*}{TD Added} }      &
+		\multicolumn{1}{ |l| }{Mean}                            & 40.561       & 0.325                 & 4.814             & 3.493                      & 4.918               \\ \cline{2-7}
+		\multicolumn{1}{ |c  }{}                                &
+		\multicolumn{1}{ |l| }{Std}                             & 168.236      & 1.49                  & 19.525            & 10.196                     & 16.139              \\ \cline{1-7}
+
+		\multicolumn{1}{ |c  }{\multirow{2}{*}{TD Removed} }    &
+		\multicolumn{1}{ |l| }{Mean}                            & 50.598       & 1.593                 & 4.966             & 1.768                      & 4.392               \\ \cline{2-7}
+		\multicolumn{1}{ |c  }{}                                &
+		\multicolumn{1}{ |l| }{Std}                             & 190.364      & 7.432                 & 19.846            & 5.486                      & 14.605              \\ \cline{1-7}
+	\end{tabular}
+	\caption{\label{tab-technical-debt-intro} Experiment 3: Technical Debt Statistics}
+\end{table*}
+
+\subsubsection*{Experiment 3}
+\label{experiment-3}
+
+Lastly, for the third experiment, I wanted to check if the number of technical
+debt items added might reduce the effort needed to complete a task. Similarly, I
+wanted to study whether removal of quality issues would increase the work
+effort, possibly through refactoring activities. The initial statistics for
+technical debt introduced and removed can be seen in table
+\ref{tab-technical-debt-intro}. 
+
+\begin{figure*}
 	\centering
 	\begin{subfigure}{.45\textwidth}
 		\includegraphics[width=\linewidth]{images/collections_added_debt_commit.png}
 		\caption{Total Technical Debt}
-		\label{fig:collections-td-timeline}
+		\label{fig:td-added-commit}
 	\end{subfigure}
 	\begin{subfigure}{.45\textwidth}
-		\includegraphics[width=\linewidth]{images/collections_added_debt_commit.png}
+		\includegraphics[width=\linewidth]{images/collections_added_debt_ticket.png}
 		\caption{Local Technical Debt}
-		\label{fig:spring-td-timeline}
+		\label{fig:td-added-ticket}
 	\end{subfigure}
-	\caption{Technical Debt Added and Work Effort by Commit (Collections)}
-	\label{fig:td-timeline}
+	\caption{Technical Debt Added and Work Effort for Collections}
+	\label{fig:td-added}
 \end{figure*}
 
-\begin{figure*}[htp]
+
+It seems that, on average, \emph{ANTLR} has many introductions and removals of
+debt items. The developers of \emph{Spring HATEOAS}, since it is a younger
+project, are focusing on removal of quality issues to eliminate the threats of
+bugs that a new project may be prone to. The other projects have very similar
+results for both sets of calculations. It seems that, on average, the number of
+quality issues introduced by work items is approximately equal to the number of
+technical debt items removed. This might be a consequence of adding new features
+with initial quality issues which are refined over time by the team through
+other tasks such as fixing bugs and other refactoring activities.
+
+\begin{figure*}
 	\centering
 	\begin{subfigure}{.45\textwidth}
 		\includegraphics[width=\linewidth]{images/collections_removed_debt_commit.png}
-		\caption{Total Technical Debt}
-		\label{fig:collections-td-timeline}
+		\caption{By Commit}
+		\label{fig:td-removed-commit}
 	\end{subfigure}
 	\begin{subfigure}{.45\textwidth}
-		\includegraphics[width=\linewidth]{images/collections_removed_debt_commit.png}
-		\caption{Local Technical Debt}
-		\label{fig:spring-td-timeline}
+		\includegraphics[width=\linewidth]{images/collections_removed_debt_ticket.png}
+		\caption{By Ticket}
+		\label{fig:td-removed-ticket}
 	\end{subfigure}
-	\caption{Technical Debt Removed and Work Effort by Commit (Collections)}
-	\label{fig:td-timeline}
+	\caption{Technical Debt Removed and Work Effort for Collections}
+	\label{fig:td-removed}
 \end{figure*}
+
+Lastly, the relationship between work effort calculations and technical debt
+added and removed are presented in figures \ref{fig:td-added} and
+\ref{fig:td-removed}, respectively. The four figures display similar patterns to
+the previous local debt relationship with work effort, presented in figure
+\ref{fig:td-local-debt}. It seems that as work effort increases, technical debt
+decreases. This observation makes sense for removal of technical debt since work
+effort should increase with refactoring activities. However, the distribution of
+data points are mostly around the range $[0-100]$ hours on the work effort axis.
+The pattern is shared by the work effort and TD added relationship, which is the
+opposite of my initial expectation. 
+
+
+Although the three experiments build on one another, from my perspective there
+is no correlation between work effort and technical debt. The first experiment
+showed that technical debt at the project level does affect the effort required
+to finish tasks. Additionally, the relationship between work effort and local
+technical debt follows a negative pattern, since increase in work effort shows
+that technical debt decreases. This pattern is shared by the results of the
+third experiment. I consider the results to be inconclusive due to many factors
+being controlled for the simplicity of the calculations.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Threats to validity}
+\section{Validity and Future Work}
+\label{validity-future-work}
+
+Throughout the study, there have been numerous simplifying assumptions that may
+cripple the results and conclusion presented in the earlier section. These range
+from each type of calculation and from other subjective factors that are
+difficult to model in such a short experiment. The omitted factors are
+considered here as well as future work for proceeding experiments.
+
+\subsection{Threaths to Validity}
 \label{validity}
 
-Risks to the methods of extraction, calculation and aggregation of technical
-debt, work effort, ticket complexity, etc.
+\subsubsection*{Work Calculations}
+\label{validity-work}
 
 \begin{itemize}
   \item Work - unrealistic expectation for developers to work 8 hours per day
@@ -1014,6 +1109,8 @@ Describe the items that could be improved and expand on the next steps within
 this area of research.
 
 \begin{itemize}
+  \item Technical debt - calculate architecture and test debt
+  \item Technical debt - calculate at package/module level
   \item More accurate work effort calculation using mixed timestamps (ticket start, last commit)
   \item drilldown of technical debt at the commit level instead of the work item
 \end{itemize}

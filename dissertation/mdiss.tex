@@ -2,6 +2,7 @@
 
 \documentclass{mpaper}
 \usepackage{multirow}
+\usepackage{subcaption}
 
 \begin{document}
 
@@ -446,7 +447,7 @@ presented in section \ref{data-selection}, using our data collection process we
 have managed to retrieve and analyse \emph{M} commits and \emph{X} issues along
 with an average of \emph{T} unique quality issues. Additionally, this process
 was repeated a second time due to changes in the static analysis collection
-step. Section \ref{results} dives into the results of our analysis. 
+step. Section \ref{results-discussion} dives into the results of our analysis. 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Data processing}
@@ -715,6 +716,7 @@ To explore the results of the data processing phase, a couple of experiments
 have been conducted:
 
 \begin{enumerate}
+  
   \item Firstly, it is necessary to understand whether technical debt and work
   effort are correlated. This experiment was split in two parts respective of
   the two methods of computing work effort: using ticket and commit timestamps.
@@ -723,11 +725,13 @@ have been conducted:
   by a global technical debt measurement, by using the version control logs and
   ticket metadata for computing a value of work effort. I assumed that the type
   and work item complexity are constant.
+
   \item Secondly, to determine how debt items impact work directly at the code
   level, the locality processing model is used. Change sets are introduced in
   the experiment as an additional condition for computing technical debt on each
   work item. Work effort calculation remains unchanged and ticket complexity is
   constant.
+  
   \item Thirdly, I wanted to see if patterns of development affect task
   productivity. More specifically, as work items are ordered chronologically by
   the finalised timestamp, each work item is compared to the previous by two
@@ -826,13 +830,28 @@ deliver changes their spare time and only in some days of the week.
 \subsubsection*{Experiment 1}
 \label{experiment-1}
 
+The initial technical debt average is shown in table \ref{tab-technical-debt-total}.
+
 \begin{table*}[t]
 	\centering
 	\begin{tabular}{ |c|c|r|r|r|r|r| }
 		\hline
 		\multicolumn{2}{ |c| }{Category}                        & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline
-		\multicolumn{2}{ |c| }{Total TD}                        & 1,169.02     & 21.286                & 264.676           & 8.351                      & 89.794              \\ \hline
     
+    \multicolumn{1}{ |c  }{\multirow{2}{*}{Total TD Mean} } &
+		\multicolumn{1}{ |l| }{Mean}                            & 1,777.81       & 11.861                & 277.279           & 69.73                      & 118.941               \\ \cline{2-7}
+		\multicolumn{1}{ |c  }{}                                &
+		\multicolumn{1}{ |l| }{Std}                             & 435.903        & 8.509                 & 3.457             & 11.296                       & 8.233              \\ \cline{1-7}
+  \end{tabular}
+	\caption{\label{tab-technical-debt-total} Experiment 1: Technical Debt Statistics}
+\end{table*}
+
+
+\begin{table*}[t]
+	\centering
+	\begin{tabular}{ |c|c|r|r|r|r|r| }
+		\hline
+		\multicolumn{2}{ |c| }{Category}                        & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline    
     \multicolumn{1}{ |c  }{\multirow{2}{*}{TD Local Pain} } &
 		\multicolumn{1}{ |l| }{Mean}                            & 1.814        & 0.34                  & 0.16              & 1.13                       & 6.299               \\ \cline{2-7}
 		\multicolumn{1}{ |c  }{}                                &
@@ -848,9 +867,88 @@ deliver changes their spare time and only in some days of the week.
 		\multicolumn{1}{ |c  }{}                                &
 		\multicolumn{1}{ |l| }{Std}                             & 190.364      & 7.432                 & 19.846            & 5.486                      & 14.605              \\ \cline{1-7}
 	\end{tabular}
-	\caption{\label{tab-technical-debt} Technical Debt Statistics}
+	\caption{\label{tab-technical-debt-local} Experiment 2 \& 3: Technical Debt Statistics}
 \end{table*}
 
+\begin{figure*}[htp]
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\includegraphics[width=\linewidth]{images/collections_td_timeline.png}
+		\caption{Commons Collections}
+		\label{fig:collections-td-timeline}
+	\end{subfigure}
+	\begin{subfigure}{.45\textwidth}
+		\includegraphics[width=\linewidth]{images/spring_td_timeline.png}
+		\caption{Spring HATEOAS}
+		\label{fig:spring-td-timeline}
+	\end{subfigure}
+	\caption{Technical Debt Timeline Comparison}
+	\label{fig:td-timeline}
+\end{figure*}
+
+\begin{figure*}[htp]
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\includegraphics[width=\linewidth]{images/checkstyle_total_debt_commit.png}
+		\caption{Total Technical Debt}
+		\label{fig:collections-td-timeline}
+	\end{subfigure}
+	\begin{subfigure}{.45\textwidth}
+		\includegraphics[width=\linewidth]{images/checkstyle_local_debt_commit.png}
+		\caption{Local Technical Debt}
+		\label{fig:spring-td-timeline}
+	\end{subfigure}
+	\caption{Technical Debt and Work Effort by Commit (Checkstyle)}
+	\label{fig:td-timeline}
+\end{figure*}
+
+\begin{figure*}[htp]
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\includegraphics[width=\linewidth]{images/checkstyle_total_debt_ticket.png}
+		\caption{Total Technical Debt}
+		\label{fig:collections-td-timeline}
+	\end{subfigure}
+	\begin{subfigure}{.45\textwidth}
+		\includegraphics[width=\linewidth]{images/checkstyle_local_debt_ticket.png}
+		\caption{Local Technical Debt}
+		\label{fig:spring-td-timeline}
+	\end{subfigure}
+	\caption{Technical Debt and Work Effort by Ticket (Checkstyle)}
+	\label{fig:td-timeline}
+\end{figure*}
+
+\begin{figure*}[htp]
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\includegraphics[width=\linewidth]{images/collections_added_debt_commit.png}
+		\caption{Total Technical Debt}
+		\label{fig:collections-td-timeline}
+	\end{subfigure}
+	\begin{subfigure}{.45\textwidth}
+		\includegraphics[width=\linewidth]{images/collections_added_debt_commit.png}
+		\caption{Local Technical Debt}
+		\label{fig:spring-td-timeline}
+	\end{subfigure}
+	\caption{Technical Debt Added and Work Effort by Commit (Collections)}
+	\label{fig:td-timeline}
+\end{figure*}
+
+\begin{figure*}[htp]
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\includegraphics[width=\linewidth]{images/collections_removed_debt_commit.png}
+		\caption{Total Technical Debt}
+		\label{fig:collections-td-timeline}
+	\end{subfigure}
+	\begin{subfigure}{.45\textwidth}
+		\includegraphics[width=\linewidth]{images/collections_removed_debt_commit.png}
+		\caption{Local Technical Debt}
+		\label{fig:spring-td-timeline}
+	\end{subfigure}
+	\caption{Technical Debt Removed and Work Effort by Commit (Collections)}
+	\label{fig:td-timeline}
+\end{figure*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

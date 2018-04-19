@@ -830,22 +830,62 @@ deliver changes their spare time and only in some days of the week.
 \subsubsection*{Experiment 1}
 \label{experiment-1}
 
-The initial technical debt average is shown in table \ref{tab-technical-debt-total}.
+The initial technical debt average per task delivered is shown in table
+\ref{tab-technical-debt-total}. \emph{ANTLR}, possibly due to its large
+codebase, has a massive amount of quality issues per work item. Interestingly,
+the standard deviation for these issues is high as well, meaning that issues are
+introduced and removed quite often during implementation, possibly due to
+refactoring activities or to accidental removal of a class and its introduction
+back into the codebase for the next work item. The latter case might suggest an
+``God class'' antipattern, where a lot of functionality is centralised in a
+single class. Unfortunately, FindBugs does not analyse the source code from an
+architectural point of view and such antipatterns may only be inferred by
+studying the current results or by integrating a new static analysis tool in the
+data collection process. 
 
-\begin{table*}[t]
+\begin{table*}
 	\centering
 	\begin{tabular}{ |c|c|r|r|r|r|r| }
 		\hline
 		\multicolumn{2}{ |c| }{Category}                        & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline
-    
-    \multicolumn{1}{ |c  }{\multirow{2}{*}{Total TD Mean} } &
-		\multicolumn{1}{ |l| }{Mean}                            & 1,777.81       & 11.861                & 277.279           & 69.73                      & 118.941               \\ \cline{2-7}
+
+		\multicolumn{1}{ |c  }{\multirow{2}{*}{Total TD Mean} } &
+		\multicolumn{1}{ |l| }{Mean}                            & 1,777.81     & 11.861                & 277.279           & 69.73                      & 118.941             \\ \cline{2-7}
 		\multicolumn{1}{ |c  }{}                                &
-		\multicolumn{1}{ |l| }{Std}                             & 435.903        & 8.509                 & 3.457             & 11.296                       & 8.233              \\ \cline{1-7}
-  \end{tabular}
+		\multicolumn{1}{ |l| }{Std}                             & 435.903      & 8.509                 & 3.457             & 11.296                     & 8.233               \\ \cline{1-7}
+	\end{tabular}
 	\caption{\label{tab-technical-debt-total} Experiment 1: Technical Debt Statistics}
 \end{table*}
 
+I expected \emph{Spring HATEOAS} to have a low technical debt count per work
+item, since it is a more recent project with a lower list of revisions and work
+items as the rest. However, the technical debt for the project varies
+drastically as seen in figure \ref{fig:td-timeline}, when compared to a more
+mature project such as \emph{Commons Collections}. The other three projects have
+a more or less constant total debt count, due to a low variance. This might a
+consequence of the quality issues that the static analysis tool has found. It is
+possible that code violations are not regarded as high severity by the team,
+with the exception of a few. 
+
+The relationship between total technical debt and both work effort calculations
+can be seen in figure \ref{fig:td-total-debt}, for the \emph{Checkstyle}
+project. Unfortunately the results do not show any meaningful pattern since
+technical debt has remained more or less constant throughout project evolutions.
+The two subfigures \ref{fig:td-total-debt-commit} and
+\ref{fig:td-total-debt-ticket} appear to have a different population count,
+possibly due to the difference in the statistics of work effort, mapped on the
+\emph{x} axis. For work effort calculated using commit timestamps, the data
+points are overlapping when values for effort are in the range $[0-10]$ whereas
+data points are spread out for calculatins using ticket timestamps. The results
+for the other projects show the exact same constant pattern. 
+
+Unfortunately, since technical debt is constant at the project level, the
+relationship with work effort looks constant. This is most likely due to
+consideration of quality at the project level, which may not affect the
+productivity at the class level. 
+
+\subsubsection*{Experiment 2}
+\label{experiment-2}
 
 \begin{table*}[t]
 	\centering
@@ -890,32 +930,32 @@ The initial technical debt average is shown in table \ref{tab-technical-debt-tot
 	\centering
 	\begin{subfigure}{.45\textwidth}
 		\includegraphics[width=\linewidth]{images/checkstyle_total_debt_commit.png}
-		\caption{Total Technical Debt}
-		\label{fig:collections-td-timeline}
+		\caption{By Commit Timestamps}
+		\label{fig:td-total-debt-commit}
 	\end{subfigure}
 	\begin{subfigure}{.45\textwidth}
-		\includegraphics[width=\linewidth]{images/checkstyle_local_debt_commit.png}
-		\caption{Local Technical Debt}
-		\label{fig:spring-td-timeline}
+		\includegraphics[width=\linewidth]{images/checkstyle_total_debt_ticket.png}
+		\caption{By Ticket Timestamps}
+		\label{fig:td-total-debt-ticket}
 	\end{subfigure}
-	\caption{Technical Debt and Work Effort by Commit (Checkstyle)}
-	\label{fig:td-timeline}
+	\caption{Total Technical Debt and Work Effort for Checkstyle}
+	\label{fig:td-total-debt}
 \end{figure*}
 
 \begin{figure*}[htp]
 	\centering
 	\begin{subfigure}{.45\textwidth}
-		\includegraphics[width=\linewidth]{images/checkstyle_total_debt_ticket.png}
-		\caption{Total Technical Debt}
+		\includegraphics[width=\linewidth]{images/checkstyle_local_debt_commit.png}
+		\caption{By Commit Timestamp}
 		\label{fig:collections-td-timeline}
 	\end{subfigure}
 	\begin{subfigure}{.45\textwidth}
 		\includegraphics[width=\linewidth]{images/checkstyle_local_debt_ticket.png}
-		\caption{Local Technical Debt}
+		\caption{By Ticket Timestamp}
 		\label{fig:spring-td-timeline}
 	\end{subfigure}
-	\caption{Technical Debt and Work Effort by Ticket (Checkstyle)}
-	\label{fig:td-timeline}
+	\caption{Local Technical Debt and Work Effort for Checkstyle}
+	\label{fig:td-local-debt}
 \end{figure*}
 
 \begin{figure*}[htp]

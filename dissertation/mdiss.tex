@@ -721,18 +721,110 @@ have been conducted:
   Technical debt was computed simply as a count of all technical debt items at
   the project level. The aim was to understand whether work effort is impacted
   by a global technical debt measurement, by using the version control logs and
-  ticket metadata for computing a value of work effort.
+  ticket metadata for computing a value of work effort. I assumed that the type
+  and work item complexity are constant.
   \item Secondly, to determine how debt items impact work directly at the code
   level, the locality processing model is used. Change sets are introduced in
   the experiment as an additional condition for computing technical debt on each
-  work item. Work effort calculation remains unchanged.
+  work item. Work effort calculation remains unchanged and ticket complexity is
+  constant.
   \item Thirdly, I wanted to see if patterns of development affect task
-  productivity. More specifically, for each work item is compared to the
-  previous by two technical debt measurements: the technical debt introduced and
-  technical debt removed. The aim is to understand introducing technical debt
-  would speed up development time and removing technical debt, perhaps as a
-  refactoring process, would reduce development time.  
+  productivity. More specifically, as work items are ordered chronologically by
+  the finalised timestamp, each work item is compared to the previous by two
+  technical debt measurements: the technical debt introduced and technical debt
+  removed. The aim is to understand if introducing technical debt would speed up
+  development time and, if removing technical debt as a refactoring activity
+  would reduce development time.  
 \end{enumerate}
+
+The experiments have been completed incrementally, one after the other, in
+parallel with development on the data processing stage. 
+
+\subsection{Results and Discussion}
+\label{results-discussion}
+
+The results of the work effort calculation are shown in table
+\ref{tab-work-effort}. For each repository, I calculated the mean and standard
+deviation to get a sense of what the computed effort (in hours) is per work
+task. The comparison between work effort calculations could be considered an
+experiment by itself. However, since there is no way to evaluate the results
+without interacting directly with collaborators of the project I analysed the
+results simply by computing the average and standard deviation of the data
+points. Although the data analysis techniques present are trivial, they provide
+a good overview of the distribution of work effort over all work items in the
+project. 
+
+\begin{table*}[t]
+	\centering
+	\begin{tabular}{ |c|c|r|r|r|r|r| }
+		\hline
+		\multicolumn{2}{ |c| }{Type}                     & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline
+
+		\multicolumn{1}{ |c  }{\multirow{2}{*}{Ticket} } &
+		\multicolumn{1}{ |l| }{Mean (hours)}             & 274.068      & 659.071               & 596.268           & 10,043.91                  & 2,918.43            \\ \cline{2-7}
+		\multicolumn{1}{ |c  }{}                         &
+		\multicolumn{1}{ |l| }{Std (hours)}              & 827.071      & 1,719.20              & 1,174.08          & 8,186.17                   & 3,625.95            \\ \cline{1-7}
+
+		\multicolumn{1}{ |c  }{\multirow{2}{*}{Commit} } &
+		\multicolumn{1}{ |l| }{Mean (hours)}             & 25.877       & 142.99                & 51.188            & 296.149                    & 211.133             \\ \cline{2-7}
+		\multicolumn{1}{ |c  }{}                         &
+		\multicolumn{1}{ |l| }{Std (hours)}              & 117.983      & 448.265               & 198.839           & 934.731                    & 776.449             \\ \cline{1-7}
+	\end{tabular}
+	\caption{\label{tab-work-effort} Work Effort Statistics}
+\end{table*}
+
+In the case of using ticket timestamps, the effort represents the time between a
+ticket being picked up by a team member and the time when it has been moved to a
+status of ``Closed''. A first view of the data shows that the computed work
+effort is unrealistically high. On average, on the ANTLR project it takes ~274
+hours (~34 full days) to deliver a work item while the other projects have an
+even higher effort/task average. The high standard deviation points out that
+work effort varies drastically across all work items.
+
+A simple answer is that tickets remain open for a long time and do not represent
+the realistic work effort put into the delivery of tasks. This might be
+consequence of issues being created very early and no team member picking up the
+task for implementation. Another posibility is that team members leave the
+ticket open once development has been completed. Moreover, the time between
+development and code review is included in the work effort values computed. If
+the team is following the pull request model for accepting contributions then
+the changes are queued in a list of pull requests and are examined in a
+particular order, either chronologically or by priority. If the team has many
+contributors, then code changes may remain in the pull request list for a while
+before being reviewed and merged. Additionally, if the review leans towards
+negativity, then further changes must be made to source code which means the
+review must be re-done. The work effort values and the possibilities mentioned
+do not make the ticket timestamps computation of work effort a viable solution
+in the lack of logged development time.
+
+On the other hand, the results of calculating work effort using commit
+timestamps look more realistic. For the ANTLR project, the average amount of
+work effort per item was reduced to ~24 hours (1 full day of work). When
+compared to the ticket method, this is massive time reduction which might be
+possibly due to the change in method to version control logs, which is
+``closer'' to the source code and thus to the changes and effort accomplished by
+the development team. The results for other projects has been reduced
+dramatically as well, but work effort per item is still high, for the two
+projects managed by Apache. Since the commits are intrisically tied to tickets,
+one possibility is that additional effort is put after a work item was
+delivered. New commits might reference the same work item closed a while back
+and thus change the nature of the results. This might be the case for
+\emph{Commons Collections}, \emph{Commons Lang} and \emph{Spring HATEOAS}
+projects with a large work effort average per work item.
+
+The high standard deviation for both set of results point out that work effort
+varies drastically across all work items. This might be a consequence of the
+ticket complexity variable, which I considered to be constant throughout the
+experiment. Tickets with higher complexity may require more labour and take more
+time to be delivered, while low complexity tickets may require less work.
+Another posibility is both calculations methods are trivial in the sense that
+the work time computed also includes weekends and possible time off that team
+members take during their year. Additionally, it might unrealistic for a
+developer to work 8 hours per day on an open source project. Developers might
+deliver changes their spare time and only in some days of the week.  
+
+\subsubsection*{Experiment 1}
+\label{experiment-1}
 
 \begin{table*}[t]
 	\centering
@@ -740,7 +832,8 @@ have been conducted:
 		\hline
 		\multicolumn{2}{ |c| }{Category}                        & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline
 		\multicolumn{2}{ |c| }{Total TD}                        & 1,169.02     & 21.286                & 264.676           & 8.351                      & 89.794              \\ \hline
-		\multicolumn{1}{ |c  }{\multirow{2}{*}{TD Local Pain} } &
+    
+    \multicolumn{1}{ |c  }{\multirow{2}{*}{TD Local Pain} } &
 		\multicolumn{1}{ |l| }{Mean}                            & 1.814        & 0.34                  & 0.16              & 1.13                       & 6.299               \\ \cline{2-7}
 		\multicolumn{1}{ |c  }{}                                &
 		\multicolumn{1}{ |l| }{Std}                             & 7.861        & 1.205                 & 0.651             & 3.53                       & 13.635              \\ \cline{1-7}
@@ -756,25 +849,6 @@ have been conducted:
 		\multicolumn{1}{ |l| }{Std}                             & 190.364      & 7.432                 & 19.846            & 5.486                      & 14.605              \\ \cline{1-7}
 	\end{tabular}
 	\caption{\label{tab-technical-debt} Technical Debt Statistics}
-\end{table*}
-
-\begin{table*}[t]
-	\centering
-	\begin{tabular}{ |c|c|r|r|r|r|r| }
-		\hline
-		\multicolumn{2}{ |c| }{Type}                 & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline
-
-		\multicolumn{1}{ |c  }{\multirow{2}{*}{Ticket} } &
-		\multicolumn{1}{ |l| }{Mean (hours)}             & 274.068      & 659.071               & 596.268           & 10,043.91                  & 2,918.43            \\ \cline{2-7}
-		\multicolumn{1}{ |c  }{}                         &
-		\multicolumn{1}{ |l| }{Std (hours)}              & 827.071      & 1,719.20              & 1,174.08          & 8,186.17                   & 3,625.95            \\ \cline{1-7}
-
-		\multicolumn{1}{ |c  }{\multirow{2}{*}{Commit} } &
-		\multicolumn{1}{ |l| }{Mean (hours)}             & 25.877       & 142.99                & 51.188            & 296.149                    & 211.133             \\ \cline{2-7}
-		\multicolumn{1}{ |c  }{}                         &
-		\multicolumn{1}{ |l| }{Std (hours)}              & 117.983      & 448.265               & 198.839           & 934.731                    & 776.449             \\ \cline{1-7}
-	\end{tabular}
-	\caption{\label{tab-work-effort} Work Effort Statistics}
 \end{table*}
 
 

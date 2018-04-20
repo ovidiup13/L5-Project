@@ -18,12 +18,13 @@ years in both research and industry. Despite this, there is relatively little
 empirical evidence as to the longer term impact of technical debt on a software
 project. In our work, we seek to test the hypothesis that technical debt incurs
 work-effort `interest' in a software project, arising through increased feature
-implementation costs. In this paper, we described our proposed approach to
-measuring the cost of implementation of a work item within five project
-histories and measuring the impact of technical debt on implementation cost. It
-is hoped that this study is the first step in a series to empirically identify technical debt rovision of a decision-support method to enable software project teams to
-make rationale long-term decisions as to the management of project technical
-debt 
+implementation costs. In this paper, we test the correlation between technical
+debt and work effort by measuring the cost of implementation of a work item
+within five project histories and measuring the impact of technical debt on
+implementation cost. It is hoped that this study is the first step in a series
+on identifying technical debt and on provisioning of a decision-support method
+to enable software project teams to make rationale long-term decisions as to the
+management of quality issues. 
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,9 +66,74 @@ Do more changes mean that technical debt was removed?
 \section{Background}
 \label{background}
 
-\begin{enumerate}
-  \item literature review (a bit more compressed compared to proposal)
-\end{enumerate}
+There are a number of studies which have investigated the impact of technical
+debt items on the costs of software projects.  This section reviews this work
+and relates the existing state of the art to our proposed experiment to
+empirically measure the work effort interest accumulated by technical debt.
+
+Olbrich et al. \cite{Olbrich2009} studied the impact of two code smells, God
+class and Shotgun Surgery, on change-proneness of class entities and size of
+changes within two open source systems, Apache Lucene and Apache Xerces. They
+found that classes containing either smell are more change prone than other,
+non-smelly, classes. In a similar study, Khomh et al. \cite{Khomh2009}
+empirically analysed the impact of 29 code smells on the change-sets of 9
+releases of two open source systems. They had confirmed the results of the
+previous studies that code smells increase the number of changes that software
+undergoes during its evolution. Additionally, they had found that classes
+containing more than one code smell are more change prone than other classes.
+Charalampidou et al. \cite{Charalampidou2017} introduced a study that assessed
+the interest probability of code smells, which is the probability of a code
+smell to introduce extra changes in future development. Interest probability was
+calculated by counting the frequency of each code smell and how it correlated
+with the change-proneness of the module where it resides. The smells studied
+were Long Method, Conditional Complexity and Duplicated Code. The results showed
+that code duplication had the highest interest probability due to the number of
+changes required to maintain future development. Additionally, high cyclomatic
+method complexity increased the number of changes. Fontana et al.
+\cite{Fontana2012} studied what was the impact of removing code smells on code
+quality metrics such as cohesion, coupling and complexity and, which smell
+incurred the most debt. They applied refactoring activities for each smell and
+the metrics were re-evaluated. The results showed that refactoring of one code
+smell might provide benefits for some metric qualities but may negatively impact
+others.
+
+The authors studied the impact of code smells and their removal on the software
+quality metrics output by directly analysing reports of code quality tools.
+Although their research has increased awareness of technical debt, our proposed
+work aims to focus on what impact quality issues and bug patterns have on work
+effort implementation by measuring the work effort involved. Additional studies
+have looked at quantifying implementation cost in the context of technical debt.
+
+Singh et al. \cite{Singh2014}, calculated interest payments by monitoring
+development effort and code comprehension. They monitored time spent by
+developers in classes with known technical debt items and implemented a tool
+within the Integrated Development Environment of developers to gather
+information on class visits and development session times. The interest was
+quantified as the difference between time practically spent in classes and the
+ideal time. However, the study was conducted with the input of only one
+developer over a period of 9 months. Additionally, estimating the ideal time
+spent on development is a challenging task due to social and personal factors
+such as level of project knowledge, environment familiarity and programming
+language preference.
+
+Gomes et al. \cite{Gomes2011} studied the correlation between software
+evolution, defect occurrence and work effort deviation at the release level. The
+authors extracted data from documentation sources such as test plans, project
+plan, weekly reports, project source code, and emails. Using this data, they
+could derive important team information on change-sets, effort, quality, test
+and size of the system. They measured extra work effort by subtracting the
+estimated work time and total practical work time. Although information at the
+release level offers project managers an idea of work effort deviation, it does
+not show at a granular level what defects slow down development of a new feature
+and where the team should focus their refactoring activities.
+
+The initial study by Gomes et al. \cite{Gomes2011} provided a good start to
+identifying work effort deviation. However, it only analysed major releases of a
+system and did not provide drill-down information on iterations and code commits
+on which features and code smells had the most effect on work effort. This is
+essential information for developers and project managers to prioritise
+refactoring activities in work iterations, especially in an Agile environment
+where responding to change is critical \cite{agile-manifesto}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

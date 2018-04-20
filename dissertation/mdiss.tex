@@ -89,7 +89,15 @@ research questions for this study are as follows:
   \item How does work effort vary with the removal of technical debt?
 \end{itemize}
 
-By investigating these questions, this study contributes:
+Our intention is to adopt an empirical approach to the identification of the
+impact of technical debt on the implementation of future features in existing
+software code bases. To do this, we will calculate the level of technical debt
+in the system for each change-set recorded in a project's version control
+repository. We will also record calculate the practical work effort spent on
+feature implementation linking data from a project's issue tracker and version
+control repository and thus estimating the effort a developer spent on
+completing a feature. By investigating these research questions, this study
+contributes:
 \begin{itemize}
   \item A collection pipeline for acquiring and centralising data from three
   fundamental systems of any development environment;
@@ -100,15 +108,6 @@ By investigating these questions, this study contributes:
   \item A foundation for futher work in empirical analysis of technical debt and
   work effort.
 \end{itemize}
-
-Our intention is to adopt an empirical approach to the identification of the
-impact of technical debt on the implementation of future features in existing
-software code bases. To do this, we will calculate the level of technical debt
-in the system for each change-set recorded in a project's version control
-repository. We will also record calculate the practical work effort spent on
-feature implementation linking data from a project's issue tracker and version
-control repository and thus estimating the effort a developer spent on
-completing a feature. 
 
 % Section descriptions
 Section \ref{background} mentions important state-of-the-art work that is will
@@ -191,7 +190,7 @@ system and did not provide drill-down information on iterations and code commits
 on which features and code smells had the most effect on work effort. This is
 essential information for developers and project managers to prioritise
 refactoring activities in work iterations, especially in an Agile environment
-where responding to change is critical \cite{agile-manifesto}.
+where responding to change is critical \footnote{http://agilemanifesto.org/}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -235,19 +234,21 @@ following data sources relevant to the collection of data:
   \item A \emph{Version Control System} is a system that manages changes to the
   source code. As work items are implemented, the system logs all changes made
   by the development team. The most popular version control tool is Git
-  \emph{REFERENCE}. GitHub \emph{REFERENCE} and BitBucket \emph{REFERENCE} are
-  hosting services for source code management.
+  \footnote{https://git-scm.com/}.
 
   \item \emph{Project Management Tools} are software systems that help teams
   track, manage and collaborate on various types of units of work. A common
-  example of a complex project management tool is Jira \emph{REFERENCE}. GitHub
-  and BitBucket also provide an issue tracking tool with each code repository,
-  although they do not provide such extensive features as Jira.
+  example of a complex project management tool is Jira
+  \footnote{https://www.atlassian.com/software/jira}. GitHub
+  \footnote{https://github.com/} and BitBucket \footnote{https://bitbucket.org/}
+  also provide an issue tracking tool with each code repository, although they
+  do not provide such extensive features as Jira.
   
   \item \emph{Static Analysis Tools} are tools that analyse the source code to
   check for quality issues, security flaws and adherence to industry
   standards.There are many examples of static analysis tools: SonarQube,
-  Spotbugs (formerly Findbugs), CAST, Sonargraph, etc.
+  Spotbugs \footnote{https://spotbugs.github.io/} (formerly FindBugs), CAST,
+  Sonargraph, etc.
 
 \end{itemize}
 
@@ -275,13 +276,13 @@ The version control system keeps track and logs all changes that a source code
 has suffered over the evolution of the product. Such logs are indispensable due
 to their metadata which provides information on the accomplished work.
 
-Git \emph{REFERENCE} is a popular version control tool that tracks changes of
-the source code using branches and commits. Projects are stored in a
-``repository'' which contains at least one development line, called a
-``branch''. The main development branch is commonly named the \emph{master}
-branch. Branches contain a stream of small units of work, called ``commits'',
-which are the snapshots of the source code at a particular point in time.
-Additionally, each commit contains relevant metadata with the following fields:
+Git is a popular version control tool that tracks changes of the source code
+using branches and commits. Projects are stored in a ``repository'' which
+contains at least one development line, called a ``branch''. The main
+development branch is commonly named the \emph{master} branch. Branches contain
+a stream of small units of work, called ``commits'', which are the snapshots of
+the source code at a particular point in time. Additionally, each commit
+contains relevant metadata with the following fields:
 
 \begin{itemize}
   \item \emph{Object ID} - is the identifier of the snapshot;
@@ -362,22 +363,20 @@ change-sets at any time of the implementation process.
 The output of static analysis tools are generally weaknesses and bugs that may
 lead to vulnerabilities which are considered ``lowest level'' of technical debt.
 Code debt is technical debt that developers have to encounter daily
-\emph{REFERENCE}. There are many static analysis tools, many of which have been
-reviewed \emph{REFERENCE}, \emph{REFERENCE}. 
+\emph{Avgeriou2016}. There are many static analysis tools, many of which have been
+reviewed \cite{Fontana2011}. 
 
 Although static analysis tools provide an approximate measure of the quality of
 the code base, there is a danger in associating technical debt with their
 output. There are multiple types of technical debt present in the software
-development environment \emph{REFERENCE}. For example, static analysis tools
+development environment \cite{Li2015}. For example, static analysis tools
 cannot predict that the requirements gathering phase was not completed
 appropriately and thus it might take more time for a team member to understand
 the expectations of a work item, thus indirectly increasing effort. However, as
 a simplifying assumption, in this paper we only consider code debt in the
 calculation of a technical debt index. 
 
-The output of a static analysis tool that we are interested in contains the
-following fields:
-
+The output of a code analysis by SpotBugs contains the following fields:
 \begin{itemize}
   \item \emph{ID} - a unique identifier of the quality issue;
   \item \emph{Priority} - a generic measure of severeness e.g. High, Medium,
@@ -396,7 +395,28 @@ total amount of issues that a team member had to deal with.
 Unfortunately, not all projects use a static analysis tool to check for issues
 and, if some do, they are not publicly available in a centralised system as well
 as not being available for each revision of the source code. This challenge was
-addressed and is described in section \ref{data-collection}. 
+addressed and is described in section \ref{data-collection}. The candidate list
+for this project is: 
+
+\begin{itemize}
+  \item ANTLR \footnote{https://github.com/antlr/antlr4} - ``s a powerful parser
+  generator for reading, processing, executing, or translating structured text
+  or binary files'';
+  \item Spring HATEOAS
+  \footnote{https://github.com/spring-projects/spring-hateoas} - ``Library to
+  support implementing representations for hyper-text driven REST web services
+  ''
+  \item Checkstyle \footnote{https://github.com/checkstyle/checkstyle} - ``is a
+  development tool to help programmers write Java code that adheres to a coding
+  standard'';
+  \item Apache Commons Collections
+  \footnote{https://github.com/apache/commons-collections} - ``contains types
+  that extend and augment the Java Collections Framework'';
+  \item Apache Commons Lang \footnote{https://github.com/apache/commons-lang} -
+  ``a package of Java utility classes for the classes that are in java.lang's
+  hierarchy, or are considered to be so standard as to justify existence in
+  java.lang''.
+\end{itemize}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -406,26 +426,27 @@ addressed and is described in section \ref{data-collection}.
 
 % intro
 For the purpose of this experiment, we had to apply the data collection
-processing phases on a set of software projects. These projects had to satisfy a
+processing phase on a set of software projects. These projects had to satisfy a
 certain criteria to be included:
 
 \begin{itemize}
-  \item Use \emph{Git} as a version control tool due to its powerful features,
+  \item Use Git as a version control tool due to its powerful features,
   applicability and popularity. Additionally, the project must be open-source to
   access the history of snapshots.
   \item Use a project management tool that is publicly accessible to retrieve
   work item data.
-  \item Use \emph{Java} as the main programming language. This was a simplifying
-  criteria to keep the data collection and processing consistent. Additionally,
-  this aided our decision in selecting a single static analysis tool.
+  \item Use Java \footnote{https://java.com/en/} as the main programming
+  language. This was a simplifying criteria to keep the data collection and
+  processing consistent. Additionally, this aided our decision in selecting a
+  single static analysis tool.
   \item The project should have a single main development branch, preferably the
   ``master'' branch. This relieves the data collection process of analysing
   multiple branches.
   \item The version control hosting system should integrate with the project
   management tool to highlight the commits that belong to a specific work item.
-  \item The project uses Maven as its build system due to simplifications in
-  development process of the data collection tool. Multiple build systems could
-  be added if necessary.
+  \item The project uses Maven \footnote{https://maven.apache.org/} as its build
+  system due to simplifications in development process of the data collection
+  tool. Multiple build systems could be added if necessary.
 \end{itemize}
 
 \begin{table}
@@ -479,25 +500,27 @@ processing and analysis. Additionally, this method allows us to reproduce the
 experiment without any outside changes to the dataset while future work items do
 not incur an additional data collection overhead. Moreover, due to the choice of
 database technology, new data could be added from additional projects without
-any changes to the initial data model. Figure \emph{FIGURE} shows a simple view
-of the data model.
+any changes to the initial data model. 
 
 The tool has been built using Java and open-source technologies, and is
-available to use by anyone (MIT License) \emph{REFERENCE}. The tool uses the
-following technologies for collecting data:
+available to use by anyone (MIT License
+\footnote{https://opensource.org/licenses/MIT}). The tool uses the following
+technologies for collecting data:
 
 \begin{itemize}
-  \item jGit \emph{REFERENCE} - is a Java library for interacting with the Git
+  \item jGit \footnote{https://www.eclipse.org/jgit/} - is a Java library for interacting with the Git
   version control system;
-  \item REST Java Client for Jira \emph{REFERENCE} - is a Java library that
-  provides a simple interaction with Jira APIs;
-  \item GitHub API for Java \emph{REFERENCE} - is a Java library that provides
+  \item REST Java Client for Jira
+  \footnote{https://bitbucket.org/atlassian/jira-rest-java-client} - is a Java
+  library that provides a simple interaction with Jira APIs;
+  \item GitHub API for Java \footnote{http://github-api.kohsuke.org/} - is a Java library that provides
   integration with GitHub API for retrieving issues;
-  \item MongoDB \emph{REFERENCE} - NoSQL database technology for storing
-  collected data;
-  \item Spotbugs \emph{REFERENCE} - tool for identifying bug patterns in source
+  \item MongoDB \footnote{https://www.mongodb.com/} - NoSQL database technology
+  for storing collected data;
+  \item Spotbugs - tool for identifying bug patterns in source
   code;
-  \item Other technologies - Spring Boot \emph{REFERENCE}, Angular \emph{REFERENCE} and ChartJS \emph{REFERENCE}
+  \item Other technologies - Spring Boot \footnote{https://projects.spring.io/spring-boot/}, 
+  Angular \footnote{https://angular.io/} and ChartJS \footnote{http://www.chartjs.org/}
   for visualising data.
 \end{itemize}
 
@@ -545,14 +568,14 @@ Additionally, the tasks that compile and run the testing suites were ignored.
 Firstly, testing was considered a separate activity to the implementation of new
 features, fixing bugs and adding enhacements. Thus, in this case, code debt was
 split into ``implementation debt'' and ``testing debt''. Testing debt refers to
-shortcuts taken during the testing phases \emph{REFERENCE}. Secondly, the
-testing task added an additional overhead to the build process. In reality,
-testing is a fundamental part of development and is tightly integrated with
-implementation of work items, especially in the practice of Test Driven
-Development. It is one of the top most mentioned type of technical debt in a
-mapping study by X et. al \emph{REFERENCE}, along with code, architecture and
-design debt. The integration of testing debt within this experiment is
-considered as a future work item, mentioned in section \ref{future-work}.
+shortcuts taken during the testing phases. Secondly, the testing task added an
+additional overhead to the build process. In reality, testing is a fundamental
+part of development and is tightly integrated with implementation of work items,
+especially in the practice of Test Driven Development. It is one of the top most
+mentioned type of technical debt in a mapping study by Li et. al \emph{Li2015},
+along with code, architecture and design debt. The integration of testing debt
+within this experiment is considered as a future work item, mentioned in section
+\ref{future-work}.
 
 \begin{table*}[t]
 	\centering
@@ -721,7 +744,7 @@ of changes have been implemented. Since a work item is composed of one or
 multiple revisions, a relatively accurate estimation of work effort could be
 derived.
 
-As presented in figure \emph{REFERENCE}, a simple method of calculation is to
+As presented in figure \emph{FIGURE}, a simple method of calculation is to
 take the difference between the last and first commit timestamps. Using this
 method, the last commit timestamp reflects the time of the last changes pushed
 by the developer. However, the first commit timestamp does not reflect the date
@@ -731,7 +754,7 @@ results of the calculation lacks the effort accomplished before a first commit
 has been pushed.
 
 To cover for this case, we assumed that once a contributor finished a work item
-she would get started on the next. Figure \emph{REFERENCE} visualises the case.
+she would get started on the next. Figure \emph{FIGURE} visualises the case.
 We considered that the missing work effort is measured as the number of hours
 between the last commit timestamp of a previous work item and the first commit
 timestamp of the current work item. However, a developer may not have a previous
@@ -768,13 +791,14 @@ professionals working remotely do not track their work effort
 
 % calculation of technical debt
 As mentioned in section \ref{background}, many state-of-the-art calculations for
-technical debt have been implemented \emph{REFERENCE} \emph{REFERENCE}
-\emph{REFERENCE}. The measure depicting the cost of paying back the debt at the
-present is called the \textit{principal} while the extra cost of development
-when keeping hold of items is called \textit{interest}. Unfortunately, there is
+technical debt have been implemented \cite{Letouzey2012} \cite{Nugroho2011}
+\cite{Fontana2016}. The measure depicting the cost of paying back the debt at
+the present is called the \emph{principal} while the extra cost of development
+when keeping hold of items is called \emph{interest}. Unfortunately, there is
 no standardised method, due to difficulties managing complexities of quantifying
 work effort and development costs. Thus, there is no single best tool for this
-purpose, as all take into consideration various variables for metric computation. 
+purpose, as all take into consideration various variables for metric
+computation. 
 
 % total
 The initial method of calculating technical debt was to get an idea of its
@@ -821,15 +845,17 @@ of the two sets and their intersection, which signifies the total technical debt
 items local to the work item.
 
 % conclusion
-The processing stage  implemented as a request-reply server, running a REST API.
-Each request contains a repository ID to identify the database entries and the
-server calculates the work effort and technical debt as required, for each
-project in isolation. The calculation becomes computationally expensive as the
-size of the repository data grows (number of issues and commits). Appropriate
-caching optimisations have been implemented to minimize computation and speed up
-retrieval of results. The data is displayed as charts on a Single Page
-Application (SPA) dashboard \emph{REFERENCE} built specifically for this
-purpose. 
+The processing stage was implemented as a request-reply server, running a REST
+API \footnote{https://github.com/ovidiup13/tdanalysis}. Each request contains a
+repository ID to identify the database entries and the server calculates the
+work effort and technical debt as required, for each project in isolation. The
+calculation becomes computationally expensive as the size of the repository data
+grows (number of issues and commits). Appropriate caching optimisations have
+been implemented to minimize computation and speed up retrieval of results. The
+data is displayed as charts on a Single Page Application (SPA) dashboard
+\footnote{https://github.com/ovidiup13/tdanalysis-dashboard/} built specifically
+for this purpose. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -965,7 +991,7 @@ introduced and removed quite often during implementation, possibly due to
 refactoring activities or to accidental removal of a class and its introduction
 back into the codebase for the next work item. The latter case might suggest an
 ``God class'' antipattern, where a lot of functionality is centralised in a
-single class. Unfortunately, FindBugs does not analyse the source code from an
+single class. Unfortunately, SpotBugs does not analyse the source code from an
 architectural point of view and such antipatterns may only be inferred by
 studying the current results or by integrating a new static analysis tool in the
 data collection process. 
@@ -1078,7 +1104,7 @@ the application domain of each project. A possible explanation for ANTLR is
 that, because the project is a language generation tool, many files of its
 source code could be language grammar files. Thus it is possible that many work
 items revolve around changes to these files, which could not be analysed for
-quality issues by FindBugs. 
+quality issues by SpotBugs. 
 
 \begin{figure*}
 	\centering
@@ -1265,10 +1291,10 @@ introduced to reduce the complexity of measurement:
   found per revision. Severity of the quality issues was not considered.
   \item The data collection phase only analysed the source code for simple code
   bug patterns. Testing or architectural debt were not considered. 
-  \item There are other types of technical debt \emph{REFERENCE} which have not
-  been considered due to complexity in the modelling of such factors. For
-  example, requirements debt \emph{REFERENCE} takes more effort out of a
-  developer's time.
+  \item There are other types of technical debt which have not been considered
+  due to complexity in the modelling of such factors. For example, requirements
+  debt takes more effort out of a developer's time to understand the underlying
+  task at hand.
 \end{enumerate}
 
 Although these assumptions are simplific they have been added for this purpose.
@@ -1285,8 +1311,8 @@ for work effort and technical debt accuracy. First of all, a more complex
 identification mechanism and computation of technical debt measurement should be
 considered. There is value in identifying quality issues at the test and
 architecture level for various modules of projects and see how these may affect
-work effort in comparison with code debt. Many methods \emph{REFERENCE}
-\emph{REFERENCE} have been devised for measuring technical debt that could be
+work effort in comparison with code debt. Many methods \cite{Fontana2016}
+\cite{Letouzey2012} have been devised for measuring technical debt that could be
 tailored for analysing debt items for each revision and work item.
 
 Work effort methods could be improved by gathering more data on the teams and
@@ -1337,8 +1363,8 @@ development environment.
 {\bf Acknowledgments.} I would like to thank my supervisor, Dr. Tim Storer, for
 his guidance and support throughout this year. Many thanks to the University of
 Glasgow Computing Science Support Team and to our corporate partners for their
-support. I would also like to thank my parents and my girlfriend, Ioana, for their
-continued support and encourangement. 
+support. I would also like to thank my parents and my girlfriend, Ioana, for
+their continued support and encourangement. 
 
 \bibliographystyle{abbrv}
 \bibliography{mdiss}

@@ -575,12 +575,13 @@ working hours on the same day:
   WE = hours(t1 - t2)
 \end{equation}
 
-For example, if a developer starts work on Monday at 9:00 GMT and finishes work
-at 15:00 GMT, then the total of effort put in is 6 hours. However, a work item
-might span multiple days and thus this solution would include hours outside
-hours. To cover for this case, we introduced another simplyfing assumption.
-Assume that the normal working hours per day would not exceed 8 hours. This
-means that work spread over multiple days would be calculated as follows:
+For example, if a developer starts work on a task on Monday at 9:00 GMT and
+finishes work at 15:00 GMT, then the total of effort put in for that task is 6
+hours. However, a work item might span multiple days and thus this solution
+would include hours outside hours. To cover for this case, we introduced another
+simplyfing assumption. Assume that the normal working hours per day would not
+exceed 8 hours. This means that work spread over multiple days would be
+calculated as follows:
 
 \begin{equation}
   \label{eq-work-effort-days}
@@ -664,12 +665,12 @@ derived.
 
 As presented in figure \emph{REFERENCE}, a simple method of calculation is to
 take the difference between the last and first commit timestamps. Using this
-method, the last commit timestamp reflects the time of the the last changes
-pushed by the developer. However, the first commit timestamp does not reflect
-the date and time when work has started. This is because the timestamp of
-commits represent the time when the changes have already been implemented. Thus,
-the results of the calculation lacks the effort accomplished before the first
-commit has been pushed.
+method, the last commit timestamp reflects the time of the last changes pushed
+by the developer. However, the first commit timestamp does not reflect the date
+and time when work has started. This is because the timestamp of commits
+represent the time when the changes have already been implemented. Thus, the
+results of the calculation lacks the effort accomplished before a first commit
+has been pushed.
 
 To cover for this case, we assumed that once a contributor finished a work item
 she would get started on the next. Figure \emph{REFERENCE} visualises the case.
@@ -703,13 +704,6 @@ the globe. In an ideal case, developers would measure their work time on the
 project management tool or on an internal worksheet. However, 54\% of software
 professionals working remotely do not track their work effort
 \cite{DeveloperSurvey2018}.
-
-Additionally, factors such as technical experience, knowledge of the system,
-familiarity with libraries and dependencies used, personality and intrinsic
-complex details of the work involved have not been considered in the
-calculation. Collecting such data means tracking down and interviewing each
-project collaborator. Moreover, modelling such subjective factors in work effort
-is a complex challenge.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Technical Debt}
@@ -817,6 +811,7 @@ have been conducted:
 The experiments have been completed incrementally, one after the other, in
 parallel with development on the data processing stage. 
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Results and Discussion}
 \label{results-discussion}
 
@@ -900,6 +895,7 @@ members take during their year. Additionally, it might unrealistic for a
 developer to work 8 hours per day on an open source project. Developers might
 deliver changes their spare time and only in some days of the week.  
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Experiment 1}
 \label{experiment-1}
 
@@ -922,7 +918,7 @@ data collection process.
 		\hline
 		\multicolumn{2}{ |c| }{Category}                        & \emph{ANTLR} & \emph{Spring HATEOAS} & \emph{Checkstyle} & \emph{Commons Collections} & \emph{Commons Lang} \\ \hline \hline
 
-		\multicolumn{1}{ |c  }{\multirow{2}{*}{Total TD Mean} } &
+		\multicolumn{1}{ |c  }{\multirow{2}{*}{Total TD} } &
 		\multicolumn{1}{ |l| }{Mean}                            & 1,777.81     & 11.861                & 277.279           & 69.73                      & 118.941             \\ \cline{2-7}
 		\multicolumn{1}{ |c  }{}                                &
 		\multicolumn{1}{ |l| }{Std}                             & 435.903      & 8.509                 & 3.457             & 11.296                     & 8.233               \\ \cline{1-7}
@@ -989,6 +985,7 @@ relationship with work effort looks constant. This is most likely due to
 consideration of quality at the project level, which may not affect the
 productivity at the class level. 
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Experiment 2}
 \label{experiment-2}
 
@@ -1075,6 +1072,7 @@ topic in section \ref{future-work}.
 	\caption{\label{tab-technical-debt-intro} Experiment 3: Technical Debt Statistics}
 \end{table*}
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Experiment 3}
 \label{experiment-3}
 
@@ -1137,7 +1135,7 @@ decreases. This observation makes sense for removal of technical debt since work
 effort should increase with refactoring activities. However, the distribution of
 data points are mostly around the range $[0-100]$ hours on the work effort axis.
 The pattern is shared by the work effort and TD added relationship, which is the
-opposite of my initial expectation. 
+opposite of my initial expectation. \\
 
 
 Although the three experiments build on one another, from my perspective there
@@ -1161,32 +1159,95 @@ from each type of calculation and from other subjective factors that are
 difficult to model in such a short experiment. The omitted factors are
 considered here as well as future work for proceeding experiments.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Threaths to Validity}
 \label{validity}
 
-\subsubsection*{Work Calculations}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection*{Work Effort Measurement}
 \label{validity-work}
 
-\begin{itemize}
-  \item Work - unrealistic expectation for developers to work 8 hours per day
-  for open source projects.
-  \item Work - did not exclude weekends, time off, etc.
-  \item Commits - rebase modifies timestamps
-\end{itemize}
+There are a number of simplifying assumptions that have been made in the design
+process of the work calculation methods. Although such assumptions simplify the
+method of computation, it additionally `curves' the results. The following
+factors may have had an impact on the computed results:
+
+\begin{enumerate}
+  \item We considered work to have a `linear' pattern. That is, only one
+  developer per work item and once the task is accomplished, the developer
+  directly starts a new task. This is not always the case since developers may
+  collaborate on tasks. This is reflected in the calculation using commit
+  timestamps. 
+  \item We considered that a developer works on a single item at a time. This
+  may not be true. In corporate and open-source environments, it is very likely
+  that engineers work on multiple items at at time.  
+  \item We did not introduce external workflow variables such as mini breaks for
+  coffee, meetings or time off. This means that work effort results may contain
+  non-development time. 
+  \item We considered that developers work continously, on 8 hours per day. This
+  might not be accurate, especially in open-source projects. Engineers might
+  take less time out of their schedule if they are working on a part time basis.
+  \item Additionally, factors such as technical experience, knowledge of the system,
+  familiarity with libraries and dependencies used, personality and intrinsic
+  complex details of the work involved have not been considered in the
+  calculation. Collecting such data means tracking down and interviewing each
+  project collaborator. Moreover, modelling such subjective factors in work effort
+  is a complex challenge. 
+\end{enumerate}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\subsubsection*{Technical Debt Measurement}
+\label{validity-td}
+
+Similarly, for technical debt calculations some simplifying assumptions were
+introduced to reduce the complexity of measurement:
+
+\begin{enumerate}
+  \item The technical debt measurement is a simple count of all quality issues
+  found per revision. Severity of the quality issues was not considered.
+  \item The data collection phase only analysed the source code for simple code
+  bug patterns. Testing or architectural debt were not considered. 
+  \item There are other types of technical debt \emph{REFERENCE} which have not
+  been considered due to complexity in the modelling of such factors. For
+  example, requirements debt \emph{REFERENCE} takes more effort out of a
+  developer's time.
+\end{enumerate}
+
+Although these assumptions are simplific they have been added for this purpose.
+Due to the nature of the variables involved, it is difficult to model specific
+factors into the computations without supporting data. Therefore, we hope that
+this experiment will be the starting point for further research in this area. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Future Work}
 \label{future-work}
 
-Describe the items that could be improved and expand on the next steps within
-this area of research.
+The results shown require a few changes to the underlying computation methods
+for work effort and technical debt accuracy. First of all, a more complex
+identification mechanism and computation of technical debt measurement should be
+considered. There is value in identifying quality issues at the test and
+architecture level for various modules of projects and see how these may affect
+work effort in comparison with code debt. Many methods \emph{REFERENCE}
+\emph{REFERENCE} have been devised for measuring technical debt that could be
+tailored for analysing debt items for each revision and work item.
 
-\begin{itemize}
-  \item Technical debt - calculate architecture and test debt
-  \item Technical debt - calculate at package/module level
-  \item More accurate work effort calculation using mixed timestamps (ticket start, last commit)
-  \item drilldown of technical debt at the commit level instead of the work item
-\end{itemize}
+Work effort methods could be improved by gathering more data on the teams and
+collaborators of each project through interviews and questionnaires. This would
+command a greater understanding of development patterns and provide additional
+data to the computation and validation of work effort.
+
+Additional experiments may expand on the data collected from the project
+management tool. For example, it would be interesting if there is any
+correlation between tickets types such as features, enhacements, bugs and
+others. Moreover, ticket complexity plays a great role in assessing an initial
+work effort and would an interesting to note how technical debt affects the
+actual work effort in relation to the early estimation. Additional expansions of
+this experiment would also look at ticket priority and how technical debt varies
+between the starting and ending revision of such a work item. 
+
+Lastly, it would be beneficial to expand the number of candidates and include a
+varied set of domains, languages, version control systems and project management
+tools.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

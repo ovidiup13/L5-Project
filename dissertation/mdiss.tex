@@ -33,32 +33,90 @@ management of quality issues.
 \section{Introduction}
 \label{introduction}
 
-\begin{enumerate}
-  \item General description of the problem, motivation, relevance
-  \item Contributions to state of the art 
-  \item Research questions
-  \item Section descriptions
-\end{enumerate}
+% General description of the problem, motivation, relevance
+The metaphor of technical debt was first proposed by \cite{Cunningham1993}, in
+reference to the temporary sacrifice of code quality in exchange for the faster
+delivery of features. Thus, incurring technical debt might be useful to achieve
+immediate deadlines but may simultaneously have negative consequences for future
+work, such as software complexity growth, the prevalence of bugs and defects,
+decreased team productivity and augmented work effort, leading to increased
+costs of development, infrastructure and management. The impact of this
+technical debt may affect the daily work of developers, project managers,
+product owners and other stakeholders of the business.
 
-Research questions:
+Although initially intended as a metaphor, considerable research has since been
+undertaken into the identification \cite{Lim2012}, measurement
+\cite{Fontana2016} and management \cite{Codabux2013} of technical debt. Research
+has also expanded the scope of the term, such that technical debt spans not just
+activities related to code implementation but the entire software development
+environment \cite{Power2013}. The research community identified multiple types
+of debts \cite{Li2015}, each with its advantages and consequences if not handled
+accordingly. Although industry practitioners are aware of its presence
+\cite{Codabux2013} \cite{Lim2012}, there is no standard way of measuring the
+current and future impact of technical debt on development and costs of the
+team. Additionally, due to lack of vocabulary and complexities of the
+phenomenon, developers find it difficult to convey their concerns to project
+stakeholders \cite{Kruchten2012}.
+ 
+For example, code smells are an example of technical debt items that may
+increase future development effort and maintenance costs \cite{Fowler1999}.
+Industry case studies have shown that such code violations are more likely to be
+addressed if made visible by developers within the project's issue tracker
+\cite{Lim2012}. However, from the perspective of a project manager, it is
+essential to understand how much effort the team puts into technical debt
+reduction activities and if there is an associated business value.  A key
+concern, therefore, is the ability to measure and make rationale cost-benefit
+analyses of the impact of technical debt on productivity within a project,
+capturing both the principal debt incurred and consequent interest, as poor code
+quality accumulates.
 
-Is there any correlation between technical debt and work effort?
-Does work effort increase when technical debt is added?
-Does work effort decrease when technical debt is removed?
+% Contributions to state of the art
 
-Is there a correlation between technical debt and change set size?
-Do less changes mean that technical debt is introduced?
-Do more changes mean that technical debt was removed? 
+% Research questions
+The primary research objective of this work is to identify if there exists a
+correlation between additional work effort caused by the presence of technical
+debt in a code base through an empirical analysis of work effort in task
+implementations within software projects. An additional objective is to
+understand how the measure of technical debt varies with software evolution and
+how do specific development patterns are affected by technical debt. The
+research questions for this study are as follows:
 
+\begin{itemize}
+	\item How does the work effort cost of feature implementation vary with the
+	      magnitude of technical debt?
+	\item At what project `level' does technical affect developers most?
+  \item How does work effort vary with the introduction of technical debt? 
+  \item How does work effort vary with the removal of technical debt?
+\end{itemize}
 
-% The precise structure of an MSci paper is not mandated, but it should probably
-% cover in detail the following aspects of the project. \begin{enumerate} \item
-% General description of the problem, motivation, relevance \item Background
-% information, possibly including a literature survey \item Description of
-% approach taken to solve the problem, including high-level design and
-% lower-level implementation details as appropriate \item Evaluation,
-% qualitative or quantitative as appropriate \item Conclusion, including scope
-% for future work \end{enumerate}
+By investigating these questions, this study contributes:
+\begin{itemize}
+  \item A collection pipeline for acquiring and centralising data from three
+  fundamental systems of any development environment;
+  \item Two novel methods for computing work effort using data collected from
+  five open source systems;
+  \item A coherent method of calculating technical debt at the project and class
+  level;
+  \item A foundation for futher work in empirical analysis of technical debt and
+  work effort.
+\end{itemize}
+
+Our intention is to adopt an empirical approach to the identification of the
+impact of technical debt on the implementation of future features in existing
+software code bases. To do this, we will calculate the level of technical debt
+in the system for each change-set recorded in a project's version control
+repository. We will also record calculate the practical work effort spent on
+feature implementation linking data from a project's issue tracker and version
+control repository and thus estimating the effort a developer spent on
+completing a feature. 
+
+% Section descriptions
+Section \ref{background} mentions important state-of-the-art work that is will
+build on, while section \ref{methodology} goes into data modelling, collection
+and processing phases of the study. Finally, section \ref{results-discussion}
+provide insights into results while section \ref{validity-future-work} states
+the possible threaths to the validity of this experiment and further research
+for expansion.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1254,6 +1312,8 @@ tools.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 \label{conclusion}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

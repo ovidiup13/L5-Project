@@ -912,7 +912,7 @@ following experiments:
   calculation of work effort. The purpose was to verify whether work effort was
   negatively impacted by technical debt at the local level. 
   
-  \item Thirdly, I wanted to see if patterns of development affect task
+  \item Thirdly, we wanted to see if patterns of development affect task
   productivity. More specifically, the aim is to understand if introducing
   technical debt would speed up development time (reduce work effort) and if
   removing technical debt, as a potential refactoring activity, would increase
@@ -1256,10 +1256,10 @@ controlled and excluded factors for the simplicity of the calculations.
 \label{validity-future-work}
 
 Throughout the study, there have been numerous simplifying assumptions that may
-cripple the results and conclusion presented in the earlier section. These range
-from each type of calculation and from other subjective factors that are
-difficult to model in such a short experiment. The omitted factors are
-considered here as well as future work for proceeding experiments.
+affect the results and conclusion presented in the earlier section. These range
+from each type of calculation to other subjective factors that are difficult to
+model in such a short experiment. We consider such factors in this section and
+suggest further work for future experiments.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Threaths to Validity}
@@ -1269,32 +1269,35 @@ considered here as well as future work for proceeding experiments.
 \subsubsection*{Work Effort Measurement}
 \label{validity-work}
 
-There are a number of simplifying assumptions that have been made in the design
-process of the work calculation methods. Although such assumptions simplify the
-method of computation, it additionally `curves' the results. The following
-factors may have had an impact on the computed results:
+Some simplifying assumptions have been made in the design process of the work
+calculation methods. Although such assumptions simplify the method of
+computation, it might additionally introduce margins of errors into the results.
+The following factors may have had an impact:
 
 \begin{enumerate}
-  \item We considered work to have a `linear' pattern. That is, only one
-  developer per work item and once the task is accomplished, the developer
-  directly starts a new task. This is not always the case since developers may
-  collaborate on tasks. This is reflected in the calculation using commit
-  timestamps. 
+  \item We considered work to have a `linear' pattern. That is, a developer
+  works on a single work task at a time and once she finishes the task, work
+  starts on the next. This is not always the case since developers may
+  collaborate on tasks.
+
   \item We considered that a developer works on a single item at a time. This
   may not be true. In corporate and open-source environments, it is very likely
-  that engineers work on multiple items at at time.  
+  that engineers work on multiple items and/or project at a time.
+
   \item We did not introduce external workflow variables such as mini breaks for
-  coffee, meetings or time off. This means that work effort results may contain
-  non-development time. 
+  coffee, meetings, weekends or time off. This means that work effort results
+  may contain non-development time. 
+
   \item We considered that developers work continously, on 8 hours per day. This
   might not be accurate, especially in open-source projects. Engineers might
   take less time out of their schedule if they are working on a part time basis.
-  \item Additionally, factors such as technical experience, knowledge of the system,
-  familiarity with libraries and dependencies used, personality and intrinsic
-  complex details of the work involved have not been considered in the
-  calculation. Collecting such data means tracking down and interviewing each
-  project collaborator. Moreover, modelling such subjective factors in work effort
-  is a complex challenge. 
+
+  \item Additionally, we did not consider factors such as technical experience,
+  knowledge of the system, familiarity with libraries and dependencies used,
+  personality and intrinsic complicated details of the work involved.
+  Collecting such data means tracking down and interviewing each project
+  collaborator. Moreover, modelling such subjective factors in work effort is a
+  complex challenge. 
 \end{enumerate}
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1306,46 +1309,62 @@ introduced to reduce the complexity of measurement:
 
 \begin{enumerate}
   \item The technical debt measurement is a simple count of all quality issues
-  found per revision. Severity of the quality issues was not considered.
+  found per revision. We did not consider the severity of the quality issues.
   \item The data collection phase only analysed the source code for simple code
-  bug patterns. Testing or architectural debt were not considered. 
-  \item There are other types of technical debt which have not been considered
+  bug patterns, whereas technical debt may also appear at the architectural
+  level and testing phases.
+ \item There are other types of technical debt which have not been considered
   due to complexity in the modelling of such factors. For example, requirements
   debt takes more effort out of a developer's time to understand the underlying
   task at hand.
 \end{enumerate}
 
-Although these assumptions are simplific they have been added for this purpose.
-Due to the nature of the variables involved, it is difficult to model specific
-factors into the computations without supporting data. Therefore, we hope that
-this experiment will be the starting point for further research in this area. 
+Although these assumptions are simplistic, they have been added for this
+purpose. Due to the nature of the variables involved, it is challenging to model
+specific factors into the computations without supporting data. Therefore, we
+hope that this experiment will be the starting point for further research in
+this area. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Future Work}
 \label{future-work}
 
 The results shown require a few changes to the underlying computation methods
-for work effort and technical debt accuracy. First of all, a more complex
-identification mechanism and computation of technical debt measurement should be
-considered. There is value in identifying quality issues at the test and
-architecture level for various modules of projects and see how these may affect
-work effort in comparison with code debt. Many methods \cite{Fontana2016}
-\cite{Letouzey2012} have been devised for measuring technical debt that could be
-tailored for analysing debt items for each revision and work item.
+for work effort and technical debt accuracy. First of all, future research in
+this area should consider a more complex identification mechanism and
+computation of technical debt measurement. There is value in identifying quality
+issues at the test and architecture level for various modules of projects and
+see how these may affect work effort in comparison with code debt. Fontana et
+al. \cite{Fontana2016} and Letouzey et. al \cite{Letouzey2012} have devised for
+complex calculations for measuring technical debt that could be tailored for the
+data collection pipeline mentioned in section \ref{data-collection}.
 
-Work effort methods could be improved by gathering more data on the teams and
-collaborators of each project through interviews and questionnaires. This would
-command a greater understanding of development patterns and provide additional
-data to the computation and validation of work effort.
+Gathering more data on the subjective aspect of the team, possibly through
+questionnaires and interviews might yield more accurate results for work effort
+as well as a convincing validation method. This would command a greater
+understanding of development patterns and provide additional data to the
+computation and validation of work effort.
 
 Additional experiments may expand on the data collected from the project
 management tool. For example, it would be interesting if there is any
-correlation between tickets types such as features, enhacements, bugs and
-others. Moreover, ticket complexity plays a great role in assessing an initial
+correlation between work effort and tickets types such as features, enhacements
+and bugs. Moreover, ticket complexity plays a great role in assessing an initial
 work effort and would an interesting to note how technical debt affects the
-actual work effort in relation to the early estimation. Additional expansions of
-this experiment would also look at ticket priority and how technical debt varies
-between the starting and ending revision of such a work item. 
+actual work effort in relation to the initial early estimation. Additional
+expansions of this experiment would also look at ticket priority and how
+technical debt varies between the starting and ending revision of work tasks. 
+
+Furthermore, the relationship between technical debt and change-sets could be
+explored in more detail. It would be beneficial to explore whether the number of
+changes per files is affected by a local and global measurement of technical
+debt. In addition, the change-set size may give an accurate representation of
+the work effort involved for delivery of a task. However, this assumption may
+backfire as many Integrated Development Environments (IDEs) integrate
+refactoring tools which may hinder results. A solution would be to detect and
+exclude such refactorings by statically analysing the code \cite{Silva2017}.
+Moreover, change-sets may also give an idea of the complexity of the work
+involved by measuring the entropy of changes for each revision in relation to
+the rest of the code base \footnote{https://github.com/GripQA/commit-entropy}. 
 
 Lastly, it would be beneficial to expand the number of candidates and include a
 varied set of domains, languages, version control systems and project management
@@ -1364,7 +1383,7 @@ the implementation of new features. Any extra work spent as a result of
 previously incurred debt increases business costs. If too much debt accrues over
 the lifetime of a project, the entire project may be brought to a stand-still.
 
-Throughout this paper, I have presented a method for gathering information from
+Throughout this paper, we presented a method for gathering information from
 three fundamental systems of any software engineering environment, how to model
 and centralise such data for further processing and analysis. Two methods for
 computing work effort have been described: using issue tracking metadata and
@@ -1379,10 +1398,10 @@ development environment.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\bf Acknowledgments.} I would like to thank my supervisor, Dr. Tim Storer, for
-his guidance and support throughout this year. Many thanks to the University of
-Glasgow Computing Science Support Team and to our corporate partners for their
-support. I would also like to thank my parents and my girlfriend, Ioana, for
-their continued support and encourangement. 
+his guidance, continued support and patience throughout this year. Many thanks
+to the University of Glasgow Computing Science Support Team and to our corporate
+partners for their technical support. I would also like to thank my parents and
+my girlfriend, Ioana, for their continued love, support and encourangement. 
 
 \bibliographystyle{abbrv}
 \bibliography{mdiss}

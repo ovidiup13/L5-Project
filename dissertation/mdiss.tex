@@ -877,14 +877,14 @@ signifies the total technical debt items local to the work item.\\
 % conclusion
 The processing stage was implemented as a request-reply server, running a REST
 API \footnote{https://github.com/ovidiup13/tdanalysis}. Each request contains a
-repository ID to identify the database entries and the server calculates the
+repository ID to identify the database entries, and the server calculates the
 work effort and technical debt as required, for each project in isolation. The
 calculation becomes computationally expensive as the size of the repository data
 grows (number of issues and commits). Appropriate caching optimisations have
-been implemented to minimize computation and speed up retrieval of results. The
-data is displayed as charts on a Single Page Application (SPA) dashboard
-\footnote{https://github.com/ovidiup13/tdanalysis-dashboard/} built specifically
-for this purpose. 
+been implemented to minimise computation and speed up retrieval of results.
+Moreover, we designed a Single Page Application (SPA) dashboard
+\footnote{https://github.com/ovidiup13/tdanalysis-dashboard/} that connects to
+the web server and displays statistics and charts for each project.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -893,8 +893,8 @@ for this purpose.
 \section{Experimental evaluation}
 \label{evaluation}
 
-To explore the results of the data processing phase, a couple of experiments
-have been conducted:
+To explore the results of the data processing phase, we have conducted the
+following experiments:
 
 \begin{enumerate}
   
@@ -903,42 +903,38 @@ have been conducted:
   the two methods of computing work effort: using ticket and commit timestamps.
   Technical debt was computed simply as a count of all technical debt items at
   the project level. The aim was to understand whether work effort is impacted
-  by a global technical debt measurement, by using the version control logs and
-  ticket metadata for computing a value of work effort. I assumed that the type
-  and work item complexity are constant.
+  by a global technical debt measurement. We assumed that the type and work item
+  complexity are constant.
 
   \item Secondly, to determine how debt items impact work directly at the code
-  level, the locality processing model is used. Change sets are introduced in
-  the experiment as an additional condition for computing technical debt on each
-  work item. Work effort calculation remains unchanged and ticket complexity is
-  constant.
+  level, we experimented with the locality calculation model. We computed the
+  local technical debt for each work item and compared that to the initial
+  calculation of work effort. The purpose was to verify whether work effort was
+  negatively impacted by technical debt at the local level. 
   
   \item Thirdly, I wanted to see if patterns of development affect task
-  productivity. More specifically, as work items are ordered chronologically by
-  the finalised timestamp, each work item is compared to the previous by two
-  technical debt measurements: the technical debt introduced and technical debt
-  removed. The aim is to understand if introducing technical debt would speed up
-  development time and, if removing technical debt as a refactoring activity
-  would reduce development time.  
+  productivity. More specifically, the aim is to understand if introducing
+  technical debt would speed up development time (reduce work effort) and if
+  removing technical debt, as a potential refactoring activity, would increase
+  development time (increase work effort).
 \end{enumerate}
 
-The experiments have been completed incrementally, one after the other, in
-parallel with development on the data processing stage. 
+The experiments have been conducted incrementally, one after the other, in
+parallel with development on the data processing stage.  
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Results and Discussion}
 \label{results-discussion}
 
-The results of the work effort calculation are shown in table
-\ref{tab-work-effort}. For each repository, I calculated the mean and standard
-deviation to get a sense of what the computed effort (in hours) is per work
-task. The comparison between work effort calculations could be considered an
-experiment by itself. However, since there is no way to evaluate the results
-without interacting directly with collaborators of the project I analysed the
-results simply by computing the average and standard deviation of the data
-points. Although the data analysis techniques present are trivial, they provide
-a good overview of the distribution of work effort over all work items in the
-project. 
+For each repository, we calculated the mean and standard deviation to get a
+sense of what the computed effort (in hours) is per work task. The comparison
+between work effort calculations could be considered an experiment by itself.
+However, since there is no way to evaluate the results without interacting
+directly with collaborators of the project, we analysed the results by computing
+the mean and standard deviation of all data points. Although the data analysis
+techniques present are trivial, they provide a good overview of the distribution
+of work effort over all work items in the project. The results of the work
+effort calculation can be seen in table \ref{tab-work-effort}.  
 
 \begin{table*}[t]
 	\centering
@@ -959,72 +955,69 @@ project.
 	\caption{\label{tab-work-effort} Work Effort Statistics}
 \end{table*}
 
-In the case of using ticket timestamps, the effort represents the time between a
-ticket being picked up by a team member and the time when it has been moved to a
-status of ``Closed''. A first view of the data shows that the computed work
-effort is unrealistically high. On average, on the ANTLR project it takes ~274
-hours (~34 full days) to deliver a work item while the other projects have an
-even higher effort/task average. The high standard deviation points out that
-work effort varies drastically across all work items.
+In the case of ticket timestamps, the effort represents the time between a
+ticket being picked up by an engineer and the time when it was marked as
+`Closed'. A first view of the data shows that the computed work effort is
+unrealistically high. On average, on the ANTLR project it takes ~274 hours (~34
+full days) to deliver a work item while the other projects have an even higher
+effort average. Additionally, a high standard deviation points out that work
+effort varies drastically across all work items.
 
-A simple answer is that tickets remain open for a long time and do not represent
-the realistic work effort put into the delivery of tasks. This might be
-consequence of issues being created very early and no team member picking up the
-task for implementation. Another posibility is that team members leave the
-ticket open once development has been completed. Moreover, the time between
-development and code review is included in the work effort values computed. If
-the team is following the pull request model for accepting contributions then
-the changes are queued in a list of pull requests and are examined in a
+A simple explanation is that tickets might remain open for a long time, and thus
+do not represent an accurate period of `coding work'. This might be consequence
+of issues being created very early and no team member picking up the task for
+implementation. Another posibility is that team members leave the ticket open
+once development has been completed. Moreover, work effort results include
+additional non-coding time, between development and code review. 
+
+If the team is following the `Pull Request' workflow for collaboration, then it
+is possible that all changes are queued in a list and are examined in a
 particular order, either chronologically or by priority. If the team has many
-contributors, then code changes may remain in the pull request list for a while
-before being reviewed and merged. Additionally, if the review leans towards
-negativity, then further changes must be made to source code which means the
-review must be re-done. The work effort values and the possibilities mentioned
-do not make the ticket timestamps computation of work effort a viable solution
-in the lack of logged development time.
+contributors, then the review and merge process may be delayed. Additionally,
+the reviewers may reject some changes or promote a discussion, which further
+delays the completion of the task. The work effort values and the possibilities
+mentioned do not make the ticket timestamps computation of work effort a viable
+solution in the lack of logged development time.
 
 On the other hand, the results of calculating work effort using commit
-timestamps look more realistic. For the ANTLR project, the average amount of
-work effort per item was reduced to ~24 hours (1 full day of work). When
-compared to the ticket method, this is massive time reduction which might be
-possibly due to the change in method to version control logs, which is
-``closer'' to the source code and thus to the changes and effort accomplished by
-the development team. The results for other projects has been reduced
-dramatically as well, but work effort per item is still high, for the two
-projects managed by Apache. Since the commits are intrisically tied to tickets,
-one possibility is that additional effort is put after a work item was
-delivered. New commits might reference the same work item closed a while back
-and thus change the nature of the results. This might be the case for
-\emph{Commons Collections}, \emph{Commons Lang} and \emph{Spring HATEOAS}
-projects with a large work effort average per work item.
+timestamps look more realistic. For the \emph{ANTLR} project, the average amount
+of effort per item reduced to ~24 hours (1 full day of work). In contrast
+to the ticket calculation method, this is massive time reduction possibly due to
+the version control logging, which is `closer' to the daily activity of the
+development team. The results for other projects have reduced dramatically as
+well. However, work effort per item is still high specifically for the two
+projects managed by Apache. Since commits are intrinsically tied to tickets, one
+possibility is that additional effort is accomplished after a work item was
+delivered. New commits might reference a `closed' work item and thus change the
+nature of the results, which might be the case for projects with a huge effort
+average per task.
 
-The high standard deviation for both set of results point out that work effort
-varies drastically across all work items. This might be a consequence of the
-ticket complexity variable, which I considered to be constant throughout the
-experiment. Tickets with higher complexity may require more labour and take more
-time to be delivered, while low complexity tickets may require less work.
-Another posibility is both calculations methods are trivial in the sense that
-the work time computed also includes weekends and possible time off that team
-members take during their year. Additionally, it might unrealistic for a
-developer to work 8 hours per day on an open source project. Developers might
-deliver changes their spare time and only in some days of the week.  
+The high standard deviation for both sets of results points out that work effort
+varies drastically across all work items, which might be a consequence of a
+controlled ticket complexity variable. Tickets with higher complexity may
+require more labour and take more time to deliver, while low complexity tickets
+may require less work. Another possibility is both calculations methods are
+trivial in the sense that the work time computed also includes weekends and
+possible time off that team members take during their year. Additionally, it
+might unrealistic for a developer to work 8 hours per day on a single project.
+Developers might work on multiple projects at a time and possibly work as a side
+project, during their spare time and only in some days of the week.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Experiment 1}
 \label{experiment-1}
 
-The initial technical debt average per task delivered is shown in table
+The total technical debt average per task delivered is shown in table
 \ref{tab-technical-debt-total}. \emph{ANTLR}, possibly due to its large
 codebase, has a massive amount of quality issues per work item. Interestingly,
 the standard deviation for these issues is high as well, meaning that issues are
 introduced and removed quite often during implementation, possibly due to
-refactoring activities or to accidental removal of a class and its introduction
-back into the codebase for the next work item. The latter case might suggest an
-``God class'' antipattern, where a lot of functionality is centralised in a
-single class. Unfortunately, SpotBugs does not analyse the source code from an
-architectural point of view and such antipatterns may only be inferred by
-studying the current results or by integrating a new static analysis tool in the
-data collection process. 
+refactoring activities or to accidental removal and introduction of a class. The
+latter case might suggest a ``God class'' antipattern, where much functionality
+is centralised in a single class. Unfortunately, SpotBugs does not analyse the
+source code from an architectural point of view, and such antipatterns may only
+be inferred by studying the current results or by integrating a new static
+analysis tool in the data collection process. 
 
 \begin{table*}
 	\centering
@@ -1040,15 +1033,15 @@ data collection process.
 	\caption{\label{tab-technical-debt-total} Experiment 1: Technical Debt Statistics}
 \end{table*}
 
-I expected \emph{Spring HATEOAS} to have a low technical debt count per work
-item, since it is a more recent project with a lower list of revisions and work
-items as the rest. However, the technical debt for the project varies
-drastically as seen in figure \ref{fig:td-timeline}, when compared to a more
+We expected \emph{Spring HATEOAS} to have a low technical debt count per work
+item since it is a `younger' project with a lower list of revisions and work
+items when compared to other candidates. However, the technical debt for the
+project varies as seen in figure \ref{fig:td-timeline}, when compared to a more
 mature project such as \emph{Commons Collections}. The other three projects have
 a more or less constant total debt count, due to a low variance. This might a
-consequence of the quality issues that the static analysis tool has found. It is
-possible that code violations are not regarded as high severity by the team,
-with the exception of a few. 
+consequence of the quality issues found. It is possible the team does not
+consider the detected code violations as severe items and thus no effort is put
+in for their removal. 
 
 \begin{figure*}
 	\centering
@@ -1068,15 +1061,15 @@ with the exception of a few.
 
 The relationship between total technical debt and both work effort calculations
 can be seen in figure \ref{fig:td-total-debt}, for the \emph{Checkstyle}
-project. Unfortunately the results do not show any meaningful pattern since
-technical debt has remained more or less constant throughout project evolutions.
+project. Unfortunately, the results do not show any meaningful pattern since
+technical debt has remained more or less constant throughout project evolution.
 The two subfigures \ref{fig:td-total-debt-commit} and
 \ref{fig:td-total-debt-ticket} appear to have a different population count,
 possibly due to the difference in the statistics of work effort, mapped on the
 \emph{x} axis. For work effort calculated using commit timestamps, the data
 points are overlapping when values for effort are in the range $[0-10]$ whereas
-data points are spread out for calculatins using ticket timestamps. The results
-for the other projects show the exact same constant pattern. 
+data points are spread out over calculations using ticket timestamps. The
+results for the other projects show the same constant pattern. 
 
 \begin{figure*}
 	\centering
@@ -1094,16 +1087,16 @@ for the other projects show the exact same constant pattern.
 	\label{fig:td-total-debt}
 \end{figure*}
 
-Unfortunately, since technical debt is constant at the project level, the
-relationship with work effort looks constant. This is most likely due to
-consideration of quality at the project level, which may not affect the
-productivity at the class level. 
+Since technical debt is constant at the project level, the relationship with
+work effort is still unknown. This is most likely due to measuring technical
+debt at the project level, which may not affect the productivity at the class
+level.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Experiment 2}
 \label{experiment-2}
 
-Since the results of experiment 1 are inconclusive, I decided to apply a
+Since the results of experiment 1 are inconclusive, we applied the
 locality-based model for calculating technical debt. As mentioned in section
 \ref{data-processing}, the locality model calculates technical debt based on the
 change-set of each work task. Only code violations that are in the set of class
@@ -1124,17 +1117,17 @@ accomplish the task. The statistics can be seen in figure
 	\caption{\label{tab-technical-debt-local} Experiment 2: Technical Debt Statistics}
 \end{table*}
 
-When comparing to the total technical debt calculated in experiment 1, the
-results have reduced dramatically. Although the same population of work items
-has been used for both experiments, it seems that for the majority of projects,
-very few technical debt issues on average affect the daily work of a developer.
-This is surprising, especially since ANTLR had on average the most quality
-issues out of all the projects. One factor which might influence the results is
-the application domain of each project. A possible explanation for ANTLR is
-that, because the project is a language generation tool, many files of its
-source code could be language grammar files. Thus it is possible that many work
-items revolve around changes to these files, which could not be analysed for
-quality issues by SpotBugs. 
+In contrast to experiment 1, the measurement of technical debt has reduced
+dramatically. Although the same population of work items has been used for both
+experiments, it seems that for the majority of projects, very few quality issues
+on average affect the daily work of a developer. This is surprising, especially
+since \emph{ANTLR} had the largest debt per work item out of all candidates. One
+factor which might influence the results is the application domain of each
+project. A possible explanation for \emph{ANTLR} is that, because the project is
+a language generation tool, many files of its source code could be grammar files
+which SpotBugs does not analyse. Thus it is possible that many tasks revolve
+around changes to these files, and the detected quality issues do not affect
+developer productivity. 
 
 \begin{figure*}
 	\centering
@@ -1154,19 +1147,19 @@ quality issues by SpotBugs.
 
 The relationship between local technical debt and work effort per task can be
 seen in figure \ref{fig:td-local-debt}, for \emph{Checkstyle}. The results seem
-to have spread out, since technical debt is not as constant due to the change in
+to have spread out since technical debt is not as constant due to the change in
 ``level'' where technical debt items are considered to affect work. Similar to
 \ref{fig:td-total-debt}, data points for the commit timestamp method are
 concentrated in the range $[0-10]$ hours on the work effort axis due to the
 calculations. On the other hand, they are spread out for the ticket method due
 to the high variance of work effort previously calculated. The pattern by all
-projects is exactly the same. There are many data points that are unaffected by
-quality issues found and even the number of issues found do not vary as much as
-expected. One possibility is that work items include very small changes to
-classes that are unaffected by debt. Another possibility is that types of
-quality issues found by the static analysis tools at the code level are not as
-severe as those at the architectural level. I propose further research on the
-topic in section \ref{future-work}. 
+projects is the same. Many data points are unaffected by quality issues found,
+and even the number of issues found do not vary as much as expected. One
+possibility is that work items include minimal changes to classes that are
+unaffected by debt. Another possibility is that types of quality issues found by
+the static analysis tools at the code level are not as severe as those at the
+architectural level. We propose further research on the topic in section
+\ref{future-work}. 
 
 \begin{table*}
 	\centering
@@ -1190,12 +1183,9 @@ topic in section \ref{future-work}.
 \subsubsection*{Experiment 3}
 \label{experiment-3}
 
-Lastly, for the third experiment, I wanted to check if the number of technical
-debt items added might reduce the effort needed to complete a task. Similarly, I
-wanted to study whether removal of quality issues would increase the work
-effort, possibly through refactoring activities. The initial statistics for
-technical debt introduced and removed can be seen in table
-\ref{tab-technical-debt-intro}. 
+Lastly, the scope of the third experiment was to analyse whether introduction or
+removal of debt would impact work effort.  The statistics for technical debt
+introduced and removed can be seen in table \ref{tab-technical-debt-intro}. 
 
 \begin{figure*}
 	\centering
@@ -1217,12 +1207,12 @@ technical debt introduced and removed can be seen in table
 It seems that, on average, \emph{ANTLR} has many introductions and removals of
 debt items. The developers of \emph{Spring HATEOAS}, since it is a younger
 project, are focusing on removal of quality issues to eliminate the threats of
-bugs that a new project may be prone to. The other projects have very similar
-results for both sets of calculations. It seems that, on average, the number of
-quality issues introduced by work items is approximately equal to the number of
-technical debt items removed. This might be a consequence of adding new features
-with initial quality issues which are refined over time by the team through
-other tasks such as fixing bugs and other refactoring activities.
+bugs. The other projects have very similar results for both sets of
+calculations. It seems that, on average, the number of quality issues introduced
+by work items is approximately equal to the number of technical debt items
+removed. This might be a consequence of adding new features with initial quality
+issues which are refined over time by the team through other tasks such as
+fixing bugs and other refactoring activities.
 
 \begin{figure*}
 	\centering
@@ -1247,19 +1237,17 @@ the previous local debt relationship with work effort, presented in figure
 \ref{fig:td-local-debt}. It seems that as work effort increases, technical debt
 decreases. This observation makes sense for removal of technical debt since work
 effort should increase with refactoring activities. However, the distribution of
-data points are mostly around the range $[0-100]$ hours on the work effort axis.
-The pattern is shared by the work effort and TD added relationship, which is the
-opposite of my initial expectation. \\
+data points is mostly around the range $[0-100]$ hours on the work effort axis.\\
 
 
-Although the three experiments build on one another, from my perspective there
+Although the three experiments build on one another, from our perspective, there
 is no correlation between work effort and technical debt. The first experiment
 showed that technical debt at the project level does affect the effort required
 to finish tasks. Additionally, the relationship between work effort and local
-technical debt follows a negative pattern, since increase in work effort shows
-that technical debt decreases. This pattern is shared by the results of the
-third experiment. I consider the results to be inconclusive due to many factors
-being controlled for the simplicity of the calculations.
+technical debt follows a negative pattern, since an increase in work effort
+shows a decrease in technical debt. The results of the third experiment share
+this pattern as well. We consider the results to be inconclusive due to many
+controlled and excluded factors for the simplicity of the calculations.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

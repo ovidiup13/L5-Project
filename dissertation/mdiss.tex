@@ -587,108 +587,115 @@ the results of our analysis.
 \label{data-processing}
 
 % intro
-Although, the collection step gathered data from three systems and stored them
-into a single source of truth, in its current state it could not have been used
-to derive any meaningful information on the correlation between technical debt
-and work effort. Therefore, a ``processing stage'' was implemented in the tool,
-that allows the calculation of these metrics and visually displays statistics on
-using charts.
+The collection step gathered data from three systems and stored them into a
+single source of truth for further processing. Therefore, this stage was
+implemented in the tool to allow the calculation of work effort and technical
+debt, at various `levels' of the project. Additionally, the tool allows the
+results to be displayed and analysed visually.
 
 % body
-The processing stage revolved around the concept of work items (WI). Work items
-are pieces of work assigned to developers of the project. Each item is composed
-of a ticket (T) and a list of commits (C), ordered chronologically. Tickets
-represents the pieces of data retrieved from the project management tool. The
-list of commits represent a subset of the total revisions of the repository that
-belong to that specific work item. As mentioned in section
+The processing stage revolved around the concept of \emph{work items}. A work
+item is a specific tasks assigned to a developer and each item is composed of a
+ticket and a list of revisions, ordered chronologically. A ticket is the report
+of the work, which represents the data retrieved from the project management
+tool. the pieces of data retrieved from the project management tool. Similarly,
+the list of revisions represent a subset of the total commits from the version
+control system are linked to the specific ticket. As mentioned in section
 \ref{data-collection}, commits are assumed to belong to a specific ticket if
-their commit message actively references the ticket ID of the project management
-tool.
+their commit message references the ticket ID of the project management tool.
 
-The work items can be deduced from the data collected. However, there are two
-fundamental measures which must be derived:
+For each work item, we compute the following measures:
 \begin{itemize}
-  \item Work effort (WE) - the total number of man-hours put in for a specific
-  work item;
-  \item Technical Debt (TD) - the total number of technical debt items that have
-  affected the work at the time of implementation.
+  \item Work effort ($WE_{w}$) - the total number of hours a team member has
+  exhausted to complete task $w$;
+  \item Technical Debt ($TD_{w}$) - the total number of technical debt items
+  that have affected the work, during implementation of task $w$.
 \end{itemize}
+
+We describe the methods of calculation for each measurement separately, in the
+following sections. 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Work Effort}
 \label{work-effort}
 
 % calculation of work effort
-As mentioned, the work effort is the total number of hours put in by a single
-developer towards the design and implementation of a work item. For simplicity,
-we considered that an item of work followed a linear pattern and that a
-developer was working on a single work item at a time.
+The work effort represents the total number of hours accomplished a single
+developer towards the implementation of a work item $w$. Ideally, the project
+manager would require developers to track the time spent on each task to
+possibly help with future estimation of work effort for similar items.
+Unfortunately, the majority of projects do not track such data and thus we have
+designed calculations to estimate it from various systems of the development
+environment.
 
-From this assumption, we considered that each work item has a start time ($t1$)
-and end time ($t2$), both expressed as timestamps in Greenwich Mean Time (GMT)
-format. A simple method for calculating the work effort is to take the
-difference between these two timestamps. This makes it easy to calculate the
-working hours on the same day:
+To start, we considered that an item of work followed a linear pattern and that
+a team member was working on a single work item at a time. Each $w$ has a start
+time $t_{start}$ and end time $t_{end}$, both expressed as timestamps in
+Greenwich Mean Time (GMT) format. A simple method for calculating $WE_{w}$ is to
+take the difference between these two timestamps. This makes it easy to
+calculate the working hours on the same day:
 
 \begin{equation}
   \label{eq-work-effort-simple}
-  WE = hours(t1 - t2)
+  WE_{w} = hours(t_{end} - t_{start})
 \end{equation}
 
-For example, if a developer starts work on a task on Monday at 9:00 GMT and
-finishes work at 15:00 GMT, then the total of effort put in for that task is 6
-hours. However, a work item might span multiple days and thus this solution
-would include hours outside hours. To cover for this case, we introduced another
-simplyfing assumption. Assume that the normal working hours per day would not
-exceed 8 hours. This means that work spread over multiple days would be
-calculated as follows:
+For example, if a developer starts work on $w$ on Monday at 9:00 GMT and
+finishes work at 15:00 GMT, then the total of effort put in is 6 hours. However,
+a work item might span multiple days and thus it would include time outside the
+normal working hours. To cover for this case, we introduced another simplyfing
+assumption. We assume that the normal working hours per day would not exceed 8
+hours and this allows normalisation of hours according to the number of days
+between the start and end times. This means that work spread over multiple days
+would be calculated as follows:
 
 \begin{equation}
   \label{eq-work-effort-days}
-  WE = (days(t1 - t2) + 1) * 8
+  WE_{w} = 8 * (days(t_{end} - t_{start}) + 1)
 \end{equation}
 
-If the work spans multiple days, then the total effort is the total number of
+If $w$ spans multiple days, then the total effort is the total number of
 days multiplied by the number of working hours per day. For example, let's
 assume that a developer starts a work item on Monday, 9:00 GMT and finishes his
 work on Tuesday, 21:00 GMT. This equation will yield 16 hours of work spanning
 two days (Monday and Tuesday). We recognize that there are multiple factors that
 affect the work effort put in for a work item which are not modelled as part of
-the calculation. These two equations were chosen for their simplicity and to
-match the type of data at disposal. 
+the calculation. For example, this equation does not exclude weekends or other
+possible time off periods. 
 
 From the data available, there are two sets of timestamps that could be used for
-work effort calculation: commit and ticket timestamps. Metadata of the project
-management tool might provide an accurate estimation of the times an engineer
-has started and finished his work. Additionally, version control logs provide
-additional metadata of each commit, including the time where a commit was pushed
-to the repository. Moreover, these two ``types'' of timestamps may be combined.
-For example, the start time can be derived from the ticket creation timestamp
-while the completion time can be derived from the last commit timestamp that
-belongs to a specific work item.
+work effort calculation: \emph{commit timestamps} and \emph{ticket timestamps}.
+Metadata of the project management tool might provide an accurate estimation of
+the times an engineer has started and finished his work, provided that the team
+follows a regulated workflow for transitioning tickets. Additionally, version
+control logs provide additional metadata of each commit, including the time
+where a commit was pushed to the repository. 
 
 % a. by ticket
-The ticket is a running ``report'' of the work involved. In the issue tracker,
-it is a reference point for the assignee and other members of the team. As
-mentioned in section \ref{experimental-design}, the ticket contains various
-fields and metadata. The most of relevant fields for calculating work effort are:
+The ticket is a running `report' of the work involved. In the issue tracker, it
+represents a reference point for the project manager, other members of the team
+and for the assignee. As mentioned in section \ref{experimental-design}, the
+ticket contains various fields and metadata, out of which the most of relevant
+for calculating work effort are:
 
 \begin{itemize}
-  \item Creation timestamp - the timestamp when the ticket was created and added
-  to the project management tool;
-  \item Closure timestamp - the timestamp when the ticket was marked as resolved
-  or closed.  
+  \item `Created' timestamp - the timestamp when the ticket was created and
+  added to the project management tool;
+  \item `Closed' timestamp - the timestamp when the ticket was marked as
+  resolved or closed.  
 \end{itemize}
 
-The difference between these two timestamps could give an accurate estimation of
+The difference between these two timestamps might give an accurate estimation of
 the number of hours, calculated using equations \ref{eq-work-effort-simple} and
 \ref{eq-work-effort-days} mentioned above. However, they might not reflect the
-work hours only. For example, there might be an additional time between the
-ticket creation and the work start timestamps. For example, a ticket may have
-been created for a week before the start of a new sprint, should the team employ
-an agile development method. Moreover, the team might employ code review
-practices meaning that the time taken to review one's work is included in the
-calculated work effort. 
+implementation time accurately. For example, there might be an additional time
+period between when a ticket was added to the issue tracker and when it got
+picked up for development. For example, a ticket may have been created for a
+week before the start of a new sprint, should the team employ an agile
+development methodology. Moreover, if the team employs code review practices for
+each piece of work, the closing date of the ticket might be after the work has
+been reviewed by the rest of the team. Overhead time is problematic, as the
+calculations may not be accurate. 
 
 Fortunately, Jira contains an additional metadata field, called
 \emph{Transitions} that lists the history of changes that the ticket has
@@ -698,72 +705,82 @@ Review}. The timestamps of these transitions give a more accurate time range of
 development work hours. GitHub and BitBucket do not have the transition feature
 build-in.
 
-As a result, the selected timestamps for work start ($t_{1}$) and end work
-($t_{2}$) based on ticket metadata are chosen as follows:
+As a result, the choice of timestamps for $t_{start}$ and $t_{end}$ based on
+ticket metadata are as follows:
 \begin{equation}
   \label{eq-ticket-start}
   \begin{aligned}
-    t_{1} = Timestamp(Transition(\textrm{Open to In Progress})) \\ 
-      \textrm{or} \quad Timestamp(\textrm{Created}) \\
+    t_{start} = Timestamp(Transition(\textrm{Open to In Progress})) \\ 
+      \textrm{or} \quad Timestamp(\textrm{Created})
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \label{eq-ticket-closed}
   \begin{aligned}
-    t_{2} = Timestamp(Transition(\textrm{In Progress to Closed})) \\ 
+    t_{end} = Timestamp(Transition(\textrm{In Progress to Closed})) \\ 
       \textrm{or} \quad Timestamp(\textrm{Closed})    
   \end{aligned}
 \end{equation}
 
 % b. by commit
-An alternative method of selecting work timestamps is from the version control
-logs collected. The timestamp of a revision flags the date and time when a set
-of changes have been implemented. Since a work item is composed of one or
-multiple revisions, a relatively accurate estimation of work effort could be
-derived.
+An alternative set of timestamps may be used from version control logs. The
+timestamp of a revision flags the date and time when a set of changes have been
+applied. Since a work item may be composed of multiple revisions, a relatively
+accurate estimation of work effort can be derived. 
 
-As presented in figure \emph{FIGURE}, a simple method of calculation is to
-take the difference between the last and first commit timestamps. Using this
-method, the last commit timestamp reflects the time of the last changes pushed
-by the developer. However, the first commit timestamp does not reflect the date
-and time when work has started. This is because the timestamp of commits
-represent the time when the changes have already been implemented. Thus, the
-results of the calculation lacks the effort accomplished before a first commit
-has been pushed.
+To define the equation formally, we consider $C$ as the total list of commits of
+the project and $w$ as a work item. For each work item $w$, $C_{w}$ is the
+subset of $C$ of all commits that belong to the work item $w$. Commits for each
+work item are labelled as $C_{w}[i]$ where $i$ is the commit position in $C[w]$,
+$i=1...,n$ and $n$ is the number of commits associated with work item $w$.
+Commits are ordered chronologically, in the order of development.
 
-To cover for this case, we assumed that once a contributor finished a work item
-she would get started on the next. Figure \emph{FIGURE} visualises the case.
-We considered that the missing work effort is measured as the number of hours
-between the last commit timestamp of a previous work item and the first commit
-timestamp of the current work item. However, a developer may not have a previous
-contribution to the project. In this case, the number of hours is calculated
-from the first commit timestamp of the work item.
+Therefore, to get a simple estimation of work effort we take the time difference
+between the last commit $C_{w}[n]$ and first commit $C_{w}[1]$. Using this
+method, $t_{end}$ accurately reflects the time of the last changes pushed by a
+developer, which is the timestamp of $C_{w}[n]$, while $t_{start}$ represents
+the timestamp of $C_{w}[1]$. However, the first commit $C_{w}[1]$, represents
+the time when the changes have \emph{already} been implemented. In this case,
+there is a margin of error introduced and the results are short of the
+initial effort accomplished before the first commit has been finalised.
 
-The equations for the two timestamps are as follows:
+To cover for this case, we assume that once a contributor finished a work item
+$w$ she would directly get started on $w+1$. If we are calculating the work
+effort for work item $w$, we consider that the missing work effort is measured
+as the number of hours between the last commit timestamp of the previous work
+item $C_{w-1}[m]$ and the last commit timestamp $C_{w}[n]$ of the current work
+item. As a result, we can consider commits as a continuous stream of work
+changes, where one change follows the next in line. However, a developer may not
+have a previous contribution to the project. In this case, the number of hours
+simply cannot calculated accurately. Thus, the first commit $C_{w}[1]$ time of
+the current work item is used as a starting point.
+
+The selected timestamps for commits are chosen as follows:
 \begin{equation}
   \label{eq-commit-start}
   \begin{aligned}
-    t_{1} = Timestamp(C_{-1}) \quad or \quad Timestamp(C_{0})
+    t_{start} = Timestamp(C[w-1]_{m}) \quad or \quad Timestamp(C[w]_{1})
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \label{eq-commit-end}
   \begin{aligned}
-    t_{2} = Timestamp(C_{n})
+    t_{end} = Timestamp(C[w]_{n})
   \end{aligned}
 \end{equation}
-
-where $C_{i}$ represents a commit from the initial work item if $i = 1,...n$.
-$C_{-1}$ represents the last commit of the previous work item.
 
 Measuring work effort accurately from limited data is a challenging task. Most
 open-source projects rely on contributions from software professionals all over
 the globe. In an ideal case, developers would measure their work time on the
 project management tool or on an internal worksheet. However, 54\% of software
 professionals working remotely do not track their work effort
-\cite{DeveloperSurvey2018}.
+\cite{DeveloperSurvey2018}. As a result, we have considered two novel ways of
+computing an estimate of work effort from project management tools and version
+control logs. Although the two methods are not perfectly accurate, they provide
+a good initial measurement of development times. The drawbacks are discussed in
+section \ref{validity-future-work}.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Technical Debt}
@@ -772,27 +789,25 @@ professionals working remotely do not track their work effort
 As mentioned in section \ref{background}, many state-of-the-art calculations for
 technical debt have been implemented \cite{Letouzey2012} \cite{Nugroho2011}
 \cite{Fontana2016}. The measure depicting the cost of paying back the debt at
-the present is called the \emph{principal} while the extra cost of development
-when keeping hold of items is called \emph{interest}. Unfortunately, there is
-no standardised method, due to difficulties managing complexities of quantifying
-work effort and development costs. Thus, there is no single best tool for this
-purpose, as all take into consideration various variables for metric
-computation. 
+the present time is often called the \emph{principal} while the extra cost of
+development when keeping hold of items is called \emph{interest}. Unfortunately,
+there is no standardised method of calculating a global technical debt index,
+due to difficulties managing complexities of quantifying work effort and
+development costs. Moreover, there is no single best tool for this purpose, as
+all take into consideration various variables for metric computation. 
 
 % total
-The initial method of calculating technical debt was to get an idea of its
-prominence at the project level, for each revision of a work item. The total
-technical debt ($TD_{t}(r)$) of a project at revision $r$ is measured as the
-total number of technical debt items ($td_{i}$) found by the static analysis
-tool, where $i = 1,..., n$ and $n$ is the total number of technical debt items.
-
-% work item
-Each work item is composed of a number of revisions, each with their own
-technical debt items. To calculate technical debt at the work item level, we
-consider as the total pain that the developer had to deal with during
-implementation. Therefore, the total debt of a work item is the total technical
-debt of the revision previous to the first commit of the implementation. Figure
-\emph{FIGURE} shows a visualisation of the total technical debt of a work item.  
+We calculate the total technical debt $TD_{total}$ at the project level by
+simply counting the total quality issues found by the static analysis tool. This
+measurement is available for each revision of the project with a successful
+build, that has run the static analysis step. We consider that, for each work item
+$w$, $TD[w]_{total}$ is the present in the revision at the start of the
+implementation. This directly points to the first commit $C[w]_{1}$. However, as
+mentioned before, the first commit already represents work completed for work
+item $w$. Thus, we refer to the commit \emph{before} $C[w]_{1}$, in the list of
+project commits $C$. The measurement of $TD$ at $C[w-1]_{m}$, represents the
+technical debt present in the source code at the start of work item $w$. Figure
+\emph{FIGURE} shows a visualisation of the total technical debt of a work item.
 
 % added, removed, remaining
 Furthermore, we calculated the technical debt introduced and removed at the work

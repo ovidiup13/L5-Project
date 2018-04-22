@@ -40,9 +40,9 @@ delivery of features. Thus, incurring technical debt might be useful to achieve
 immediate deadlines but may simultaneously have negative consequences for future
 work, such as software complexity growth, the prevalence of bugs and defects,
 decreased team productivity and augmented work effort, leading to increased
-costs of development, infrastructure and management. The impact of this
-technical debt may affect the daily work of developers, project managers,
-product owners and other stakeholders of the business.
+costs of development, infrastructure and management. The impact of technical
+debt may affect the daily work of developers, project managers, product owners
+and other stakeholders of the business.
 
 Although initially intended as a metaphor, considerable research has since been
 undertaken into the identification \cite{Lim2012}, measurement
@@ -58,46 +58,43 @@ team. Additionally, due to lack of vocabulary and complexities of the
 phenomenon, developers find it difficult to convey their concerns to project
 stakeholders \cite{Kruchten2012}.
  
-For example, code smells are an example of technical debt items that may
-increase future development effort and maintenance costs \cite{Fowler1999}.
-Industry case studies have shown that such code violations are more likely to be
-addressed if made visible by developers within the project's issue tracker
-\cite{Lim2012}. However, from the perspective of a project manager, it is
-essential to understand how much effort the team puts into technical debt
-reduction activities and if there is an associated business value.  A key
-concern, therefore, is the ability to measure and make rationale cost-benefit
-analyses of the impact of technical debt on productivity within a project,
-capturing both the principal debt incurred and consequent interest, as poor code
-quality accumulates.
-
-% Contributions to state of the art
+For example, code smells and code violations are an example of technical debt
+items that may increase future development effort and maintenance costs
+\cite{Fowler1999}. Industry case studies have shown that such code violations
+are more likely to be addressed if made visible by developers within the
+project's issue tracker \cite{Lim2012}. However, from the perspective of a
+project manager, it is essential to understand how much effort the team puts
+into technical debt reduction activities and if there is an associated business
+value. A key concern, therefore, is the ability to measure and make rationale
+cost-benefit analyses of the impact of technical debt on productivity within a
+project, capturing both the principal debt incurred and consequent interest, as
+poor code quality accumulates.
 
 % Research questions
 The primary research objective of this work is to identify if there exists a
 correlation between additional work effort caused by the presence of technical
 debt in a code base through an empirical analysis of work effort in task
-implementations within software projects. An additional objective is to
-understand how the measure of technical debt varies with software evolution and
-how do specific development patterns are affected by technical debt. The
-research questions for this study are as follows:
+implementations within software projects. A further objective is to understand
+how the measure of technical debt varies with software evolution and how do
+specific development patterns are affected by debt. The research questions for
+this study are as follows:
 
 \begin{itemize}
-	\item How does the work effort cost of feature implementation vary with the
-	      magnitude of technical debt?
-	\item At what project `level' does technical affect developers most?
+	\item How does the cost of feature implementation vary with the magnitude of
+	      technical debt?
+	\item At what project `level' does technical debt affect developers most?
   \item How does work effort vary with the introduction of technical debt? 
   \item How does work effort vary with the removal of technical debt?
 \end{itemize}
 
-Our intention is to adopt an empirical approach to the identification of the
-impact of technical debt on the implementation of future features in existing
-software code bases. To do this, we will calculate the level of technical debt
-in the system for each change-set recorded in a project's version control
-repository. We will also record calculate the practical work effort spent on
-feature implementation linking data from a project's issue tracker and version
-control repository and thus estimating the effort a developer spent on
-completing a feature. By investigating these research questions, this study
-contributes:
+We adopted an empirical approach to the identification of the impact of
+technical debt on the implementation of future features in existing software
+code bases. To do this, we calculated the level of technical debt in the system
+for each change-set recorded in a project's version control repository. We also
+recorded the practical work effort spent on feature implementation by linking
+data from a project's issue tracker and version control repository and thus
+estimated the effort a developer spent on completing a work task. By
+investigating these research questions, this study contributes:
 \begin{itemize}
   \item A collection pipeline for acquiring and centralising data from three
   fundamental systems of any development environment;
@@ -123,55 +120,56 @@ for expansion.
 \section{Background}
 \label{background}
 
-There are a number of studies which have investigated the impact of technical
-debt items on the costs of software projects.  This section reviews this work
+There are many studies which have investigated the impact of technical
+debt items on the costs of software projects. This section reviews this work
 and relates the existing state of the art to our proposed experiment to
 empirically measure the work effort interest accumulated by technical debt.
 
-Olbrich et al. \cite{Olbrich2009} studied the impact of two code smells, God
-class and Shotgun Surgery, on change-proneness of class entities and size of
-changes within two open source systems, Apache Lucene and Apache Xerces. They
-found that classes containing either smell are more change prone than other,
-non-smelly, classes. In a similar study, Khomh et al. \cite{Khomh2009}
-empirically analysed the impact of 29 code smells on the change-sets of 9
-releases of two open source systems. They had confirmed the results of the
-previous studies that code smells increase the number of changes that software
-undergoes during its evolution. Additionally, they had found that classes
-containing more than one code smell are more change prone than other classes.
+Olbrich et al. \cite{Olbrich2009} studied the impact of two code smells,
+specifically God class and Shotgun Surgery, on change-proneness of class
+entities and size of changes within two open source systems: Apache Lucene and
+Apache Xerces. They found that classes containing smells are more change prone
+than other, non-smelly, classes. In a similar study, Khomh et al.
+\cite{Khomh2009} empirically analysed the impact of 29 code smells on the
+change-sets of 9 releases of two open source systems. They had confirmed the
+results of the previous studies that code smells increase the number of changes
+that software undergoes during its evolution. Additionally, they had found that
+classes containing more than one code smell are more subject to change more
+often than others. 
+
 Charalampidou et al. \cite{Charalampidou2017} introduced a study that assessed
-the interest probability of code smells, which is the probability of a code
-smell to introduce extra changes in future development. Interest probability was
-calculated by counting the frequency of each code smell and how it correlated
-with the change-proneness of the module where it resides. The smells studied
-were Long Method, Conditional Complexity and Duplicated Code. The results showed
-that code duplication had the highest interest probability due to the number of
-changes required to maintain future development. Additionally, high cyclomatic
-method complexity increased the number of changes. Fontana et al.
-\cite{Fontana2012} studied what was the impact of removing code smells on code
-quality metrics such as cohesion, coupling and complexity and, which smell
-incurred the most debt. They applied refactoring activities for each smell and
-the metrics were re-evaluated. The results showed that refactoring of one code
-smell might provide benefits for some metric qualities but may negatively impact
-others.
+the `interest probability' of code smells, which is the probability of a code
+smell to introduce extra changes in future development. The authors calculated
+the measurement by counting the frequency of each code smell and how it
+correlated with the change-proneness of the module where it resides. They
+studied smells such as Long Method, Conditional Complexity and Duplicated Code.
+The results showed that code duplication had the highest interest probability,
+due to the number of changes required to maintain future development. Moreover,
+high cyclomatic method complexity increased the number of changes. Fontana et
+al. \cite{Fontana2012} studied the impact of removing code smells on code
+quality metrics such as cohesion, coupling and complexity. They applied
+refactoring activities for each smell and re-evaluated the metrics. The results
+showed that refactoring of one code smell might provide benefits for some code
+qualities but may negatively impact others.
 
 The authors studied the impact of code smells and their removal on the software
-quality metrics output by directly analysing reports of code quality tools.
-Although their research has increased awareness of technical debt, our proposed
-work aims to focus on what impact quality issues and bug patterns have on work
-effort implementation by measuring the work effort involved. Additional studies
-have looked at quantifying implementation cost in the context of technical debt.
+quality metrics output by directly analysing reports of code quality tools. In
+comparison, our proposed work aims to focus on what impact quality issues and
+bug patterns have on work effort costs by measuring technical debt at the
+project and class levels. Additional studies have looked at quantifying
+implementation cost in the context of technical debt.
 
 Singh et al. \cite{Singh2014}, calculated interest payments by monitoring
 development effort and code comprehension. They monitored time spent by
-developers in classes with known technical debt items and implemented a tool
-within the Integrated Development Environment of developers to gather
-information on class visits and development session times. The interest was
-quantified as the difference between time practically spent in classes and the
-ideal time. However, the study was conducted with the input of only one
-developer over a period of 9 months. Additionally, estimating the ideal time
-spent on development is a challenging task due to social and personal factors
-such as level of project knowledge, environment familiarity and programming
-language preference.
+developers in classes with known debt items and implemented a tool within the
+Integrated Development Environment of developers to gather information on class
+visits and development session times. They quantified interest as the difference
+between time practically spent in classes and an estimated, `ideal' time.
+However, the study was conducted with the input of only one developer over a
+period of 9 months. Additionally, estimating the most optimal time spent on
+development is a challenging task due to numerous subjective factors such as
+level of technical knowledge, familiarity with development environment and
+personality traits.
 
 Gomes et al. \cite{Gomes2011} studied the correlation between software
 evolution, defect occurrence and work effort deviation at the release level. The
@@ -190,7 +188,8 @@ system and did not provide drill-down information on iterations and code commits
 on which features and code smells had the most effect on work effort. This is
 essential information for developers and project managers to prioritise
 refactoring activities in work iterations, especially in an Agile environment
-where responding to change is critical \footnote{http://agilemanifesto.org/}.
+where quickly responding to changes is a critical task
+\footnote{http://agilemanifesto.org/}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -205,7 +204,7 @@ the evolution of a software product. Our motivation is to empirically find a
 correlation between technical debt and the amount of work effort involved in
 development of work items. In the absence of work tracking information,
 aggregation of such data sources might provide a relatively accurate estimation
-of the number of hours a developer has put in.
+of the number of hours a developer has accomplished to complete a task.
 
 When developing our approach, we completed the following steps:
 \begin{enumerate}
@@ -228,7 +227,8 @@ described in Section \ref{data-processing}.
 
 The initial step was to design a model of the aggregated data and to understand
 what type of information each selected data source will provide. We consider the
-following data sources relevant to the collection of data:
+following fundamental data sources of any development environment relevant to
+the collection of data:
 
 \begin{itemize}
   \item A \emph{Version Control System} is a system that manages changes to the
@@ -240,68 +240,69 @@ following data sources relevant to the collection of data:
   track, manage and collaborate on various types of units of work. A common
   example of a complex project management tool is Jira
   \footnote{https://www.atlassian.com/software/jira}. GitHub
-  \footnote{https://github.com/} and BitBucket \footnote{https://bitbucket.org/}
-  also provide an issue tracking tool with each code repository, although they
-  do not provide such extensive features as Jira.
+  \footnote{https://github.com/} and BitBucket
+  \footnote{https://bitbucket.org/}, which are code hosting platforms, also
+  provide an issue tracking tool with each code repository.
   
-  \item \emph{Static Analysis Tools} are tools that analyse the source code to
-  check for quality issues, security flaws and adherence to industry
-  standards.There are many examples of static analysis tools: SonarQube,
-  Spotbugs \footnote{https://spotbugs.github.io/} (formerly FindBugs), CAST,
-  Sonargraph, etc.
+  \item \emph{Static Analysis Tools} analyse the source code for quality issues,
+  security flaws and adherence to industry standards.There are many examples of
+  static analysis tools: Spotbugs \footnote{https://spotbugs.github.io/}
+  (formerly FindBugs), SonarQube, CAST, Sonargraph.
 
 \end{itemize}
 
-All the data sources contain detailed information related to the set of changes
-that the source code has suffered, the requirement that the developer is working
-on and the possible quality issues she will encounter during implementation. In
-many cases, these systems have been implemented by different producers and thus
-are generally ``separated''. Therefore, data must be collected from each system,
-in isolation. However, forms of ``light integrations'' exists for development
-productivity purposes such as linking of work items to change-sets by specifying
-the work item ID in the change-set description message. Such provide guidance on
-how many change-sets the source code has suffered during the implementation of a
-work item.
+All the data sources contain detailed information related to project
+requirements and small tasks, to the set of changes that the source code has
+suffered over time and to the possible quality issues the development team might
+encounter. In many cases, development teams use various systems from different
+vendors with little or no `common ground' between them. They are considered
+separate services that run in isolation to one another. The data collection
+pipeline must have features to interact with each service. Fortunately, forms of
+integration exists between these services for productivity purposes. An example
+is linking work items to change-sets by specifying the work item ID in the a
+revision title. This integration provides valuable guidance on how many
+revisions the source code has suffered during the implementation of a work item.
 
 The centralised data model, presented in Figure \emph{FIGURE}, highlights the
 integration of version control logs, issue tracker data and static analysis
-output. The next few sections highlight the data model of each source in
-isolation.
+output. The next few sections highlight the information collected from each data
+source.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Version Control}
 \label{version-control}
 
-The version control system keeps track and logs all changes that a source code
-has suffered over the evolution of the product. Such logs are indispensable due
-to their metadata which provides information on the accomplished work.
+The version control system keeps track of the evolution of source code over
+time. It tracks and logs changes deployed by developers on a daily basis. Such
+logs are indispensable, since the metadata associated with them provides direct
+information on implementation patterns of the development team.
 
-Git is a popular version control tool that tracks changes of the source code
-using branches and commits. Projects are stored in a ``repository'' which
-contains at least one development line, called a ``branch''. The main
-development branch is commonly named the \emph{master} branch. Branches contain
-a stream of small units of work, called ``commits'', which are the snapshots of
-the source code at a particular point in time. Additionally, each commit
-contains relevant metadata with the following fields:
+As mentioned, Git is a simple version control tool that tracks changes of the
+source code using branching model. Each repository contains at least one
+development line, called a ``branch''. The main development branch is commonly
+named the \emph{master} branch. Branches contain a stream of small units of
+work, called ``commits'', which are the snapshots of the source code at a
+particular point in time. Additionally, each commit contains relevant metadata
+with the following fields:
 
 \begin{itemize}
   \item \emph{Object ID} - is the identifier of the snapshot;
-  \item \emph{Author} - the name (or username) of the developer that committed
-  the change;
+  \item \emph{Author} - the name (or username) of the person who originally
+  wrote the change;
   \item \emph{Message} - a short description of the change-set;
   \item \emph{Timestamp} - the time when the commit was created;
   \item \emph{Diff} - the set of changes that the source code has suffered, when
   compared to the previous commit. 
 \end{itemize}
 
-If the system allows integrations with a project management tool, changes can be
-directly linked to the appropriate work unit. The most common method is to
-specify the work item ID in the message field of the commit ID. As a result, it
+Teams can `integrate' their version control system with an issue tracker such
+that changes can be directly linked to the appropriate ticket. The most common
+method is to specify the ticket ID in the message of the commit. As a result, it
 is simpler to find out which change-sets belong to a particular work item. 
 
-For a project managed using Git, all the metadata can be easily retrieved and
-snapshots can be accessed at any time. This makes Git a powerful tool in
-studying the history of changes of a software product.
+For a project managed using Git, all the metadata fields can be retrieved from a
+clone of the repository on a local computer. This makes Git a powerful tool in
+studying the history of changes and evolution of any software product.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Project Management}
@@ -313,41 +314,39 @@ the users of the software.
 
 Each work item is represented in the form of a \emph{ticket}, which is a report
 of the work that needs to be completed. Depending on the workflow of the team,
-tickets may go through various status transitions during their lifetime which
-represent checkpoints of the work involved. A ticket may contain a lot of data,
-including but not limited to:
+tickets may go through various `transitions', which are changes to the ticket
+made by a team member. For example, changes to the `status` field of a ticket
+represents a transition from one status to another. A ticket may contain many
+relevant metadata fields, including:
 
 \begin{itemize}
   \item \emph{ID} - the unique identifier of the work item in the project;
-  \item \emph{Type} - the type of work e.g. Feature, Bug, Enhacement, etc.;
+  \item \emph{Type} - the type of work e.g. Task, Feature, Bug or Enhacement;
   \item \emph{Status} - the current status of the work e.g. Created, In
-  development, In testing, Closed, etc.;
-  \item \emph{Summary} - a brief description of the work;
-  \item \emph{Description} - a longer, more detailed description of the work
-  involved;
+  Progress, Testing, In Review, Closed;
+  \item \emph{Summary} - a brief description of the task;
+  \item \emph{Description} - a longer, more detailed description;
   \item \emph{Priority} - the importance of the work as considered by the team;
   \item \emph{Assignee} - the team member responsible for completing the work;
-  \item \emph{Complexity} - measurement of how complex the work item is e.g.
-  Story points;
+  \item \emph{Story Points} - an estimation or measurement of complexity;
   \item \emph{Comments} - a list of comments by other team members to promote
-  discussion on the work;
+  discussion;
   \item \emph{Timestamps} - the times when ticket was created, updated, closed
-  and when it is due. 
+  and what point it is due.
 \end{itemize}
 
-Additionally, Jira tickets contain a field called \emph{Time Tracking} that
+Moreover, Jira tickets contain a field called \emph{Time Tracking} that
 allows tracking of the estimated time to complete the work, time logged and time
 left. Moreover, for Jira, the history of changes of a work item is available
-through its API in a field called \emph{Transitions}. This metadata provides a
-good idea of when development for a specific work has started or ended, by
-analysing the changes of the status field over time. 
+through its API in a field called \emph{Transitions}. This field may provide
+valuable information of development patterns, by analysing the changes of the
+status field over ticket lifetime. 
 
 Although project management tools provide relevant work tracking information,
-not all tools offer the same broad scope of work data. For example, the
-integrated issue tracker within GitHub and BitBucket do not offer the same
-features and functionality that Jira does. Additionally, many of the fields of
-tickets might be non-existent. This poses a problem to the validity of the work
-effort calculations, mentioned in section \ref{data-processing}. 
+not all offer the same broad scope of work data. For example, the integrated
+issue tracker within GitHub and BitBucket do not offer the same features and
+functionality that Jira does. Additionally, many of the fields of tickets might
+be non-existent which poses a problem when computing a measure of work effort.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Static Analysis}
@@ -356,31 +355,32 @@ effort calculations, mentioned in section \ref{data-processing}.
 % intro
 Static analysis tools provide an elegant method of analysing source code for
 possible weaknesses and quality issues without a direct execution of the entire
-product. Its applicability makes it a great tool for developers to analyse their
-change-sets at any time of the implementation process.
+product. Its applicability makes it an excellent tool for developers to analyse
+their change-sets at any time of the implementation process.
 
 % body
-The output of static analysis tools are generally weaknesses and bugs that may
-lead to vulnerabilities which are considered ``lowest level'' of technical debt.
-Code debt is technical debt that developers have to encounter daily
-\emph{Avgeriou2016}. There are many static analysis tools, many of which have been
-reviewed \cite{Fontana2011}. 
-
 Although static analysis tools provide an approximate measure of the quality of
 the code base, there is a danger in associating technical debt with their
 output. There are multiple types of technical debt present in the software
-development environment \cite{Li2015}. For example, static analysis tools
-cannot predict that the requirements gathering phase was not completed
-appropriately and thus it might take more time for a team member to understand
-the expectations of a work item, thus indirectly increasing effort. However, as
-a simplifying assumption, in this paper we only consider code debt in the
-calculation of a technical debt index. 
+development environment \cite{Li2015}. For example, static analysis tools cannot
+predict that the requirements gathering phase was not completed appropriately
+and thus it might take more time for a team member to understand the
+expectations of a work item and indirectly increasing effort required to
+complete the task. In this study, we consider that only code debt affects the
+work effort for completing a task, as a simplifying assumption to aid in the
+calculation of work effort. 
 
-The output of a code analysis by SpotBugs contains the following fields:
+The output of static analysis tools are, generally, weaknesses and bugs that may
+lead to vulnerabilities of the product. We consider such code violations as the
+`lowest level' of technical debt, named code debt, which is the technical debt
+that developers encounter daily \emph{Avgeriou2016}. There are many static
+analysis tools, many of which have been reviewed by current research
+\cite{Fontana2011}. 
+
+In general, the output of a code analysis tool, including SpotBugs, contains:
 \begin{itemize}
   \item \emph{ID} - a unique identifier of the quality issue;
-  \item \emph{Priority} - a generic measure of severeness e.g. High, Medium,
-  Low;
+  \item \emph{Severity} - a measure of severeness e.g. High, Medium, Low;
   \item \emph{Description} - a short description of the code violation;
   \item \emph{Location} - the location of the quality issue, represented by the
   file name and line number. 
@@ -390,33 +390,12 @@ This type of output gives a representation of the possible low-level weaknesses
 that developers might introduce and encounter during the implementation process.
 Additionally, by using the version control logs it is possible to track the
 items that have been introduced or removed for each change-set as well as the
-total amount of issues that a team member had to deal with. 
+total amount of issues that an author dealt with. 
 
 Unfortunately, not all projects use a static analysis tool to check for issues
-and, if some do, they are not publicly available in a centralised system as well
-as not being available for each revision of the source code. This challenge was
-addressed and is described in section \ref{data-collection}. The candidate list
-for this project is: 
-
-\begin{itemize}
-  \item ANTLR \footnote{https://github.com/antlr/antlr4} - ``s a powerful parser
-  generator for reading, processing, executing, or translating structured text
-  or binary files'';
-  \item Spring HATEOAS
-  \footnote{https://github.com/spring-projects/spring-hateoas} - ``Library to
-  support implementing representations for hyper-text driven REST web services
-  ''
-  \item Checkstyle \footnote{https://github.com/checkstyle/checkstyle} - ``is a
-  development tool to help programmers write Java code that adheres to a coding
-  standard'';
-  \item Apache Commons Collections
-  \footnote{https://github.com/apache/commons-collections} - ``contains types
-  that extend and augment the Java Collections Framework'';
-  \item Apache Commons Lang \footnote{https://github.com/apache/commons-lang} -
-  ``a package of Java utility classes for the classes that are in java.lang's
-  hierarchy, or are considered to be so standard as to justify existence in
-  java.lang''.
-\end{itemize}
+and, if some do, the historical technical debt for each possible revision is
+non-existent. For this reason, in the data collection process, we are using a
+single static analysis tool to review historical debt items for each project.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -425,20 +404,41 @@ for this project is:
 \label{data-selection}
 
 % intro
-For the purpose of this experiment, we had to apply the data collection
-processing phase on a set of software projects. These projects had to satisfy a
-certain criteria to be included:
+We applied the data collection and processing stages to a set of real,
+open-source software projects. Initially, from a choice of 11 open-source
+libraries and development tools, we have selected the following candidates: 
 
 \begin{itemize}
-  \item Use Git as a version control tool due to its powerful features,
+	\item ANTLR \footnote{https://github.com/antlr/antlr4} - ``s a powerful parser
+	      generator for reading, processing, executing, or translating structured text
+	      or binary files'';
+	\item Spring HATEOAS
+	      \footnote{https://github.com/spring-projects/spring-hateoas} - ``Library to
+	      support implementing representations for hyper-text driven REST web services
+	      ''
+	\item Checkstyle \footnote{https://github.com/checkstyle/checkstyle} - ``is a
+	      development tool to help programmers write Java code that adheres to a coding
+	      standard'';
+	\item Apache Commons Collections
+	      \footnote{https://github.com/apache/commons-collections} - ``contains types
+	      that extend and augment the Java Collections Framework'';
+	\item Apache Commons Lang \footnote{https://github.com/apache/commons-lang} -
+	      ``a package of Java utility classes for the classes that are in java.lang's
+	      hierarchy, or are considered to be so standard as to justify existence in
+	      java.lang''.
+\end{itemize}
+
+To be included in the study, a project must satisfy a list of rigorous criteria:
+
+\begin{itemize}
+  \item Use Git as a version control tool. due to its powerful features,
   applicability and popularity. Additionally, the project must be open-source to
   access the history of snapshots.
   \item Use a project management tool that is publicly accessible to retrieve
   work item data.
   \item Use Java \footnote{https://java.com/en/} as the main programming
   language. This was a simplifying criteria to keep the data collection and
-  processing consistent. Additionally, this aided our decision in selecting a
-  single static analysis tool.
+  processing consistent.
   \item The project should have a single main development branch, preferably the
   ``master'' branch. This relieves the data collection process of analysing
   multiple branches.
@@ -446,7 +446,7 @@ certain criteria to be included:
   management tool to highlight the commits that belong to a specific work item.
   \item The project uses Maven \footnote{https://maven.apache.org/} as its build
   system due to simplifications in development process of the data collection
-  tool. Multiple build systems could be added if necessary.
+  tool.
 \end{itemize}
 
 \begin{table}
@@ -463,29 +463,20 @@ certain criteria to be included:
 \end{table}
 
 % body 
-Table \ref{tab-data-candidates} shows the selected open-source projects that have their data
-collected and analysed as well as their size (LOC), version control and project
-management tools. Out of the ten projects, we have only included five for
-analysis of results due to an incomplete data collection process. This was a
-result of:
+Table \ref{tab-data-candidates} shows the selected open-source projects that
+have their data collected and analysed as well as their size (LOC), version
+control and project management tools. Out of the initial project pool, we have
+only included five for analysis of results due to an incomplete data collection
+process, as a result of:
 
 \begin{itemize}
   \item Unavailable APIs for accessing project management tool.
-  \item Non-existent static analysis output. This might be due to a ``Zero
-  Bugs'' policy set by the development team.
+  \item Non-existent historical static analysis results. This might be due to a
+  ``Zero Bugs'' policy set by the development team 
   \item Failing build process for the majority of revisions. The build process
-  was failing on too many revisions to provide any meaningful data.
+  was failing on too many revisions and thus the static analysis stage could not
+  be completed.
 \end{itemize}
-
-Since the projects selected for this experiment are managed by different
-development teams, some of the data sources are distributed and use different
-underlying technologies. Additionally, not all projects make use of a static
-analysis tool and therefore such data might not be publicly available. As a
-result, we have decided to execute static analysis on each revision of the main
-branch our candidate projects. This brings the advantage of a consistent data
-model of quality issues and fills in the void left by the lack of static
-analysis data. However, this decision introduced an additional overhead in the
-data collection process.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -494,85 +485,74 @@ data collection process.
 \label{data-collection}
 
 % intro
-To collect the selected data from multiple systems we built a tool that
-retrieves data from each source and centralises them into a single database for
-processing and analysis. Additionally, this method allows us to reproduce the
-experiment without any outside changes to the dataset while future work items do
-not incur an additional data collection overhead. Moreover, due to the choice of
-database technology, new data could be added from additional projects without
-any changes to the initial data model. 
-
-The tool has been built using Java and open-source technologies, and is
-available to use by anyone (MIT License
-\footnote{https://opensource.org/licenses/MIT}). The tool uses the following
-technologies for collecting data:
+To collect relevant data for each candidate project, we designed and implemented
+a tool that collects data from version control logs, project management tools
+and statically analyses the source code on each revision. The result are
+collected into a single, centralised database for further processing and
+analysis. The tool has been built using Java and open-source technologies, and
+is publicly available \footnote{https://github.com/ovidiup13/tdanalysis}. It
+relies on the following dependencies:
 
 \begin{itemize}
-  \item jGit \footnote{https://www.eclipse.org/jgit/} - is a Java library for interacting with the Git
-  version control system;
+  \item jGit \footnote{https://www.eclipse.org/jgit/} - is a Java library for
+  interacting with the Git version control system;
   \item REST Java Client for Jira
   \footnote{https://bitbucket.org/atlassian/jira-rest-java-client} - is a Java
   library that provides a simple interaction with Jira APIs;
-  \item GitHub API for Java \footnote{http://github-api.kohsuke.org/} - is a Java library that provides
-  integration with GitHub API for retrieving issues;
+  \item GitHub API for Java \footnote{http://github-api.kohsuke.org/} - is a
+  Java library that provides integration with GitHub API for retrieving issues;
   \item MongoDB \footnote{https://www.mongodb.com/} - NoSQL database technology
   for storing collected data;
-  \item Spotbugs - tool for identifying bug patterns in source
-  code;
-  \item Other technologies - Spring Boot \footnote{https://projects.spring.io/spring-boot/}, 
-  Angular \footnote{https://angular.io/} and ChartJS \footnote{http://www.chartjs.org/}
-  for visualising data.
+  \item Spotbugs - tool for identifying bug patterns in source code.
 \end{itemize}
 
-The data collection process is shown in figure \emph{FIGURE}. Firstly, selected
-project repositories are cloned to the local storage. Secondly, the tool starts
-the ``collection step'', where each revision of the project history is processed
-serially, starting with the latest revision and going back in time. The
-collection step is composed of multiple sub-steps:
+The data collection process is shown in figure \emph{FIGURE}. Firstly, each
+candidate project repository is cloned to local storage. Secondly, the tool
+starts the `collection step', where each revision of the project history is
+processed serially, starting with the latest revision and going back in time.
+The collection step is composed of multiple sub-steps:
 \begin{enumerate}
-  \item \emph{Retrieve commit metadata}.
+  \item \emph{Retrieve commit metadata}. Interacts with Git to retrieve relevant
+  data from each revision;
   \item \emph{Search and retrieve ticket(s)}. The current commit message is
   analysed for mentions of ticket IDs. For any ticket ID found, the tool
-  retrieves the ticket from the project management tool API.
+  retrieves the ticket from the project management tool API;
   \item \emph{Build current revision}. This is a preparation step for the static
   analysis. The source code of the project must be compiled into classes and
-  packaged into JARs for static analysis to complete.
-  \item \emph{Statically analyse the JARs}. Scan the current revision JARs for
-  quality issues. If the build process fails, then the static analysis scan is
-  skipped, due to missing JAR files. 
+  packaged into JARs for static analysis to complete;
+  \item \emph{Analyse JARs}. Scan the current revision for quality issues. If
+  the build process fails, then the static analysis scan is skipped, due to
+  missing JAR files. 
 \end{enumerate}
 
 Data is stored at the end of each substep to avoid an inconsistent commit stream
-in case one of the next one fails or the tool crashes.
+in case one of the next one fails or the tool crashes. Additionally, this method
+allows us to reproduce the experiment without any outside changes to the dataset
+while future work items do not incur an additional data collection overhead.
+Moreover, due to the choice of a NoSQL database technology, we can introduce new
+data points from additional projects without any breaking changes to the initial
+data model. 
 
 During development, the building and static analysis steps incurred an extreme
 overhead that was slowing down the data collection process. For a repository
-with thousands of revisions, there would have been a significant time overhead
-that would overstep the timeline of the experiment. Therefore, the build process
-was customised by skipping a few unnecessary tasks that we did not consider in
-scope for this experiment:
-
-\begin{itemize}
-  \item Generating of documentation;
-  \item Compiling and running tests;
-  \item Test coverage checks;
-  \item Integrated code analysis.
-\end{itemize}
-
-Some projects had an integrated static analysis task as part of the build
-process. We decided to skip it due to the implementation of the Spotbugs
-analysis step and due to complexities in the integration with multiple analysis
-tools. 
+with thousands of revisions, the build and analysis steps incurred a significant
+time overhead that would overstep the timeline of the experiment. Therefore, the
+build process was customised by skipping a few unnecessary tasks that we did not
+consider in scope for this experiment such as generating documentation,
+compilation and running of tests and test coverage analysis. Another key point
+is that some projects were running custom static analysis step as part of the
+build process. We decided to skip it due the decision to run Spotbugs analysis
+and to optimise the current process. 
 
 Additionally, the tasks that compile and run the testing suites were ignored.
 Firstly, testing was considered a separate activity to the implementation of new
 features, fixing bugs and adding enhacements. Thus, in this case, code debt was
-split into ``implementation debt'' and ``testing debt''. Testing debt refers to
-shortcuts taken during the testing phases. Secondly, the testing task added an
-additional overhead to the build process. In reality, testing is a fundamental
+split into `code debt' and `testing debt'. Testing debt refers to shortcuts
+taken during the testing phases. Secondly, the testing task added an additional
+overhead to the build process. However, in reality, testing is a fundamental
 part of development and is tightly integrated with implementation of work items,
 especially in the practice of Test Driven Development. It is one of the top most
-mentioned type of technical debt in a mapping study by Li et. al \emph{Li2015},
+mentioned types of technical debt in a mapping study by Li et. al \emph{Li2015},
 along with code, architecture and design debt. The integration of testing debt
 within this experiment is considered as a future work item, mentioned in section
 \ref{future-work}.
@@ -595,13 +575,12 @@ within this experiment is considered as a future work item, mentioned in section
 
 
 % conclusion
-The results of the data collection is shown in Table \ref{tab-data-collection}.
-Although only \emph{N} projects have been selected out of the initial 11
-presented in section \ref{data-selection}, using our data collection process we
-have managed to retrieve and analyse \emph{M} commits and \emph{X} issues along
-with an average of \emph{T} unique quality issues. Additionally, this process
-was repeated a second time due to changes in the static analysis collection
-step. Section \ref{results-discussion} dives into the results of our analysis. 
+The results of the data collection process are shown in Table
+\ref{tab-data-collection}. Although only 5 projects have been selected out of
+the initial pool, we have managed to retrieve and analyse approximately
+\emph{10,000} commits and \emph{1,000} work items along with an average of over
+\emph{100} unique quality issues. Section \ref{results-discussion} dives into
+the results of our analysis. 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Data processing}

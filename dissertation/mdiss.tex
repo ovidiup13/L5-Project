@@ -797,46 +797,82 @@ development costs. Moreover, there is no single best tool for this purpose, as
 all take into consideration various variables for metric computation. 
 
 % total
-We calculate the total technical debt $TD_{total}$ at the project level by
-simply counting the total quality issues found by the static analysis tool. This
-measurement is available for each revision of the project with a successful
-build, that has run the static analysis step. We consider that, for each work item
-$w$, $TD[w]_{total}$ is the present in the revision at the start of the
-implementation. This directly points to the first commit $C[w]_{1}$. However, as
-mentioned before, the first commit already represents work completed for work
-item $w$. Thus, we refer to the commit \emph{before} $C[w]_{1}$, in the list of
-project commits $C$. The measurement of $TD$ at $C[w-1]_{m}$, represents the
-technical debt present in the source code at the start of work item $w$. Figure
+We calculate the total technical debt $TDT_{w}$ for a work item $w$ at by simply
+counting the total quality issues found by the static analysis tool at the start
+of $w$. The start of $w$ is the reference point given by commit $C_{w}[1]$.
+However, as mentioned before, the first commit already represents work completed
+for $w$, not the work at the start of the item. Thus, we refer to the last
+commit of the previous work item $w-1$ that was implemented \emph{before}
+$C[w]_{1}$. Therefore, the `total pain' for $w$, at the project level, is given
+by the total debt of the last revision of $w-1$, namely $TDT_{w-1}[m]$. Figure
 \emph{FIGURE} shows a visualisation of the total technical debt of a work item.
 
 % added, removed, remaining
-Furthermore, we calculated the technical debt introduced and removed at the work
-item level, to see any correlation with the total effort involved. The measure
-calculations are straightforward. The technical debt introduced is the set
-difference between the technical debt items of the last revision of the current
-work item and the technical debt of the last revision of the previous work item.
-Similarly, the technical debt removed is the same set difference, inversed. The
-remaining technical debt, is the total number of technical debt items that have
-remained untouched during the feature implementation. Figure \emph{FIGURE} shows
-a Venn diagram of the introduced, removed and remaining technical debt per work
-item. 
+Furthermore, we calculate the technical debt introduced and removed per work
+item. The calculations are straightforward. The technical debt introduced
+$TDI_{w}$ for a work item $w$ is the set difference between all technical debt
+items in $C_{w}[n]$ and $C_{w-1}[m]$. That is, the technical debt introduced
+represents all items which are in $TD_{w}[n]$ and are not in $TD_{w-1}[m]$, and
+$TD_{w}[i]$ represents the set of technical debt items in work item $w$,
+revision $i$.
+
+\begin{equation}
+  \label{eq-td-introduced}
+  \begin{aligned}
+    TDI_{w} = TD_{w}[n]  \setminus TD_{w-1}[m]
+  \end{aligned}
+\end{equation}
+
+Similarly, the technical debt removed is the same set difference, inversed. That
+is, the difference is  The remaining technical debt, is the total number of
+technical debt items that have remained untouched during the feature
+implementation. Figure \emph{FIGURE} shows a Venn diagram of the introduced,
+removed and remaining technical debt per work item. 
+
+\begin{equation}
+	\label{eq-td-introduced}
+	\begin{aligned}
+		TDR_{w} = TD_{w-1}[m]  \setminus TD_{w}[n]
+	\end{aligned}
+\end{equation}
 
 % locality
-Although the measurement of technical debt is computed at the project level, the
-effort put in for a work item may not be affected by all technical debt items
-found in the project. A work item may include small changes to a few classes or
-to configuration files. Thus the measure the total pain of a work item is
-dependent on the total number of changes that a team member has implemented. We
-consider that the technical debt items that have the most impact of work effort
-are ``local'' to the total change-set over the number of revisions.
+Although, we measured technical debt at the project level, the effort put in for
+a work item may not be affected by all quality issues found in the \emph{entire}
+project. For example, a trivial work item might include only a few small changes
+to classes or configuration files. Therefore, the total pain of a work item may
+depend on the total number of changes that a team member has implemented. We
+consider that the technical debt items that have the most impact on work effort
+are `local' to the change-set.
 
-The total number of change-sets over a work item is the total number of distinct
-files that have been added, removed or modified during the implementation.
-Hence, to find the technical debt items that might have an effect on work
-effort, we intersect the change-set classes with the classes that have been
-found to contain technical debt items. Figure \emph{FIGURE} shows a Venn diagram
-of the two sets and their intersection, which signifies the total technical debt
-items local to the work item.
+To calculate the local technical debt $TDL_{w}$, we calculate the total
+change-set $CS_{w}$ per work item $w$. The total number of change-sets over a
+work item is the total number of distinct files that have been added, removed or
+modified during the implementation:
+
+\begin{equation}
+  \label{eq-td-changes}
+  \begin{aligned}
+    CS_{w} = CS_{w}[1] \cup CS_{w}[2] \cup ... \cup CS_{w}[n]
+  \end{aligned}
+\end{equation}
+
+To find $TDL_{w}$, we intersect the set of technical debt items $TD_{w}$ with
+the total change-sets:
+
+\begin{equation}
+  \label{eq-td-local}
+  \begin{aligned}
+    TDL_{w} = TD_{w} \cap CS_{w}
+  \end{aligned}
+\end{equation}
+
+Hence, to find the technical debt items that might have an effect on work effort
+locally, we find all classes that contain those items and intersect them with
+the classes that have been changed during the revision. In this way, we get a
+sense of potential quality issues that might affect development effort. Figure
+\emph{FIGURE} shows a Venn diagram of the two sets and their intersection, which
+signifies the total technical debt items local to the work item.\\
 
 % conclusion
 The processing stage was implemented as a request-reply server, running a REST

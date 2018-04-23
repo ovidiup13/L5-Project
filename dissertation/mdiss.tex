@@ -34,15 +34,16 @@ management of quality issues.
 \label{introduction}
 
 % General description of the problem, motivation, relevance
-The metaphor of technical debt was first proposed by \cite{Cunningham1993}, in
-reference to the temporary sacrifice of code quality in exchange for the faster
-delivery of features. Thus, incurring technical debt might be useful to achieve
-immediate deadlines but may simultaneously have negative consequences for future
-work, such as software complexity growth, the prevalence of bugs and defects,
-decreased team productivity and augmented work effort, leading to increased
-costs of development, infrastructure and management. The impact of technical
-debt may affect the daily work of developers, project managers, product owners
-and other stakeholders of the business.
+The metaphor of technical debt was first proposed by Ward Cunningham
+\cite{Cunningham1993}, in reference to the temporary sacrifice of code quality
+in exchange for the faster delivery of features. Thus, incurring technical debt
+might be useful to achieve immediate deadlines but may simultaneously have
+negative consequences for future work, such as software complexity growth, the
+prevalence of bugs and defects, decreased team productivity and augmented work
+effort, leading to increased costs of development, infrastructure and
+management. The impact of technical debt may affect the daily work of
+developers, project managers, product owners and other stakeholders of the
+business.
 
 Although initially intended as a metaphor, considerable research has since been
 undertaken into the identification \cite{Lim2012}, measurement
@@ -263,8 +264,15 @@ is linking work items to change-sets by specifying the work item ID in the a
 revision title. This integration provides valuable guidance on how many
 revisions the source code has suffered during the implementation of a work item.
 
-The centralised data model, presented in Figure \emph{FIGURE}, highlights the
-integration of version control logs, issue tracker data and static analysis
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{diagrams/data-model.pdf}
+  \caption{Data model of database}
+  \label{fig:data-model}
+\end{figure}
+
+The centralised data model, presented in Figure \ref{fig:data-model}, highlights
+the integration of version control logs, issue tracker data and static analysis
 output. The next few sections highlight the information collected from each data
 source.
 
@@ -506,8 +514,15 @@ relies on the following dependencies:
   \item Spotbugs - tool for identifying bug patterns in source code.
 \end{itemize}
 
-The data collection process is shown in figure \emph{FIGURE}. Firstly, each
-candidate project repository is cloned to local storage. Secondly, the tool
+\begin{figure*}[ht]
+	\centering
+	\includegraphics[width=\linewidth]{diagrams/collection-pipeline.pdf}
+	\caption{Data collection process}
+	\label{fig:data-collection}
+\end{figure*}
+
+The data collection process is shown in figure \ref{data-collection}. Firstly,
+each candidate project repository is cloned to local storage. Secondly, the tool
 starts the `collection step', where each revision of the project history is
 processed serially, starting with the latest revision and going back in time.
 The collection step is composed of multiple sub-steps:
@@ -804,8 +819,7 @@ However, as mentioned before, the first commit already represents work completed
 for $w$, not the work at the start of the item. Thus, we refer to the last
 commit of the previous work item $w-1$ that was implemented \emph{before}
 $C[w]_{1}$. Therefore, the `total pain' for $w$, at the project level, is given
-by the total debt of the last revision of $w-1$, namely $TDT_{w-1}[m]$. Figure
-\emph{FIGURE} shows a visualisation of the total technical debt of a work item.
+by the total debt of the last revision of $w-1$, namely $TDT_{w-1}[m]$.
 
 % added, removed, remaining
 Furthermore, we calculate the technical debt introduced and removed per work
@@ -826,8 +840,7 @@ revision $i$.
 Similarly, the technical debt removed is the same set difference, inversed. That
 is, the difference is  The remaining technical debt, is the total number of
 technical debt items that have remained untouched during the feature
-implementation. Figure \emph{FIGURE} shows a Venn diagram of the introduced,
-removed and remaining technical debt per work item. 
+implementation.
 
 \begin{equation}
 	\label{eq-td-introduced}
@@ -870,9 +883,7 @@ the total change-sets:
 Hence, to find the technical debt items that might have an effect on work effort
 locally, we find all classes that contain those items and intersect them with
 the classes that have been changed during the revision. In this way, we get a
-sense of potential quality issues that might affect development effort. Figure
-\emph{FIGURE} shows a Venn diagram of the two sets and their intersection, which
-signifies the total technical debt items local to the work item.\\
+sense of potential quality issues that might affect development effort.\\
 
 % conclusion
 The processing stage was implemented as a request-reply server, running a REST

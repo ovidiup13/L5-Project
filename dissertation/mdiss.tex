@@ -6,7 +6,7 @@
 
 \title{Is Technical Debt Real?}
 \author{Ovidiu Popoviciu}
-\matricnum{2036725p}
+\matricnum{2036725}
 
 
 \maketitle
@@ -110,8 +110,8 @@ investigating these research questions, this study contributes:
 % Section descriptions
 Section \ref{background} mentions important state-of-the-art work that is will
 build on, while section \ref{methodology} goes into data modelling, collection
-and processing phases of the study. Finally, section \ref{results-discussion}
-provide insights into results while section \ref{validity-future-work} states
+and processing phases of the study. Finally, section \ref{evaluation}
+provides insights into results while section \ref{validity-future-work} states
 the possible threaths to the validity of this experiment and further research
 for expansion.
 
@@ -127,7 +127,7 @@ and relates the existing state of the art to our proposed experiment to
 empirically measure the work effort interest accumulated by technical debt.
 
 Olbrich et al. \cite{Olbrich2009} studied the impact of two code smells,
-specifically God class and Shotgun Surgery, on change-proneness of class
+specifically God class and Shotgun Surgery, on change proneness of class
 entities and size of changes within two open source systems: Apache Lucene and
 Apache Xerces. They found that classes containing smells are more change prone
 than other, non-smelly, classes. In a similar study, Khomh et al.
@@ -180,8 +180,8 @@ could derive important team information on change-sets, effort, quality, test
 and size of the system. They measured extra work effort by subtracting the
 estimated work time and total practical work time. Although information at the
 release level offers project managers an idea of work effort deviation, it does
-not show at a granular level what defects slow down development of a new feature
-and where the team should focus their refactoring activities.
+not show at a granular level what defects slow down the development of a new
+feature and where the team should focus their refactoring activities.
 
 The initial study by Gomes et al. \cite{Gomes2011} provided a good start to
 identifying work effort deviation. However, it only analysed major releases of a
@@ -199,21 +199,21 @@ where quickly responding to changes is a critical task
 \label{methodology}
 
 In this paper, we present an approach for aggregating development team data
-sources such as project management tools, version control logs and static
+sources such as project management metadata, version control logs and static
 analysis results to produce a timeline of technical debt and work effort over
 the evolution of a software product. Our motivation is to empirically find a
 correlation between technical debt and the amount of work effort involved in
 development of work items. In the absence of work tracking information,
 aggregation of such data sources might provide a relatively accurate estimation
-of the number of hours a developer has accomplished to complete a task.
+of the number of hours a developer has accomplished to deliver a task.
 
 When developing our approach, we completed the following steps:
 \begin{enumerate}
   \item Designing an initial data model.
   \item Selecting data candidates (projects) that satisfy specific criteria.
-  \item Collecting data from issue tracker, version control logs and generating
-  static analysis output.
-  \item Processing and refining data for analysis. 
+  \item Collecting data from issue trackers, version control logs and running
+  static analysis.
+  \item Processing and refining data for evaluation and analysis. 
 \end{enumerate}
 
 Section \ref{experimental-design} dives into the data model while section
@@ -259,8 +259,8 @@ encounter. In many cases, development teams use various systems from different
 vendors with little or no `common ground' between them. They are considered
 separate services that run in isolation to one another. The data collection
 pipeline must have features to interact with each service. Fortunately, forms of
-integration exists between these services for productivity purposes. An example
-is linking work items to change-sets by specifying the work item ID in the a
+integration exist between these services for productivity purposes. An example
+is linking work items to change-sets by specifying the work item ID in the
 revision title. This integration provides valuable guidance on how many
 revisions the source code has suffered during the implementation of a work item.
 
@@ -282,7 +282,7 @@ source.
 
 The version control system keeps track of the evolution of source code over
 time. It tracks and logs changes deployed by developers on a daily basis. Such
-logs are indispensable, since the metadata associated with them provides direct
+logs are indispensable since the metadata associated with them provides direct
 information on implementation patterns of the development team.
 
 As mentioned, Git is a simple version control tool that tracks changes of the
@@ -316,7 +316,7 @@ studying the history of changes and evolution of any software product.
 \subsubsection*{Project Management}
 \label{project-management}
 
-Project management tools allows developers and project managers to keep track of
+Project management tools allow developers and project managers to keep track of
 the work that must be accomplished and of the issues that have been reported by
 the users of the software. 
 
@@ -347,7 +347,7 @@ Moreover, Jira tickets contain a field called \emph{Time Tracking} that
 allows tracking of the estimated time to complete the work, time logged and time
 left. Moreover, for Jira, the history of changes of a work item is available
 through its API in a field called \emph{Transitions}. This field may provide
-valuable information of development patterns, by analysing the changes of the
+valuable information of development patterns, by analysing the changes in the
 status field over ticket lifetime. 
 
 Although project management tools provide relevant work tracking information,
@@ -378,12 +378,12 @@ complete the task. In this study, we consider that only code debt affects the
 work effort for completing a task, as a simplifying assumption to aid in the
 calculation of work effort. 
 
-The output of static analysis tools are, generally, weaknesses and bugs that may
-lead to vulnerabilities of the product. We consider such code violations as the
-`lowest level' of technical debt, named code debt, which is the technical debt
-that developers encounter daily \emph{Avgeriou2016}. There are many static
-analysis tools, many of which have been reviewed by current research
-\cite{Fontana2011}. 
+The output of static analysis tools contains, generally, weaknesses and bugs
+that may lead to vulnerabilities of the product. We consider such code
+violations as the `lowest level' of technical debt, named code debt, which is
+the technical debt that developers encounter daily \emph{Avgeriou2016}. There
+are many static analysis tools, many of which have been reviewed by current
+research \cite{Fontana2011}. 
 
 In general, the output of a code analysis tool, including SpotBugs, contains:
 \begin{itemize}
@@ -418,7 +418,7 @@ libraries and development tools, we have selected the following candidates:
 
 \begin{itemize}
 	\item ANTLR \footnote{https://github.com/antlr/antlr4} - ``s a powerful parser
-	      generator for reading, processing, executing, or translating structured text
+	      generator for reading, processing, executing or translating structured text
 	      or binary files'';
 	\item Spring HATEOAS
 	      \footnote{https://github.com/spring-projects/spring-hateoas} - ``Library to
@@ -453,7 +453,7 @@ To be included in the study, a project must satisfy a list of rigorous criteria:
   \item The version control hosting system should integrate with the project
   management tool to highlight the commits that belong to a specific work item.
   \item The project uses Maven \footnote{https://maven.apache.org/} as its build
-  system due to simplifications in development process of the data collection
+  system due to simplifications in the development process of the data collection
   tool.
 \end{itemize}
 
@@ -495,9 +495,9 @@ process, as a result of:
 % intro
 To collect relevant data for each candidate project, we designed and implemented
 a tool that collects data from version control logs, project management tools
-and statically analyses the source code on each revision. The result are
+and statically analyses the source code on each revision. The results are
 collected into a single, centralised database for further processing and
-analysis. The tool has been built using Java and open-source technologies, and
+analysis. The tool has been built using Java and open-source technologies and
 is publicly available \footnote{https://github.com/ovidiup13/tdanalysis}. It
 relies on the following dependencies:
 
@@ -521,7 +521,7 @@ relies on the following dependencies:
 	\label{fig:data-collection}
 \end{figure*}
 
-The data collection process is shown in figure \ref{data-collection}. Firstly,
+The data collection process is shown in Figure \ref{data-collection}. Firstly,
 each candidate project repository is cloned to local storage. Secondly, the tool
 starts the `collection step', where each revision of the project history is
 processed serially, starting with the latest revision and going back in time.
@@ -541,7 +541,7 @@ The collection step is composed of multiple sub-steps:
 \end{enumerate}
 
 Data is stored at the end of each substep to avoid an inconsistent commit stream
-in case one of the next one fails or the tool crashes. Additionally, this method
+in case one of the next one fails, or the tool crashes. Additionally, this method
 allows us to reproduce the experiment without any outside changes to the dataset
 while future work items do not incur an additional data collection overhead.
 Moreover, due to the choice of a NoSQL database technology, we can introduce new
@@ -556,18 +556,18 @@ build process was customised by skipping a few unnecessary tasks that we did not
 consider in scope for this experiment such as generating documentation,
 compilation and running of tests and test coverage analysis. Another key point
 is that some projects were running custom static analysis step as part of the
-build process. We decided to skip it due the decision to run Spotbugs analysis
-and to optimise the current process. 
+build process. We decided to skip it due to the decision to run Spotbugs
+analysis and to optimise the current process. 
 
 Additionally, the tasks that compile and run the testing suites were ignored.
 Firstly, testing was considered a separate activity to the implementation of new
-features, fixing bugs and adding enhacements. Thus, in this case, code debt was
+features, fixing bugs and adding enhancements. Thus, in this case, code debt was
 split into `code debt' and `testing debt'. Testing debt refers to shortcuts
 taken during the testing phases. Secondly, the testing task added an additional
 overhead to the build process. However, in reality, testing is a fundamental
 part of development and is tightly integrated with implementation of work items,
 especially in the practice of Test Driven Development. It is one of the top most
-mentioned types of technical debt in a mapping study by Li et. al \emph{Li2015},
+mentioned types of technical debt in a mapping study by Li et al. \emph{Li2015},
 along with code, architecture and design debt. The integration of testing debt
 within this experiment is considered as a future work item, mentioned in section
 \ref{future-work}.
@@ -591,7 +591,7 @@ within this experiment is considered as a future work item, mentioned in section
 
 % conclusion
 The results of the data collection process are shown in Table
-\ref{tab-data-collection}. Although only 5 projects have been selected out of
+\ref{tab-data-collection}. Although only five projects have been selected out of
 the initial pool, we have managed to retrieve and analyse approximately
 \emph{10,000} commits and \emph{1,000} work items along with an average of over
 \emph{100} unique quality issues. Section \ref{results-discussion} dives into
@@ -610,21 +610,21 @@ results to be displayed and analysed visually.
 
 % body
 The processing stage revolved around the concept of \emph{work items}. A work
-item is a specific tasks assigned to a developer and each item is composed of a
-ticket and a list of revisions, ordered chronologically. A ticket is the report
-of the work, which represents the data retrieved from the project management
-tool. the pieces of data retrieved from the project management tool. Similarly,
-the list of revisions represent a subset of the total commits from the version
-control system are linked to the specific ticket. As mentioned in section
-\ref{data-collection}, commits are assumed to belong to a specific ticket if
-their commit message references the ticket ID of the project management tool.
+item is a specific task assigned to a developer and is composed of a ticket and
+a list of revisions, ordered chronologically. A ticket is the report of the
+work, which represents the data retrieved from the project management tool.
+Similarly, the list of revisions represents a subset of the total commits from
+the version control system that are linked to the specific ticket. As mentioned
+in section \ref{data-collection}, commits are assumed to belong to a specific
+ticket if their commit message references the ticket ID of the project
+management tool.
 
 For each work item, we compute the following measures:
 \begin{itemize}
   \item Work effort ($WE_{w}$) - the total number of hours a team member has
   exhausted to complete task $w$;
   \item Technical Debt ($TD_{w}$) - the total number of technical debt items
-  that have affected the work, during implementation of task $w$.
+  that have affected the work, during the implementation of task $w$.
 \end{itemize}
 
 We describe the methods of calculation for each measurement separately, in the
@@ -639,7 +639,7 @@ The work effort represents the total number of hours accomplished a single
 developer towards the implementation of a work item $w$. Ideally, the project
 manager would require developers to track the time spent on each task to
 possibly help with future estimation of work effort for similar items.
-Unfortunately, the majority of projects do not track such data and thus we have
+Unfortunately, the majority of projects do not track such data, and thus we have
 designed calculations to estimate it from various systems of the development
 environment.
 
@@ -657,8 +657,8 @@ calculate the working hours on the same day:
 
 For example, if a developer starts work on $w$ on Monday at 9:00 GMT and
 finishes work at 15:00 GMT, then the total of effort put in is 6 hours. However,
-a work item might span multiple days and thus it would include time outside the
-normal working hours. To cover for this case, we introduced another simplyfing
+a work item might span multiple days, and thus it would include time outside the
+normal working hours. To cover for this case, we introduced another simplifying
 assumption. We assume that the normal working hours per day would not exceed 8
 hours and this allows normalisation of hours according to the number of days
 between the start and end times. This means that work spread over multiple days
@@ -703,14 +703,14 @@ for calculating work effort are:
 The difference between these two timestamps might give an accurate estimation of
 the number of hours, calculated using equations \ref{eq-work-effort-simple} and
 \ref{eq-work-effort-days} mentioned above. However, they might not reflect the
-implementation time accurately. For example, there might be an additional time
-period between when a ticket was added to the issue tracker and when it got
-picked up for development. For example, a ticket may have been created for a
-week before the start of a new sprint, should the team employ an agile
-development methodology. Moreover, if the team employs code review practices for
-each piece of work, the closing date of the ticket might be after the work has
-been reviewed by the rest of the team. Overhead time is problematic, as the
-calculations may not be accurate. 
+implementation time accurately. For example, there might be an additional period
+between when a ticket was added to the issue tracker and when it got picked up
+for development. For example, a ticket may have been created for a week before
+the start of a new sprint, should the team employ an agile development
+methodology. Moreover, if the team employs code review practices for each piece
+of work, the closing date of the ticket might be after the team has reviewed the
+piece of work. Overhead time is problematic, as the calculations may not be
+accurate. 
 
 Fortunately, Jira contains an additional metadata field, called
 \emph{Transitions} that lists the history of changes that the ticket has
@@ -718,7 +718,7 @@ suffered. Status changes are changes in the workflow of the ticket, such as from
 \emph{Open} to \emph{In Progress} and from \emph{In Progress} to \emph{In
 Review}. The timestamps of these transitions give a more accurate time range of
 development work hours. GitHub and BitBucket do not have the transition feature
-build-in.
+built-in.
 
 As a result, the choice of timestamps for $t_{start}$ and $t_{end}$ based on
 ticket metadata are as follows:
@@ -751,25 +751,25 @@ work item are labelled as $C_{w}[i]$ where $i$ is the commit position in $C[w]$,
 $i=1...,n$ and $n$ is the number of commits associated with work item $w$.
 Commits are ordered chronologically, in the order of development.
 
-Therefore, to get a simple estimation of work effort we take the time difference
+Therefore, to get a simple estimation of work effort, we take the time difference
 between the last commit $C_{w}[n]$ and first commit $C_{w}[1]$. Using this
 method, $t_{end}$ accurately reflects the time of the last changes pushed by a
 developer, which is the timestamp of $C_{w}[n]$, while $t_{start}$ represents
 the timestamp of $C_{w}[1]$. However, the first commit $C_{w}[1]$, represents
 the time when the changes have \emph{already} been implemented. In this case,
-there is a margin of error introduced and the results are short of the
+there is a margin of error introduced, and the results are short of the
 initial effort accomplished before the first commit has been finalised.
 
 To cover for this case, we assume that once a contributor finished a work item
-$w$ she would directly get started on $w+1$. If we are calculating the work
+$w$, she would directly get started on $w+1$. If we are calculating the work
 effort for work item $w$, we consider that the missing work effort is measured
 as the number of hours between the last commit timestamp of the previous work
 item $C_{w-1}[m]$ and the last commit timestamp $C_{w}[n]$ of the current work
 item. As a result, we can consider commits as a continuous stream of work
 changes, where one change follows the next in line. However, a developer may not
 have a previous contribution to the project. In this case, the number of hours
-simply cannot calculated accurately. Thus, the first commit $C_{w}[1]$ time of
-the current work item is used as a starting point.
+simply cannot be calculated accurately. Thus, the first commit $C_{w}[1]$ time
+of the current work item is used as a starting point.
 
 The selected timestamps for commits are chosen as follows:
 \begin{equation}
@@ -789,12 +789,12 @@ The selected timestamps for commits are chosen as follows:
 Measuring work effort accurately from limited data is a challenging task. Most
 open-source projects rely on contributions from software professionals all over
 the globe. In an ideal case, developers would measure their work time on the
-project management tool or on an internal worksheet. However, 54\% of software
+project management tool or an internal worksheet. However, 54\% of software
 professionals working remotely do not track their work effort
 \cite{DeveloperSurvey2018}. As a result, we have considered two novel ways of
 computing an estimate of work effort from project management tools and version
-control logs. Although the two methods are not perfectly accurate, they provide
-a good initial measurement of development times. The drawbacks are discussed in
+control logs. Although the two methods are not entirely accurate, they provide a
+satisfactory measurement of development times. The drawbacks are discussed in
 section \ref{validity-future-work}.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -804,7 +804,7 @@ section \ref{validity-future-work}.
 As mentioned in section \ref{background}, many state-of-the-art calculations for
 technical debt have been implemented \cite{Letouzey2012} \cite{Nugroho2011}
 \cite{Fontana2016}. The measure depicting the cost of paying back the debt at
-the present time is often called the \emph{principal} while the extra cost of
+the present is often called the \emph{principal} while the extra cost of
 development when keeping hold of items is called \emph{interest}. Unfortunately,
 there is no standardised method of calculating a global technical debt index,
 due to difficulties managing complexities of quantifying work effort and
@@ -812,7 +812,7 @@ development costs. Moreover, there is no single best tool for this purpose, as
 all take into consideration various variables for metric computation. 
 
 % total
-We calculate the total technical debt $TDT_{w}$ for a work item $w$ at by simply
+We calculate the total technical debt $TDT_{w}$ for a work item $w$ at by merely
 counting the total quality issues found by the static analysis tool at the start
 of $w$. The start of $w$ is the reference point given by commit $C_{w}[1]$.
 However, as mentioned before, the first commit already represents work completed
@@ -850,9 +850,9 @@ implementation.
 \end{equation}
 
 % locality
-Although, we measured technical debt at the project level, the effort put in for
+Although we measured technical debt at the project level, the effort put in for
 a work item may not be affected by all quality issues found in the \emph{entire}
-project. For example, a trivial work item might include only a few small changes
+project. For example, a minor work item might include only a few small changes
 to classes or configuration files. Therefore, the total pain of a work item may
 depend on the total number of changes that a team member has implemented. We
 consider that the technical debt items that have the most impact on work effort
@@ -880,10 +880,10 @@ the total change-sets:
   \end{aligned}
 \end{equation}
 
-Hence, to find the technical debt items that might have an effect on work effort
-locally, we find all classes that contain those items and intersect them with
-the classes that have been changed during the revision. In this way, we get a
-sense of potential quality issues that might affect development effort.\\
+Hence, to find the technical debt items that might affect work effort locally,
+we find all classes that contain those items and intersect them with the classes
+that have been changed during the revision. In this way, we get a sense of
+potential quality issues that might affect development effort.\\
 
 % conclusion
 The processing stage was implemented as a request-reply server, running a REST
@@ -910,18 +910,18 @@ following experiments:
 \begin{enumerate}
   
   \item Firstly, it is necessary to understand whether technical debt and work
-  effort are correlated. This experiment was split in two parts respective of
-  the two methods of computing work effort: using ticket and commit timestamps.
-  Technical debt was computed simply as a count of all technical debt items at
-  the project level. The aim was to understand whether work effort is impacted
-  by a global technical debt measurement. We assumed that the type and work item
-  complexity are constant.
+  effort are correlated. This experiment was split into two parts respective of
+  the two methods of computing work effort: using the ticket and commit
+  timestamps. Technical debt was computed simply as a count of all technical
+  debt items at the project level. The aim was to understand whether a global
+  technical debt measurement impacts work effort. We assumed that the type and
+  work item complexity are constant.
 
   \item Secondly, to determine how debt items impact work directly at the code
   level, we experimented with the locality calculation model. We computed the
   local technical debt for each work item and compared that to the initial
-  calculation of work effort. The purpose was to verify whether work effort was
-  negatively impacted by technical debt at the local level. 
+  calculation of work effort. The purpose was to verify whether technical debt
+  negatively impacted work effort locally. 
   
   \item Thirdly, we wanted to see if patterns of development affect task
   productivity. More specifically, the aim is to understand if introducing
@@ -969,17 +969,17 @@ effort calculation can be seen in table \ref{tab-work-effort}.
 In the case of ticket timestamps, the effort represents the time between a
 ticket being picked up by an engineer and the time when it was marked as
 `Closed'. A first view of the data shows that the computed work effort is
-unrealistically high. On average, on the ANTLR project it takes ~274 hours (~34
-full days) to deliver a work item while the other projects have an even higher
-effort average. Additionally, a high standard deviation points out that work
-effort varies drastically across all work items.
+unrealistically high. On average, on the \emph{ANTLR} project, it takes ~274
+hours (~34 full days) to deliver a work item while the other projects have an
+even higher effort average. Additionally, a high standard deviation points out
+that work effort varies drastically across all work items.
 
 A simple explanation is that tickets might remain open for a long time, and thus
-do not represent an accurate period of `coding work'. This might be consequence
-of issues being created very early and no team member picking up the task for
-implementation. Another posibility is that team members leave the ticket open
-once development has been completed. Moreover, work effort results include
-additional non-coding time, between development and code review. 
+do not represent an accurate period of `coding work'. This might be a
+consequence of issues being created very early and no team member picking up the
+task for implementation. Another possibility is that team members leave the
+ticket open once development has been completed. Moreover, work effort results
+include additional non-coding time, between development and code review. 
 
 If the team is following the `Pull Request' workflow for collaboration, then it
 is possible that all changes are queued in a list and are examined in a
@@ -988,20 +988,20 @@ contributors, then the review and merge process may be delayed. Additionally,
 the reviewers may reject some changes or promote a discussion, which further
 delays the completion of the task. The work effort values and the possibilities
 mentioned do not make the ticket timestamps computation of work effort a viable
-solution in the lack of logged development time.
+solution to the lack of logged development time.
 
 On the other hand, the results of calculating work effort using commit
 timestamps look more realistic. For the \emph{ANTLR} project, the average amount
-of effort per item reduced to ~24 hours (1 full day of work). In contrast
-to the ticket calculation method, this is massive time reduction possibly due to
-the version control logging, which is `closer' to the daily activity of the
+of effort per item reduced to ~24 hours (1 full day of work). In contrast to the
+ticket calculation method, this is massive time reduction possibly due to the
+version control logging, which is `closer' to the daily activity of the
 development team. The results for other projects have reduced dramatically as
 well. However, work effort per item is still high specifically for the two
 projects managed by Apache. Since commits are intrinsically tied to tickets, one
 possibility is that additional effort is accomplished after a work item was
 delivered. New commits might reference a `closed' work item and thus change the
-nature of the results, which might be the case for projects with a huge effort
-average per task.
+nature of the results, which might be the case for projects with a considerable
+effort average per task.
 
 The high standard deviation for both sets of results points out that work effort
 varies drastically across all work items, which might be a consequence of a
@@ -1010,9 +1010,9 @@ require more labour and take more time to deliver, while low complexity tickets
 may require less work. Another possibility is both calculations methods are
 trivial in the sense that the work time computed also includes weekends and
 possible time off that team members take during their year. Additionally, it
-might unrealistic for a developer to work 8 hours per day on a single project.
-Developers might work on multiple projects at a time and possibly work as a side
-project, during their spare time and only in some days of the week.
+might be unrealistic for a developer to work 8 hours per day on a single
+project. Developers might work on multiple projects at a time and possibly work
+as a side project, during their spare time and only in some days of the week.
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsubsection*{Experiment 1}
@@ -1047,9 +1047,9 @@ analysis tool in the data collection process.
 We expected \emph{Spring HATEOAS} to have a low technical debt count per work
 item since it is a `younger' project with a lower list of revisions and work
 items when compared to other candidates. However, the technical debt for the
-project varies as seen in figure \ref{fig:td-timeline}, when compared to a more
+project varies as seen in Figure \ref{fig:td-timeline}, when compared to a more
 mature project such as \emph{Commons Collections}. The other three projects have
-a more or less constant total debt count, due to a low variance. This might a
+a more or less constant total debt count, due to a low variance. This might be a
 consequence of the quality issues found. It is possible the team does not
 consider the detected code violations as severe items and thus no effort is put
 in for their removal. 
@@ -1071,7 +1071,7 @@ in for their removal.
 \end{figure*}
 
 The relationship between total technical debt and both work effort calculations
-can be seen in figure \ref{fig:td-total-debt}, for the \emph{Checkstyle}
+can be seen in Figure \ref{fig:td-total-debt}, for the \emph{Checkstyle}
 project. Unfortunately, the results do not show any meaningful pattern since
 technical debt has remained more or less constant throughout project evolution.
 The two subfigures \ref{fig:td-total-debt-commit} and
@@ -1112,7 +1112,7 @@ locality-based model for calculating technical debt. As mentioned in section
 \ref{data-processing}, the locality model calculates technical debt based on the
 change-set of each work task. Only code violations that are in the set of class
 changes made by a developer are considered to affect the effort required to
-accomplish the task. The statistics can be seen in figure
+accomplish the task. The statistics can be seen in Figure
 \ref{tab-technical-debt-local}.
 
 \begin{table*}
@@ -1132,13 +1132,13 @@ In contrast to experiment 1, the measurement of technical debt has reduced
 dramatically. Although the same population of work items has been used for both
 experiments, it seems that for the majority of projects, very few quality issues
 on average affect the daily work of a developer. This is surprising, especially
-since \emph{ANTLR} had the largest debt per work item out of all candidates. One
-factor which might influence the results is the application domain of each
-project. A possible explanation for \emph{ANTLR} is that, because the project is
-a language generation tool, many files of its source code could be grammar files
-which SpotBugs does not analyse. Thus it is possible that many tasks revolve
-around changes to these files, and the detected quality issues do not affect
-developer productivity. 
+since \emph{ANTLR} had the most significant debt per work item out of all
+candidates. One factor which might influence the results is the application
+domain of each project. A possible explanation for \emph{ANTLR} is that, because
+the project is a language generation tool, many files of its source code could
+be grammar files which SpotBugs does not analyse. Thus it is possible that many
+tasks revolve around changes to these files, and the detected quality issues do
+not affect developer productivity. 
 
 \begin{figure*}
 	\centering
@@ -1157,10 +1157,10 @@ developer productivity.
 \end{figure*}
 
 The relationship between local technical debt and work effort per task can be
-seen in figure \ref{fig:td-local-debt}, for \emph{Checkstyle}. The results seem
+seen in Figure \ref{fig:td-local-debt}, for \emph{Checkstyle}. The results seem
 to have spread out since technical debt is not as constant due to the change in
 ``level'' where technical debt items are considered to affect work. Similar to
-\ref{fig:td-total-debt}, data points for the commit timestamp method are
+Figure \ref{fig:td-total-debt}, data points for the commit timestamp method are
 concentrated in the range $[0-10]$ hours on the work effort axis due to the
 calculations. On the other hand, they are spread out for the ticket method due
 to the high variance of work effort previously calculated. The pattern by all
@@ -1242,9 +1242,9 @@ fixing bugs and other refactoring activities.
 \end{figure*}
 
 Lastly, the relationship between work effort calculations and technical debt
-added and removed are presented in figures \ref{fig:td-added} and
+added and removed are presented in Figures \ref{fig:td-added} and
 \ref{fig:td-removed}, respectively. The four figures display similar patterns to
-the previous local debt relationship with work effort, presented in figure
+the previous local debt relationship with work effort, presented in Figure
 \ref{fig:td-local-debt}. It seems that as work effort increases, technical debt
 decreases. This observation makes sense for removal of technical debt since work
 effort should increase with refactoring activities. However, the distribution of
@@ -1293,15 +1293,15 @@ The following factors may have had an impact:
 
   \item We considered that a developer works on a single item at a time. This
   may not be true. In corporate and open-source environments, it is very likely
-  that engineers work on multiple items and/or project at a time.
+  that engineers work on multiple items and projects at a time.
 
-  \item We did not introduce external workflow variables such as mini breaks for
+  \item We did not introduce external workflow variables such as mini-breaks for
   coffee, meetings, weekends or time off. This means that work effort results
   may contain non-development time. 
 
-  \item We considered that developers work continously, on 8 hours per day. This
+  \item We considered that developers work continuously, on 8 hours per day. This
   might not be accurate, especially in open-source projects. Engineers might
-  take less time out of their schedule if they are working on a part time basis.
+  take less time out of their schedule if they are working on a part-time basis.
 
   \item Additionally, we did not consider factors such as technical experience,
   knowledge of the system, familiarity with libraries and dependencies used,
@@ -1315,7 +1315,7 @@ The following factors may have had an impact:
 \subsubsection*{Technical Debt Measurement}
 \label{validity-td}
 
-Similarly, for technical debt calculations some simplifying assumptions were
+Similarly, for technical debt calculations, some simplifying assumptions were
 introduced to reduce the complexity of measurement:
 
 \begin{enumerate}
@@ -1346,8 +1346,8 @@ this area should consider a more complex identification mechanism and
 computation of technical debt measurement. There is value in identifying quality
 issues at the test and architecture level for various modules of projects and
 see how these may affect work effort in comparison with code debt. Fontana et
-al. \cite{Fontana2016} and Letouzey et. al \cite{Letouzey2012} have devised for
-complex calculations for measuring technical debt that could be tailored for the
+al. \cite{Fontana2016} and Letouzey et al. \cite{Letouzey2012} have devised for
+complex calculations for measuring technical debt that could be tailored to the
 data collection pipeline mentioned in section \ref{data-collection}.
 
 Gathering more data on the subjective aspect of the team, possibly through
@@ -1358,17 +1358,17 @@ computation and validation of work effort.
 
 Additional experiments may expand on the data collected from the project
 management tool. For example, it would be interesting if there is any
-correlation between work effort and tickets types such as features, enhacements
-and bugs. Moreover, ticket complexity plays a great role in assessing an initial
-work effort and would an interesting to note how technical debt affects the
-actual work effort in relation to the initial early estimation. Additional
+correlation between work effort and tickets types such as features, enhancements
+and bugs. Moreover, ticket complexity plays an enormous role in assessing an
+initial work effort and would an interesting to note how technical debt affects
+the actual work effort in relation to the initial early estimation. Additional
 expansions of this experiment would also look at ticket priority and how
 technical debt varies between the starting and ending revision of work tasks. 
 
 Furthermore, the relationship between technical debt and change-sets could be
 explored in more detail. It would be beneficial to explore whether the number of
 changes per files is affected by a local and global measurement of technical
-debt. In addition, the change-set size may give an accurate representation of
+debt. Besides, the change-set size may give an accurate representation of
 the work effort involved for delivery of a task. However, this assumption may
 backfire as many Integrated Development Environments (IDEs) integrate
 refactoring tools which may hinder results. A solution would be to detect and
@@ -1408,11 +1408,12 @@ development environment.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bf Acknowledgments.} I would like to thank my supervisor, Dr. Tim Storer, for
-his guidance, continued support and patience throughout this year. Many thanks
-to the University of Glasgow Computing Science Support Team and to our corporate
-partners for their technical support. I would also like to thank my parents and
-my girlfriend, Ioana, for their continued love, support and encourangement. 
+{\bf Acknowledgments.} I would like to thank my supervisor, Dr Tim Storer, for
+his guidance, continued support, patience and professionalism throughout the
+year. Many thanks to the University of Glasgow Computing Science Support Team
+and our corporate partners for their technical support. I would also like to
+thank my parents and my girlfriend, Ioana, for their continued love, support and
+encouragement. 
 
 \bibliographystyle{abbrv}
 \bibliography{mdiss}
